@@ -52,6 +52,13 @@ Devuelve el valor del índice UVA (Unidad de Valor Adquisitivo) de Argentina.
 =uva(fecha)
 ```
 
+### Riesgo País
+Devuelve el valor del riesgo país de Argentina.
+
+```
+=riesgopais(fecha)
+```
+
 ### Comparador de Precios de Criptomonedas (CriptoYa)
 Devuelve y compara precios de criptomonedas en diferentes exchanges argentinos e internacionales.
 
@@ -67,13 +74,14 @@ Devuelve y compara precios de criptomonedas en diferentes exchanges argentinos e
 - inflacion.js – Código fuente de Apps Script para índices de inflación
 - crypto.js – Código fuente de Apps Script para precios de criptomonedas
 - uva.js – Código fuente de Apps Script para índices UVA
+- riesgopais.js – Código fuente de Apps Script para valores del riesgo país
 - criptoya.js – Código fuente de Apps Script para comparador de precios de criptomonedas
 - README.md – Esta documentación
 
 ## 🔧 Instalación
 1. Abrí tu Google Sheet.
 2. Andá a Extensiones → Apps Script.
-3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js, bonos.js, inflacion.js, crypto.js, uva.js y/o criptoya.js
+3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js, bonos.js, inflacion.js, crypto.js, uva.js, riesgopais.js y/o criptoya.js
 4. Guarda el proyecto (por ejemplo, "ArgentinaFinance").
 5. Volvé a la hoja y espera unos segundos para que se registren las funciones.
 
@@ -271,6 +279,29 @@ En cualquier celda de la hoja, escribe:
 | `=uva("03/31/2023")` | Mismo resultado que el anterior |
 | `=uva(A1)` | Valor del UVA para la fecha en la celda A1 |
 
+### Función Riesgo País
+En cualquier celda de la hoja, escribe:
+
+```
+=riesgopais(fecha)
+```
+
+#### Parámetros
+
+**fecha (string o Date):** [Opcional]
+- Fecha para la cual se quiere obtener el valor del riesgo país
+- Formato aceptado: "YYYY-MM-DD" o "MM/DD/YYYY"
+- Si se omite, devuelve el valor más reciente disponible
+
+#### Ejemplos
+
+| Fórmula | Descripción |
+|---------|-------------|
+| `=riesgopais()` | Valor del riesgo país más reciente |
+| `=riesgopais("2023-03-31")` | Valor del riesgo país para el 31 de marzo de 2023 |
+| `=riesgopais("03/31/2023")` | Mismo resultado que el anterior |
+| `=riesgopais(A1)` | Valor del riesgo país para la fecha en la celda A1 |
+
 ### Función CriptoYa
 En cualquier celda de la hoja, escribe:
 
@@ -371,6 +402,11 @@ Forzar recálculo:
 "Error al consultar el precio de XYZ: [mensaje de error detallado]"
 
 ### Errores de la función UVA
+
+**Fecha inválida**  
+"Fecha inválida: 'xyz'. Usar formato 'YYYY-MM-DD' o 'MM/DD/YYYY'."
+
+### Errores de la función Riesgo País
 
 **Fecha inválida**  
 "Fecha inválida: 'xyz'. Usar formato 'YYYY-MM-DD' o 'MM/DD/YYYY'."

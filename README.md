@@ -31,17 +31,25 @@ Devuelve información sobre los bonos que cotizan en el mercado argentino.
 =bonos("symbol"; "valor")
 ```
 
+### Índices de Inflación
+Devuelve el índice de inflación mensual de Argentina.
+
+```
+=inflacion(fecha)
+```
+
 ## 📦 Estructura del repositorio
 - dolar.js – Código fuente de Apps Script para cotizaciones de dólar
 - cedear.js – Código fuente de Apps Script para información de CEDEARs
 - acciones.js – Código fuente de Apps Script para información de acciones argentinas
 - bonos.js – Código fuente de Apps Script para información de bonos argentinos
+- inflacion.js – Código fuente de Apps Script para índices de inflación
 - README.md – Esta documentación
 
 ## 🔧 Instalación
 1. Abrí tu Google Sheet.
 2. Andá a Extensiones → Apps Script.
-3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js y/o bonos.js
+3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js, bonos.js y/o inflacion.js
 4. Guarda el proyecto (por ejemplo, "ArgentinaFinance").
 5. Volvé a la hoja y espera unos segundos para que se registren las funciones.
 
@@ -168,6 +176,29 @@ En cualquier celda de la hoja, escribe:
 | `=bonos("GD30"; "px_ask")` | Precio de oferta de venta del bono GD30 |
 | `=bonos("AE38"; "pct_change")` | Variación porcentual diaria del bono AE38 |
 
+### Función Inflación
+En cualquier celda de la hoja, escribe:
+
+```
+=inflacion(fecha)
+```
+
+#### Parámetros
+
+**fecha (string o Date):** [Opcional]
+- Fecha para la cual se quiere obtener el índice de inflación
+- Formato aceptado: "YYYY-MM-DD" o "MM/DD/YYYY"
+- Si se omite, devuelve el valor más reciente disponible
+
+#### Ejemplos
+
+| Fórmula | Descripción |
+|---------|-------------|
+| `=inflacion()` | Índice de inflación más reciente |
+| `=inflacion("2023-03-31")` | Índice de inflación para marzo de 2023 |
+| `=inflacion("03/31/2023")` | Mismo resultado que el anterior |
+| `=inflacion(A1)` | Índice de inflación para la fecha en la celda A1 |
+
 ## 🔄 Actualización automática
 Google Sheets recalcula las fórmulas al:
 
@@ -211,6 +242,11 @@ Forzar recálculo:
 
 **Atributo inválido**  
 "Atributo inválido: 'xyz'. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change."
+
+### Errores de la función Inflación
+
+**Fecha inválida**  
+"Fecha inválida: 'xyz'. Usar formato 'YYYY-MM-DD' o 'MM/DD/YYYY'."
 
 
 

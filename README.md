@@ -38,18 +38,26 @@ Devuelve el índice de inflación mensual de Argentina.
 =inflacion(fecha)
 ```
 
+### Precios de Criptomonedas
+Devuelve el precio actual de criptomonedas desde Coinbase.
+
+```
+=crypto("symbol"; "moneda")
+```
+
 ## 📦 Estructura del repositorio
 - dolar.js – Código fuente de Apps Script para cotizaciones de dólar
 - cedear.js – Código fuente de Apps Script para información de CEDEARs
 - acciones.js – Código fuente de Apps Script para información de acciones argentinas
 - bonos.js – Código fuente de Apps Script para información de bonos argentinos
 - inflacion.js – Código fuente de Apps Script para índices de inflación
+- crypto.js – Código fuente de Apps Script para precios de criptomonedas
 - README.md – Esta documentación
 
 ## 🔧 Instalación
 1. Abrí tu Google Sheet.
 2. Andá a Extensiones → Apps Script.
-3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js, bonos.js y/o inflacion.js
+3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js, bonos.js, inflacion.js y/o crypto.js
 4. Guarda el proyecto (por ejemplo, "ArgentinaFinance").
 5. Volvé a la hoja y espera unos segundos para que se registren las funciones.
 
@@ -199,6 +207,31 @@ En cualquier celda de la hoja, escribe:
 | `=inflacion("03/31/2023")` | Mismo resultado que el anterior |
 | `=inflacion(A1)` | Índice de inflación para la fecha en la celda A1 |
 
+### Función Crypto
+En cualquier celda de la hoja, escribe:
+
+```
+=crypto("symbol"; "moneda")
+```
+
+#### Parámetros
+
+**symbol (string):**
+- Símbolo de la criptomoneda (ej: "BTC", "ETH", "SOL")
+
+**moneda (string):** [Opcional]
+- Moneda en la que se quiere obtener el precio (ej: "USD", "EUR")
+- Por defecto: "USD"
+
+#### Ejemplos
+
+| Fórmula | Descripción |
+|---------|-------------|
+| `=crypto("BTC")` | Precio actual de Bitcoin en USD |
+| `=crypto("ETH"; "EUR")` | Precio actual de Ethereum en euros |
+| `=crypto("SOL"; "USD")` | Precio actual de Solana en USD |
+| `=crypto("MATIC"; "ARS")` | Precio actual de Polygon en pesos argentinos |
+
 ## 🔄 Actualización automática
 Google Sheets recalcula las fórmulas al:
 
@@ -247,6 +280,14 @@ Forzar recálculo:
 
 **Fecha inválida**  
 "Fecha inválida: 'xyz'. Usar formato 'YYYY-MM-DD' o 'MM/DD/YYYY'."
+
+### Errores de la función Crypto
+
+**Par de trading no encontrado**  
+"Par de trading no encontrado: 'XYZ-USD'. Verifica que el símbolo y la moneda sean correctos."
+
+**Error de conexión**  
+"Error al consultar el precio de XYZ: [mensaje de error detallado]"
 
 
 

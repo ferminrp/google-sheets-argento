@@ -17,15 +17,23 @@ Devuelve información sobre los CEDEARs (Certificados de Depósito Argentinos) q
 =cedear("symbol"; "valor")
 ```
 
+### Información de Acciones Argentinas
+Devuelve información sobre las acciones que cotizan en el mercado argentino.
+
+```
+=acciones("symbol"; "valor")
+```
+
 ## 📦 Estructura del repositorio
 - dolar.js – Código fuente de Apps Script para cotizaciones de dólar
 - cedear.js – Código fuente de Apps Script para información de CEDEARs
+- acciones.js – Código fuente de Apps Script para información de acciones argentinas
 - README.md – Esta documentación
 
 ## 🔧 Instalación
 1. Abrí tu Google Sheet.
 2. Andá a Extensiones → Apps Script.
-3. Borra cualquier código existente y pega el contenido de dolar.js y/o cedear.js
+3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js y/o acciones.js
 4. Guarda el proyecto (por ejemplo, "ArgentinaFinance").
 5. Volvé a la hoja y espera unos segundos para que se registren las funciones.
 
@@ -92,6 +100,36 @@ En cualquier celda de la hoja, escribe:
 | `=cedear("MSFT"; "px_ask")` | Precio de oferta de venta del CEDEAR de Microsoft |
 | `=cedear("GOOGL"; "pct_change")` | Variación porcentual diaria del CEDEAR de Google |
 
+### Función Acciones
+En cualquier celda de la hoja, escribe:
+
+```
+=acciones("symbol"; "valor")
+```
+
+#### Parámetros
+
+**symbol (string):**
+- Símbolo de la acción argentina (ej: "YPFD", "ALUA", "PAMP")
+
+**valor (string):**
+- "c" - Precio actual
+- "v" - Volumen de operaciones
+- "q_bid" - Cantidad en oferta de compra
+- "px_bid" - Precio de oferta de compra
+- "px_ask" - Precio de oferta de venta
+- "q_ask" - Cantidad en oferta de venta
+- "q_op" - Operaciones diarias
+- "pct_change" - Variación porcentual diaria
+
+#### Ejemplos
+
+| Fórmula | Descripción |
+|---------|-------------|
+| `=acciones("YPFD"; "c")` | Precio actual de la acción de YPF |
+| `=acciones("ALUA"; "px_ask")` | Precio de oferta de venta de Aluar |
+| `=acciones("PAMP"; "pct_change")` | Variación porcentual diaria de Pampa Energía |
+
 ## 🔄 Actualización automática
 Google Sheets recalcula las fórmulas al:
 
@@ -116,6 +154,14 @@ Forzar recálculo:
 
 **Símbolo inválido**  
 "Símbolo inválido: 'xyz'. No se encontró en la lista de CEDEARs disponibles."
+
+**Atributo inválido**  
+"Atributo inválido: 'xyz'. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change."
+
+### Errores de la función Acciones
+
+**Símbolo inválido**  
+"Símbolo inválido: 'xyz'. No se encontró en la lista de acciones disponibles."
 
 **Atributo inválido**  
 "Atributo inválido: 'xyz'. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change."

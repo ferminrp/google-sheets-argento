@@ -325,6 +325,11 @@ Forzar recálculo:
 **Fecha inválida**  
 "Fecha inválida: 'xyz'. Usar formato 'YYYY-MM-DD' o 'MM/DD/YYYY'."
 
+## 👏 Agradecimientos
+
+- A [Argentina Datos](https://argentinadatos.com/) y su creador [Enzo Notario](https://github.com/enzonotario/) por las APIs de inflación y UVA.
+- A [@JohnGalt_is_www](https://x.com/JohnGalt_is_www) por sus APIs de bonos, CEDEARs y acciones.
+
 
 
 

@@ -45,6 +45,13 @@ Devuelve el precio actual de criptomonedas desde Coinbase.
 =crypto("symbol"; "moneda")
 ```
 
+### Índices UVA
+Devuelve el valor del índice UVA (Unidad de Valor Adquisitivo) de Argentina.
+
+```
+=uva(fecha)
+```
+
 ## 📦 Estructura del repositorio
 - dolar.js – Código fuente de Apps Script para cotizaciones de dólar
 - cedear.js – Código fuente de Apps Script para información de CEDEARs
@@ -52,12 +59,13 @@ Devuelve el precio actual de criptomonedas desde Coinbase.
 - bonos.js – Código fuente de Apps Script para información de bonos argentinos
 - inflacion.js – Código fuente de Apps Script para índices de inflación
 - crypto.js – Código fuente de Apps Script para precios de criptomonedas
+- uva.js – Código fuente de Apps Script para índices UVA
 - README.md – Esta documentación
 
 ## 🔧 Instalación
 1. Abrí tu Google Sheet.
 2. Andá a Extensiones → Apps Script.
-3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js, bonos.js, inflacion.js y/o crypto.js
+3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js, bonos.js, inflacion.js, crypto.js y/o uva.js
 4. Guarda el proyecto (por ejemplo, "ArgentinaFinance").
 5. Volvé a la hoja y espera unos segundos para que se registren las funciones.
 
@@ -232,6 +240,29 @@ En cualquier celda de la hoja, escribe:
 | `=crypto("SOL"; "USD")` | Precio actual de Solana en USD |
 | `=crypto("MATIC"; "ARS")` | Precio actual de Polygon en pesos argentinos |
 
+### Función UVA
+En cualquier celda de la hoja, escribe:
+
+```
+=uva(fecha)
+```
+
+#### Parámetros
+
+**fecha (string o Date):** [Opcional]
+- Fecha para la cual se quiere obtener el valor del índice UVA
+- Formato aceptado: "YYYY-MM-DD" o "MM/DD/YYYY"
+- Si se omite, devuelve el valor más reciente disponible
+
+#### Ejemplos
+
+| Fórmula | Descripción |
+|---------|-------------|
+| `=uva()` | Valor del UVA más reciente |
+| `=uva("2023-03-31")` | Valor del UVA para el 31 de marzo de 2023 |
+| `=uva("03/31/2023")` | Mismo resultado que el anterior |
+| `=uva(A1)` | Valor del UVA para la fecha en la celda A1 |
+
 ## 🔄 Actualización automática
 Google Sheets recalcula las fórmulas al:
 
@@ -288,6 +319,11 @@ Forzar recálculo:
 
 **Error de conexión**  
 "Error al consultar el precio de XYZ: [mensaje de error detallado]"
+
+### Errores de la función UVA
+
+**Fecha inválida**  
+"Fecha inválida: 'xyz'. Usar formato 'YYYY-MM-DD' o 'MM/DD/YYYY'."
 
 
 

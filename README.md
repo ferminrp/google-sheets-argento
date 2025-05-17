@@ -602,17 +602,13 @@ En cualquier celda de la hoja, escribe:
 
 #### Parámetros
 
-
-**tna (number):**
+**id (number):**
+- ID de la variable a consultar
+- Algunos IDs disponibles:
+  - 1: Reservas Internacionales del BCRA (en millones de dólares)
   - 4: Tipo de Cambio Minorista (ARS / USD) - Promedio Venta
-- Monto bruto de la operación en pesos
-
-**arancelCaucionColocadoraTna (number):** [Opcional]
-- Tasa de arancel para caución colocadora
-- Por defecto: 1.5% (expresado como 1.5)
-
-**arancelCaucionTomadoraTna (number):** [Opcional]
-- Por defecto: 4.0% (expresado como 4.0)
+  - 5: Tipo de Cambio Mayorista (ARS / USD) - Referencia Comunicación A 3500
+  - 6: Tasa de Política Monetaria (TEA %)
 
 #### Ejemplos
 

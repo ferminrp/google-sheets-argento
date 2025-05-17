@@ -38,6 +38,13 @@ Devuelve información sobre los bonos que cotizan en el mercado argentino.
 =bonos("symbol"; "valor")
 ```
 
+### Información de Opciones Argentinas
+Devuelve información sobre las opciones que cotizan en el mercado argentino.
+
+```
+=opciones("symbol"; "valor")
+```
+
 ### Índices de Inflación
 Devuelve el índice de inflación mensual de Argentina.
 
@@ -100,6 +107,7 @@ Devuelve y compara precios de criptomonedas en diferentes exchanges argentinos e
 - acciones.js – Código fuente de Apps Script para información de acciones argentinas
 - usa_stocks.js – Código fuente de Apps Script para información de acciones estadounidenses
 - bonos.js – Código fuente de Apps Script para información de bonos argentinos
+- opciones.js – Código fuente de Apps Script para información de opciones argentinas
 - inflacion.js – Código fuente de Apps Script para índices de inflación
 - crypto.js – Código fuente de Apps Script para precios de criptomonedas
 - uva.js – Código fuente de Apps Script para índices UVA
@@ -113,7 +121,7 @@ Devuelve y compara precios de criptomonedas en diferentes exchanges argentinos e
 ## 🔧 Instalación
 1. Abrí tu Google Sheet.
 2. Andá a Extensiones → Apps Script.
-3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js, usa_stocks.js, bonos.js, inflacion.js, crypto.js, uva.js, riesgopais.js, rendimientos.js, plazofijo.js, fci.js y/o criptoya.js
+3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js, usa_stocks.js, bonos.js, opciones.js, inflacion.js, crypto.js, uva.js, riesgopais.js, rendimientos.js, plazofijo.js, fci.js y/o criptoya.js
 4. Guarda el proyecto (por ejemplo, "ArgentinaFinance").
 5. Volvé a la hoja y espera unos segundos para que se registren las funciones.
 
@@ -239,6 +247,40 @@ En cualquier celda de la hoja, escribe:
 | `=bonos("AL30"; "c")` | Precio actual del bono AL30 |
 | `=bonos("GD30"; "px_ask")` | Precio de oferta de venta del bono GD30 |
 | `=bonos("AE38"; "pct_change")` | Variación porcentual diaria del bono AE38 |
+
+### Función Opciones
+En cualquier celda de la hoja, escribe:
+
+```
+=opciones("symbol"; "valor")
+```
+
+#### Parámetros
+
+**symbol (string):**
+- Símbolo de la opción (ej: "ALUC1000JU", "GGALV53000S")
+- El formato típico es: [TICKER][C/V][STRIKE][VENCIMIENTO]
+  - C/V: C = Call, V = Put (Venta)
+  - STRIKE: Precio de ejercicio
+  - VENCIMIENTO: Mes de vencimiento (J = Julio, A = Agosto, S = Septiembre, etc.)
+
+**valor (string):**
+- "c" - Precio actual
+- "v" - Volumen de operaciones
+- "q_bid" - Cantidad en oferta de compra
+- "px_bid" - Precio de oferta de compra
+- "px_ask" - Precio de oferta de venta
+- "q_ask" - Cantidad en oferta de venta
+- "q_op" - Operaciones diarias
+- "pct_change" - Variación porcentual diaria
+
+#### Ejemplos
+
+| Fórmula | Descripción |
+|---------|-------------|
+| `=opciones("YPFC49000J"; "c")` | Precio actual de la opción CALL de YPF con strike 490 y vencimiento en Julio |
+| `=opciones("ALUC800JU"; "px_ask")` | Precio de oferta de venta de la opción CALL de Aluar con strike 800 |
+| `=opciones("GGALV53000S"; "pct_change")` | Variación porcentual diaria de la opción PUT de Grupo Galicia con strike 530 y vencimiento en Septiembre |
 
 ### Función Inflación
 En cualquier celda de la hoja, escribe:
@@ -598,6 +640,14 @@ Forzar recálculo:
 
 **Sin valor disponible**  
 "El fondo 'xyz' no tiene valor para el campo 'abc'."
+
+### Errores de la función Opciones
+
+**Símbolo inválido**  
+"Símbolo de opción inválido: 'xyz'. No se encontró en la lista de opciones disponibles."
+
+**Atributo inválido**  
+"Atributo inválido: 'xyz'. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change."
 
 ### Errores de la función CriptoYa
 

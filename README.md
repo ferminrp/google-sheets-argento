@@ -40,6 +40,13 @@ Devuelve información sobre los bonos que cotizan en el mercado argentino.
 =bonos("symbol"; "valor")
 ```
 
+### Información de Letras del Tesoro
+Devuelve información sobre las letras del tesoro que cotizan en el mercado argentino.
+
+```
+=letras("symbol"; "valor")
+```
+
 ### Información de Opciones Argentinas
 Devuelve información sobre las opciones que cotizan en el mercado argentino.
 
@@ -116,6 +123,7 @@ Devuelve valores de variables económicas del Banco Central de la República Arg
 - acciones.js – Código fuente de Apps Script para información de acciones argentinas
 - usa_stocks.js – Código fuente de Apps Script para información de acciones estadounidenses
 - bonos.js – Código fuente de Apps Script para información de bonos argentinos
+- letras.js – Código fuente de Apps Script para información de letras del tesoro
 - opciones.js – Código fuente de Apps Script para información de opciones argentinas
 - inflacion.js – Código fuente de Apps Script para índices de inflación
 - crypto.js – Código fuente de Apps Script para precios de criptomonedas
@@ -131,7 +139,7 @@ Devuelve valores de variables económicas del Banco Central de la República Arg
 ## 🔧 Instalación
 1. Abrí tu Google Sheet.
 2. Andá a Extensiones → Apps Script.
-3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js, usa_stocks.js, bonos.js, opciones.js, inflacion.js, crypto.js, uva.js, riesgopais.js, rendimientos.js, plazofijo.js, fci.js, criptoya.js y/o bcra.js
+3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js, usa_stocks.js, bonos.js, letras.js, opciones.js, inflacion.js, crypto.js, uva.js, riesgopais.js, rendimientos.js, plazofijo.js, fci.js, criptoya.js y/o bcra.js
 4. Guarda el proyecto (por ejemplo, "ArgentinaFinance").
 5. Volvé a la hoja y espera unos segundos para que se registren las funciones.
 
@@ -257,6 +265,36 @@ En cualquier celda de la hoja, escribe:
 | `=bonos("AL30"; "c")` | Precio actual del bono AL30 |
 | `=bonos("GD30"; "px_ask")` | Precio de oferta de venta del bono GD30 |
 | `=bonos("AE38"; "pct_change")` | Variación porcentual diaria del bono AE38 |
+
+### Función Letras
+En cualquier celda de la hoja, escribe:
+
+```
+=letras("symbol"; "valor")
+```
+
+#### Parámetros
+
+**symbol (string):**
+- Símbolo de la letra del tesoro (ej: "BB2Y5", "BNA6D", "S31L5")
+
+**valor (string):**
+- "c" - Precio actual
+- "v" - Volumen de operaciones
+- "q_bid" - Cantidad en oferta de compra
+- "px_bid" - Precio de oferta de compra
+- "px_ask" - Precio de oferta de venta
+- "q_ask" - Cantidad en oferta de venta
+- "q_op" - Operaciones diarias
+- "pct_change" - Variación porcentual diaria
+
+#### Ejemplos
+
+| Fórmula | Descripción |
+|---------|-------------|
+| `=letras("BB2Y5"; "c")` | Precio actual de la letra BB2Y5 |
+| `=letras("BNA6D"; "px_ask")` | Precio de oferta de venta de la letra BNA6D |
+| `=letras("S31L5"; "pct_change")` | Variación porcentual diaria de la letra S31L5 |
 
 ### Función Opciones
 En cualquier celda de la hoja, escribe:
@@ -615,6 +653,14 @@ Forzar recálculo:
 **Atributo inválido**  
 "Atributo inválido: 'xyz'. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change."
 
+### Errores de la función Letras
+
+**Símbolo inválido**  
+"Símbolo inválido: 'xyz'. No se encontró en la lista de letras disponibles."
+
+**Atributo inválido**  
+"Atributo inválido: 'xyz'. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change."
+
 ### Errores de la función Inflación
 
 **Fecha inválida**  
@@ -718,7 +764,7 @@ Forzar recálculo:
 ## 👏 Agradecimientos
 
 - A [Argentina Datos](https://argentinadatos.com/) y su creador [Enzo Notario](https://github.com/enzonotario/) por las APIs de inflación y UVA.
-- A [@JohnGalt_is_www](https://x.com/JohnGalt_is_www) por sus APIs de bonos, CEDEARs y acciones argentinas y estadounidenses.
+- A [@JohnGalt_is_www](https://x.com/JohnGalt_is_www) por sus APIs de bonos, letras, CEDEARs y acciones argentinas y estadounidenses.
 - A [@http://criptoya.com/](http://criptoya.com/) por su API de comparación de precios de criptomonedas.
 - A [Banco Central de la República Argentina](https://www.bcra.gob.ar/) por su API de variables económicas.
 

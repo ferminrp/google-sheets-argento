@@ -1,6 +1,8 @@
 # Google Sheets Argento
 Scripts de Apps Script que añaden a tu Google Sheet funciones tipicas para el dia a dia de un Argentino de bien.
 
+[![Invitame un café en cafecito.app](https://cdn.cafecito.app/imgs/buttons/button_1.svg)](https://cafecito.app/ferminrp)
+
 ## Funciones
 
 ### Cotizaciones del dolar

@@ -164,7 +164,7 @@ Devuelve información sobre operaciones de caución (colocadora y tomadora) en e
 4. Guarda el proyecto (por ejemplo, "ArgentinaFinance").
 5. Volvé a la hoja y espera unos segundos para que se registren las funciones.
 
-### Opción 2: Usando el archivo consolidado
+### Opción 2: Usando el archivo consolidado 📦
 1. Ejecutá `npm run build` en la terminal para generar un archivo consolidado con todas las funciones.
 2. El archivo se generará en la carpeta `dist` con el nombre `google-sheets-argento.js`.
 3. Abrí tu Google Sheet.

@@ -1,6 +1,32 @@
 /**
- * Fetches data from the BCRA (Banco Central de la República Argentina) API
- * and returns the latest value for a specific variable by ID.
+ * Devuelve un array con todas las variables disponibles del BCRA (Banco Central de la República Argentina).
+ * Cada elemento contiene el ID de la variable y su valor actual.
+ *
+ * @return {Array} Un array de variables del BCRA donde cada elemento es [idVariable, valor]
+ * @customfunction
+ */
+function bcraVariables() {
+  try {
+    // Fetch data from the BCRA API
+    const url = "https://api.bcra.gob.ar/estadisticas/v3.0/Monetarias";
+    const response = UrlFetchApp.fetch(url);
+    const data = JSON.parse(response.getContentText());
+    
+    // Check if the API response is valid
+    if (data.status !== 200 || !data.results || !Array.isArray(data.results)) {
+      throw new Error("Error en la respuesta de la API del BCRA.");
+    }
+    
+    // Return the array of results
+    return data.results.map(item => [item.categoria, item.idVariable, item.descripcion, item.valor, item.fecha]);
+  } catch (error) {
+    throw new Error(`Error al consultar el BCRA: ${error.message}`);
+  }
+}
+
+/**
+ * Obtiene datos de la API del BCRA (Banco Central de la República Argentina)
+ * y devuelve el último valor para una variable específica según su ID.
  *
  * @param {number} id - The ID of the variable to fetch
  * @return The value of the specified variable
@@ -38,4 +64,4 @@ function bcra(id) {
   } catch (error) {
     throw new Error(`Error al consultar el BCRA: ${error.message}`);
   }
-} 
+}

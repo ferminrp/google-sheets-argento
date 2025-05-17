@@ -127,6 +127,8 @@ Devuelve información sobre operaciones de caución (colocadora y tomadora) en e
 ```
 
 ## 📦 Estructura del repositorio
+
+### Archivos principales
 - dolar.js – Código fuente de Apps Script para cotizaciones de dólar
 - cedear.js – Código fuente de Apps Script para información de CEDEARs
 - acciones.js – Código fuente de Apps Script para información de acciones argentinas
@@ -146,12 +148,29 @@ Devuelve información sobre operaciones de caución (colocadora y tomadora) en e
 - caucion.js – Código fuente de Apps Script para cálculo de cauciones tomadoras y colocadoras
 - README.md – Esta documentación
 
+### Archivos de desarrollo
+- build.js – Script para consolidar todos los archivos .js en uno solo
+- package.json – Configuración del proyecto y scripts de desarrollo
+
+### Archivos generados
+- dist/google-sheets-argento.js – Archivo consolidado con todas las funciones (generado al ejecutar `npm run build`)
+
 ## 🔧 Instalación
+
+### Opción 1: Instalación manual
 1. Abrí tu Google Sheet.
 2. Andá a Extensiones → Apps Script.
 3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js, usa_stocks.js, bonos.js, letras.js, opciones.js, inflacion.js, crypto.js, uva.js, riesgopais.js, rendimientos.js, plazofijo.js, fci.js, criptoya.js y/o bcra.js
 4. Guarda el proyecto (por ejemplo, "ArgentinaFinance").
 5. Volvé a la hoja y espera unos segundos para que se registren las funciones.
+
+### Opción 2: Usando el archivo consolidado
+1. Ejecutá `npm run build` en la terminal para generar un archivo consolidado con todas las funciones.
+2. El archivo se generará en la carpeta `dist` con el nombre `google-sheets-argento.js`.
+3. Abrí tu Google Sheet.
+4. Andá a Extensiones → Apps Script.
+5. Borra cualquier código existente y pega el contenido del archivo `dist/google-sheets-argento.js`.
+6. Guarda el proyecto y volvé a la hoja.
 
 ## 🚀 Uso
 

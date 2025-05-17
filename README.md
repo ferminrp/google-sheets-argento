@@ -80,6 +80,13 @@ Devuelve las tasas de plazos fijos (TNA) ofrecidas por bancos en Argentina.
 =plazofijo("banco"; "tipoCliente")
 ```
 
+### Fondos Comunes de Inversión
+Devuelve información sobre Fondos Comunes de Inversión (FCI) en Argentina.
+
+```
+=fci("tipoFondo"; "nombreFondo"; "fecha"; "campo")
+```
+
 ### Comparador de Precios de Criptomonedas (CriptoYa)
 Devuelve y compara precios de criptomonedas en diferentes exchanges argentinos e internacionales.
 
@@ -99,13 +106,14 @@ Devuelve y compara precios de criptomonedas en diferentes exchanges argentinos e
 - riesgopais.js – Código fuente de Apps Script para valores del riesgo país
 - rendimientos.js – Código fuente de Apps Script para rendimientos de criptomonedas
 - plazofijo.js – Código fuente de Apps Script para tasas de plazos fijos
+- fci.js – Código fuente de Apps Script para fondos comunes de inversión
 - criptoya.js – Código fuente de Apps Script para comparador de precios de criptomonedas
 - README.md – Esta documentación
 
 ## 🔧 Instalación
 1. Abrí tu Google Sheet.
 2. Andá a Extensiones → Apps Script.
-3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js, usa_stocks.js, bonos.js, inflacion.js, crypto.js, uva.js, riesgopais.js, rendimientos.js, plazofijo.js y/o criptoya.js
+3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js, usa_stocks.js, bonos.js, inflacion.js, crypto.js, uva.js, riesgopais.js, rendimientos.js, plazofijo.js, fci.js y/o criptoya.js
 4. Guarda el proyecto (por ejemplo, "ArgentinaFinance").
 5. Volvé a la hoja y espera unos segundos para que se registren las funciones.
 
@@ -449,6 +457,42 @@ En cualquier celda de la hoja, escribe:
 | `=plazofijo("Provincia"; "nocliente")` | Tasa de plazo fijo para no clientes del Banco Provincia |
 | `=plazofijo(; "nocliente")` | Mejor tasa de plazo fijo para no clientes entre todos los bancos |
 
+### Función FCI
+En cualquier celda de la hoja, escribe:
+
+```
+=fci("tipoFondo"; "nombreFondo"; "fecha"; "campo")
+```
+
+#### Parámetros
+
+**tipoFondo (string):**
+- Tipo de fondo a consultar: "mercadoDinero", "rentaVariable", "rentaFija", "rentaMixta"
+
+**nombreFondo (string):**
+- Nombre del fondo a consultar (ej: "Balanz Money Market USD - Clase A")
+
+**fecha (string):** [Opcional]
+- Fecha para la cual se quiere obtener la información
+- Formato aceptado: "YYYY-MM-DD" o "MM/DD/YYYY"
+- Si se omite, devuelve la información más reciente
+
+**campo (string):** [Opcional]
+- Campo a consultar: 
+  - "vcp" - Valor cuotaparte
+  - "ccp" - Cantidad cuotapartes
+  - "patrimonio" - Patrimonio total del fondo
+- Por defecto: "vcp"
+
+#### Ejemplos
+
+| Fórmula | Descripción |
+|---------|-------------|
+| `=fci("mercadoDinero"; "Balanz Money Market USD - Clase A")` | Valor cuotaparte actual del fondo Balanz Money Market USD |
+| `=fci("rentaFija"; "Pionero Renta"; "2023-05-01")` | Valor cuotaparte del fondo Pionero Renta para la fecha indicada |
+| `=fci("rentaVariable"; "Alpha Acciones"; ; "patrimonio")` | Patrimonio actual del fondo Alpha Acciones |
+| `=fci("rentaMixta"; "Galileo Income"; ; "ccp")` | Cantidad de cuotapartes actual del fondo Galileo Income |
+
 ## 🔄 Actualización automática
 Google Sheets recalcula las fórmulas al:
 
@@ -537,6 +581,23 @@ Forzar recálculo:
 
 **Información no disponible**  
 "No se encontró información de tasa para el banco 'Banco XYZ'."
+
+### Errores de la función FCI
+
+**Tipo de fondo inválido**  
+"Tipo de fondo inválido. Tipos permitidos: mercadoDinero, rentaVariable, rentaFija, rentaMixta."
+
+**Fondo no encontrado**  
+"Fondo 'xyz' no encontrado para el tipo 'abc'. Algunos fondos disponibles: Balanz Money Market USD - Clase A, Schroder Liquidez - Clase B..."
+
+**Campo inválido**  
+"Campo inválido. Campos permitidos: vcp (valor cuotaparte), ccp (cantidad cuotapartes), patrimonio."
+
+**Fecha inválida**  
+"Fecha inválida: 'xyz'. Usar formato 'YYYY-MM-DD' o 'MM/DD/YYYY'."
+
+**Sin valor disponible**  
+"El fondo 'xyz' no tiene valor para el campo 'abc'."
 
 ### Errores de la función CriptoYa
 

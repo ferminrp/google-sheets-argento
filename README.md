@@ -143,7 +143,7 @@ Devuelve información sobre operaciones de caución (colocadora y tomadora) en e
 - fci.js – Código fuente de Apps Script para fondos comunes de inversión
 - criptoya.js – Código fuente de Apps Script para comparador de precios de criptomonedas
 - bcra.js – Código fuente de Apps Script para variables del Banco Central
-- cauciones.js – Código fuente de Apps Script para cálculo de cauciones tomadoras y colocadoras
+- caucion.js – Código fuente de Apps Script para cálculo de cauciones tomadoras y colocadoras
 - README.md – Esta documentación
 
 ## 🔧 Instalación

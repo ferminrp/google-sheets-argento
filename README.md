@@ -40,6 +40,13 @@ Devuelve información sobre los bonos que cotizan en el mercado argentino.
 =bonos("symbol"; "valor")
 ```
 
+### Información de Letras del Tesoro
+Devuelve información sobre las letras del tesoro que cotizan en el mercado argentino.
+
+```
+=letras("symbol"; "valor")
+```
+
 ### Información de Opciones Argentinas
 Devuelve información sobre las opciones que cotizan en el mercado argentino.
 
@@ -103,6 +110,14 @@ Devuelve y compara precios de criptomonedas en diferentes exchanges argentinos e
 =criptoya("coin"; "fiat"; volumen; "exchange"; "operacion")
 ```
 
+### Variables del Banco Central
+Devuelve valores de variables económicas del Banco Central de la República Argentina (BCRA).
+
+```
+=caucionColocadora(dias, tna, importeBruto[, arancelCaucionColocadoraTna])
+=caucionTomadora(dias, tna, importeBruto[, arancelCaucionTomadoraTna])
+```
+
 ### Cauciones
 Devuelve información sobre operaciones de caución (colocadora y tomadora) en el mercado argentino.
 
@@ -118,6 +133,7 @@ Devuelve información sobre operaciones de caución (colocadora y tomadora) en e
 - acciones.js – Código fuente de Apps Script para información de acciones argentinas
 - usa_stocks.js – Código fuente de Apps Script para información de acciones estadounidenses
 - bonos.js – Código fuente de Apps Script para información de bonos argentinos
+- letras.js – Código fuente de Apps Script para información de letras del tesoro
 - opciones.js – Código fuente de Apps Script para información de opciones argentinas
 - inflacion.js – Código fuente de Apps Script para índices de inflación
 - crypto.js – Código fuente de Apps Script para precios de criptomonedas
@@ -127,12 +143,14 @@ Devuelve información sobre operaciones de caución (colocadora y tomadora) en e
 - plazofijo.js – Código fuente de Apps Script para tasas de plazos fijos
 - fci.js – Código fuente de Apps Script para fondos comunes de inversión
 - criptoya.js – Código fuente de Apps Script para comparador de precios de criptomonedas
+- bcra.js – Código fuente de Apps Script para variables del Banco Central
+- cauciones.js – Código fuente de Apps Script para cálculo de cauciones tomadoras y colocadoras
 - README.md – Esta documentación
 
 ## 🔧 Instalación
 1. Abrí tu Google Sheet.
 2. Andá a Extensiones → Apps Script.
-3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js, usa_stocks.js, bonos.js, opciones.js, inflacion.js, crypto.js, uva.js, riesgopais.js, rendimientos.js, plazofijo.js, fci.js y/o criptoya.js
+3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js, usa_stocks.js, bonos.js, letras.js, opciones.js, inflacion.js, crypto.js, uva.js, riesgopais.js, rendimientos.js, plazofijo.js, fci.js, criptoya.js y/o bcra.js
 4. Guarda el proyecto (por ejemplo, "ArgentinaFinance").
 5. Volvé a la hoja y espera unos segundos para que se registren las funciones.
 
@@ -258,6 +276,36 @@ En cualquier celda de la hoja, escribe:
 | `=bonos("AL30"; "c")` | Precio actual del bono AL30 |
 | `=bonos("GD30"; "px_ask")` | Precio de oferta de venta del bono GD30 |
 | `=bonos("AE38"; "pct_change")` | Variación porcentual diaria del bono AE38 |
+
+### Función Letras
+En cualquier celda de la hoja, escribe:
+
+```
+=letras("symbol"; "valor")
+```
+
+#### Parámetros
+
+**symbol (string):**
+- Símbolo de la letra del tesoro (ej: "BB2Y5", "BNA6D", "S31L5")
+
+**valor (string):**
+- "c" - Precio actual
+- "v" - Volumen de operaciones
+- "q_bid" - Cantidad en oferta de compra
+- "px_bid" - Precio de oferta de compra
+- "px_ask" - Precio de oferta de venta
+- "q_ask" - Cantidad en oferta de venta
+- "q_op" - Operaciones diarias
+- "pct_change" - Variación porcentual diaria
+
+#### Ejemplos
+
+| Fórmula | Descripción |
+|---------|-------------|
+| `=letras("BB2Y5"; "c")` | Precio actual de la letra BB2Y5 |
+| `=letras("BNA6D"; "px_ask")` | Precio de oferta de venta de la letra BNA6D |
+| `=letras("S31L5"; "pct_change")` | Variación porcentual diaria de la letra S31L5 |
 
 ### Función Opciones
 En cualquier celda de la hoja, escribe:
@@ -546,6 +594,36 @@ En cualquier celda de la hoja, escribe:
 | `=fci("rentaVariable"; "Alpha Acciones"; ; "patrimonio")` | Patrimonio actual del fondo Alpha Acciones |
 | `=fci("rentaMixta"; "Galileo Income"; ; "ccp")` | Cantidad de cuotapartes actual del fondo Galileo Income |
 
+### Función BCRA
+En cualquier celda de la hoja, escribe:
+
+```
+=bcra(id)
+```
+
+#### Parámetros
+
+
+**tna (number):**
+  - 4: Tipo de Cambio Minorista (ARS / USD) - Promedio Venta
+- Monto bruto de la operación en pesos
+
+**arancelCaucionColocadoraTna (number):** [Opcional]
+- Tasa de arancel para caución colocadora
+- Por defecto: 1.5% (expresado como 1.5)
+
+**arancelCaucionTomadoraTna (number):** [Opcional]
+- Por defecto: 4.0% (expresado como 4.0)
+
+#### Ejemplos
+
+| Fórmula | Descripción |
+|---------|-------------|
+| `=bcra(1)` | Valor actual de las Reservas Internacionales del BCRA |
+| `=bcra(4)` | Tipo de cambio minorista promedio |
+| `=bcra(5)` | Tipo de cambio mayorista de referencia |
+| `=bcra(6)` | Tasa de Política Monetaria actual |
+
 ### Función Caución
 En cualquier celda de la hoja, escribe:
 
@@ -631,6 +709,14 @@ Forzar recálculo:
 
 **Símbolo inválido**  
 "Símbolo inválido: 'xyz'. No se encontró en la lista de bonos disponibles."
+
+**Atributo inválido**  
+"Atributo inválido: 'xyz'. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change."
+
+### Errores de la función Letras
+
+**Símbolo inválido**  
+"Símbolo inválido: 'xyz'. No se encontró en la lista de letras disponibles."
 
 **Atributo inválido**  
 "Atributo inválido: 'xyz'. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change."
@@ -724,11 +810,23 @@ Forzar recálculo:
 **Atributo inválido**  
 "Atributo inválido: 'xyz'. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change."
 
+### Errores de la función BCRA
+
+**ID inválido**  
+"ID inválido. Debe ser un número válido (1, 4, 5, 6, etc)."
+
+**Variable no encontrada**  
+"Variable con ID X no encontrada. IDs disponibles: 1, 4, 5, 6, ..."
+
+**Error de conexión**  
+"Error al consultar el BCRA: [mensaje de error detallado]"
+
 ## 👏 Agradecimientos
 
 - A [Argentina Datos](https://argentinadatos.com/) y su creador [Enzo Notario](https://github.com/enzonotario/) por las APIs de inflación y UVA.
-- A [@JohnGalt_is_www](https://x.com/JohnGalt_is_www) por sus APIs de bonos, CEDEARs y acciones argentinas y estadounidenses.
+- A [@JohnGalt_is_www](https://x.com/JohnGalt_is_www) por sus APIs de bonos, letras, CEDEARs y acciones argentinas y estadounidenses.
 - A [@http://criptoya.com/](http://criptoya.com/) por su API de comparación de precios de criptomonedas.
+- A [Banco Central de la República Argentina](https://www.bcra.gob.ar/) por su API de variables económicas.
 
 
 

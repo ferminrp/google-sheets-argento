@@ -88,6 +88,53 @@ function caucion(
 }
 
 /**
+ * Calcula los costos y rendimientos de operaciones de caución (repo) en el mercado argentino.
+ *
+ * @param {number} dias Días de la caución. Un valor negativo indica una caución colocadora, un valor positivo indica una caución tomadora.
+ * @param {number} tna Tasa nominal anual (TNA) de la operación.
+ * @param {number} importeBruto Monto bruto de la operación.
+ * @param {number} [arancelCaucionColocadoraTna] [Opcional] Tasa de arancel para caución colocadora. Si no se proporciona, se usa el valor por defecto (1.5% por defecto para colocadora).
+ * @param {number} [arancelCaucionTomadoraTna] [Opcional] Tasa de arancel para caución tomadora. Si no se proporciona, se usa el valor por defecto (4.0% por defecto para tomadora).
+ * @return {Array} Un array con todos los valores calculados de la operación.
+ * @customfunction
+ */
+function caucionDetallada(
+  dias,
+  tna,
+  importeBruto,
+  arancelCaucionColocadoraTna,
+  arancelCaucionTomadoraTna
+) {
+  const resultado = calcularCaucion(
+    dias,
+    tna,
+    importeBruto,
+    arancelCaucionColocadoraTna,
+    arancelCaucionTomadoraTna
+  );
+
+  // Convertir el objeto resultado en un array bidimensional [clave, valor]
+  return [
+    ["Días", resultado.dias],
+    ["TNA", resultado.tna],
+    ["Importe Bruto", resultado.importeBruto],
+    ["Tasa Efectiva", resultado.tasa],
+    ["Tipo", resultado.esColocadora ? "Colocadora" : "Tomadora"],
+    ["Tasa Arancel", resultado.arancelTna],
+    ["Interés", resultado.interes],
+    ["Interés Neto", resultado.interesNeto],
+    ["Importe con Interés", resultado.importeConInteres],
+    ["Arancel", resultado.arancel],
+    ["Derechos de Mercado", resultado.derechosMercado],
+    ["Gastos de Garantía", resultado.gastosGarantia],
+    ["Gastos Totales", resultado.gastos],
+    ["IVA sobre Gastos", resultado.ivaGastos],
+    ["Total Gastos con IVA", resultado.totalGastos],
+    ["Importe Neto", resultado.importeNeto]
+  ];
+}
+
+/**
  * Calcula la tasa efectiva para el período de la operación.
  *
  * @param {number} tna - Tasa nominal anual (TNA) de la operación.

@@ -66,6 +66,13 @@ Devuelve el valor del riesgo país de Argentina.
 =riesgopais(fecha)
 ```
 
+### Rendimientos de Criptomonedas
+Devuelve el APY (rendimiento anual) de diferentes criptomonedas ofrecido por proveedores en Argentina.
+
+```
+=rendimientos("moneda"; "proveedor")
+```
+
 ### Comparador de Precios de Criptomonedas (CriptoYa)
 Devuelve y compara precios de criptomonedas en diferentes exchanges argentinos e internacionales.
 
@@ -83,13 +90,14 @@ Devuelve y compara precios de criptomonedas en diferentes exchanges argentinos e
 - crypto.js – Código fuente de Apps Script para precios de criptomonedas
 - uva.js – Código fuente de Apps Script para índices UVA
 - riesgopais.js – Código fuente de Apps Script para valores del riesgo país
+- rendimientos.js – Código fuente de Apps Script para rendimientos de criptomonedas
 - criptoya.js – Código fuente de Apps Script para comparador de precios de criptomonedas
 - README.md – Esta documentación
 
 ## 🔧 Instalación
 1. Abrí tu Google Sheet.
 2. Andá a Extensiones → Apps Script.
-3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js, usa_stocks.js, bonos.js, inflacion.js, crypto.js, uva.js, riesgopais.js y/o criptoya.js
+3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js, usa_stocks.js, bonos.js, inflacion.js, crypto.js, uva.js, riesgopais.js, rendimientos.js y/o criptoya.js
 4. Guarda el proyecto (por ejemplo, "ArgentinaFinance").
 5. Volvé a la hoja y espera unos segundos para que se registren las funciones.
 
@@ -310,6 +318,31 @@ En cualquier celda de la hoja, escribe:
 | `=riesgopais("03/31/2023")` | Mismo resultado que el anterior |
 | `=riesgopais(A1)` | Valor del riesgo país para la fecha en la celda A1 |
 
+### Función Rendimientos
+En cualquier celda de la hoja, escribe:
+
+```
+=rendimientos("moneda"; "proveedor")
+```
+
+#### Parámetros
+
+**moneda (string):**
+- Símbolo de la criptomoneda o moneda fiat (ej: "BTC", "ETH", "USDT", "ARS")
+
+**proveedor (string):** [Opcional]
+- Nombre del proveedor (ej: "buenbit", "ripio", "letsbit")
+- Si se omite, devuelve el mejor rendimiento disponible entre todos los proveedores
+
+#### Ejemplos
+
+| Fórmula | Descripción |
+|---------|-------------|
+| `=rendimientos("USDT")` | Mejor rendimiento disponible para USDT entre todos los proveedores |
+| `=rendimientos("BTC"; "buenbit")` | Rendimiento anual de Bitcoin en Buenbit |
+| `=rendimientos("USDC"; "ripio")` | Rendimiento anual de USDC en Ripio |
+| `=rendimientos("SOL"; "letsbit")` | Rendimiento anual de Solana en Letsbit |
+
 ### Función CriptoYa
 En cualquier celda de la hoja, escribe:
 
@@ -448,6 +481,17 @@ Forzar recálculo:
 
 **Fecha inválida**  
 "Fecha inválida: 'xyz'. Usar formato 'YYYY-MM-DD' o 'MM/DD/YYYY'."
+
+### Errores de la función Rendimientos
+
+**Moneda no encontrada**  
+"Moneda 'xyz' no encontrada. Algunas monedas disponibles: BTC, ETH, USDT, USDC, DAI..."
+
+**Proveedor no encontrado**  
+"Proveedor 'xyz' no encontrado. Proveedores disponibles: buenbit, ripio, letsbit, belo, lemoncash, satoshitango, fiwind."
+
+**Moneda no disponible en el proveedor**  
+"La moneda 'xyz' no está disponible en el proveedor 'abc'."
 
 ### Errores de la función CriptoYa
 

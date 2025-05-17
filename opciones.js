@@ -35,4 +35,33 @@ function opciones(symbol, value) {
   
   // Si no se encontró el símbolo
   throw new Error("Símbolo de opción inválido: '" + symbol + "'. No se encontró en la lista de opciones disponibles.");
-} 
+}
+
+/**
+ * Obtiene la lista completa de opciones (calls y puts) que cotizan en el mercado argentino.
+ * 
+ * @return Un arreglo bidimensional con todas las opciones y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
+ * @customfunction
+ */
+function opcionesLista() {
+  // Consulta al API
+  var url = 'https://data912.com/live/arg_options';
+  var respuesta = UrlFetchApp.fetch(url);
+  var datos = JSON.parse(respuesta.getContentText());
+  
+  // Definir las columnas que queremos mostrar
+  var columnas = ['symbol', 'c', 'v', 'q_bid', 'px_bid', 'px_ask', 'q_ask', 'q_op', 'pct_change'];
+  
+  // Crear el arreglo bidimensional comenzando con los encabezados
+  var resultado = [columnas];
+  
+  // Agregar cada opción como una fila
+  datos.forEach(function(opcion) {
+    var fila = columnas.map(function(columna) {
+      return opcion[columna];
+    });
+    resultado.push(fila);
+  });
+  
+  return resultado;
+}

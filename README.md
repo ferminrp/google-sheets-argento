@@ -153,12 +153,15 @@ Devuelve información sobre operaciones de caución (colocadora y tomadora) en e
 - build.js – Script para consolidar todos los archivos .js en uno solo
 - package.json – Configuración del proyecto y scripts de desarrollo
 
+## 📦 Cómo utilizar
+1. Ejecutar `npm run build` para generar el archivo consolidado
+2. El archivo nombre `all-in-one.js`
+3. Este archivo contiene todas las funciones del proyecto en un solo archivo, facilitando la instalación en Google Apps Script
+
 ### Archivos generados
-- dist/google-sheets-argento.js – Archivo consolidado con todas las funciones (generado al ejecutar `npm run build`)
+- all-in-one.js – Archivo consolidado con todas las funciones (generado al ejecutar `npm run build`)
 
 ## 🔧 Instalación
-
-### Opción 1: Instalación manual
 1. Abrí tu Google Sheet.
 2. Andá a Extensiones → Apps Script.
 3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js, usa_stocks.js, bonos.js, letras.js, opciones.js, inflacion.js, crypto.js, uva.js, riesgopais.js, rendimientos.js, plazofijo.js, fci.js, criptoya.js y/o bcra.js

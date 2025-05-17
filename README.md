@@ -103,6 +103,13 @@ Devuelve y compara precios de criptomonedas en diferentes exchanges argentinos e
 =criptoya("coin"; "fiat"; volumen; "exchange"; "operacion")
 ```
 
+### Variables del Banco Central
+Devuelve valores de variables económicas del Banco Central de la República Argentina (BCRA).
+
+```
+=bcra(id)
+```
+
 ## 📦 Estructura del repositorio
 - dolar.js – Código fuente de Apps Script para cotizaciones de dólar
 - cedear.js – Código fuente de Apps Script para información de CEDEARs
@@ -118,12 +125,13 @@ Devuelve y compara precios de criptomonedas en diferentes exchanges argentinos e
 - plazofijo.js – Código fuente de Apps Script para tasas de plazos fijos
 - fci.js – Código fuente de Apps Script para fondos comunes de inversión
 - criptoya.js – Código fuente de Apps Script para comparador de precios de criptomonedas
+- bcra.js – Código fuente de Apps Script para variables del Banco Central
 - README.md – Esta documentación
 
 ## 🔧 Instalación
 1. Abrí tu Google Sheet.
 2. Andá a Extensiones → Apps Script.
-3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js, usa_stocks.js, bonos.js, opciones.js, inflacion.js, crypto.js, uva.js, riesgopais.js, rendimientos.js, plazofijo.js, fci.js y/o criptoya.js
+3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js, usa_stocks.js, bonos.js, opciones.js, inflacion.js, crypto.js, uva.js, riesgopais.js, rendimientos.js, plazofijo.js, fci.js, criptoya.js y/o bcra.js
 4. Guarda el proyecto (por ejemplo, "ArgentinaFinance").
 5. Volvé a la hoja y espera unos segundos para que se registren las funciones.
 
@@ -537,6 +545,32 @@ En cualquier celda de la hoja, escribe:
 | `=fci("rentaVariable"; "Alpha Acciones"; ; "patrimonio")` | Patrimonio actual del fondo Alpha Acciones |
 | `=fci("rentaMixta"; "Galileo Income"; ; "ccp")` | Cantidad de cuotapartes actual del fondo Galileo Income |
 
+### Función BCRA
+En cualquier celda de la hoja, escribe:
+
+```
+=bcra(id)
+```
+
+#### Parámetros
+
+**id (number):**
+- ID de la variable a consultar
+- Algunos IDs disponibles:
+  - 1: Reservas Internacionales del BCRA (en millones de dólares)
+  - 4: Tipo de Cambio Minorista (ARS / USD) - Promedio Venta
+  - 5: Tipo de Cambio Mayorista (ARS / USD) - Referencia Comunicación A 3500
+  - 6: Tasa de Política Monetaria (TEA %)
+
+#### Ejemplos
+
+| Fórmula | Descripción |
+|---------|-------------|
+| `=bcra(1)` | Valor actual de las Reservas Internacionales del BCRA |
+| `=bcra(4)` | Tipo de cambio minorista promedio |
+| `=bcra(5)` | Tipo de cambio mayorista de referencia |
+| `=bcra(6)` | Tasa de Política Monetaria actual |
+
 ## 🔄 Actualización automática
 Google Sheets recalcula las fórmulas al:
 
@@ -670,11 +704,23 @@ Forzar recálculo:
 **Atributo inválido**  
 "Atributo inválido: 'xyz'. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change."
 
+### Errores de la función BCRA
+
+**ID inválido**  
+"ID inválido. Debe ser un número válido (1, 4, 5, 6, etc)."
+
+**Variable no encontrada**  
+"Variable con ID X no encontrada. IDs disponibles: 1, 4, 5, 6, ..."
+
+**Error de conexión**  
+"Error al consultar el BCRA: [mensaje de error detallado]"
+
 ## 👏 Agradecimientos
 
 - A [Argentina Datos](https://argentinadatos.com/) y su creador [Enzo Notario](https://github.com/enzonotario/) por las APIs de inflación y UVA.
 - A [@JohnGalt_is_www](https://x.com/JohnGalt_is_www) por sus APIs de bonos, CEDEARs y acciones argentinas y estadounidenses.
 - A [@http://criptoya.com/](http://criptoya.com/) por su API de comparación de precios de criptomonedas.
+- A [Banco Central de la República Argentina](https://www.bcra.gob.ar/) por su API de variables económicas.
 
 
 

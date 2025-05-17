@@ -30,13 +30,13 @@ function buildConsolidatedFile() {
         consolidatedContent += processFile(file);
     }
 
-    const outputPath = path.join(__dirname, 'dist');
+    const outputPath = path.join(__dirname);
     if (!fs.existsSync(outputPath)) {
         fs.mkdirSync(outputPath);
     }
 
-    fs.writeFileSync(path.join(outputPath, 'google-sheets-argento.js'), consolidatedContent);
-    console.log('Archivo consolidado generado exitosamente en dist/google-sheets-argento.js');
+    fs.writeFileSync(path.join(outputPath, 'all-in-one.js'), consolidatedContent);
+    console.log('Archivo consolidado generado exitosamente en all-in-one.js');
 }
 
 buildConsolidatedFile();

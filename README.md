@@ -127,6 +127,8 @@ Devuelve información sobre operaciones de caución (colocadora y tomadora) en e
 ```
 
 ## 📦 Estructura del repositorio
+
+### Archivos principales
 - dolar.js – Código fuente de Apps Script para cotizaciones de dólar
 - cedear.js – Código fuente de Apps Script para información de CEDEARs
 - acciones.js – Código fuente de Apps Script para información de acciones argentinas
@@ -146,6 +148,18 @@ Devuelve información sobre operaciones de caución (colocadora y tomadora) en e
 - caucion.js – Código fuente de Apps Script para cálculo de cauciones tomadoras y colocadoras
 - all-in-one.js – Archivo único con todas las funciones combinadas (para instalación simplificada)
 - README.md – Esta documentación
+
+### Archivos de desarrollo
+- build.js – Script para consolidar todos los archivos .js en uno solo
+- package.json – Configuración del proyecto y scripts de desarrollo
+
+## 📦 Cómo utilizar
+1. Ejecutar `npm run build` para generar el archivo consolidado
+2. El archivo nombre `all-in-one.js`
+3. Este archivo contiene todas las funciones del proyecto en un solo archivo, facilitando la instalación en Google Apps Script
+
+### Archivos generados
+- all-in-one.js – Archivo consolidado con todas las funciones (generado al ejecutar `npm run build`)
 
 ## 🔧 Instalación
 1. Abrí tu Google Sheet.

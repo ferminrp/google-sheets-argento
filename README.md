@@ -144,6 +144,7 @@ Devuelve información sobre operaciones de caución (colocadora y tomadora) en e
 - criptoya.js – Código fuente de Apps Script para comparador de precios de criptomonedas
 - bcra.js – Código fuente de Apps Script para variables del Banco Central
 - caucion.js – Código fuente de Apps Script para cálculo de cauciones tomadoras y colocadoras
+- all-in-one.js – Archivo único con todas las funciones combinadas (para instalación simplificada)
 - README.md – Esta documentación
 
 ## 🔧 Instalación
@@ -152,6 +153,17 @@ Devuelve información sobre operaciones de caución (colocadora y tomadora) en e
 3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js, usa_stocks.js, bonos.js, letras.js, opciones.js, inflacion.js, crypto.js, uva.js, riesgopais.js, rendimientos.js, plazofijo.js, fci.js, criptoya.js y/o bcra.js
 4. Guarda el proyecto (por ejemplo, "ArgentinaFinance").
 5. Volvé a la hoja y espera unos segundos para que se registren las funciones.
+
+## 🔄 Instalación simplificada (recomendada)
+Si querés instalar todas las funciones de una vez, podés usar el archivo all-in-one.js:
+
+1. Abrí tu Google Sheet.
+2. Andá a Extensiones → Apps Script.
+3. Borra cualquier código existente y pega el contenido completo del archivo [all-in-one.js](https://raw.githubusercontent.com/ferminrp/google-sheets-argento/main/all-in-one.js).
+4. Guarda el proyecto (por ejemplo, "ArgentinaFinance").
+5. Volvé a la hoja y espera unos segundos para que se registren todas las funciones.
+
+Esta opción es la forma más sencilla y rápida de instalar todas las funciones disponibles con un solo paso.
 
 ## 🚀 Uso
 

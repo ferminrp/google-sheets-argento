@@ -114,8 +114,7 @@ Devuelve y compara precios de criptomonedas en diferentes exchanges argentinos e
 Devuelve valores de variables económicas del Banco Central de la República Argentina (BCRA).
 
 ```
-=caucionColocadora(dias, tna, importeBruto[, arancelCaucionColocadoraTna])
-=caucionTomadora(dias, tna, importeBruto[, arancelCaucionTomadoraTna])
+=bcra(id)
 ```
 
 ### Cauciones

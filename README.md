@@ -73,6 +73,13 @@ Devuelve el APY (rendimiento anual) de diferentes criptomonedas ofrecido por pro
 =rendimientos("moneda"; "proveedor")
 ```
 
+### Tasas de Plazos Fijos
+Devuelve las tasas de plazos fijos (TNA) ofrecidas por bancos en Argentina.
+
+```
+=plazofijo("banco"; "tipoCliente")
+```
+
 ### Comparador de Precios de Criptomonedas (CriptoYa)
 Devuelve y compara precios de criptomonedas en diferentes exchanges argentinos e internacionales.
 
@@ -91,13 +98,14 @@ Devuelve y compara precios de criptomonedas en diferentes exchanges argentinos e
 - uva.js – Código fuente de Apps Script para índices UVA
 - riesgopais.js – Código fuente de Apps Script para valores del riesgo país
 - rendimientos.js – Código fuente de Apps Script para rendimientos de criptomonedas
+- plazofijo.js – Código fuente de Apps Script para tasas de plazos fijos
 - criptoya.js – Código fuente de Apps Script para comparador de precios de criptomonedas
 - README.md – Esta documentación
 
 ## 🔧 Instalación
 1. Abrí tu Google Sheet.
 2. Andá a Extensiones → Apps Script.
-3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js, usa_stocks.js, bonos.js, inflacion.js, crypto.js, uva.js, riesgopais.js, rendimientos.js y/o criptoya.js
+3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js, usa_stocks.js, bonos.js, inflacion.js, crypto.js, uva.js, riesgopais.js, rendimientos.js, plazofijo.js y/o criptoya.js
 4. Guarda el proyecto (por ejemplo, "ArgentinaFinance").
 5. Volvé a la hoja y espera unos segundos para que se registren las funciones.
 
@@ -415,6 +423,32 @@ En cualquier celda de la hoja, escribe:
 | `=usa_stocks("MSFT"; "px_ask")` | Precio de oferta de venta de Microsoft |
 | `=usa_stocks("GOOGL"; "pct_change")` | Variación porcentual diaria de Google |
 
+### Función Plazo Fijo
+En cualquier celda de la hoja, escribe:
+
+```
+=plazofijo("banco"; "tipoCliente")
+```
+
+#### Parámetros
+
+**banco (string):** [Opcional]
+- Nombre del banco (ej: "Nacion", "Galicia", "Provincia")
+- Si se omite, devuelve la mejor tasa disponible entre todos los bancos
+
+**tipoCliente (string):** [Opcional]
+- Tipo de cliente: "cliente" o "nocliente"
+- Por defecto: "cliente"
+
+#### Ejemplos
+
+| Fórmula | Descripción |
+|---------|-------------|
+| `=plazofijo()` | Mejor tasa de plazo fijo para clientes entre todos los bancos |
+| `=plazofijo("Nacion")` | Tasa de plazo fijo para clientes del Banco Nación |
+| `=plazofijo("Provincia"; "nocliente")` | Tasa de plazo fijo para no clientes del Banco Provincia |
+| `=plazofijo(; "nocliente")` | Mejor tasa de plazo fijo para no clientes entre todos los bancos |
+
 ## 🔄 Actualización automática
 Google Sheets recalcula las fórmulas al:
 
@@ -492,6 +526,17 @@ Forzar recálculo:
 
 **Moneda no disponible en el proveedor**  
 "La moneda 'xyz' no está disponible en el proveedor 'abc'."
+
+### Errores de la función Plazo Fijo
+
+**Banco no encontrado**  
+"Banco 'xyz' no encontrado. Algunos bancos disponibles: BANCO DE LA NACION ARGENTINA, BANCO SANTANDER ARGENTINA S.A., BANCO DE GALICIA Y BUENOS AIRES S.A.U..."
+
+**Plazo fijo no disponible para no clientes**  
+"El banco 'Banco XYZ' no ofrece plazo fijo para no clientes."
+
+**Información no disponible**  
+"No se encontró información de tasa para el banco 'Banco XYZ'."
 
 ### Errores de la función CriptoYa
 

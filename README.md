@@ -24,6 +24,13 @@ Devuelve información sobre las acciones que cotizan en el mercado argentino.
 =acciones("symbol"; "valor")
 ```
 
+### Información de Acciones de EE.UU.
+Devuelve información sobre las acciones que cotizan en el mercado estadounidense.
+
+```
+=usa_stocks("symbol"; "valor")
+```
+
 ### Información de Bonos Argentinos
 Devuelve información sobre los bonos que cotizan en el mercado argentino.
 
@@ -70,6 +77,7 @@ Devuelve y compara precios de criptomonedas en diferentes exchanges argentinos e
 - dolar.js – Código fuente de Apps Script para cotizaciones de dólar
 - cedear.js – Código fuente de Apps Script para información de CEDEARs
 - acciones.js – Código fuente de Apps Script para información de acciones argentinas
+- usa_stocks.js – Código fuente de Apps Script para información de acciones estadounidenses
 - bonos.js – Código fuente de Apps Script para información de bonos argentinos
 - inflacion.js – Código fuente de Apps Script para índices de inflación
 - crypto.js – Código fuente de Apps Script para precios de criptomonedas
@@ -81,7 +89,7 @@ Devuelve y compara precios de criptomonedas en diferentes exchanges argentinos e
 ## 🔧 Instalación
 1. Abrí tu Google Sheet.
 2. Andá a Extensiones → Apps Script.
-3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js, bonos.js, inflacion.js, crypto.js, uva.js, riesgopais.js y/o criptoya.js
+3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js, usa_stocks.js, bonos.js, inflacion.js, crypto.js, uva.js, riesgopais.js y/o criptoya.js
 4. Guarda el proyecto (por ejemplo, "ArgentinaFinance").
 5. Volvé a la hoja y espera unos segundos para que se registren las funciones.
 
@@ -344,6 +352,36 @@ En cualquier celda de la hoja, escribe:
 | `=criptoya("DAI"; "ARS"; 100; ; "totalVenta")` | Mejor precio de venta (con comisiones) de 100 DAI en pesos |
 | `=criptoya("USDT"; "ARS"; 1000; "ripio")` | Precio de compra de 1000 USDT en pesos en Ripio |
 
+### Función USA Stocks
+En cualquier celda de la hoja, escribe:
+
+```
+=usa_stocks("symbol"; "valor")
+```
+
+#### Parámetros
+
+**symbol (string):**
+- Símbolo de la acción estadounidense (ej: "AAPL", "MSFT", "GOOGL")
+
+**valor (string):**
+- "c" - Precio actual
+- "v" - Volumen de operaciones
+- "q_bid" - Cantidad en oferta de compra
+- "px_bid" - Precio de oferta de compra
+- "px_ask" - Precio de oferta de venta
+- "q_ask" - Cantidad en oferta de venta
+- "q_op" - Operaciones diarias
+- "pct_change" - Variación porcentual diaria
+
+#### Ejemplos
+
+| Fórmula | Descripción |
+|---------|-------------|
+| `=usa_stocks("AAPL"; "c")` | Precio actual de la acción de Apple |
+| `=usa_stocks("MSFT"; "px_ask")` | Precio de oferta de venta de Microsoft |
+| `=usa_stocks("GOOGL"; "pct_change")` | Variación porcentual diaria de Google |
+
 ## 🔄 Actualización automática
 Google Sheets recalcula las fórmulas al:
 
@@ -422,10 +460,18 @@ Forzar recálculo:
 **Operación inválida**  
 "Operación inválida: 'xyz'. Operaciones disponibles: compra, totalCompra, venta, totalVenta."
 
+### Errores de la función USA Stocks
+
+**Símbolo inválido**  
+"Símbolo inválido: 'xyz'. No se encontró en la lista de acciones estadounidenses disponibles."
+
+**Atributo inválido**  
+"Atributo inválido: 'xyz'. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change."
+
 ## 👏 Agradecimientos
 
 - A [Argentina Datos](https://argentinadatos.com/) y su creador [Enzo Notario](https://github.com/enzonotario/) por las APIs de inflación y UVA.
-- A [@JohnGalt_is_www](https://x.com/JohnGalt_is_www) por sus APIs de bonos, CEDEARs y acciones.
+- A [@JohnGalt_is_www](https://x.com/JohnGalt_is_www) por sus APIs de bonos, CEDEARs y acciones argentinas y estadounidenses.
 - A [@http://criptoya.com/](http://criptoya.com/) por su API de comparación de precios de criptomonedas.
 
 

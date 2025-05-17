@@ -835,6 +835,10 @@ Forzar recálculo:
 - A [@http://criptoya.com/](http://criptoya.com/) por su API de comparación de precios de criptomonedas.
 - A [Banco Central de la República Argentina](https://www.bcra.gob.ar/) por su API de variables económicas.
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=ferminrp/google-sheets-argento&type=Date)](https://www.star-history.com/#ferminrp/google-sheets-argento&Date)
+
 
 
 

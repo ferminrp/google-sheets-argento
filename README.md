@@ -5,6 +5,27 @@ Scripts de Apps Script que añaden a tu Google Sheet funciones tipicas para el d
 
 ## Funciones
 
+### Información de Opciones Argentinas
+Devuelve información sobre las opciones que cotizan en el mercado argentino.
+
+```
+=opciones("symbol"; "valor")
+```
+
+### Información de Obligaciones Negociables
+Devuelve información sobre las obligaciones negociables que cotizan en el mercado argentino.
+
+```
+=obligaciones("symbol"; "valor")
+```
+
+### Índices de Inflación
+Devuelve el índice de inflación mensual de Argentina.
+
+```
+=inflacion(fecha)
+```
+
 ### Cotizaciones del dolar
 Devuelve la cotización de los distintos tipos de dólar en Argentina.
 
@@ -369,6 +390,58 @@ Esta función devuelve una tabla con todas las acciones estadounidenses disponib
 | Fórmula | Descripción |
 |---------|-------------|
 | `=usa_stocksLista()` | Tabla completa de todas las acciones estadounidenses con sus datos actuales |
+
+### Información de Obligaciones Negociables
+Devuelve información sobre las obligaciones negociables que cotizan en el mercado argentino.
+
+```
+=obligaciones("symbol"; "valor")
+```
+
+### Función Obligaciones
+En cualquier celda de la hoja, escribe:
+
+```
+=obligaciones("symbol"; "valor")
+```
+
+#### Parámetros
+
+**symbol (string):**
+- Símbolo de la obligación negociable (ej: "AEC1D", "YMCHO", "BYCNO")
+
+**valor (string):**
+- "c" - Precio actual
+- "v" - Volumen de operaciones
+- "q_bid" - Cantidad en oferta de compra
+- "px_bid" - Precio de oferta de compra
+- "px_ask" - Precio de oferta de venta
+- "q_ask" - Cantidad en oferta de venta
+- "q_op" - Operaciones diarias
+- "pct_change" - Variación porcentual diaria
+
+#### Ejemplos
+
+| Fórmula | Descripción |
+|---------|-------------|
+| `=obligaciones("AEC1D"; "c")` | Precio actual de la obligación negociable AEC1D |
+| `=obligaciones("YMCHO"; "px_ask")` | Precio de oferta de venta de la obligación negociable YMCHO |
+| `=obligaciones("BYCNO"; "pct_change")` | Variación porcentual diaria de la obligación negociable BYCNO |
+
+### Función ObligacionesLista
+En cualquier celda de la hoja, escribe:
+
+```
+=obligacionesLista()
+```
+
+Esta función devuelve una tabla con todas las obligaciones negociables disponibles y sus datos actuales, incluyendo precio, variación porcentual, volumen y otras métricas.
+
+#### Ejemplos
+
+| Fórmula | Descripción |
+|---------|-------------|
+| `=obligacionesLista()` | Tabla completa de todas las obligaciones negociables con sus datos actuales |
 
 ### Función Inflación
 En cualquier celda de la hoja, escribe:
@@ -822,6 +895,29 @@ Forzar recálculo:
 - A [@JohnGalt_is_www](https://x.com/JohnGalt_is_www) por sus APIs de bonos, letras, CEDEARs y acciones argentinas y estadounidenses.
 - A [@http://criptoya.com/](http://criptoya.com/) por su API de comparación de precios de criptomonedas.
 - A [Banco Central de la República Argentina](https://www.bcra.gob.ar/) por su API de variables económicas.
+
+## Archivos principales
+
+- dolar.js – Código fuente de Apps Script para cotizaciones de dólar
+- cedear.js – Código fuente de Apps Script para información de CEDEARs
+- acciones.js – Código fuente de Apps Script para información de acciones argentinas
+- usa_stocks.js – Código fuente de Apps Script para información de acciones estadounidenses
+- bonos.js – Código fuente de Apps Script para información de bonos argentinos
+- letras.js – Código fuente de Apps Script para información de letras del tesoro
+- opciones.js – Código fuente de Apps Script para información de opciones argentinas
+- obligaciones.js – Código fuente de Apps Script para información de obligaciones negociables
+- inflacion.js – Código fuente de Apps Script para índices de inflación
+- crypto.js – Código fuente de Apps Script para precios de criptomonedas
+- uva.js – Código fuente de Apps Script para índices UVA
+- riesgopais.js – Código fuente de Apps Script para valores del riesgo país
+- rendimientos.js – Código fuente de Apps Script para rendimientos de criptomonedas
+- plazofijo.js – Código fuente de Apps Script para tasas de plazos fijos
+- fci.js – Código fuente de Apps Script para fondos comunes de inversión
+- criptoya.js – Código fuente de Apps Script para comparador de precios de criptomonedas
+- bcra.js – Código fuente de Apps Script para variables del Banco Central
+- caucion.js – Código fuente de Apps Script para cálculo de cauciones tomadoras y colocadoras
+- all-in-one.js – Archivo único con todas las funciones combinadas (para instalación simplificada)
+- README.md – Esta documentación
 
 
 

@@ -36,4 +36,33 @@ function bonos(symbol, value) {
   // Si no se encontró el símbolo
   var disponibles = datos.map(function(o){ return o.symbol; }).join(', ');
   throw new Error("Símbolo inválido: '" + symbol + "'. No se encontró en la lista de bonos disponibles.");
-} 
+}
+
+/**
+ * Obtiene la lista completa de bonos que cotizan en el mercado argentino desde la API.
+ * 
+ * @return {Array} Un arreglo con todos los bonos y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
+ * @customfunction
+ */
+function bonosLista() {
+  // Consulta al API
+  var url = 'https://data912.com/live/arg_bonds';
+  var respuesta = UrlFetchApp.fetch(url);
+  var datos = JSON.parse(respuesta.getContentText());
+  
+  // Definir las columnas que queremos mostrar
+  var columnas = ['symbol', 'c', 'v', 'q_bid', 'px_bid', 'px_ask', 'q_ask', 'q_op', 'pct_change'];
+  
+  // Crear el arreglo bidimensional comenzando con los encabezados
+  var resultado = [columnas];
+  
+  // Agregar cada bono como una fila
+  datos.forEach(function(bono) {
+    var fila = columnas.map(function(columna) {
+      return bono[columna];
+    });
+    resultado.push(fila);
+  });
+  
+  return resultado;
+}

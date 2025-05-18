@@ -36,4 +36,33 @@ function cedear(symbol, value) {
   // Si no se encontró el símbolo
   var disponibles = datos.map(function(o){ return o.symbol; }).join(', ');
   throw new Error("Símbolo inválido: '" + symbol + "'. No se encontró en la lista de CEDEARs disponibles.");
-} 
+}
+
+/**
+ * Obtiene la lista completa de CEDEARs (Certificados de Depósito Argentinos) desde la API.
+ * 
+ * @return Un arreglo bidimensional con todos los CEDEARs y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
+ * @customfunction
+ */
+function cedearLista() {
+  // Consulta al API
+  var url = 'https://data912.com/live/arg_cedears';
+  var respuesta = UrlFetchApp.fetch(url);
+  var datos = JSON.parse(respuesta.getContentText());
+  
+  // Definir las columnas que queremos mostrar
+  var columnas = ['symbol', 'c', 'v', 'q_bid', 'px_bid', 'px_ask', 'q_ask', 'q_op', 'pct_change'];
+  
+  // Crear el arreglo bidimensional comenzando con los encabezados
+  var resultado = [columnas];
+  
+  // Agregar cada CEDEAR como una fila
+  datos.forEach(function(cedear) {
+    var fila = columnas.map(function(columna) {
+      return cedear[columna];
+    });
+    resultado.push(fila);
+  });
+  
+  return resultado;
+}

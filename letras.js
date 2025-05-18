@@ -44,4 +44,37 @@ function letras(symbol, valor) {
   } catch (error) {
     throw new Error(`Error al consultar datos de letras: ${error.message}`);
   }
-} 
+}
+
+/**
+ * Obtiene la lista completa de letras del tesoro desde la API.
+ * 
+ * @return Un arreglo bidimensional con todas las letras y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
+ * @customfunction
+ */
+function letrasLista() {
+  try {
+    // Fetch data from the API
+    const url = "https://data912.com/live/arg_notes";
+    const response = UrlFetchApp.fetch(url);
+    const datos = JSON.parse(response.getContentText());
+    
+    // Definir las columnas que queremos mostrar
+    const columnas = ['symbol', 'c', 'v', 'q_bid', 'px_bid', 'px_ask', 'q_ask', 'q_op', 'pct_change'];
+    
+    // Crear el arreglo bidimensional comenzando con los encabezados
+    const resultado = [columnas];
+    
+    // Agregar cada letra como una fila
+    datos.forEach(function(letra) {
+      const fila = columnas.map(function(columna) {
+        return letra[columna];
+      });
+      resultado.push(fila);
+    });
+    
+    return resultado;
+  } catch (error) {
+    throw new Error(`Error al consultar datos de letras: ${error.message}`);
+  }
+}

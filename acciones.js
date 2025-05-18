@@ -36,4 +36,33 @@ function acciones(symbol, value) {
   // Si no se encontró el símbolo
   var disponibles = datos.map(function(o){ return o.symbol; }).join(', ');
   throw new Error("Símbolo inválido: '" + symbol + "'. No se encontró en la lista de acciones disponibles.");
-} 
+}
+
+/**
+ * Obtiene la lista completa de acciones que cotizan en el mercado argentino desde la API.
+ * 
+ * @return Un arreglo bidimensional con todas las acciones y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
+ * @customfunction
+ */
+function accionesLista() {
+  // Consulta al API
+  var url = 'https://data912.com/live/arg_stocks';
+  var respuesta = UrlFetchApp.fetch(url);
+  var datos = JSON.parse(respuesta.getContentText());
+  
+  // Definir las columnas que queremos mostrar
+  var columnas = ['symbol', 'c', 'v', 'q_bid', 'px_bid', 'px_ask', 'q_ask', 'q_op', 'pct_change'];
+  
+  // Crear el arreglo bidimensional comenzando con los encabezados
+  var resultado = [columnas];
+  
+  // Agregar cada acción como una fila
+  datos.forEach(function(accion) {
+    var fila = columnas.map(function(columna) {
+      return accion[columna];
+    });
+    resultado.push(fila);
+  });
+  
+  return resultado;
+}

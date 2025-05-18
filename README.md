@@ -126,151 +126,20 @@ Devuelve información sobre operaciones de caución (colocadora y tomadora) en e
 =caucionTomadora(dias, tna, importeBruto[, arancelCaucionTomadoraTna])
 ```
 
-## 📦 Estructura del repositorio
-
-### Archivos principales
-- dolar.js – Código fuente de Apps Script para cotizaciones de dólar
-- cedear.js – Código fuente de Apps Script para información de CEDEARs
-- acciones.js – Código fuente de Apps Script para información de acciones argentinas
-- usa_stocks.js – Código fuente de Apps Script para información de acciones estadounidenses
-- bonos.js – Código fuente de Apps Script para información de bonos argentinos
-- letras.js – Código fuente de Apps Script para información de letras del tesoro
-- opciones.js – Código fuente de Apps Script para información de opciones argentinas
-- inflacion.js – Código fuente de Apps Script para índices de inflación
-- crypto.js – Código fuente de Apps Script para precios de criptomonedas
-- uva.js – Código fuente de Apps Script para índices UVA
-- riesgopais.js – Código fuente de Apps Script para valores del riesgo país
-- rendimientos.js – Código fuente de Apps Script para rendimientos de criptomonedas
-- plazofijo.js – Código fuente de Apps Script para tasas de plazos fijos
-- fci.js – Código fuente de Apps Script para fondos comunes de inversión
-- criptoya.js – Código fuente de Apps Script para comparador de precios de criptomonedas
-- bcra.js – Código fuente de Apps Script para variables del Banco Central
-- caucion.js – Código fuente de Apps Script para cálculo de cauciones tomadoras y colocadoras
-- all-in-one.js – Archivo único con todas las funciones combinadas (para instalación simplificada)
-- README.md – Esta documentación
-
-### Archivos de desarrollo
-- build.js – Script para consolidar todos los archivos .js en uno solo
-- package.json – Configuración del proyecto y scripts de desarrollo
-
-## 📦 Cómo utilizar
-1. Ejecutar `npm run build` para generar el archivo consolidado
-2. El archivo nombre `all-in-one.js`
-3. Este archivo contiene todas las funciones del proyecto en un solo archivo, facilitando la instalación en Google Apps Script
-
-### Archivos generados
-- all-in-one.js – Archivo consolidado con todas las funciones (generado al ejecutar `npm run build`)
-
-## 🔧 Instalación
-1. Abrí tu Google Sheet.
-2. Andá a Extensiones → Apps Script.
-3. Borra cualquier código existente y pega el contenido de dolar.js, cedear.js, acciones.js, usa_stocks.js, bonos.js, letras.js, opciones.js, inflacion.js, crypto.js, uva.js, riesgopais.js, rendimientos.js, plazofijo.js, fci.js, criptoya.js y/o bcra.js
-4. Guarda el proyecto (por ejemplo, "ArgentinaFinance").
-5. Volvé a la hoja y espera unos segundos para que se registren las funciones.
-
-## 🔄 Instalación simplificada (recomendada)
-Si querés instalar todas las funciones de una vez, podés usar el archivo all-in-one.js:
-
-1. Abrí tu Google Sheet.
-2. Andá a Extensiones → Apps Script.
-3. Borra cualquier código existente y pega el contenido completo del archivo [all-in-one.js](https://raw.githubusercontent.com/ferminrp/google-sheets-argento/main/all-in-one.js).
-4. Guarda el proyecto (por ejemplo, "ArgentinaFinance").
-5. Volvé a la hoja y espera unos segundos para que se registren todas las funciones.
-
-Esta opción es la forma más sencilla y rápida de instalar todas las funciones disponibles con un solo paso.
-
-## 🚀 Uso
-
-### Función Dólar
+### Función AccionesLista
 En cualquier celda de la hoja, escribe:
 
 ```
-=dolar("tipo"; "operación")
+=accionesLista()
 ```
 
-#### Parámetros
-
-**tipo (string):**
-- "oficial"
-- "blue"
-- "bolsa"
-- "contadoconliqui"
-- "mayorista"
-- "cripto"
-- "tarjeta"
-
-**operación (string):**
-- "compra"
-- "venta"
-- "promedio"
+Esta función devuelve una tabla con todas las acciones argentinas disponibles y sus datos actuales, incluyendo precio, variación porcentual, volumen y otras métricas.
 
 #### Ejemplos
 
 | Fórmula | Descripción |
 |---------|-------------|
-| `=dolar("blue"; "venta")` | Precio de venta del dólar Blue |
-| `=dolar("mayorista"; "compra")` | Precio de compra del dólar Mayorista |
-| `=dolar("oficial"; "promedio")` | Promedio entre compra y venta oficial |
-
-### Función CEDEAR
-En cualquier celda de la hoja, escribe:
-
-```
-=cedear("symbol"; "valor")
-```
-
-#### Parámetros
-
-**symbol (string):**
-- Símbolo del CEDEAR (ej: "AAPL", "MSFT", "GOOGL")
-
-**valor (string):**
-- "c" - Precio actual
-- "v" - Volumen de operaciones
-- "q_bid" - Cantidad en oferta de compra
-- "px_bid" - Precio de oferta de compra
-- "px_ask" - Precio de oferta de venta
-- "q_ask" - Cantidad en oferta de venta
-- "q_op" - Operaciones diarias
-- "pct_change" - Variación porcentual diaria
-
-#### Ejemplos
-
-| Fórmula | Descripción |
-|---------|-------------|
-| `=cedear("AAPL"; "c")` | Precio actual del CEDEAR de Apple |
-| `=cedear("MSFT"; "px_ask")` | Precio de oferta de venta del CEDEAR de Microsoft |
-| `=cedear("GOOGL"; "pct_change")` | Variación porcentual diaria del CEDEAR de Google |
-
-### Función Acciones
-En cualquier celda de la hoja, escribe:
-
-```
-=acciones("symbol"; "valor")
-```
-
-#### Parámetros
-
-**symbol (string):**
-- Símbolo de la acción argentina (ej: "YPFD", "ALUA", "PAMP")
-
-**valor (string):**
-- "c" - Precio actual
-- "v" - Volumen de operaciones
-- "q_bid" - Cantidad en oferta de compra
-- "px_bid" - Precio de oferta de compra
-- "px_ask" - Precio de oferta de venta
-- "q_ask" - Cantidad en oferta de venta
-- "q_op" - Operaciones diarias
-- "pct_change" - Variación porcentual diaria
-
-#### Ejemplos
-
-| Fórmula | Descripción |
-|---------|-------------|
-| `=acciones("YPFD"; "c")` | Precio actual de la acción de YPF |
-| `=acciones("ALUA"; "px_ask")` | Precio de oferta de venta de Aluar |
-| `=acciones("PAMP"; "pct_change")` | Variación porcentual diaria de Pampa Energía |
+| `=accionesLista()` | Tabla completa de todas las acciones argentinas con sus datos actuales |
 
 ### Función Bonos
 En cualquier celda de la hoja, escribe:
@@ -302,6 +171,21 @@ En cualquier celda de la hoja, escribe:
 | `=bonos("GD30"; "px_ask")` | Precio de oferta de venta del bono GD30 |
 | `=bonos("AE38"; "pct_change")` | Variación porcentual diaria del bono AE38 |
 
+### Función BonosLista
+En cualquier celda de la hoja, escribe:
+
+```
+=bonosLista()
+```
+
+Esta función devuelve una tabla con todos los bonos argentinos disponibles y sus datos actuales, incluyendo precio, variación porcentual, volumen y otras métricas.
+
+#### Ejemplos
+
+| Fórmula | Descripción |
+|---------|-------------|
+| `=bonosLista()` | Tabla completa de todos los bonos argentinos con sus datos actuales |
+
 ### Función Letras
 En cualquier celda de la hoja, escribe:
 
@@ -331,6 +215,21 @@ En cualquier celda de la hoja, escribe:
 | `=letras("BB2Y5"; "c")` | Precio actual de la letra BB2Y5 |
 | `=letras("BNA6D"; "px_ask")` | Precio de oferta de venta de la letra BNA6D |
 | `=letras("S31L5"; "pct_change")` | Variación porcentual diaria de la letra S31L5 |
+
+### Función LetrasLista
+En cualquier celda de la hoja, escribe:
+
+```
+=letrasLista()
+```
+
+Esta función devuelve una tabla con todas las letras del tesoro disponibles y sus datos actuales, incluyendo precio, variación porcentual, volumen y otras métricas.
+
+#### Ejemplos
+
+| Fórmula | Descripción |
+|---------|-------------|
+| `=letrasLista()` | Tabla completa de todas las letras del tesoro con sus datos actuales |
 
 ### Función Opciones
 En cualquier celda de la hoja, escribe:
@@ -365,6 +264,111 @@ En cualquier celda de la hoja, escribe:
 | `=opciones("YPFC49000J"; "c")` | Precio actual de la opción CALL de YPF con strike 490 y vencimiento en Julio |
 | `=opciones("ALUC800JU"; "px_ask")` | Precio de oferta de venta de la opción CALL de Aluar con strike 800 |
 | `=opciones("GGALV53000S"; "pct_change")` | Variación porcentual diaria de la opción PUT de Grupo Galicia con strike 530 y vencimiento en Septiembre |
+
+### Función OpcionesLista
+En cualquier celda de la hoja, escribe:
+
+```
+=opcionesLista()
+```
+
+Esta función devuelve una tabla con todas las opciones disponibles y sus datos actuales, incluyendo precio, variación porcentual, volumen y otras métricas.
+
+#### Ejemplos
+
+| Fórmula | Descripción |
+|---------|-------------|
+| `=opcionesLista()` | Tabla completa de todas las opciones con sus datos actuales |
+
+### Función CEDEAR
+En cualquier celda de la hoja, escribe:
+
+```
+=cedear("symbol"; "valor")
+```
+
+#### Parámetros
+
+**symbol (string):**
+- Símbolo del CEDEAR (ej: "AAPL", "MSFT", "GOOGL")
+
+**valor (string):**
+- "c" - Precio actual
+- "v" - Volumen de operaciones
+- "q_bid" - Cantidad en oferta de compra
+- "px_bid" - Precio de oferta de compra
+- "px_ask" - Precio de oferta de venta
+- "q_ask" - Cantidad en oferta de venta
+- "q_op" - Operaciones diarias
+- "pct_change" - Variación porcentual diaria
+
+#### Ejemplos
+
+| Fórmula | Descripción |
+|---------|-------------|
+| `=cedear("AAPL"; "c")` | Precio actual del CEDEAR de Apple |
+| `=cedear("MSFT"; "px_ask")` | Precio de oferta de venta del CEDEAR de Microsoft |
+| `=cedear("GOOGL"; "pct_change")` | Variación porcentual diaria del CEDEAR de Google |
+
+### Función CedearLista
+En cualquier celda de la hoja, escribe:
+
+```
+=cedearLista()
+```
+
+Esta función devuelve una tabla con todos los CEDEARs disponibles y sus datos actuales, incluyendo precio, variación porcentual, volumen y otras métricas.
+
+#### Ejemplos
+
+| Fórmula | Descripción |
+|---------|-------------|
+| `=cedearLista()` | Tabla completa de todos los CEDEARs con sus datos actuales |
+
+### Función USA Stocks
+En cualquier celda de la hoja, escribe:
+
+```
+=usa_stocks("symbol"; "valor")
+```
+
+#### Parámetros
+
+**symbol (string):**
+- Símbolo de la acción estadounidense (ej: "AAPL", "MSFT", "GOOGL")
+
+**valor (string):**
+- "c" - Precio actual
+- "v" - Volumen de operaciones
+- "q_bid" - Cantidad en oferta de compra
+- "px_bid" - Precio de oferta de compra
+- "px_ask" - Precio de oferta de venta
+- "q_ask" - Cantidad en oferta de venta
+- "q_op" - Operaciones diarias
+- "pct_change" - Variación porcentual diaria
+
+#### Ejemplos
+
+| Fórmula | Descripción |
+|---------|-------------|
+| `=usa_stocks("AAPL"; "c")` | Precio actual de la acción de Apple |
+| `=usa_stocks("MSFT"; "px_ask")` | Precio de oferta de venta de Microsoft |
+| `=usa_stocks("GOOGL"; "pct_change")` | Variación porcentual diaria de Google |
+
+### Función USA_StocksLista
+En cualquier celda de la hoja, escribe:
+
+```
+=usa_stocksLista()
+```
+
+Esta función devuelve una tabla con todas las acciones estadounidenses disponibles y sus datos actuales, incluyendo precio, variación porcentual, volumen y otras métricas.
+
+#### Ejemplos
+
+| Fórmula | Descripción |
+|---------|-------------|
+| `=usa_stocksLista()` | Tabla completa de todas las acciones estadounidenses con sus datos actuales |
 
 ### Función Inflación
 En cualquier celda de la hoja, escribe:
@@ -526,36 +530,6 @@ En cualquier celda de la hoja, escribe:
 | `=criptoya("ETH"; "USD"; 0.5; "binance"; "venta")` | Precio de venta de 0.5 ETH en USD en Binance |
 | `=criptoya("DAI"; "ARS"; 100; ; "totalVenta")` | Mejor precio de venta (con comisiones) de 100 DAI en pesos |
 | `=criptoya("USDT"; "ARS"; 1000; "ripio")` | Precio de compra de 1000 USDT en pesos en Ripio |
-
-### Función USA Stocks
-En cualquier celda de la hoja, escribe:
-
-```
-=usa_stocks("symbol"; "valor")
-```
-
-#### Parámetros
-
-**symbol (string):**
-- Símbolo de la acción estadounidense (ej: "AAPL", "MSFT", "GOOGL")
-
-**valor (string):**
-- "c" - Precio actual
-- "v" - Volumen de operaciones
-- "q_bid" - Cantidad en oferta de compra
-- "px_bid" - Precio de oferta de compra
-- "px_ask" - Precio de oferta de venta
-- "q_ask" - Cantidad en oferta de venta
-- "q_op" - Operaciones diarias
-- "pct_change" - Variación porcentual diaria
-
-#### Ejemplos
-
-| Fórmula | Descripción |
-|---------|-------------|
-| `=usa_stocks("AAPL"; "c")` | Precio actual de la acción de Apple |
-| `=usa_stocks("MSFT"; "px_ask")` | Precio de oferta de venta de Microsoft |
-| `=usa_stocks("GOOGL"; "pct_change")` | Variación porcentual diaria de Google |
 
 ### Función Plazo Fijo
 En cualquier celda de la hoja, escribe:

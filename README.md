@@ -339,6 +339,8 @@ En cualquier celda de la hoja, escribe:
 - "q_ask" - Cantidad en oferta de venta
 - "q_op" - Operaciones diarias
 - "pct_change" - Variación porcentual diaria
+- "name" - Nombre completo de la empresa
+- "ratio" - Ratio de conversión entre el CEDEAR y la acción subyacente
 
 #### Ejemplos
 
@@ -347,6 +349,8 @@ En cualquier celda de la hoja, escribe:
 | `=cedear("AAPL"; "c")` | Precio actual del CEDEAR de Apple |
 | `=cedear("MSFT"; "px_ask")` | Precio de oferta de venta del CEDEAR de Microsoft |
 | `=cedear("GOOGL"; "pct_change")` | Variación porcentual diaria del CEDEAR de Google |
+| `=cedear("TSLA"; "name")` | Nombre completo de la empresa Tesla |
+| `=cedear("AMZN"; "ratio")` | Ratio de conversión del CEDEAR de Amazon |
 
 ### Función CedearLista
 En cualquier celda de la hoja, escribe:

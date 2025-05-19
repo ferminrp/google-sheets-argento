@@ -33,6 +33,13 @@ Devuelve la cotización de los distintos tipos de dólar en Argentina.
 =dolar("tipo"; "operación")
 ```
 
+### Cotizaciones históricas del dólar
+Devuelve la cotización histórica de los distintos tipos de dólar en Argentina.
+
+```
+=dolar_historico("tipo"; "fecha"; "valor")
+```
+
 ### Información de CEDEARs
 Devuelve información sobre los CEDEARs (Certificados de Depósito Argentinos) que cotizan en Argentina.
 
@@ -758,6 +765,84 @@ En cualquier celda de la hoja, escribe:
 - El IVA se calcula sobre todos los gastos (21%)
 - Los derechos de mercado y gastos de garantía se calculan a una tasa diaria proporcional al plazo de la operación (hasta 90 días)
 
+### Función Dólar Histórico
+En cualquier celda de la hoja, escribe:
+
+```
+=dolar_historico("tipo"; "fecha"; "valor")
+```
+
+#### Parámetros
+
+**tipo (string):**
+- Tipo de dólar a consultar (ej: "blue", "oficial", "mayorista")
+- Tipos disponibles: blue, oficial, mayorista, y otros disponibles en la API
+
+**fecha (string):** [Opcional]
+- Fecha para la cual se quiere obtener la cotización
+- Formato aceptado: "YYYY-MM-DD"
+- Si se omite, usa la fecha actual
+
+**valor (string):** [Opcional]
+- Valor a devolver: "compra" o "venta"
+- Por defecto: "venta"
+
+#### Ejemplos
+
+| Fórmula | Descripción |
+|---------|-------------|
+| `=dolar_historico("blue"; "2023-01-15")` | Valor de venta del dólar blue el 15 de enero de 2023 |
+| `=dolar_historico("oficial"; "2023-01-15"; "compra")` | Valor de compra del dólar oficial el 15 de enero de 2023 |
+| `=dolar_historico("mayorista")` | Valor de venta del dólar mayorista para la fecha actual |
+| `=dolar_historico_todos("2023-01-15")` | Tabla con todas las cotizaciones disponibles para el 15 de enero de 2023 |
+
+### Función Dólar
+En cualquier celda de la hoja, escribe:
+
+```
+=dolar("tipo"; "operación")
+```
+
+#### Parámetros
+
+**tipo (string):**
+- Tipo de dólar a consultar (ej: "blue", "oficial", "mayorista")
+- Tipos disponibles: blue, oficial, mayorista, y otros disponibles en la API
+
+**operación (string):**
+- Tipo de operación a consultar: "compra", "venta", "promedio"
+- Por defecto: "venta"
+
+#### Ejemplos
+
+| Fórmula | Descripción |
+|---------|-------------|
+| `=dolar("blue")` | Precio de venta del dólar blue |
+| `=dolar("oficial")` | Precio de venta del dólar oficial |
+| `=dolar("mayorista")` | Precio de venta del dólar mayorista |
+| `=dolar("blue"; "compra")` | Precio de compra del dólar blue |
+| `=dolar("oficial"; "venta")` | Precio de compra del dólar oficial |
+| `=dolar("mayorista"; "promedio")` | Precio promedio del dólar mayorista |
+
+### Errores de la función Dólar Histórico
+
+**Tipo inválido**  
+"Error: Debe especificar un tipo de dólar"
+
+**Valor inválido**  
+"Error: El valor debe ser 'compra' o 'venta'"
+
+**Cotización no encontrada**  
+"No se encontró cotización para la fecha y tipo especificados"
+
+### Errores de la función Dólar
+
+**Tipo inválido**  
+"Tipo inválido: 'xyz'. Tipos disponibles: oficial, blue, bolsa, contadoconliqui, mayorista, cripto, tarjeta."
+
+**Operación inválida**  
+"Operación inválida: 'xyz'. Usa 'compra', 'venta' o 'promedio'."
+
 ## 🔄 Actualización automática
 Google Sheets recalcula las fórmulas al:
 
@@ -912,7 +997,7 @@ Forzar recálculo:
 
 ## 👏 Agradecimientos
 
-- A [Argentina Datos](https://argentinadatos.com/) y su creador [Enzo Notario](https://github.com/enzonotario/) por las APIs de inflación y UVA.
+- A [Argentina Datos](https://argentinadatos.com/) y su creador [Enzo Notario](https://github.com/enzonotario/) por las APIs de inflación, UVA y cotizaciones históricas de dólares.
 - A [@JohnGalt_is_www](https://x.com/JohnGalt_is_www) por sus APIs de bonos, letras, CEDEARs y acciones argentinas y estadounidenses.
 - A [@http://criptoya.com/](http://criptoya.com/) por su API de comparación de precios de criptomonedas.
 - A [Banco Central de la República Argentina](https://www.bcra.gob.ar/) por su API de variables económicas.
@@ -920,6 +1005,7 @@ Forzar recálculo:
 ## Archivos principales
 
 - dolar.js – Código fuente de Apps Script para cotizaciones de dólar
+- dolar_historico.js – Código fuente de Apps Script para cotizaciones históricas de dólar
 - cedear.js – Código fuente de Apps Script para información de CEDEARs
 - acciones.js – Código fuente de Apps Script para información de acciones argentinas
 - usa_stocks.js – Código fuente de Apps Script para información de acciones estadounidenses

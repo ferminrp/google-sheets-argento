@@ -40,6 +40,23 @@ Devuelve información sobre los CEDEARs (Certificados de Depósito Argentinos) q
 =cedear("symbol"; "valor")
 ```
 
+### Archivo JSON de CEDEARs
+El proyecto incluye un archivo `data/cedears.json` que contiene información útil sobre todos los CEDEARs disponibles en el mercado argentino. Este archivo puede ser utilizado como referencia o para importar en tus propias aplicaciones.
+
+Cada entrada del archivo contiene:
+- **Cedears**: Símbolo/ticker del CEDEAR
+- **Name**: Nombre completo de la empresa
+- **Ratio**: Ratio de conversión entre el CEDEAR y la acción subyacente
+
+Ejemplo de uso:
+```json
+{
+  "Cedears": "AAPL",
+  "Name": "Apple Inc",
+  "Ratio": "20"
+}
+```
+
 ### Información de Acciones Argentinas
 Devuelve información sobre las acciones que cotizan en el mercado argentino.
 

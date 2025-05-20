@@ -3,6 +3,65 @@ Scripts de Apps Script que añaden a tu Google Sheet funciones tipicas para el d
 
 [![Invitame un café en cafecito.app](https://cdn.cafecito.app/imgs/buttons/button_1.svg)](https://cafecito.app/ferminrp)
 
+## Indice
+
+1. **[Funciones](#funciones)** <details><summary>(expandir)</summary>
+	- [Información de Opciones Argentinas](#información-de-opciones-argentinas)
+	- [Información de Obligaciones Negociables](#información-de-obligaciones-negociables)
+	- [Índices de Inflación](#índices-de-inflación)
+	- [Cotizaciones del dolar](#cotizaciones-del-dolar)
+	- [Cotizaciones históricas del dólar](#cotizaciones-históricas-del-dólar)
+	- [Información de CEDEARs](#información-de-cedears)
+	- [Archivo JSON de CEDEARs](#archivo-json-de-cedears)
+	- [Información de Acciones Argentinas](#información-de-acciones-argentinas)
+	- [Información de Acciones de EE.UU.](#información-de-acciones-de-eeuu)
+	- [Información de Bonos Argentinos](#información-de-bonos-argentinos)
+	- [Información de Letras del Tesoro](#información-de-letras-del-tesoro)
+	- [Información de Opciones Argentinas](#información-de-opciones-argentinas)
+	- [Índices de Inflación](#índices-de-inflación)
+	- [Precios de Criptomonedas](#precios-de-criptomonedas)
+	- [Índices UVA](#índices-uva)
+	- [Riesgo País](#riesgo-país)
+	- [Rendimientos de Criptomonedas](#rendimientos-de-criptomonedas)
+	- [Tasas de Plazos Fijos](#tasas-de-plazos-fijos)
+	- [Fondos Comunes de Inversión](#fondos-comunes-de-inversión)
+	- [Comparador de Precios de Criptomonedas (CriptoYa)](#comparador-de-precios-de-criptomonedas-criptoya)
+	- [Variables del Banco Central](#variables-del-banco-central)
+	- [Cauciones](#cauciones)
+	- [Función AccionesLista](#función-accioneslista)
+	- [Función Bonos](#función-bonos)
+	- [Función BonosLista](#función-bonoslista)
+	- [Función Letras](#función-letras)
+	- [Función LetrasLista](#función-letraslista)
+	- [Función Opciones](#función-opciones)
+	- [Función OpcionesLista](#función-opcioneslista)
+	- [Función CEDEAR](#función-cedear)
+	- [Función CedearLista](#función-cedearlista)
+	- [Función USA Stocks](#función-usa-stocks)
+	- [Función USA_StocksLista](#función-usa_stockslista)
+	- [Información de Obligaciones Negociables](#información-de-obligaciones-negociables)
+	- [Función Obligaciones](#función-obligaciones)
+	- [Función ObligacionesLista](#función-obligacioneslista)
+	- [Función Inflación](#función-inflación)
+	- [Función Crypto](#función-crypto)
+	- [Función UVA](#función-uva)
+	- [Función Riesgo País](#función-riesgo-país)
+	- [Función Rendimientos](#función-rendimientos)
+	- [Función CriptoYa](#función-criptoya)
+	- [Función Plazo Fijo](#función-plazo-fijo)
+	- [Función FCI](#función-fci)
+	- [Función BCRA](#función-bcra)
+	- [Función Caución](#función-caución)
+	- [Función Dólar Histórico](#función-dólar-histórico)
+	- [Función Dólar](#función-dólar)
+	- [Errores de la función Dólar Histórico](#errores-de-la-función-dólar-histórico)
+	- [Errores de la función Dólar](#errores-de-la-función-dólar)</details>
+1. **[Actualización automática](#-actualización-automática)**
+1. **[Errores comunes](#%EF%B8%8F-errores-comunes)**
+1. **[Agradecimientos](#-agradecimientos)**
+1. **[Archivos principales](#archivos-principales)**
+
+
 ## Funciones
 
 ### Información de Opciones Argentinas

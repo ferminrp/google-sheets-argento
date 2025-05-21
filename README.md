@@ -60,23 +60,23 @@ Forzar recálculo:
 
 ## Archivos principales
 
-- [dolar.js](doc/DOLAR.md) – Código fuente para cotizaciones de dólar
-- [dolar_historico.js](doc/DOLAR_HISTORICO.md) – Código fuente para cotizaciones históricas de dólar
-- [cedear.js](doc/CEDEAR.md) – Código fuente para información de CEDEARs
-- [acciones.js](doc/ACCIONES.md) – Código fuente para información de acciones argentinas
-- [usa_stocks.js](doc/USA_STOCKS.md) – Código fuente para información de acciones estadounidenses
-- [bonos.js](doc/BONOS.md) – Código fuente para información de bonos argentinos
-- [letras.js](doc/LETRAS.md) – Código fuente para información de letras del tesoro
-- [opciones.js](doc/OPCIONES.md) – Código fuente para información de opciones argentinas
-- [obligaciones.js](doc/OBLIGACIONES.md) – Código fuente para información de obligaciones negociables
-- [inflacion.js](doc/INFLACION.md) – Código fuente para índices de inflación
-- [crypto.js](doc/CRYPTO.md) – Código fuente para precios de criptomonedas
-- [uva.js](doc/UVA.md) – Código fuente para índices UVA
-- [riesgopais.js](doc/RIESGOPAIS.md) – Código fuente para valores del riesgo país
-- [rendimientos.js](doc/RENDIMIENTOS.md) – Código fuente para rendimientos de criptomonedas
-- [plazofijo.js](doc/PLAZOFIJO.md) – Código fuente para tasas de plazos fijos
-- [fci.js](doc/FCI.md) – Código fuente para fondos comunes de inversión
-- [criptoya.js](doc/CRIPTOYA.md) – Código fuente para comparador de precios de criptomonedas
-- [bcra.js](doc/BCRA.md) – Código fuente para variables del Banco Central
-- [caucion.js](doc/CAUCION.md) – Código fuente para cálculo de cauciones
-- all-in-one.js – Archivo único con todas las funciones combinadas
+- [src/dolar.js](src/dolar.js) – Código fuente para cotizaciones de dólar
+- [src/dolar_historico.js](src/dolar_historico.js) – Código fuente para cotizaciones históricas de dólar
+- [src/cedear.js](src/cedear.js) – Código fuente para información de CEDEARs
+- [src/acciones.js](src/acciones.js) – Código fuente para información de acciones argentinas
+- [src/usa_stocks.js](src/usa_stocks.js) – Código fuente para información de acciones estadounidenses
+- [src/bonos.js](src/bonos.js) – Código fuente para información de bonos argentinos
+- [src/letras.js](src/letras.js) – Código fuente para información de letras del tesoro
+- [src/opciones.js](src/opciones.js) – Código fuente para información de opciones argentinas
+- [src/obligaciones.js](src/obligaciones.js) – Código fuente para información de obligaciones negociables
+- [src/inflacion.js](src/inflacion.js) – Código fuente para índices de inflación
+- [src/crypto.js](src/crypto.js) – Código fuente para precios de criptomonedas
+- [src/uva.js](src/uva.js) – Código fuente para índices UVA
+- [src/riesgopais.js](src/riesgopais.js) – Código fuente para valores del riesgo país
+- [src/rendimientos.js](src/rendimientos.js) – Código fuente para rendimientos de criptomonedas
+- [src/plazofijo.js](src/plazofijo.js) – Código fuente para tasas de plazos fijos
+- [src/fci.js](src/fci.js) – Código fuente para fondos comunes de inversión
+- [src/criptoya.js](src/criptoya.js) – Código fuente para comparador de precios de criptomonedas
+- [src/bcra.js](src/bcra.js) – Código fuente para variables del Banco Central
+- [src/caucion.js](src/caucion.js) – Código fuente para cálculo de cauciones
+- [all-in-one.js](all-in-one.js) – Archivo único con todas las funciones combinadas

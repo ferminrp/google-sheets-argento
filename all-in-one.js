@@ -1,5 +1,5 @@
 // Archivo consolidado generado automáticamente
-// Fecha de generación: 2025-05-21T15:32:00.429Z
+// Fecha de generación: 2025-05-21T23:55:11.026Z
 
 // Namespace para constantes compartidas
 var CONSTANTS = {};

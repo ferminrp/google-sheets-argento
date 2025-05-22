@@ -4,11 +4,12 @@ const path = require('path');
 // Lista de archivos a excluir (incluyendo el propio script de build y el archivo consolidado)
 const excludeFiles = ['build.js', 'all-in-one.js'];
 
-// Función para leer todos los archivos JS del directorio
+// Función para leer todos los archivos JS del directorio src
 function getAllJsFiles() {
-    return fs.readdirSync(__dirname)
+    const srcDir = path.join(__dirname, 'src');
+    return fs.readdirSync(srcDir)
         .filter(file => file.endsWith('.js') && !excludeFiles.includes(file))
-        .map(file => path.join(__dirname, file));
+        .map(file => path.join(srcDir, file));
 }
 
 // Función para procesar las constantes en un archivo

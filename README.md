@@ -80,3 +80,8 @@ Forzar recálculo:
 - [src/bcra.js](src/bcra.js) – Código fuente para variables del Banco Central
 - [src/caucion.js](src/caucion.js) – Código fuente para cálculo de cauciones
 - [all-in-one.js](all-in-one.js) – Archivo único con todas las funciones combinadas
+
+## Desarrollo
+
+- Ejecutar 'npm run build' para generar [all-in-one.js](all-in-one.js)
+- Ejecutar 'npm run test' para ejecutar tests unitarios [tests\all-in-one.test.js](atests\all-in-one.test.js)

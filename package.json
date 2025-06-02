@@ -2,12 +2,15 @@
   "name": "google-sheets-argento",
   "version": "1.0.0",
   "description": "Scripts de Apps Script que añaden a tu Google Sheet funciones tipicas para el dia a dia de un Argentino de bien.",
-  "main": "acciones.js",
+  "main": "src/acciones.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --config jest.config.js",
     "build": "node build.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.5.0"
+  }
 }

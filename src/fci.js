@@ -9,6 +9,61 @@
  * @customfunction
  */
 function fci(tipoFondo, nombreFondo, fecha, campo) {
+  function esFechaValida(year, month, day) {
+    if (month < 1 || month > 12 || day < 1 || day > 31) {
+      return false;
+    }
+    var fechaUTC = new Date(Date.UTC(year, month - 1, day));
+    var fechaLocal = new Date(year, month - 1, day);
+    return fechaUTC.getUTCFullYear() === year &&
+           (fechaUTC.getUTCMonth() + 1) === month &&
+           fechaUTC.getUTCDate() === day &&
+           fechaLocal.getFullYear() === year &&
+           (fechaLocal.getMonth() + 1) === month &&
+           fechaLocal.getDate() === day;
+  }
+
+  function obtenerComponentesFecha(fechaInput) {
+    var year;
+    var month;
+    var day;
+
+    if (fechaInput instanceof Date) {
+      if (isNaN(fechaInput.getTime())) {
+        throw new Error("Fecha inválida: '" + fechaInput + "'. Usar formato 'YYYY-MM-DD' o 'MM/DD/YYYY'.");
+      }
+      year = fechaInput.getFullYear();
+      month = fechaInput.getMonth() + 1;
+      day = fechaInput.getDate();
+    } else {
+      var fechaStr = fechaInput.toString().trim();
+      var matchISO = fechaStr.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+      var matchUS = fechaStr.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+
+      if (matchISO) {
+        year = parseInt(matchISO[1], 10);
+        month = parseInt(matchISO[2], 10);
+        day = parseInt(matchISO[3], 10);
+      } else if (matchUS) {
+        month = parseInt(matchUS[1], 10);
+        day = parseInt(matchUS[2], 10);
+        year = parseInt(matchUS[3], 10);
+      } else {
+        throw new Error("Fecha inválida: '" + fechaInput + "'. Usar formato 'YYYY-MM-DD' o 'MM/DD/YYYY'.");
+      }
+    }
+
+    if (!esFechaValida(year, month, day)) {
+      throw new Error("Fecha inválida: '" + fechaInput + "'. Usar formato 'YYYY-MM-DD' o 'MM/DD/YYYY'.");
+    }
+
+    return {
+      year: year.toString(),
+      month: month.toString().padStart(2, '0'),
+      day: day.toString().padStart(2, '0')
+    };
+  }
+
   // Normalizo entradas
   var tipo = tipoFondo ? tipoFondo.toString().toLowerCase().trim() : '';
   var nombre = nombreFondo ? nombreFondo.toString().trim() : '';
@@ -43,35 +98,12 @@ function fci(tipoFondo, nombreFondo, fecha, campo) {
   // Construir URL según si se proporciona fecha o no
   var url;
   if (fecha) {
-    // Formatear la fecha a YYYY/MM/DD si viene en otro formato
-    var fechaObj;
     try {
-      if (fecha instanceof Date) {
-        fechaObj = fecha;
-      } else {
-        // Convertir de formato MM/DD/YYYY a YYYY-MM-DD si es necesario
-        if (fecha.indexOf('/') !== -1) {
-          var partes = fecha.split('/');
-          if (partes.length === 3) {
-            fecha = partes[2] + '-' + partes[0] + '-' + partes[1];
-          }
-        }
-        fechaObj = new Date(fecha);
-        
-        // Verificar si la fecha es válida
-        if (isNaN(fechaObj.getTime())) {
-          throw new Error("Fecha inválida: '" + fecha + "'. Usar formato 'YYYY-MM-DD' o 'MM/DD/YYYY'.");
-        }
-      }
+      var componentesFecha = obtenerComponentesFecha(fecha);
+      url = 'https://api.argentinadatos.com/v1/finanzas/fci/' + tipoAPI + '/' + componentesFecha.year + '/' + componentesFecha.month + '/' + componentesFecha.day + '/';
     } catch (e) {
       throw new Error("Fecha inválida: '" + fecha + "'. Usar formato 'YYYY-MM-DD' o 'MM/DD/YYYY'.");
     }
-    
-    // Formatear a YYYY/MM/DD para la URL
-    var year = fechaObj.getFullYear();
-    var month = (fechaObj.getMonth() + 1).toString().padStart(2, '0');
-    var day = fechaObj.getDate().toString().padStart(2, '0');
-    url = 'https://api.argentinadatos.com/v1/finanzas/fci/' + tipoAPI + '/' + year + '/' + month + '/' + day + '/';
   } else {
     url = 'https://api.argentinadatos.com/v1/finanzas/fci/' + tipoAPI + '/ultimo';
   }

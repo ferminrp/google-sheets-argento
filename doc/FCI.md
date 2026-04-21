@@ -13,7 +13,7 @@ En cualquier celda de la hoja, escribe:
 ## Parámetros
 
 **tipoFondo (string):**
-- Tipo de fondo a consultar: "mercadoDinero", "rentaVariable", "rentaFija", "rentaMixta"
+- Tipo de fondo a consultar: "mercadoDinero", "rentaVariable", "rentaFija", "rentaMixta", "retornoTotal"
 
 **nombreFondo (string):**
 - Nombre del fondo a consultar (ej: "Balanz Money Market USD - Clase A")
@@ -38,11 +38,12 @@ En cualquier celda de la hoja, escribe:
 | `=fci("rentaFija"; "Pionero Renta"; "2023-05-01")` | Valor cuotaparte del fondo Pionero Renta para la fecha indicada |
 | `=fci("rentaVariable"; "Alpha Acciones"; ; "patrimonio")` | Patrimonio actual del fondo Alpha Acciones |
 | `=fci("rentaMixta"; "Galileo Income"; ; "ccp")` | Cantidad de cuotapartes actual del fondo Galileo Income |
+| `=fci("retornoTotal"; "Cocos Pesos Plus - Clase A")` | Valor cuotaparte actual del fondo en la categoría retorno total |
 
 ## Errores comunes
 
 **Tipo de fondo inválido**  
-"Tipo de fondo inválido. Tipos permitidos: mercadoDinero, rentaVariable, rentaFija, rentaMixta."
+"Tipo de fondo inválido. Tipos permitidos: mercadoDinero, rentaVariable, rentaFija, rentaMixta, retornoTotal."
 
 **Fondo no encontrado**  
 "Fondo 'xyz' no encontrado para el tipo 'abc'. Algunos fondos disponibles: Balanz Money Market USD - Clase A, Schroder Liquidez - Clase B..."

@@ -7,6 +7,7 @@ function createResponse(statusCode, body) {
 
 describe("fci", () => {
   let fci;
+  let fciLista;
   let fetchMock;
 
   beforeEach(() => {
@@ -20,7 +21,7 @@ describe("fci", () => {
     global.DriveApp = {};
     global.Logger = { log: jest.fn() };
 
-    ({ fci } = require("./test-wrapper"));
+    ({ fci, fciLista } = require("./test-wrapper"));
   });
 
   afterEach(() => {
@@ -93,5 +94,51 @@ describe("fci", () => {
     expect(result).toBe(321);
     expect(fetchMock).toHaveBeenCalledTimes(1);
     expect(fetchMock.mock.calls[0][0]).toContain("/rentaMixta/ultimo");
+  });
+
+  test("acepta retornoTotal y consulta su endpoint", () => {
+    fetchMock.mockReturnValue(
+      createResponse(200, [
+        {
+          fondo: "Cocos Pesos Plus - Clase A",
+          vcp: 555.55,
+          ccp: 100,
+          patrimonio: 1000,
+        },
+      ])
+    );
+
+    const result = fci("retornoTotal", "Cocos Pesos Plus - Clase A");
+
+    expect(result).toBe(555.55);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(fetchMock.mock.calls[0][0]).toContain("/retornoTotal/ultimo");
+  });
+
+  test("fciLista incluye la categoría retornoTotal", () => {
+    fetchMock.mockImplementation((url) => {
+      if (url.includes("/retornoTotal/ultimo")) {
+        return createResponse(200, [
+          {
+            fondo: "Cocos Pesos Plus - Clase A",
+            vcp: 777.77,
+          },
+        ]);
+      }
+      return createResponse(200, []);
+    });
+
+    const result = fciLista();
+
+    expect(fetchMock).toHaveBeenCalledTimes(5);
+    expect(fetchMock).toHaveBeenCalledWith(
+      expect.stringContaining("/retornoTotal/ultimo"),
+      expect.any(Object)
+    );
+    expect(result).toContainEqual([
+      "Cocos Pesos Plus - Clase A",
+      "Retorno Total",
+      777.77,
+    ]);
   });
 });

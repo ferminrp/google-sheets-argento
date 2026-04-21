@@ -70,9 +70,9 @@ function fci(tipoFondo, nombreFondo, fecha, campo) {
   var campoDatos = campo ? campo.toString().toLowerCase().trim() : 'vcp';
   
   // Validar tipo de fondo
-  var tiposPermitidos = ['mercadodinero', 'rentavariable', 'rentafija', 'rentamixta'];
+  var tiposPermitidos = ['mercadodinero', 'rentavariable', 'rentafija', 'rentamixta', 'retornototal'];
   if (!tiposPermitidos.includes(tipo.replace(/\s+/g, '').replace(/[óo]/, 'o'))) {
-    throw new Error("Tipo de fondo inválido. Tipos permitidos: mercadoDinero, rentaVariable, rentaFija, rentaMixta.");
+    throw new Error("Tipo de fondo inválido. Tipos permitidos: mercadoDinero, rentaVariable, rentaFija, rentaMixta, retornoTotal.");
   }
   
   // Convertir tipo a formato de API
@@ -82,6 +82,7 @@ function fci(tipoFondo, nombreFondo, fecha, campo) {
     case 'rentavariable': tipoAPI = 'rentaVariable'; break;
     case 'rentafija': tipoAPI = 'rentaFija'; break;
     case 'rentamixta': tipoAPI = 'rentaMixta'; break;
+    case 'retornototal': tipoAPI = 'retornoTotal'; break;
   }
   
   // Validar el campo a consultar

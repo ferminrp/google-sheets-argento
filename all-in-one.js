@@ -1,5 +1,5 @@
 // Archivo consolidado generado automáticamente
-// Fecha de generación: 2026-04-16T17:38:30.117Z
+// Fecha de generación: 2026-04-21T21:30:56.419Z
 
 // Namespace para constantes compartidas
 var CONSTANTS = {};
@@ -978,7 +978,7 @@ function dolar_historico_todos(fecha) {
 /**
  * Obtiene información de Fondos Comunes de Inversión (FCI) de Argentina.
  *
- * @param {string} tipoFondo El tipo de fondo a consultar: "mercadoDinero", "rentaVariable", "rentaFija", "rentaMixta"
+ * @param {string} tipoFondo El tipo de fondo a consultar: "mercadoDinero", "rentaVariable", "rentaFija", "rentaMixta", "retornoTotal"
  * @param {string} nombreFondo El nombre del fondo a consultar (ej: "Balanz Money Market USD - Clase A")
  * @param {string} fecha [Opcional] Fecha en formato 'YYYY-MM-DD'. Si no se proporciona, devuelve la información más reciente.
  * @param {string} campo [Opcional] Campo a consultar: "vcp" (valor cuotaparte), "ccp" (cantidad cuotapartes), "patrimonio". Por defecto: "vcp".
@@ -1047,9 +1047,9 @@ function fci(tipoFondo, nombreFondo, fecha, campo) {
   var campoDatos = campo ? campo.toString().toLowerCase().trim() : 'vcp';
   
   // Validar tipo de fondo
-  var tiposPermitidos = ['mercadodinero', 'rentavariable', 'rentafija', 'rentamixta'];
+  var tiposPermitidos = ['mercadodinero', 'rentavariable', 'rentafija', 'rentamixta', 'retornototal'];
   if (!tiposPermitidos.includes(tipo.replace(/\s+/g, '').replace(/[óo]/, 'o'))) {
-    throw new Error("Tipo de fondo inválido. Tipos permitidos: mercadoDinero, rentaVariable, rentaFija, rentaMixta.");
+    throw new Error("Tipo de fondo inválido. Tipos permitidos: mercadoDinero, rentaVariable, rentaFija, rentaMixta, retornoTotal.");
   }
   
   // Convertir tipo a formato de API
@@ -1059,6 +1059,7 @@ function fci(tipoFondo, nombreFondo, fecha, campo) {
     case 'rentavariable': tipoAPI = 'rentaVariable'; break;
     case 'rentafija': tipoAPI = 'rentaFija'; break;
     case 'rentamixta': tipoAPI = 'rentaMixta'; break;
+    case 'retornototal': tipoAPI = 'retornoTotal'; break;
   }
   
   // Validar el campo a consultar
@@ -1154,7 +1155,7 @@ function fci(tipoFondo, nombreFondo, fecha, campo) {
  */
 function fciLista() {
   // Tipos de fondos a consultar
-  var tipos = ['mercadoDinero', 'rentaVariable', 'rentaFija', 'rentaMixta'];
+  var tipos = ['mercadoDinero', 'rentaVariable', 'rentaFija', 'rentaMixta', 'retornoTotal'];
   
   // Matriz para almacenar todos los fondos
   var todosLosFondos = [['Nombre del Fondo', 'Tipo de Fondo', 'Valor Cuotaparte']];
@@ -1191,6 +1192,7 @@ function fciLista() {
             case 'rentaVariable': nombreFormateado = 'Renta Variable'; break;
             case 'rentaFija': nombreFormateado = 'Renta Fija'; break;
             case 'rentaMixta': nombreFormateado = 'Renta Mixta'; break;
+            case 'retornoTotal': nombreFormateado = 'Retorno Total'; break;
           }
           
           todosLosFondos.push([

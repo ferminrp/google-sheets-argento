@@ -1,7 +1,7 @@
 /**
  * Obtiene información de Fondos Comunes de Inversión (FCI) de Argentina.
  *
- * @param {string} tipoFondo El tipo de fondo a consultar: "mercadoDinero", "rentaVariable", "rentaFija", "rentaMixta"
+ * @param {string} tipoFondo El tipo de fondo a consultar: "mercadoDinero", "rentaVariable", "rentaFija", "rentaMixta", "retornoTotal"
  * @param {string} nombreFondo El nombre del fondo a consultar (ej: "Balanz Money Market USD - Clase A")
  * @param {string} fecha [Opcional] Fecha en formato 'YYYY-MM-DD'. Si no se proporciona, devuelve la información más reciente.
  * @param {string} campo [Opcional] Campo a consultar: "vcp" (valor cuotaparte), "ccp" (cantidad cuotapartes), "patrimonio". Por defecto: "vcp".
@@ -178,7 +178,7 @@ function fci(tipoFondo, nombreFondo, fecha, campo) {
  */
 function fciLista() {
   // Tipos de fondos a consultar
-  var tipos = ['mercadoDinero', 'rentaVariable', 'rentaFija', 'rentaMixta'];
+  var tipos = ['mercadoDinero', 'rentaVariable', 'rentaFija', 'rentaMixta', 'retornoTotal'];
   
   // Matriz para almacenar todos los fondos
   var todosLosFondos = [['Nombre del Fondo', 'Tipo de Fondo', 'Valor Cuotaparte']];
@@ -215,6 +215,7 @@ function fciLista() {
             case 'rentaVariable': nombreFormateado = 'Renta Variable'; break;
             case 'rentaFija': nombreFormateado = 'Renta Fija'; break;
             case 'rentaMixta': nombreFormateado = 'Renta Mixta'; break;
+            case 'retornoTotal': nombreFormateado = 'Retorno Total'; break;
           }
           
           todosLosFondos.push([

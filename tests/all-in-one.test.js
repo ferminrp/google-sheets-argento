@@ -9,7 +9,6 @@ global.Logger = {
   log: console.log,
 };
 
-// IMPORTANTE: Las funciones y variables globales deben ser definidas antes de importar el script
 const {
   caucionColocadora,
   caucionTomadora,
@@ -18,38 +17,34 @@ const {
 describe("caucionColocadora", () => {
   test("debe calcular correctamente el resultado de una caución colocadora", () => {
     const dias = 30;
-    const tna = 120; // 120% TNA
-    const importeBruto = 1000000; // $1,000,000
+    const tna = 1.2; // 120% TNA (formato porcentaje de Sheets)
+    const importeBruto = 1000000;
 
     const resultado = caucionColocadora(dias, tna, importeBruto);
 
-    // Cálculos esperados
     const tasaEfectiva = (tna * dias) / 365;
-    const interes = (importeBruto * tasaEfectiva) / 100;
+    const interes = importeBruto * tasaEfectiva;
     const importeConInteres = importeBruto + interes;
 
-    // Verificaciones
     expect(typeof resultado).toBe("number");
     expect(resultado).toBeGreaterThan(importeBruto);
-    expect(resultado).toBeGreaterThan(importeConInteres); // Debe ser menor por los costos
+    expect(resultado).toBeLessThan(importeConInteres);
   });
 });
-
 
 describe("caucionTomadora", () => {
   test("debe calcular correctamente el resultado de una caución tomadora", () => {
     const dias = 30;
-    const tna = 120; // 120% TNA
-    const importeBruto = 1000000; // $1,000,000
+    const tna = 1.2; // 120% TNA (formato porcentaje de Sheets)
+    const importeBruto = 1000000;
 
     const resultado = caucionTomadora(dias, tna, importeBruto);
 
-    // Verificaciones
     expect(typeof resultado).toBe("number");
-    expect(resultado).toBeGreaterThan(importeBruto); // El importe neto debe ser menor que el bruto por los costos
+    expect(resultado).toBeGreaterThan(importeBruto);
   });
 });
-// Al final de todos los tests
+
 afterAll(() => {
   console.log("Tests de integración completados.");
 });

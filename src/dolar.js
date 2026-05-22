@@ -24,7 +24,12 @@ function dolar(tipo, operacion) {
       
       if (op === 'compra')     return compra;
       if (op === 'venta')      return venta;
-      if (op === 'promedio')   return (compra + venta) / 2;
+      if (op === 'promedio') {
+        if (compra != null && venta != null) return (compra + venta) / 2;
+        if (compra != null) return compra;
+        if (venta != null) return venta;
+        throw new Error("No hay cotización disponible para calcular el promedio de '" + tipo + "'.");
+      }
       
       throw new Error("Operación inválida: '" + operacion + "'. Usa 'compra', 'venta' o 'promedio'.");
     }

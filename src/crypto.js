@@ -31,13 +31,16 @@ function crypto(symbol, moneda) {
     
     // Comprobar si la respuesta es válida
     if (respuesta.getResponseCode() !== 200) {
-      var error;
+      var mensajeError = "Código de error: " + respuesta.getResponseCode();
       try {
-        error = JSON.parse(respuesta.getContentText());
-        throw new Error((error.errors && error.errors[0] && error.errors[0].message) || "Error desconocido");
-      } catch (e) {
-        throw new Error("Código de error: " + respuesta.getResponseCode());
+        var error = JSON.parse(respuesta.getContentText());
+        if (error.errors && error.errors[0] && error.errors[0].message) {
+          mensajeError = error.errors[0].message;
+        }
+      } catch (parseError) {
+        // Mantener mensaje por código HTTP si el cuerpo no es JSON
       }
+      throw new Error(mensajeError);
     }
     
     // Analizar la respuesta JSON

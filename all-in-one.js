@@ -1,5 +1,5 @@
 // Archivo consolidado generado automáticamente
-// Fecha de generación: 2026-04-21T21:30:56.419Z
+// Fecha de generación: 2026-05-22T11:38:59.406Z
 
 // Namespace para constantes compartidas
 var CONSTANTS = {};
@@ -136,7 +136,7 @@ function bcra(id) {
     }
     
     // Find the variable with the specified ID
-    const variable = data.results.find(item => item.idVariable === variableId);
+    const variable = data.results.find(item => Number(item.idVariable) === variableId);
     
     // Return the value if found, otherwise throw an error
     if (variable) {
@@ -448,14 +448,17 @@ function calcularCaucion(
   arancelCaucionColocadoraTna,
   arancelCaucionTomadoraTna
 ) {
-  // Valores por defecto para los aranceles
-  arancelCaucionColocadoraTna =
-    arancelCaucionColocadoraTna || CONSTANTS.ARANCEL_CAUCION_COLOCADORA_TNA;
-  arancelCaucionTomadoraTna =
-    arancelCaucionTomadoraTna || CONSTANTS.ARANCEL_CAUCION_TOMADORA_TNA;
+  // Valores por defecto para los aranceles (0 es un valor válido)
+  if (arancelCaucionColocadoraTna === undefined || arancelCaucionColocadoraTna === null || arancelCaucionColocadoraTna === '') {
+    arancelCaucionColocadoraTna = CONSTANTS.ARANCEL_CAUCION_COLOCADORA_TNA;
+  }
+  if (arancelCaucionTomadoraTna === undefined || arancelCaucionTomadoraTna === null || arancelCaucionTomadoraTna === '') {
+    arancelCaucionTomadoraTna = CONSTANTS.ARANCEL_CAUCION_TOMADORA_TNA;
+  }
 
   // Validación de parámetros
-  if (typeof dias !== "number" || !Number.isInteger(dias)) {
+  dias = parseInt(dias, 10);
+  if (!Number.isInteger(dias)) {
     throw new Error("El parámetro 'dias' debe ser un número entero.");
   }
   if (typeof tna !== "number" || tna < 0) {
@@ -569,50 +572,52 @@ function cedear(symbol, value) {
  * @param {string} attribute El atributo que se quiere obtener ('name' o 'ratio')
  * @return El valor del atributo solicitado
  */
-function getCedearDataFromJson(symbol, attribute) {
-  try {
-    // Leer el archivo JSON de CEDEARs
-    var fileId = DriveApp.getFilesByName('data/cedears.json').next().getId();
-    var content = DriveApp.getFileById(fileId).getBlob().getDataAsString();
-    var cedears = JSON.parse(content);
-    
-    // Buscar el símbolo en el JSON
-    for (var i = 0; i < cedears.length; i++) {
-      if (cedears[i].Cedears === symbol) {
-        // Mapear el atributo solicitado al nombre correcto en el JSON
-        if (attribute === 'name') {
-          return cedears[i].Name;
-        } else if (attribute === 'ratio') {
-          return cedears[i].Ratio;
-        }
+function buscarCedearEnJson(cedears, symbol, attribute) {
+  for (var i = 0; i < cedears.length; i++) {
+    if (cedears[i].Cedears === symbol) {
+      if (attribute === 'name') {
+        return cedears[i].Name;
+      } else if (attribute === 'ratio') {
+        return cedears[i].Ratio;
       }
     }
-    
-    throw new Error("Símbolo inválido: '" + symbol + "'. No se encontró en el archivo de CEDEARs.");
+  }
+  throw new Error("Símbolo inválido: '" + symbol + "'. No se encontró en el archivo de CEDEARs.");
+}
+
+function cargarCedearsDesdeDrive() {
+  var files = DriveApp.getFilesByName('cedears.json');
+  if (!files.hasNext()) {
+    return null;
+  }
+  var content = files.next().getBlob().getDataAsString();
+  return JSON.parse(content);
+}
+
+function cargarCedearsDesdeGitHub() {
+  var url = 'https://raw.githubusercontent.com/ferminrp/google-sheets-argento/main/data/cedears.json';
+  var response = UrlFetchApp.fetch(url);
+  return JSON.parse(response.getContentText());
+}
+
+function getCedearDataFromJson(symbol, attribute) {
+  var cedears = null;
+
+  try {
+    cedears = cargarCedearsDesdeDrive();
   } catch (e) {
-    // Si hay problemas con el acceso al archivo, intenta cargar el archivo desde la URL directa
+    cedears = null;
+  }
+
+  if (!cedears) {
     try {
-      var url = 'https://raw.githubusercontent.com/ferminrp/google-sheets-argento/main/data/cedears.json';
-      var response = UrlFetchApp.fetch(url);
-      var cedears = JSON.parse(response.getContentText());
-      
-      // Buscar el símbolo en el JSON
-      for (var i = 0; i < cedears.length; i++) {
-        if (cedears[i].Cedears === symbol) {
-          // Mapear el atributo solicitado al nombre correcto en el JSON
-          if (attribute === 'name') {
-            return cedears[i].Name;
-          } else if (attribute === 'ratio') {
-            return cedears[i].Ratio;
-          }
-        }
-      }
-      
-      throw new Error("Símbolo inválido: '" + symbol + "'. No se encontró en el archivo de CEDEARs.");
+      cedears = cargarCedearsDesdeGitHub();
     } catch (err) {
       throw new Error("Error al obtener datos de CEDEARs: " + err.message);
     }
   }
+
+  return buscarCedearEnJson(cedears, symbol, attribute);
 }
 
 /**
@@ -696,13 +701,16 @@ function criptoya(coin, fiat, volumen, exchange, operacion) {
     
     // Comprobar si la respuesta es válida
     if (respuesta.getResponseCode() !== 200) {
-      var error;
+      var mensajeError = "Código de error: " + respuesta.getResponseCode();
       try {
-        error = JSON.parse(respuesta.getContentText());
-        throw new Error(error.message || "Error desconocido");
-      } catch (e) {
-        throw new Error("Código de error: " + respuesta.getResponseCode());
+        var error = JSON.parse(respuesta.getContentText());
+        if (error.message) {
+          mensajeError = error.message;
+        }
+      } catch (parseError) {
+        // Mantener mensaje por código HTTP si el cuerpo no es JSON
       }
+      throw new Error(mensajeError);
     }
     
     // Analizar la respuesta JSON
@@ -806,13 +814,16 @@ function crypto(symbol, moneda) {
     
     // Comprobar si la respuesta es válida
     if (respuesta.getResponseCode() !== 200) {
-      var error;
+      var mensajeError = "Código de error: " + respuesta.getResponseCode();
       try {
-        error = JSON.parse(respuesta.getContentText());
-        throw new Error((error.errors && error.errors[0] && error.errors[0].message) || "Error desconocido");
-      } catch (e) {
-        throw new Error("Código de error: " + respuesta.getResponseCode());
+        var error = JSON.parse(respuesta.getContentText());
+        if (error.errors && error.errors[0] && error.errors[0].message) {
+          mensajeError = error.errors[0].message;
+        }
+      } catch (parseError) {
+        // Mantener mensaje por código HTTP si el cuerpo no es JSON
       }
+      throw new Error(mensajeError);
     }
     
     // Analizar la respuesta JSON
@@ -863,7 +874,12 @@ function dolar(tipo, operacion) {
       
       if (op === 'compra')     return compra;
       if (op === 'venta')      return venta;
-      if (op === 'promedio')   return (compra + venta) / 2;
+      if (op === 'promedio') {
+        if (compra != null && venta != null) return (compra + venta) / 2;
+        if (compra != null) return compra;
+        if (venta != null) return venta;
+        throw new Error("No hay cotización disponible para calcular el promedio de '" + tipo + "'.");
+      }
       
       throw new Error("Operación inválida: '" + operacion + "'. Usa 'compra', 'venta' o 'promedio'.");
     }
@@ -879,101 +895,96 @@ function dolar(tipo, operacion) {
  * Obtiene la cotización histórica del dólar según el tipo y fecha especificados
  * 
  * @param {string} tipo - Tipo de dólar (blue, oficial, mayorista, etc.)
- * @param {string} fecha - Fecha en formato YYYY-MM-DD
+ * @param {string} fecha - Fecha en formato YYYY-MM-DD o DD/MM/YYYY
  * @param {string} valor - Opcional: "compra" o "venta" (por defecto es "venta")
  * @return {number} Valor de la cotización para el tipo y fecha solicitados
  * @customfunction
  */
-function dolar_historico(tipo, fecha, valor = "venta") {
+function dolar_historico(tipo, fecha, valor) {
+  valor = valor || "venta";
+
   // URL de la API de ArgentinaDatos para cotizaciones de dólares
   const url = 'https://api.argentinadatos.com/v1/cotizaciones/dolares';
-  
-  try {
-    // Validar parámetros
-    if (!tipo) {
-      return "Error: Debe especificar un tipo de dólar";
-    }
-    
-    // Si no se proporciona fecha, usar la fecha actual
-    if (!fecha) {
-      const hoy = new Date();
-      fecha = Utilities.formatDate(hoy, "GMT-3", "yyyy-MM-dd");
-    }
-    
-    // Validar valor (compra o venta)
-    if (valor.toLowerCase() !== "compra" && valor.toLowerCase() !== "venta") {
-      return "Error: El valor debe ser 'compra' o 'venta'";
-    }
-    
-    // Realizar la solicitud GET a la API
-    const response = UrlFetchApp.fetch(url);
-    const data = JSON.parse(response.getContentText());
-    
-    // Filtrar los resultados por tipo de dólar y fecha
-    const cotizacion = data.filter(item => 
-      item.casa.toLowerCase() === tipo.toLowerCase() && 
-      item.fecha === fecha
-    );
-    
-    // Si se encontró una cotización, devolver el valor solicitado
-    if (cotizacion.length > 0) {
-      return cotizacion[0][valor.toLowerCase()];
-    } else {
-      return "No se encontró cotización para la fecha y tipo especificados";
-    }
-  } catch (error) {
-    return "Error: " + error.toString();
+
+  if (!tipo) {
+    throw new Error("Debe especificar un tipo de dólar");
   }
+
+  // Si no se proporciona fecha, usar la fecha actual en Argentina
+  if (!fecha) {
+    const hoy = new Date();
+    fecha = Utilities.formatDate(hoy, "GMT-3", "yyyy-MM-dd");
+  } else {
+    try {
+      fecha = formatearFechaISO(fecha);
+    } catch (e) {
+      throw new Error("Fecha inválida: '" + fecha + "'. Usar formato 'YYYY-MM-DD' o 'DD/MM/YYYY'.");
+    }
+  }
+
+  if (valor.toLowerCase() !== "compra" && valor.toLowerCase() !== "venta") {
+    throw new Error("El valor debe ser 'compra' o 'venta'");
+  }
+
+  const response = UrlFetchApp.fetch(url);
+  const data = JSON.parse(response.getContentText());
+
+  const cotizacion = data.filter(item =>
+    item.casa.toLowerCase() === tipo.toLowerCase() &&
+    item.fecha === fecha
+  );
+
+  if (cotizacion.length > 0) {
+    return cotizacion[0][valor.toLowerCase()];
+  }
+
+  throw new Error("No se encontró cotización para la fecha y tipo especificados");
 }
 
 /**
  * Obtiene todas las cotizaciones de dólar para una fecha específica
  * 
- * @param {string} fecha - Fecha en formato YYYY-MM-DD
+ * @param {string} fecha - Fecha en formato YYYY-MM-DD o DD/MM/YYYY
  * @return {Array} Matriz con las cotizaciones de cada tipo de dólar para la fecha
  * @customfunction
  */
 function dolar_historico_todos(fecha) {
-  // URL de la API de ArgentinaDatos para cotizaciones de dólares
   const url = 'https://api.argentinadatos.com/v1/cotizaciones/dolares';
-  
-  try {
-    // Si no se proporciona fecha, usar la fecha actual
-    if (!fecha) {
-      const hoy = new Date();
-      fecha = Utilities.formatDate(hoy, "GMT-3", "yyyy-MM-dd");
+
+  if (!fecha) {
+    const hoy = new Date();
+    fecha = Utilities.formatDate(hoy, "GMT-3", "yyyy-MM-dd");
+  } else {
+    try {
+      fecha = formatearFechaISO(fecha);
+    } catch (e) {
+      throw new Error("Fecha inválida: '" + fecha + "'. Usar formato 'YYYY-MM-DD' o 'DD/MM/YYYY'.");
     }
-    
-    // Realizar la solicitud GET a la API
-    const response = UrlFetchApp.fetch(url);
-    const data = JSON.parse(response.getContentText());
-    
-    // Filtrar los resultados por fecha
-    const cotizaciones = data.filter(item => item.fecha === fecha);
-    
-    // Si no hay cotizaciones para esa fecha
-    if (cotizaciones.length === 0) {
-      return [["No se encontraron cotizaciones para la fecha especificada"]];
-    }
-    
-    // Crear encabezados para la tabla
-    const resultado = [["Tipo", "Compra", "Venta", "Fecha"]];
-    
-    // Agregar cada cotización a la matriz
-    cotizaciones.forEach(cotizacion => {
-      resultado.push([
-        cotizacion.casa,
-        cotizacion.compra,
-        cotizacion.venta,
-        cotizacion.fecha
-      ]);
-    });
-    
-    return resultado;
-  } catch (error) {
-    return [["Error: " + error.toString()]];
   }
-} 
+
+  const response = UrlFetchApp.fetch(url);
+  const data = JSON.parse(response.getContentText());
+
+  const cotizaciones = data.filter(item => item.fecha === fecha);
+
+  if (cotizaciones.length === 0) {
+    throw new Error("No se encontraron cotizaciones para la fecha especificada");
+  }
+
+  const resultado = [["Tipo", "Compra", "Venta", "Fecha"]];
+
+  cotizaciones.forEach(cotizacion => {
+    resultado.push([
+      cotizacion.casa,
+      cotizacion.compra,
+      cotizacion.venta,
+      cotizacion.fecha
+    ]);
+  });
+
+  return resultado;
+}
+
 // ================ fci.js ================
 /**
  * Obtiene información de Fondos Comunes de Inversión (FCI) de Argentina.
@@ -1099,46 +1110,58 @@ function fci(tipoFondo, nombreFondo, fecha, campo) {
     
     var datos = JSON.parse(respuesta.getContentText());
     
-    // Buscar el fondo por nombre
-    var fondoEncontrado = false;
+    function esFondoValido(item) {
+      return item.fondo && !item.fondo.startsWith("Region:") &&
+          !item.fondo.startsWith("Duration:") &&
+          !item.fondo.startsWith("Benchmark:") &&
+          !item.fondo.startsWith("Moneda:");
+    }
+
+    function valorCampoFondo(item) {
+      var valor = item[campoDatos];
+      if (valor === null || valor === undefined) {
+        throw new Error("El fondo '" + item.fondo + "' no tiene valor para el campo '" + campo + "'.");
+      }
+      return valor;
+    }
+
+    // Buscar el fondo por nombre (exacto primero, luego parcial sin ambigüedad)
+    var coincidenciasExactas = [];
+    var coincidenciasParciales = [];
     for (var i = 0; i < datos.length; i++) {
-      // Solo considerar entradas que sean fondos válidos (no categorías)
-      if (datos[i].fondo && !datos[i].fondo.startsWith("Region:") && 
-          !datos[i].fondo.startsWith("Duration:") && 
-          !datos[i].fondo.startsWith("Benchmark:") && 
-          !datos[i].fondo.startsWith("Moneda:")) {
-        
-        // Coincidencia exacta o parcial con el nombre del fondo
-        if (datos[i].fondo === nombre || datos[i].fondo.includes(nombre)) {
-          fondoEncontrado = true;
-          
-          // Verificar si el campo solicitado tiene valor
-          if (datos[i][campoDatos] !== null) {
-            return datos[i][campoDatos];
-          } else {
-            throw new Error("El fondo '" + datos[i].fondo + "' no tiene valor para el campo '" + campo + "'.");
-          }
-        }
+      if (!esFondoValido(datos[i])) continue;
+      if (datos[i].fondo === nombre) {
+        coincidenciasExactas.push(datos[i]);
+      } else if (datos[i].fondo.includes(nombre)) {
+        coincidenciasParciales.push(datos[i]);
       }
     }
-    
-    // Si no se encontró el fondo, mostrar algunos disponibles
-    if (!fondoEncontrado) {
-      var fondosDisponibles = datos
-        .filter(function(d) { 
-          return d.fondo && !d.fondo.startsWith("Region:") && 
-                 !d.fondo.startsWith("Duration:") && 
-                 !d.fondo.startsWith("Benchmark:") && 
-                 !d.fondo.startsWith("Moneda:"); 
-        })
-        .map(function(d) { 
-          return d.fondo; 
-        })
-        .slice(0, 10)
-        .join(", ") + "...";
-      
-      throw new Error("Fondo '" + nombre + "' no encontrado para el tipo '" + tipoFondo + "'. Algunos fondos disponibles: " + fondosDisponibles);
+
+    if (coincidenciasExactas.length === 1) {
+      return valorCampoFondo(coincidenciasExactas[0]);
     }
+    if (coincidenciasExactas.length > 1) {
+      throw new Error("Varios fondos coinciden con '" + nombre + "': " + coincidenciasExactas.map(function(f) { return f.fondo; }).join(', ') + ".");
+    }
+    if (coincidenciasParciales.length === 1) {
+      return valorCampoFondo(coincidenciasParciales[0]);
+    }
+    if (coincidenciasParciales.length > 1) {
+      throw new Error("Varios fondos coinciden con '" + nombre + "': " + coincidenciasParciales.slice(0, 10).map(function(f) { return f.fondo; }).join(', ') + "...");
+    }
+
+    // Si no se encontró el fondo, mostrar algunos disponibles
+    var fondosDisponibles = datos
+      .filter(function(d) {
+        return esFondoValido(d);
+      })
+      .map(function(d) {
+        return d.fondo;
+      })
+      .slice(0, 10)
+      .join(", ") + "...";
+
+    throw new Error("Fondo '" + nombre + "' no encontrado para el tipo '" + tipoFondo + "'. Algunos fondos disponibles: " + fondosDisponibles);
   } catch (e) {
     if (e.message.includes("Error al consultar la API")) {
       throw e;
@@ -1211,11 +1234,104 @@ function fciLista() {
   return todosLosFondos;
 } 
 
+// ================ fecha.js ================
+/**
+ * Utilidades de parseo de fechas para funciones de Google Sheets.
+ * Evita desfases UTC y soporta formatos usados en Argentina.
+ */
+
+function esFechaValida(year, month, day) {
+  if (month < 1 || month > 12 || day < 1 || day > 31) {
+    return false;
+  }
+  var fechaUTC = new Date(Date.UTC(year, month - 1, day));
+  var fechaLocal = new Date(year, month - 1, day);
+  return fechaUTC.getUTCFullYear() === year &&
+         (fechaUTC.getUTCMonth() + 1) === month &&
+         fechaUTC.getUTCDate() === day &&
+         fechaLocal.getFullYear() === year &&
+         (fechaLocal.getMonth() + 1) === month &&
+         fechaLocal.getDate() === day;
+}
+
+/**
+ * Parsea una fecha y devuelve componentes year/month/day.
+ *
+ * @param {*} fechaInput Fecha como Date, 'YYYY-MM-DD' o 'DD/MM/YYYY'
+ * @return {{year: string, month: string, day: string}}
+ */
+function obtenerComponentesFecha(fechaInput) {
+  var year;
+  var month;
+  var day;
+
+  if (fechaInput instanceof Date) {
+    if (isNaN(fechaInput.getTime())) {
+      throw new Error("Fecha inválida: '" + fechaInput + "'. Usar formato 'YYYY-MM-DD' o 'DD/MM/YYYY'.");
+    }
+    year = fechaInput.getFullYear();
+    month = fechaInput.getMonth() + 1;
+    day = fechaInput.getDate();
+  } else {
+    var fechaStr = fechaInput.toString().trim();
+    var matchISO = fechaStr.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    var matchSlash = fechaStr.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+
+    if (matchISO) {
+      year = parseInt(matchISO[1], 10);
+      month = parseInt(matchISO[2], 10);
+      day = parseInt(matchISO[3], 10);
+    } else if (matchSlash) {
+      day = parseInt(matchSlash[1], 10);
+      month = parseInt(matchSlash[2], 10);
+      year = parseInt(matchSlash[3], 10);
+    } else {
+      throw new Error("Fecha inválida: '" + fechaInput + "'. Usar formato 'YYYY-MM-DD' o 'DD/MM/YYYY'.");
+    }
+  }
+
+  if (!esFechaValida(year, month, day)) {
+    throw new Error("Fecha inválida: '" + fechaInput + "'. Usar formato 'YYYY-MM-DD' o 'DD/MM/YYYY'.");
+  }
+
+  return {
+    year: year.toString(),
+    month: month.toString().padStart(2, '0'),
+    day: day.toString().padStart(2, '0')
+  };
+}
+
+/**
+ * Formatea una fecha de entrada a 'YYYY-MM-DD'.
+ *
+ * @param {*} fechaInput Fecha como Date, 'YYYY-MM-DD' o 'DD/MM/YYYY'
+ * @return {string}
+ */
+function formatearFechaISO(fechaInput) {
+  var componentes = obtenerComponentesFecha(fechaInput);
+  return componentes.year + '-' + componentes.month + '-' + componentes.day;
+}
+
+/**
+ * Crea un objeto Date en hora local para comparaciones de rango.
+ *
+ * @param {*} fechaInput Fecha como Date, 'YYYY-MM-DD' o 'DD/MM/YYYY'
+ * @return {Date}
+ */
+function parsearFechaLocal(fechaInput) {
+  var componentes = obtenerComponentesFecha(fechaInput);
+  return new Date(
+    parseInt(componentes.year, 10),
+    parseInt(componentes.month, 10) - 1,
+    parseInt(componentes.day, 10)
+  );
+}
+
 // ================ inflacion.js ================
 /**
  * Obtiene los índices de inflación de Argentina.
  *
- * @param {string} fecha [Opcional] Fecha en formato 'YYYY-MM-DD' o 'MM/DD/YYYY'. Si no se proporciona, devuelve el valor más reciente.
+ * @param {string} fecha [Opcional] Fecha en formato 'YYYY-MM-DD' o 'DD/MM/YYYY'. Si no se proporciona, devuelve el valor más reciente.
  * @return El valor numérico del índice de inflación para la fecha especificada o el último disponible.
  * @customfunction
  */
@@ -1224,77 +1340,57 @@ function inflacion(fecha) {
   var url = 'https://api.argentinadatos.com/v1/finanzas/indices/inflacion';
   var respuesta = UrlFetchApp.fetch(url);
   var datos = JSON.parse(respuesta.getContentText());
-  
+
+  if (!datos || !datos.length) {
+    throw new Error("No se recibieron datos de inflación desde la API.");
+  }
+
   // Si no se proporciona fecha, devolver el valor más reciente
   if (!fecha) {
-    // Ordena los datos por fecha descendente para obtener el más reciente
     datos.sort(function(a, b) {
       return new Date(b.fecha) - new Date(a.fecha);
     });
-    
+
     return datos[0].valor;
   }
-  
-  // Normalizar el formato de fecha
+
+  var fechaFormateada;
   var fechaBusqueda;
   try {
-    // Intentar parsear la fecha desde diferentes formatos
-    if (fecha instanceof Date) {
-      fechaBusqueda = fecha;
-    } else {
-      // Convertir de formato MM/DD/YYYY a YYYY-MM-DD si es necesario
-      if (fecha.indexOf('/') !== -1) {
-        var partes = fecha.split('/');
-        if (partes.length === 3) {
-          fecha = partes[2] + '-' + partes[0] + '-' + partes[1];
-        }
-      }
-      
-      fechaBusqueda = new Date(fecha);
-      
-      // Verificar si la fecha es válida
-      if (isNaN(fechaBusqueda.getTime())) {
-        throw new Error("Fecha inválida: '" + fecha + "'. Usar formato 'YYYY-MM-DD' o 'MM/DD/YYYY'.");
-      }
-    }
+    fechaFormateada = formatearFechaISO(fecha);
+    fechaBusqueda = parsearFechaLocal(fecha);
   } catch (e) {
-    throw new Error("Fecha inválida: '" + fecha + "'. Usar formato 'YYYY-MM-DD' o 'MM/DD/YYYY'.");
+    throw new Error("Fecha inválida: '" + fecha + "'. Usar formato 'YYYY-MM-DD' o 'DD/MM/YYYY'.");
   }
-  
-  // Convertir a formato YYYY-MM-DD para comparar con datos de la API
-  var year = fechaBusqueda.getFullYear();
-  var month = (fechaBusqueda.getMonth() + 1).toString().padStart(2, '0');
-  var day = fechaBusqueda.getDate().toString().padStart(2, '0');
-  var fechaFormateada = year + '-' + month + '-' + day;
-  
+
   // Buscar la fecha exacta
   for (var i = 0; i < datos.length; i++) {
     if (datos[i].fecha === fechaFormateada) {
       return datos[i].valor;
     }
   }
-  
+
   // Si no se encuentra la fecha exacta, buscar la fecha más cercana anterior
   var fechasMenores = datos.filter(function(d) {
     return new Date(d.fecha) <= fechaBusqueda;
   });
-  
+
   if (fechasMenores.length > 0) {
-    // Ordenar por fecha descendente y tomar la primera (la más cercana a la fecha solicitada)
     fechasMenores.sort(function(a, b) {
       return new Date(b.fecha) - new Date(a.fecha);
     });
-    
+
     return fechasMenores[0].valor;
   }
-  
+
   // Si no hay fechas anteriores, devolver el dato más antiguo
   datos.sort(function(a, b) {
     return new Date(a.fecha) - new Date(b.fecha);
   });
-  
+
   return datos[0].valor;
-} 
+}
+
 // ================ letras.js ================
 /**
  * Fetches data from the API and returns information about Argentine treasury bills (letras).
@@ -1533,39 +1629,59 @@ function plazofijo(banco, tipoCliente) {
   var tipo = tipoCliente ? tipoCliente.toString().toLowerCase().trim() : 'cliente';
   
   // Determinar qué campo de tasa usar según el tipo de cliente
+  if (tipo !== 'cliente' && tipo !== 'nocliente') {
+    throw new Error("Tipo de cliente inválido: '" + tipoCliente + "'. Usar 'cliente' o 'nocliente'.");
+  }
   var campoTasa = (tipo === 'nocliente') ? 'tnaNoClientes' : 'tnaClientes';
+
+  function obtenerTasaBanco(entidad) {
+    for (var k = 0; k < datos.length; k++) {
+      if (datos[k].entidad === entidad) {
+        if (datos[k][campoTasa] !== null) {
+          return datos[k][campoTasa];
+        }
+        if (campoTasa === 'tnaNoClientes') {
+          throw new Error("El banco '" + entidad + "' no ofrece plazo fijo para no clientes.");
+        }
+        throw new Error("No se encontró información de tasa para el banco '" + entidad + "'.");
+      }
+    }
+    return null;
+  }
   
   // Si se especifica un banco, buscar ese banco específico
   if (nombreBanco) {
-    var bancoEncontrado = false;
+    var coincidenciasExactas = [];
+    var coincidenciasParciales = [];
     
     for (var i = 0; i < datos.length; i++) {
-      // Buscar coincidencia parcial en el nombre del banco
-      if (datos[i].entidad.toUpperCase().includes(nombreBanco)) {
-        bancoEncontrado = true;
-        
-        // Verificar si el banco tiene la tasa para el tipo de cliente especificado
-        if (datos[i][campoTasa] !== null) {
-          return datos[i][campoTasa];
-        } else {
-          if (campoTasa === 'tnaNoClientes') {
-            throw new Error("El banco '" + datos[i].entidad + "' no ofrece plazo fijo para no clientes.");
-          } else {
-            throw new Error("No se encontró información de tasa para el banco '" + datos[i].entidad + "'.");
-          }
-        }
+      var entidadUpper = datos[i].entidad.toUpperCase();
+      if (entidadUpper === nombreBanco) {
+        coincidenciasExactas.push(datos[i].entidad);
+      } else if (entidadUpper.includes(nombreBanco)) {
+        coincidenciasParciales.push(datos[i].entidad);
       }
+    }
+
+    if (coincidenciasExactas.length === 1) {
+      return obtenerTasaBanco(coincidenciasExactas[0]);
+    }
+    if (coincidenciasExactas.length > 1) {
+      throw new Error("Varios bancos coinciden con '" + banco + "': " + coincidenciasExactas.join(', ') + ".");
+    }
+    if (coincidenciasParciales.length === 1) {
+      return obtenerTasaBanco(coincidenciasParciales[0]);
+    }
+    if (coincidenciasParciales.length > 1) {
+      throw new Error("Varios bancos coinciden con '" + banco + "': " + coincidenciasParciales.slice(0, 10).join(', ') + "...");
     }
     
     // Si llegamos aquí, no se encontró el banco
-    if (!bancoEncontrado) {
-      // Obtener lista de bancos disponibles
-      var bancosDisponibles = datos.map(function(d) { 
-        return d.entidad;
-      }).sort().slice(0, 10).join(", ") + "...";
-      
-      throw new Error("Banco '" + banco + "' no encontrado. Algunos bancos disponibles: " + bancosDisponibles);
-    }
+    var bancosDisponibles = datos.map(function(d) {
+      return d.entidad;
+    }).sort().slice(0, 10).join(", ") + "...";
+
+    throw new Error("Banco '" + banco + "' no encontrado. Algunos bancos disponibles: " + bancosDisponibles);
   } else {
     // Si no se especifica banco, buscar la mejor tasa
     var mejorTasa = -1;
@@ -1630,6 +1746,10 @@ function rendimientos(moneda, proveedor) {
       if (datos[i].entidad === exchange) {
         proveedorEncontrado = true;
         
+        if (!datos[i].rendimientos || !datos[i].rendimientos.length) {
+          continue;
+        }
+
         // Buscar la moneda en los rendimientos del proveedor
         for (var j = 0; j < datos[i].rendimientos.length; j++) {
           if (datos[i].rendimientos[j].moneda.toUpperCase() === crypto) {
@@ -1657,7 +1777,11 @@ function rendimientos(moneda, proveedor) {
     
     for (var i = 0; i < datos.length; i++) {
       var proveedor = datos[i];
-      
+
+      if (!proveedor.rendimientos || !proveedor.rendimientos.length) {
+        continue;
+      }
+
       for (var j = 0; j < proveedor.rendimientos.length; j++) {
         if (proveedor.rendimientos[j].moneda.toUpperCase() === crypto) {
           monedaEncontrada = true;
@@ -1676,6 +1800,7 @@ function rendimientos(moneda, proveedor) {
       // Obtener lista de monedas disponibles (sin duplicados)
       var monedasDisponibles = [];
       for (var i = 0; i < datos.length; i++) {
+        if (!datos[i].rendimientos) continue;
         for (var j = 0; j < datos[i].rendimientos.length; j++) {
           var moneda = datos[i].rendimientos[j].moneda.toUpperCase();
           if (monedasDisponibles.indexOf(moneda) === -1) {
@@ -1700,7 +1825,7 @@ function rendimientos(moneda, proveedor) {
 /**
  * Obtiene el valor del riesgo país de Argentina.
  *
- * @param {string} fecha [Opcional] Fecha en formato 'YYYY-MM-DD' o 'MM/DD/YYYY'. Si no se proporciona, devuelve el valor más reciente.
+ * @param {string} fecha [Opcional] Fecha en formato 'YYYY-MM-DD' o 'DD/MM/YYYY'. Si no se proporciona, devuelve el valor más reciente.
  * @return El valor numérico del riesgo país para la fecha especificada o el último disponible.
  * @customfunction
  */
@@ -1709,77 +1834,57 @@ function riesgopais(fecha) {
   var url = 'https://api.argentinadatos.com/v1/finanzas/indices/riesgo-pais';
   var respuesta = UrlFetchApp.fetch(url);
   var datos = JSON.parse(respuesta.getContentText());
-  
+
+  if (!datos || !datos.length) {
+    throw new Error("No se recibieron datos de riesgo país desde la API.");
+  }
+
   // Si no se proporciona fecha, devolver el valor más reciente
   if (!fecha) {
-    // Ordena los datos por fecha descendente para obtener el más reciente
     datos.sort(function(a, b) {
       return new Date(b.fecha) - new Date(a.fecha);
     });
-    
+
     return datos[0].valor;
   }
-  
-  // Normalizar el formato de fecha
+
+  var fechaFormateada;
   var fechaBusqueda;
   try {
-    // Intentar parsear la fecha desde diferentes formatos
-    if (fecha instanceof Date) {
-      fechaBusqueda = fecha;
-    } else {
-      // Convertir de formato MM/DD/YYYY a YYYY-MM-DD si es necesario
-      if (fecha.indexOf('/') !== -1) {
-        var partes = fecha.split('/');
-        if (partes.length === 3) {
-          fecha = partes[2] + '-' + partes[0] + '-' + partes[1];
-        }
-      }
-      
-      fechaBusqueda = new Date(fecha);
-      
-      // Verificar si la fecha es válida
-      if (isNaN(fechaBusqueda.getTime())) {
-        throw new Error("Fecha inválida: '" + fecha + "'. Usar formato 'YYYY-MM-DD' o 'MM/DD/YYYY'.");
-      }
-    }
+    fechaFormateada = formatearFechaISO(fecha);
+    fechaBusqueda = parsearFechaLocal(fecha);
   } catch (e) {
-    throw new Error("Fecha inválida: '" + fecha + "'. Usar formato 'YYYY-MM-DD' o 'MM/DD/YYYY'.");
+    throw new Error("Fecha inválida: '" + fecha + "'. Usar formato 'YYYY-MM-DD' o 'DD/MM/YYYY'.");
   }
-  
-  // Convertir a formato YYYY-MM-DD para comparar con datos de la API
-  var year = fechaBusqueda.getFullYear();
-  var month = (fechaBusqueda.getMonth() + 1).toString().padStart(2, '0');
-  var day = fechaBusqueda.getDate().toString().padStart(2, '0');
-  var fechaFormateada = year + '-' + month + '-' + day;
-  
+
   // Buscar la fecha exacta
   for (var i = 0; i < datos.length; i++) {
     if (datos[i].fecha === fechaFormateada) {
       return datos[i].valor;
     }
   }
-  
+
   // Si no se encuentra la fecha exacta, buscar la fecha más cercana anterior
   var fechasMenores = datos.filter(function(d) {
     return new Date(d.fecha) <= fechaBusqueda;
   });
-  
+
   if (fechasMenores.length > 0) {
-    // Ordenar por fecha descendente y tomar la primera (la más cercana a la fecha solicitada)
     fechasMenores.sort(function(a, b) {
       return new Date(b.fecha) - new Date(a.fecha);
     });
-    
+
     return fechasMenores[0].valor;
   }
-  
+
   // Si no hay fechas anteriores, devolver el dato más antiguo
   datos.sort(function(a, b) {
     return new Date(a.fecha) - new Date(b.fecha);
   });
-  
+
   return datos[0].valor;
-} 
+}
+
 // ================ usa_stocks.js ================
 /**
  * Obtiene información de acciones de Estados Unidos desde la API.
@@ -1852,7 +1957,7 @@ function usa_stocksLista() {
 /**
  * Obtiene los índices UVA (Unidad de Valor Adquisitivo) de Argentina.
  *
- * @param {string} fecha [Opcional] Fecha en formato 'YYYY-MM-DD' o 'MM/DD/YYYY'. Si no se proporciona, devuelve el valor más reciente.
+ * @param {string} fecha [Opcional] Fecha en formato 'YYYY-MM-DD' o 'DD/MM/YYYY'. Si no se proporciona, devuelve el valor más reciente.
  * @return El valor numérico del índice UVA para la fecha especificada o el último disponible.
  * @customfunction
  */
@@ -1861,74 +1966,53 @@ function uva(fecha) {
   var url = 'https://api.argentinadatos.com/v1/finanzas/indices/uva';
   var respuesta = UrlFetchApp.fetch(url);
   var datos = JSON.parse(respuesta.getContentText());
-  
+
+  if (!datos || !datos.length) {
+    throw new Error("No se recibieron datos de UVA desde la API.");
+  }
+
   // Si no se proporciona fecha, devolver el valor más reciente
   if (!fecha) {
-    // Ordena los datos por fecha descendente para obtener el más reciente
     datos.sort(function(a, b) {
       return new Date(b.fecha) - new Date(a.fecha);
     });
-    
+
     return datos[0].valor;
   }
-  
-  // Normalizar el formato de fecha
+
+  var fechaFormateada;
   var fechaBusqueda;
   try {
-    // Intentar parsear la fecha desde diferentes formatos
-    if (fecha instanceof Date) {
-      fechaBusqueda = fecha;
-    } else {
-      // Convertir de formato MM/DD/YYYY a YYYY-MM-DD si es necesario
-      if (fecha.indexOf('/') !== -1) {
-        var partes = fecha.split('/');
-        if (partes.length === 3) {
-          fecha = partes[2] + '-' + partes[0] + '-' + partes[1];
-        }
-      }
-      
-      fechaBusqueda = new Date(fecha);
-      
-      // Verificar si la fecha es válida
-      if (isNaN(fechaBusqueda.getTime())) {
-        throw new Error("Fecha inválida: '" + fecha + "'. Usar formato 'YYYY-MM-DD' o 'MM/DD/YYYY'.");
-      }
-    }
+    fechaFormateada = formatearFechaISO(fecha);
+    fechaBusqueda = parsearFechaLocal(fecha);
   } catch (e) {
-    throw new Error("Fecha inválida: '" + fecha + "'. Usar formato 'YYYY-MM-DD' o 'MM/DD/YYYY'.");
+    throw new Error("Fecha inválida: '" + fecha + "'. Usar formato 'YYYY-MM-DD' o 'DD/MM/YYYY'.");
   }
-  
-  // Convertir a formato YYYY-MM-DD para comparar con datos de la API
-  var year = fechaBusqueda.getFullYear();
-  var month = (fechaBusqueda.getMonth() + 1).toString().padStart(2, '0');
-  var day = fechaBusqueda.getDate().toString().padStart(2, '0');
-  var fechaFormateada = year + '-' + month + '-' + day;
-  
+
   // Buscar la fecha exacta
   for (var i = 0; i < datos.length; i++) {
     if (datos[i].fecha === fechaFormateada) {
       return datos[i].valor;
     }
   }
-  
+
   // Si no se encuentra la fecha exacta, buscar la fecha más cercana anterior
   var fechasMenores = datos.filter(function(d) {
     return new Date(d.fecha) <= fechaBusqueda;
   });
-  
+
   if (fechasMenores.length > 0) {
-    // Ordenar por fecha descendente y tomar la primera (la más cercana a la fecha solicitada)
     fechasMenores.sort(function(a, b) {
       return new Date(b.fecha) - new Date(a.fecha);
     });
-    
+
     return fechasMenores[0].valor;
   }
-  
+
   // Si no hay fechas anteriores, devolver el dato más antiguo
   datos.sort(function(a, b) {
     return new Date(a.fecha) - new Date(b.fecha);
   });
-  
+
   return datos[0].valor;
-} 
+}

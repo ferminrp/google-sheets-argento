@@ -30,6 +30,10 @@ function rendimientos(moneda, proveedor) {
       if (datos[i].entidad === exchange) {
         proveedorEncontrado = true;
         
+        if (!datos[i].rendimientos || !datos[i].rendimientos.length) {
+          continue;
+        }
+
         // Buscar la moneda en los rendimientos del proveedor
         for (var j = 0; j < datos[i].rendimientos.length; j++) {
           if (datos[i].rendimientos[j].moneda.toUpperCase() === crypto) {
@@ -57,7 +61,11 @@ function rendimientos(moneda, proveedor) {
     
     for (var i = 0; i < datos.length; i++) {
       var proveedor = datos[i];
-      
+
+      if (!proveedor.rendimientos || !proveedor.rendimientos.length) {
+        continue;
+      }
+
       for (var j = 0; j < proveedor.rendimientos.length; j++) {
         if (proveedor.rendimientos[j].moneda.toUpperCase() === crypto) {
           monedaEncontrada = true;
@@ -76,6 +84,7 @@ function rendimientos(moneda, proveedor) {
       // Obtener lista de monedas disponibles (sin duplicados)
       var monedasDisponibles = [];
       for (var i = 0; i < datos.length; i++) {
+        if (!datos[i].rendimientos) continue;
         for (var j = 0; j < datos[i].rendimientos.length; j++) {
           var moneda = datos[i].rendimientos[j].moneda.toUpperCase();
           if (monedasDisponibles.indexOf(moneda) === -1) {

@@ -223,14 +223,17 @@ function calcularCaucion(
   arancelCaucionColocadoraTna,
   arancelCaucionTomadoraTna
 ) {
-  // Valores por defecto para los aranceles
-  arancelCaucionColocadoraTna =
-    arancelCaucionColocadoraTna || ARANCEL_CAUCION_COLOCADORA_TNA;
-  arancelCaucionTomadoraTna =
-    arancelCaucionTomadoraTna || ARANCEL_CAUCION_TOMADORA_TNA;
+  // Valores por defecto para los aranceles (0 es un valor válido)
+  if (arancelCaucionColocadoraTna === undefined || arancelCaucionColocadoraTna === null || arancelCaucionColocadoraTna === '') {
+    arancelCaucionColocadoraTna = ARANCEL_CAUCION_COLOCADORA_TNA;
+  }
+  if (arancelCaucionTomadoraTna === undefined || arancelCaucionTomadoraTna === null || arancelCaucionTomadoraTna === '') {
+    arancelCaucionTomadoraTna = ARANCEL_CAUCION_TOMADORA_TNA;
+  }
 
   // Validación de parámetros
-  if (typeof dias !== "number" || !Number.isInteger(dias)) {
+  dias = parseInt(dias, 10);
+  if (!Number.isInteger(dias)) {
     throw new Error("El parámetro 'dias' debe ser un número entero.");
   }
   if (typeof tna !== "number" || tna < 0) {

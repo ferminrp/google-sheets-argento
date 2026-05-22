@@ -17,39 +17,59 @@ function plazofijo(banco, tipoCliente) {
   var tipo = tipoCliente ? tipoCliente.toString().toLowerCase().trim() : 'cliente';
   
   // Determinar qué campo de tasa usar según el tipo de cliente
+  if (tipo !== 'cliente' && tipo !== 'nocliente') {
+    throw new Error("Tipo de cliente inválido: '" + tipoCliente + "'. Usar 'cliente' o 'nocliente'.");
+  }
   var campoTasa = (tipo === 'nocliente') ? 'tnaNoClientes' : 'tnaClientes';
+
+  function obtenerTasaBanco(entidad) {
+    for (var k = 0; k < datos.length; k++) {
+      if (datos[k].entidad === entidad) {
+        if (datos[k][campoTasa] !== null) {
+          return datos[k][campoTasa];
+        }
+        if (campoTasa === 'tnaNoClientes') {
+          throw new Error("El banco '" + entidad + "' no ofrece plazo fijo para no clientes.");
+        }
+        throw new Error("No se encontró información de tasa para el banco '" + entidad + "'.");
+      }
+    }
+    return null;
+  }
   
   // Si se especifica un banco, buscar ese banco específico
   if (nombreBanco) {
-    var bancoEncontrado = false;
+    var coincidenciasExactas = [];
+    var coincidenciasParciales = [];
     
     for (var i = 0; i < datos.length; i++) {
-      // Buscar coincidencia parcial en el nombre del banco
-      if (datos[i].entidad.toUpperCase().includes(nombreBanco)) {
-        bancoEncontrado = true;
-        
-        // Verificar si el banco tiene la tasa para el tipo de cliente especificado
-        if (datos[i][campoTasa] !== null) {
-          return datos[i][campoTasa];
-        } else {
-          if (campoTasa === 'tnaNoClientes') {
-            throw new Error("El banco '" + datos[i].entidad + "' no ofrece plazo fijo para no clientes.");
-          } else {
-            throw new Error("No se encontró información de tasa para el banco '" + datos[i].entidad + "'.");
-          }
-        }
+      var entidadUpper = datos[i].entidad.toUpperCase();
+      if (entidadUpper === nombreBanco) {
+        coincidenciasExactas.push(datos[i].entidad);
+      } else if (entidadUpper.includes(nombreBanco)) {
+        coincidenciasParciales.push(datos[i].entidad);
       }
+    }
+
+    if (coincidenciasExactas.length === 1) {
+      return obtenerTasaBanco(coincidenciasExactas[0]);
+    }
+    if (coincidenciasExactas.length > 1) {
+      throw new Error("Varios bancos coinciden con '" + banco + "': " + coincidenciasExactas.join(', ') + ".");
+    }
+    if (coincidenciasParciales.length === 1) {
+      return obtenerTasaBanco(coincidenciasParciales[0]);
+    }
+    if (coincidenciasParciales.length > 1) {
+      throw new Error("Varios bancos coinciden con '" + banco + "': " + coincidenciasParciales.slice(0, 10).join(', ') + "...");
     }
     
     // Si llegamos aquí, no se encontró el banco
-    if (!bancoEncontrado) {
-      // Obtener lista de bancos disponibles
-      var bancosDisponibles = datos.map(function(d) { 
-        return d.entidad;
-      }).sort().slice(0, 10).join(", ") + "...";
-      
-      throw new Error("Banco '" + banco + "' no encontrado. Algunos bancos disponibles: " + bancosDisponibles);
-    }
+    var bancosDisponibles = datos.map(function(d) {
+      return d.entidad;
+    }).sort().slice(0, 10).join(", ") + "...";
+
+    throw new Error("Banco '" + banco + "' no encontrado. Algunos bancos disponibles: " + bancosDisponibles);
   } else {
     // Si no se especifica banco, buscar la mejor tasa
     var mejorTasa = -1;

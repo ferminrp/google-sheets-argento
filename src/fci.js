@@ -122,46 +122,58 @@ function fci(tipoFondo, nombreFondo, fecha, campo) {
     
     var datos = JSON.parse(respuesta.getContentText());
     
-    // Buscar el fondo por nombre
-    var fondoEncontrado = false;
+    function esFondoValido(item) {
+      return item.fondo && !item.fondo.startsWith("Region:") &&
+          !item.fondo.startsWith("Duration:") &&
+          !item.fondo.startsWith("Benchmark:") &&
+          !item.fondo.startsWith("Moneda:");
+    }
+
+    function valorCampoFondo(item) {
+      var valor = item[campoDatos];
+      if (valor === null || valor === undefined) {
+        throw new Error("El fondo '" + item.fondo + "' no tiene valor para el campo '" + campo + "'.");
+      }
+      return valor;
+    }
+
+    // Buscar el fondo por nombre (exacto primero, luego parcial sin ambigüedad)
+    var coincidenciasExactas = [];
+    var coincidenciasParciales = [];
     for (var i = 0; i < datos.length; i++) {
-      // Solo considerar entradas que sean fondos válidos (no categorías)
-      if (datos[i].fondo && !datos[i].fondo.startsWith("Region:") && 
-          !datos[i].fondo.startsWith("Duration:") && 
-          !datos[i].fondo.startsWith("Benchmark:") && 
-          !datos[i].fondo.startsWith("Moneda:")) {
-        
-        // Coincidencia exacta o parcial con el nombre del fondo
-        if (datos[i].fondo === nombre || datos[i].fondo.includes(nombre)) {
-          fondoEncontrado = true;
-          
-          // Verificar si el campo solicitado tiene valor
-          if (datos[i][campoDatos] !== null) {
-            return datos[i][campoDatos];
-          } else {
-            throw new Error("El fondo '" + datos[i].fondo + "' no tiene valor para el campo '" + campo + "'.");
-          }
-        }
+      if (!esFondoValido(datos[i])) continue;
+      if (datos[i].fondo === nombre) {
+        coincidenciasExactas.push(datos[i]);
+      } else if (datos[i].fondo.includes(nombre)) {
+        coincidenciasParciales.push(datos[i]);
       }
     }
-    
-    // Si no se encontró el fondo, mostrar algunos disponibles
-    if (!fondoEncontrado) {
-      var fondosDisponibles = datos
-        .filter(function(d) { 
-          return d.fondo && !d.fondo.startsWith("Region:") && 
-                 !d.fondo.startsWith("Duration:") && 
-                 !d.fondo.startsWith("Benchmark:") && 
-                 !d.fondo.startsWith("Moneda:"); 
-        })
-        .map(function(d) { 
-          return d.fondo; 
-        })
-        .slice(0, 10)
-        .join(", ") + "...";
-      
-      throw new Error("Fondo '" + nombre + "' no encontrado para el tipo '" + tipoFondo + "'. Algunos fondos disponibles: " + fondosDisponibles);
+
+    if (coincidenciasExactas.length === 1) {
+      return valorCampoFondo(coincidenciasExactas[0]);
     }
+    if (coincidenciasExactas.length > 1) {
+      throw new Error("Varios fondos coinciden con '" + nombre + "': " + coincidenciasExactas.map(function(f) { return f.fondo; }).join(', ') + ".");
+    }
+    if (coincidenciasParciales.length === 1) {
+      return valorCampoFondo(coincidenciasParciales[0]);
+    }
+    if (coincidenciasParciales.length > 1) {
+      throw new Error("Varios fondos coinciden con '" + nombre + "': " + coincidenciasParciales.slice(0, 10).map(function(f) { return f.fondo; }).join(', ') + "...");
+    }
+
+    // Si no se encontró el fondo, mostrar algunos disponibles
+    var fondosDisponibles = datos
+      .filter(function(d) {
+        return esFondoValido(d);
+      })
+      .map(function(d) {
+        return d.fondo;
+      })
+      .slice(0, 10)
+      .join(", ") + "...";
+
+    throw new Error("Fondo '" + nombre + "' no encontrado para el tipo '" + tipoFondo + "'. Algunos fondos disponibles: " + fondosDisponibles);
   } catch (e) {
     if (e.message.includes("Error al consultar la API")) {
       throw e;

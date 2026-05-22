@@ -54,50 +54,52 @@ function cedear(symbol, value) {
  * @param {string} attribute El atributo que se quiere obtener ('name' o 'ratio')
  * @return El valor del atributo solicitado
  */
-function getCedearDataFromJson(symbol, attribute) {
-  try {
-    // Leer el archivo JSON de CEDEARs
-    var fileId = DriveApp.getFilesByName('data/cedears.json').next().getId();
-    var content = DriveApp.getFileById(fileId).getBlob().getDataAsString();
-    var cedears = JSON.parse(content);
-    
-    // Buscar el símbolo en el JSON
-    for (var i = 0; i < cedears.length; i++) {
-      if (cedears[i].Cedears === symbol) {
-        // Mapear el atributo solicitado al nombre correcto en el JSON
-        if (attribute === 'name') {
-          return cedears[i].Name;
-        } else if (attribute === 'ratio') {
-          return cedears[i].Ratio;
-        }
+function buscarCedearEnJson(cedears, symbol, attribute) {
+  for (var i = 0; i < cedears.length; i++) {
+    if (cedears[i].Cedears === symbol) {
+      if (attribute === 'name') {
+        return cedears[i].Name;
+      } else if (attribute === 'ratio') {
+        return cedears[i].Ratio;
       }
     }
-    
-    throw new Error("Símbolo inválido: '" + symbol + "'. No se encontró en el archivo de CEDEARs.");
+  }
+  throw new Error("Símbolo inválido: '" + symbol + "'. No se encontró en el archivo de CEDEARs.");
+}
+
+function cargarCedearsDesdeDrive() {
+  var files = DriveApp.getFilesByName('cedears.json');
+  if (!files.hasNext()) {
+    return null;
+  }
+  var content = files.next().getBlob().getDataAsString();
+  return JSON.parse(content);
+}
+
+function cargarCedearsDesdeGitHub() {
+  var url = 'https://raw.githubusercontent.com/ferminrp/google-sheets-argento/main/data/cedears.json';
+  var response = UrlFetchApp.fetch(url);
+  return JSON.parse(response.getContentText());
+}
+
+function getCedearDataFromJson(symbol, attribute) {
+  var cedears = null;
+
+  try {
+    cedears = cargarCedearsDesdeDrive();
   } catch (e) {
-    // Si hay problemas con el acceso al archivo, intenta cargar el archivo desde la URL directa
+    cedears = null;
+  }
+
+  if (!cedears) {
     try {
-      var url = 'https://raw.githubusercontent.com/ferminrp/google-sheets-argento/main/data/cedears.json';
-      var response = UrlFetchApp.fetch(url);
-      var cedears = JSON.parse(response.getContentText());
-      
-      // Buscar el símbolo en el JSON
-      for (var i = 0; i < cedears.length; i++) {
-        if (cedears[i].Cedears === symbol) {
-          // Mapear el atributo solicitado al nombre correcto en el JSON
-          if (attribute === 'name') {
-            return cedears[i].Name;
-          } else if (attribute === 'ratio') {
-            return cedears[i].Ratio;
-          }
-        }
-      }
-      
-      throw new Error("Símbolo inválido: '" + symbol + "'. No se encontró en el archivo de CEDEARs.");
+      cedears = cargarCedearsDesdeGitHub();
     } catch (err) {
       throw new Error("Error al obtener datos de CEDEARs: " + err.message);
     }
   }
+
+  return buscarCedearEnJson(cedears, symbol, attribute);
 }
 
 /**

@@ -53,7 +53,7 @@ function bcra(id) {
     }
     
     // Find the variable with the specified ID
-    const variable = data.results.find(item => item.idVariable === variableId);
+    const variable = data.results.find(item => Number(item.idVariable) === variableId);
     
     // Return the value if found, otherwise throw an error
     if (variable) {

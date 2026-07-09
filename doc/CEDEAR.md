@@ -20,6 +20,7 @@ El array plano del repo sigue en [`data/cedears.json`](../data/cedears.json).
 Cada entrada del listado contiene:
 - **Cedears**: Símbolo/ticker del CEDEAR
 - **Name**: Nombre completo de la empresa
+- **Market**: Mercado donde cotiza el instrumento subyacente (ej. NYSE, NASDAQ, B3)
 - **Ratio**: Ratio de conversión entre el CEDEAR y la acción subyacente (string)
 
 ### Formatos de `ratio`
@@ -58,6 +59,7 @@ En cualquier celda de la hoja, escribe:
 - "pct_change" - Variación porcentual diaria
 - "name" - Nombre completo de la empresa
 - "ratio" - Ratio de conversión entre el CEDEAR y la acción subyacente
+- "market" - Mercado donde cotiza el subyacente (ej. NYSE, NASDAQ, B3)
 
 ## Ejemplos
 
@@ -68,6 +70,7 @@ En cualquier celda de la hoja, escribe:
 | `=cedear("GOOGL"; "pct_change")` | Variación porcentual diaria del CEDEAR de Google |
 | `=cedear("TSLA"; "name")` | Nombre completo de la empresa Tesla |
 | `=cedear("AMZN"; "ratio")` | Ratio de conversión del CEDEAR de Amazon |
+| `=cedear("AAPL"; "market")` | Mercado donde cotiza Apple (NASDAQ) |
 
 ## Función CedearLista
 
@@ -91,4 +94,4 @@ Esta función devuelve una tabla con todos los CEDEARs disponibles y sus datos a
 "Símbolo inválido: 'xyz'. No se encontró en la lista de CEDEARs disponibles."
 
 **Atributo inválido**  
-"Atributo inválido: 'xyz'. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change."
+"Atributo inválido: 'xyz'. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change, name, ratio, market."

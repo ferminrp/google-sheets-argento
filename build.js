@@ -143,6 +143,7 @@ function publishCedearsApi() {
         fields: {
             Cedears: 'Ticker del CEDEAR en BYMA',
             Name: 'Nombre de la empresa / instrumento subyacente',
+            Market: 'Mercado donde cotiza el subyacente (ej. NYSE, NASDAQ, B3)',
             Ratio:
                 "String de conversión. Formato 'N' (ej. \"20\") = N CEDEARs por 1 acción; " +
                 "formato 'A:B' (ej. \"1:3\") = razón A:B. No se normaliza.",

@@ -5,7 +5,8 @@
  * @param {string} value El valor que se quiere obtener: 'c' (precio actual), 'v' (volumen),
  *                      'q_bid' (cantidad bid), 'px_bid' (precio bid), 'px_ask' (precio ask),
  *                      'q_ask' (cantidad ask), 'q_op' (operaciones diarias), 'pct_change' (variación porcentual),
- *                      'name' (nombre completo), 'ratio' (ratio de conversión)
+ *                      'name' (nombre completo), 'ratio' (ratio de conversión),
+ *                      'market' (mercado donde cotiza el subyacente)
  * @return El valor del atributo solicitado para el símbolo especificado.
  * @customfunction
  */
@@ -14,13 +15,13 @@ function cedear(symbol, value) {
     throw new Error("Símbolo no proporcionado. Debe ingresar un símbolo válido (ej: 'AAPL').");
   }
   if (value === undefined || value === null || value === '') {
-    throw new Error("Atributo no proporcionado. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change, name, ratio.");
+    throw new Error("Atributo no proporcionado. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change, name, ratio, market.");
   }
 
   var simbolo = symbol.toString().toUpperCase().trim();
   var atributo = value.toString().toLowerCase().trim();
 
-  var atributosPermitidosJson = ['name', 'ratio'];
+  var atributosPermitidosJson = ['name', 'ratio', 'market'];
 
   if (atributosPermitidosJson.includes(atributo)) {
     return getCedearDataFromJson(simbolo, atributo);
@@ -39,7 +40,7 @@ function cedear(symbol, value) {
  * Obtiene datos de CEDEARs desde el archivo JSON local.
  *
  * @param {string} symbol El símbolo del CEDEAR
- * @param {string} attribute El atributo que se quiere obtener ('name' o 'ratio')
+ * @param {string} attribute El atributo que se quiere obtener ('name', 'ratio' o 'market')
  * @return El valor del atributo solicitado
  */
 function buscarCedearEnJson(cedears, symbol, attribute) {
@@ -50,6 +51,8 @@ function buscarCedearEnJson(cedears, symbol, attribute) {
       } else if (attribute === 'ratio') {
         // Se devuelve el string original del JSON ("20" o "1:3"). Ver doc/CEDEAR.md.
         return cedears[i].Ratio;
+      } else if (attribute === 'market') {
+        return cedears[i].Market;
       }
     }
   }

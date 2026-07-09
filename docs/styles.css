@@ -346,6 +346,7 @@ a:hover {
 .hero-demo-bar {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 0.4rem;
   padding: 0.65rem 1rem;
   background: var(--bg-muted);
@@ -401,6 +402,63 @@ a:hover {
 .sheet-table .cell-value {
   font-variant-numeric: tabular-nums;
   font-weight: 600;
+  min-width: 5.5rem;
+}
+
+.sheet-table .cell-value.is-error {
+  color: var(--ink-muted);
+  font-weight: 500;
+}
+
+.cell-skeleton {
+  display: inline-block;
+  width: 4.5rem;
+  height: 0.95em;
+  border-radius: 4px;
+  vertical-align: middle;
+  background: linear-gradient(
+    90deg,
+    var(--bg-muted) 0%,
+    color-mix(in srgb, var(--bg-elevated) 70%, var(--bg-muted)) 50%,
+    var(--bg-muted) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cell-skeleton {
+    animation: none;
+  }
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+.hero-demo-title {
+  flex: 1;
+  min-width: 0;
+}
+
+.hero-demo-live {
+  margin-left: auto;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--money);
+  background: var(--money-wash);
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.hero-demo-error {
+  margin-top: 1rem;
+  font-size: 0.88rem;
+  color: var(--ink-muted);
 }
 
 .sheet-table .cell-label {

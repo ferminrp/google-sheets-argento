@@ -18,4 +18,6 @@ jobs:
       - run: npm run build
       - name: Ensure all-in-one.js is up to date
         run: git diff --exit-code all-in-one.js
+      - name: Ensure docs/api/cedears.json is up to date
+        run: git diff --exit-code docs/api/cedears.json
       - run: npm test

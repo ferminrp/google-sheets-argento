@@ -112,4 +112,52 @@ function buildConsolidatedFile() {
     console.log('Archivo consolidado generado exitosamente en all-in-one.js');
 }
 
+/**
+ * Publica data/cedears.json como API estática en GitHub Pages.
+ * Formato con metadata para agentes/scripts (no es el array crudo de data/).
+ */
+function publishCedearsApi() {
+    const srcPath = path.join(__dirname, 'data', 'cedears.json');
+    const destDir = path.join(__dirname, 'docs', 'api');
+    const destPath = path.join(destDir, 'cedears.json');
+
+    if (!fs.existsSync(srcPath)) {
+        throw new Error('No se encontró data/cedears.json');
+    }
+
+    const items = JSON.parse(fs.readFileSync(srcPath, 'utf8'));
+    if (!Array.isArray(items)) {
+        throw new Error('data/cedears.json debe ser un array');
+    }
+
+    const payload = {
+        schema_version: 1,
+        name: 'cedears',
+        description:
+            'Listado de CEDEARs (BYMA) con nombre y ratio de conversión. ' +
+            'Alternativa práctica al PDF de BYMA para agentes, scripts y planillas.',
+        homepage: 'https://ferminrp.github.io/google-sheets-argento/#api',
+        endpoint: 'https://ferminrp.github.io/google-sheets-argento/api/cedears.json',
+        source_repo: 'https://github.com/ferminrp/google-sheets-argento',
+        source_file: 'data/cedears.json',
+        fields: {
+            Cedears: 'Ticker del CEDEAR en BYMA',
+            Name: 'Nombre de la empresa / instrumento subyacente',
+            Ratio:
+                "String de conversión. Formato 'N' (ej. \"20\") = N CEDEARs por 1 acción; " +
+                "formato 'A:B' (ej. \"1:3\") = razón A:B. No se normaliza.",
+        },
+        count: items.length,
+        items: items,
+    };
+
+    fs.mkdirSync(destDir, { recursive: true });
+    // JSON estable (2 espacios + newline final) para git diff --exit-code en CI
+    fs.writeFileSync(destPath, JSON.stringify(payload, null, 2) + '\n');
+    console.log(
+        `API CEDEARs publicada en docs/api/cedears.json (${items.length} items)`
+    );
+}
+
 buildConsolidatedFile();
+publishCedearsApi();

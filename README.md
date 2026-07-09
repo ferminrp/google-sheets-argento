@@ -95,12 +95,13 @@ Forzar recálculo:
 
 ```bash
 npm install
-npm run build   # genera all-in-one.js a partir de src/
+npm run build   # genera all-in-one.js + docs/api/cedears.json
 npm test        # requiere haber corrido build antes
 ```
 
 - Tests unitarios: [tests/](tests/)
-- Siempre ejecutar `npm run build` después de modificar archivos en `src/`
+- Siempre ejecutar `npm run build` después de modificar archivos en `src/` (o `data/cedears.json`)
+- API pública de CEDEARs (ratios): [api/cedears.json](https://ferminrp.github.io/google-sheets-argento/api/cedears.json)
 - Las cotizaciones live usan cache de ~60s en Apps Script para ahorrar cuota de UrlFetch
 - Aliases de dólar: `mep` → bolsa, `ccl` → contadoconliqui
 

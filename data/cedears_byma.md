@@ -416,7 +416,6 @@
 | The Technology Select Sector SPDR Fund | XLK | NYSE Arca | 46:1 |
 | The Consumer Staples Select Sector SPDR Fund | XLP | NYSE Arca | 16:1 |
 | The Real Estate Select Sector SPDR Fund | XLRE | NYSE Arca | 9:1 |
-| First Trust NASDAQ Cybersecurity | XLU | NASDAQ | 10:1 |
 | Utilities Select Sector SPDR Fund | XLU | NYSE Arca | 15:1 |
 | The Health Care Select Sector SPDR Fund | XLV | NYSE Arca | 29:1 |
 | The Consumer Discretionary Select Sector SPDR Fund | XLY | NYSE Arca | 43:1 |

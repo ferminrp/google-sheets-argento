@@ -12,6 +12,7 @@ Esta carpeta es la **landing pública** del proyecto:
 | `styles.css` | Estilos (light / dark con `prefers-color-scheme`) |
 | `script.js` | Menú mobile, nav activa, copiar código |
 | `favicon.svg` | Icono |
+| `og.png` | Imagen Open Graph / Twitter (misma social preview del repo) |
 | `api/cedears.json` | API estática de CEDEARs + ratios (generada por `npm run build`) |
 
 La documentación detallada de cada función sigue en [`../doc/`](../doc/) del repo (no se duplica acá).

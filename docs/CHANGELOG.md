@@ -2,6 +2,21 @@
 
 ## [Unreleased]
 
+### Añadido
+- Página pública **`changelog.html`**: historial del producto agrupado por fecha, poblado desde PRs mergeados (curado, no auto-sync).
+- Enlace **Changelog** en nav y footer de la landing.
+- Estilos de timeline y tags (`Nuevo`, `Mejora`, `Fix`, `Datos`, `Sitio`, `Docs`) en `styles.css`.
+
+### Archivos afectados
+- `docs/changelog.html` (nuevo)
+- `docs/index.html`
+- `docs/styles.css`
+- `docs/README.md`
+
+### Decisiones técnicas
+- HTML estático (sin build ni API de GitHub en runtime).
+- Changelog de **producto** en la page; este `CHANGELOG.md` sigue siendo el historial de cambios del sitio.
+
 ### Modificado
 - Landing API: ejemplo de respuesta y textos incluyen el campo **`Market`** (mercado del subyacente), alineado a `data/cedears.json` y a `docs/api/cedears.json` tras #26.
 - Catálogo: `=cedear("AAPL";"market")` como ejemplo.

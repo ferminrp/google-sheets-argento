@@ -9,14 +9,25 @@ Esta carpeta es la **landing pública** del proyecto:
 | Archivo | Rol |
 |---------|-----|
 | `index.html` | Landing: qué es, instalación, uso, catálogo, API, fuentes, FAQ |
+| `changelog.html` | **Changelog público** del producto, agrupado por fecha |
 | `styles.css` | Estilos (light / dark con `prefers-color-scheme`) |
 | `script.js` | Menú mobile, nav activa, copiar código, **demo live del hero** |
 | `favicon.svg` | Icono |
 | `og.png` | Imagen Open Graph / Twitter (misma social preview del repo) |
 | `api/cedears.json` | API estática de CEDEARs + ratios (generada por `npm run build`) |
-| `CHANGELOG.md` | Historial de cambios del sitio |
+| `CHANGELOG.md` | Historial de cambios del **sitio** (`docs/`) para devs |
 
 La documentación detallada de cada función sigue en [`../doc/`](../doc/) del repo (no se duplica acá).
+
+## Changelog público
+
+URL: [changelog.html](https://ferminrp.github.io/google-sheets-argento/changelog.html)
+
+Timeline curada a mano (no se auto-genera desde la API de GitHub). Cuando se mergee un PR con impacto de usuario:
+
+1. Agregar un ítem bajo la fecha de merge en `changelog.html` (o crear el bloque de fecha).
+2. Usar tags consistentes: `Nuevo`, `Mejora`, `Fix`, `Datos`, `Sitio`, `Docs`.
+3. Linkear al PR (`#N`).
 
 ## Demo live del hero
 

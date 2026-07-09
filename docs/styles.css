@@ -179,7 +179,8 @@ a:hover {
 }
 
 .nav-links a:hover,
-.nav-links a[aria-current="true"] {
+.nav-links a[aria-current="true"],
+.nav-links a[aria-current="page"] {
   color: var(--ink);
   background: var(--accent-wash);
   text-decoration: none;
@@ -812,6 +813,197 @@ a:hover {
   border-left: 3px solid var(--accent-soft);
   background: var(--bg-elevated);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+/* ——— Changelog page ——— */
+
+.page-hero {
+  padding: 2.75rem 0 0.5rem;
+}
+
+.page-kicker {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.page-hero h1 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(2rem, 5vw, 2.6rem);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.page-hero-lead {
+  margin-bottom: 0;
+  max-width: 58ch;
+}
+
+.page-hero-lead a {
+  color: var(--accent);
+}
+
+.changelog-section {
+  padding-top: 2rem;
+}
+
+.changelog-day {
+  position: relative;
+  padding-left: 1.35rem;
+  margin-bottom: 2.5rem;
+  border-left: 2px solid var(--border);
+}
+
+.changelog-day:last-of-type {
+  margin-bottom: 1.5rem;
+}
+
+.changelog-day::before {
+  content: "";
+  position: absolute;
+  left: -0.4rem;
+  top: 0.45rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+.changelog-day h2 {
+  margin: 0 0 1rem;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+}
+
+.changelog-day h2 time {
+  font-variant-numeric: tabular-nums;
+}
+
+.changelog-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.changelog-list > li {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 0.9rem 1.05rem;
+}
+
+.changelog-list > li p {
+  margin: 0.45rem 0 0;
+  font-size: 0.98rem;
+  color: var(--ink);
+}
+
+.changelog-list > li code {
+  font-family: var(--mono);
+  font-size: 0.86em;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  background: var(--bg-muted);
+}
+
+.changelog-item-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.55rem;
+}
+
+.cl-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.12rem 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+
+.cl-tag-nuevo {
+  background: var(--money-wash);
+  color: var(--money);
+  border-color: color-mix(in srgb, var(--money) 28%, transparent);
+}
+
+.cl-tag-mejora {
+  background: var(--accent-wash);
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+.cl-tag-fix {
+  background: color-mix(in srgb, var(--danger) 12%, transparent);
+  color: var(--danger);
+  border-color: color-mix(in srgb, var(--danger) 28%, transparent);
+}
+
+.cl-tag-datos {
+  background: color-mix(in srgb, #7c3aed 12%, transparent);
+  color: #6d28d9;
+  border-color: color-mix(in srgb, #7c3aed 28%, transparent);
+}
+
+.cl-tag-sitio {
+  background: color-mix(in srgb, #0e7490 12%, transparent);
+  color: #0e7490;
+  border-color: color-mix(in srgb, #0e7490 28%, transparent);
+}
+
+.cl-tag-docs {
+  background: var(--bg-muted);
+  color: var(--ink-muted);
+  border-color: var(--border);
+}
+
+@media (prefers-color-scheme: dark) {
+  .cl-tag-datos {
+    color: #c4b5fd;
+  }
+
+  .cl-tag-sitio {
+    color: #67e8f9;
+  }
+}
+
+.changelog-pr {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink-muted);
+  text-decoration: none;
+}
+
+.changelog-pr:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.changelog-footnote {
+  margin: 0;
+  padding: 1.25rem 0 0;
+  border-top: 1px solid var(--border);
+  font-size: 0.92rem;
+  color: var(--ink-muted);
+}
+
+.changelog-footnote a {
+  color: var(--accent);
 }
 
 /* ——— Footer ——— */

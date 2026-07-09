@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Changelog — Google Sheets Argento</title>
+  <meta name="description" content="Historial de cambios de Google Sheets Argento por fecha: nuevas funciones, datos, fixes y sitio." />
+  <meta name="theme-color" content="#0b3d91" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <meta property="og:title" content="Changelog — Google Sheets Argento" />
+  <meta property="og:description" content="Historial de cambios del proyecto, agrupados por fecha." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ferminrp.github.io/google-sheets-argento/changelog.html" />
+  <meta property="og:image" content="https://ferminrp.github.io/google-sheets-argento/og.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1280" />
+  <meta property="og:image:height" content="640" />
+  <meta property="og:image:alt" content="Google Sheets Argento" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Changelog — Google Sheets Argento" />
+  <meta name="twitter:description" content="Historial de cambios del proyecto, agrupados por fecha." />
+  <meta name="twitter:image" content="https://ferminrp.github.io/google-sheets-argento/og.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-nav">
+    <div class="wrap">
+      <a class="brand" href="index.html">
+        <img src="favicon.svg" alt="" width="28" height="28" />
+        Sheets Argento
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu">
+        Menú
+      </button>
+      <ul class="nav-links" id="nav-menu">
+        <li><a href="index.html#que-hace">Qué hace</a></li>
+        <li><a href="index.html#instalacion">Instalar</a></li>
+        <li><a href="index.html#uso">Uso</a></li>
+        <li><a href="index.html#funciones">Funciones</a></li>
+        <li><a href="index.html#api">API</a></li>
+        <li><a href="index.html#fuentes">Fuentes</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="changelog.html" aria-current="page">Changelog</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero" id="inicio">
+      <div class="wrap">
+        <p class="page-kicker">Historial del proyecto</p>
+        <h1>Changelog</h1>
+        <p class="section-lead page-hero-lead">
+          Cambios introducidos en Google Sheets Argento, agrupados por fecha de merge.
+          Resumen curado a partir de los
+          <a href="https://github.com/ferminrp/google-sheets-argento/pulls?q=is%3Apr+is%3Amerged" target="_blank" rel="noopener">pull requests</a>
+          del repositorio.
+        </p>
+      </div>
+    </section>
+
+    <section class="section changelog-section" aria-label="Entradas del changelog">
+      <div class="wrap">
+
+        <article class="changelog-day">
+          <h2><time datetime="2026-07-09">9 de julio de 2026</time></h2>
+          <ul class="changelog-list">
+            <li>
+              <div class="changelog-item-meta">
+                <span class="cl-tag cl-tag-docs">Docs</span>
+                <a class="changelog-pr" href="https://github.com/ferminrp/google-sheets-argento/pull/27" target="_blank" rel="noopener">#27</a>
+              </div>
+              <p>Landing: documentación de la API de CEDEARs alineada con el campo <strong>Market</strong> (mercado del subyacente).</p>
+            </li>
+            <li>
+              <div class="changelog-item-meta">
+                <span class="cl-tag cl-tag-nuevo">Nuevo</span>
+                <span class="cl-tag cl-tag-datos">Datos</span>
+                <a class="changelog-pr" href="https://github.com/ferminrp/google-sheets-argento/pull/26" target="_blank" rel="noopener">#26</a>
+              </div>
+              <p>Campo <strong>Market</strong> en cada CEDEAR (NASDAQ, NYSE, B3, XETRA, …) desde el listado BYMA. Nuevo atributo <code>=cedear("AAPL";"market")</code>.</p>
+            </li>
+            <li>
+              <div class="changelog-item-meta">
+                <span class="cl-tag cl-tag-sitio">Sitio</span>
+                <a class="changelog-pr" href="https://github.com/ferminrp/google-sheets-argento/pull/25" target="_blank" rel="noopener">#25</a>
+              </div>
+              <p>Hero de la landing con <strong>cotizaciones en vivo</strong> (DolarAPI, data912, riesgo país), skeleton por celda y badge “Datos en vivo”.</p>
+            </li>
+            <li>
+              <div class="changelog-item-meta">
+                <span class="cl-tag cl-tag-nuevo">Nuevo</span>
+                <a class="changelog-pr" href="https://github.com/ferminrp/google-sheets-argento/pull/24" target="_blank" rel="noopener">#24</a>
+              </div>
+              <p><strong>API estática</strong> de CEDEARs en Pages: <a href="api/cedears.json"><code>api/cedears.json</code></a> (ticker, nombre, ratio; luego también market) con metadata para agentes y scripts.</p>
+            </li>
+            <li>
+              <div class="changelog-item-meta">
+                <span class="cl-tag cl-tag-sitio">Sitio</span>
+                <a class="changelog-pr" href="https://github.com/ferminrp/google-sheets-argento/pull/23" target="_blank" rel="noopener">#23</a>
+              </div>
+              <p><strong>Landing pública</strong> del proyecto en GitHub Pages: instalación, catálogo de funciones, fuentes y FAQ.</p>
+            </li>
+            <li>
+              <div class="changelog-item-meta">
+                <span class="cl-tag cl-tag-datos">Datos</span>
+                <a class="changelog-pr" href="https://github.com/ferminrp/google-sheets-argento/pull/22" target="_blank" rel="noopener">#22</a>
+              </div>
+              <p>Listado de CEDEARs alineado con tickers oficiales BYMA (correcciones de códigos y altas/bajas según la fuente).</p>
+            </li>
+            <li>
+              <div class="changelog-item-meta">
+                <span class="cl-tag cl-tag-mejora">Mejora</span>
+                <a class="changelog-pr" href="https://github.com/ferminrp/google-sheets-argento/pull/21" target="_blank" rel="noopener">#21</a>
+              </div>
+              <p>Robustez HTTP y cache en las APIs, paneles de mercado unificados y mejor UX de errores en las fórmulas.</p>
+            </li>
+            <li>
+              <div class="changelog-item-meta">
+                <span class="cl-tag cl-tag-fix">Fix</span>
+                <a class="changelog-pr" href="https://github.com/ferminrp/google-sheets-argento/pull/20" target="_blank" rel="noopener">#20</a>
+              </div>
+              <p>Auditoría P0: fechas correctas en FCI, inflación, UVA y riesgo país; mensajes de error y documentación.</p>
+            </li>
+          </ul>
+        </article>
+
+        <article class="changelog-day">
+          <h2><time datetime="2026-06-12">12 de junio de 2026</time></h2>
+          <ul class="changelog-list">
+            <li>
+              <div class="changelog-item-meta">
+                <span class="cl-tag cl-tag-datos">Datos</span>
+                <a class="changelog-pr" href="https://github.com/ferminrp/google-sheets-argento/pull/19" target="_blank" rel="noopener">#19</a>
+              </div>
+              <p>CEDEAR <strong>SPCX</strong> (Space Exploration Technologies / SpaceX) con ratio <strong>50:1</strong>.</p>
+            </li>
+          </ul>
+        </article>
+
+        <article class="changelog-day">
+          <h2><time datetime="2026-06-04">4 de junio de 2026</time></h2>
+          <ul class="changelog-list">
+            <li>
+              <div class="changelog-item-meta">
+                <span class="cl-tag cl-tag-datos">Datos</span>
+                <a class="changelog-pr" href="https://github.com/ferminrp/google-sheets-argento/pull/18" target="_blank" rel="noopener">#18</a>
+              </div>
+              <p>Actualización masiva de CEDEARs según lista BYMA del 29/may/2026: 19 altas (ANET, CRWD, NVO, SPY ratio, …), renombres de códigos y ratios actualizados.</p>
+            </li>
+          </ul>
+        </article>
+
+        <article class="changelog-day">
+          <h2><time datetime="2026-05-22">22 de mayo de 2026</time></h2>
+          <ul class="changelog-list">
+            <li>
+              <div class="changelog-item-meta">
+                <span class="cl-tag cl-tag-fix">Fix</span>
+                <a class="changelog-pr" href="https://github.com/ferminrp/google-sheets-argento/pull/17" target="_blank" rel="noopener">#17</a>
+              </div>
+              <p>Corrección de bugs en cálculos financieros (p. ej. promedio del dólar), parseo de fechas en zona horaria argentina y manejo de errores.</p>
+            </li>
+          </ul>
+        </article>
+
+        <article class="changelog-day">
+          <h2><time datetime="2026-04-21">21 de abril de 2026</time></h2>
+          <ul class="changelog-list">
+            <li>
+              <div class="changelog-item-meta">
+                <span class="cl-tag cl-tag-nuevo">Nuevo</span>
+                <a class="changelog-pr" href="https://github.com/ferminrp/google-sheets-argento/pull/15" target="_blank" rel="noopener">#15</a>
+              </div>
+              <p><code>=fci()</code> acepta el tipo de fondo <strong>retornoTotal</strong> (p. ej. Cocos Pesos Plus y otros FCI de esa categoría en Argentina Datos).</p>
+            </li>
+          </ul>
+        </article>
+
+        <article class="changelog-day">
+          <h2><time datetime="2026-04-16">16 de abril de 2026</time></h2>
+          <ul class="changelog-list">
+            <li>
+              <div class="changelog-item-meta">
+                <span class="cl-tag cl-tag-fix">Fix</span>
+                <a class="changelog-pr" href="https://github.com/ferminrp/google-sheets-argento/pull/14" target="_blank" rel="noopener">#14</a>
+              </div>
+              <p>Desfase de fecha en <code>fci</code> por timezone al parsear <code>YYYY-MM-DD</code> (issue <a href="https://github.com/ferminrp/google-sheets-argento/issues/13" target="_blank" rel="noopener">#13</a>).</p>
+            </li>
+          </ul>
+        </article>
+
+        <article class="changelog-day">
+          <h2><time datetime="2026-01-22">22 de enero de 2026</time></h2>
+          <ul class="changelog-list">
+            <li>
+              <div class="changelog-item-meta">
+                <span class="cl-tag cl-tag-datos">Datos</span>
+                <a class="changelog-pr" href="https://github.com/ferminrp/google-sheets-argento/pull/11" target="_blank" rel="noopener">#11</a>
+              </div>
+              <p>Nuevos CEDEARs y actualización de ratios según el PDF oficial de BYMA.</p>
+            </li>
+          </ul>
+        </article>
+
+        <article class="changelog-day">
+          <h2><time datetime="2025-06-02">2 de junio de 2025</time></h2>
+          <ul class="changelog-list">
+            <li>
+              <div class="changelog-item-meta">
+                <span class="cl-tag cl-tag-mejora">Mejora</span>
+                <a class="changelog-pr" href="https://github.com/ferminrp/google-sheets-argento/pull/10" target="_blank" rel="noopener">#10</a>
+              </div>
+              <p>Reestructuración de documentación y código; suite de tests con Jest para validar las funciones en Node.</p>
+            </li>
+          </ul>
+        </article>
+
+        <article class="changelog-day">
+          <h2><time datetime="2025-05-18">18 de mayo de 2025</time></h2>
+          <ul class="changelog-list">
+            <li>
+              <div class="changelog-item-meta">
+                <span class="cl-tag cl-tag-nuevo">Nuevo</span>
+                <a class="changelog-pr" href="https://github.com/ferminrp/google-sheets-argento/pull/7" target="_blank" rel="noopener">#7</a>
+              </div>
+              <p>Funciones para <strong>obligaciones negociables</strong> del mercado argentino.</p>
+            </li>
+            <li>
+              <div class="changelog-item-meta">
+                <span class="cl-tag cl-tag-docs">Docs</span>
+                <a class="changelog-pr" href="https://github.com/ferminrp/google-sheets-argento/pull/6" target="_blank" rel="noopener">#6</a>
+              </div>
+              <p>README actualizado con las funciones de listados completos de mercado.</p>
+            </li>
+            <li>
+              <div class="changelog-item-meta">
+                <span class="cl-tag cl-tag-nuevo">Nuevo</span>
+                <a class="changelog-pr" href="https://github.com/ferminrp/google-sheets-argento/pull/4" target="_blank" rel="noopener">#4</a>
+              </div>
+              <p>Build consolidado (<code>npm run build</code> → <code>all-in-one.js</code>) y funciones de panel: <code>bonosLista</code>, <code>accionesLista</code>, <code>cedearLista</code>, <code>letrasLista</code>, <code>opcionesLista</code>, <code>usa_stocksLista</code>.</p>
+            </li>
+          </ul>
+        </article>
+
+        <article class="changelog-day">
+          <h2><time datetime="2025-05-17">17 de mayo de 2025</time></h2>
+          <ul class="changelog-list">
+            <li>
+              <div class="changelog-item-meta">
+                <span class="cl-tag cl-tag-nuevo">Nuevo</span>
+                <a class="changelog-pr" href="https://github.com/ferminrp/google-sheets-argento/pull/3" target="_blank" rel="noopener">#3</a>
+              </div>
+              <p>Cálculo de <strong>cauciones</strong> colocadoras y tomadoras: <code>=caucion()</code>, <code>=caucionColocadora()</code>, <code>=caucionTomadora()</code> (importe neto con aranceles, derechos e IVA).</p>
+            </li>
+          </ul>
+        </article>
+
+        <p class="changelog-footnote">
+          ¿Falta algo o querés proponer un cambio?
+          Abrí un
+          <a href="https://github.com/ferminrp/google-sheets-argento/issues" target="_blank" rel="noopener">issue</a>
+          o mirá los
+          <a href="https://github.com/ferminrp/google-sheets-argento/pulls?q=is%3Apr+is%3Amerged" target="_blank" rel="noopener">PRs mergeados</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-brand">Google Sheets Argento</div>
+      <ul class="footer-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="changelog.html" aria-current="page">Changelog</a></li>
+        <li><a href="https://github.com/ferminrp/google-sheets-argento" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://github.com/ferminrp/google-sheets-argento/issues" target="_blank" rel="noopener">Issues</a></li>
+        <li><a href="https://raw.githubusercontent.com/ferminrp/google-sheets-argento/main/all-in-one.js" target="_blank" rel="noopener">all-in-one.js</a></li>
+        <li><a href="api/cedears.json">API CEDEARs</a></li>
+        <li><a href="https://cafecito.app/ferminrp" target="_blank" rel="noopener">Cafecito</a></li>
+      </ul>
+      <p class="footer-note">
+        Hecho para argentinos de bien · Datos de DolarAPI, Argentina Datos, data912, CriptoYa, Coinbase y BCRA ·
+        No es consejo financiero.
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

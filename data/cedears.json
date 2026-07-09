@@ -225,7 +225,7 @@
     "Ratio": "9"
   },
   {
-    "Cedears": "BAC",
+    "Cedears": "BA.C",
     "Name": "Bank Of America Corporation",
     "Ratio": "4"
   },
@@ -1510,7 +1510,7 @@
     "Ratio": "1:1000"
   },
   {
-    "Cedears": "RCTI",
+    "Cedears": "RGTI",
     "Name": "RIGETTI COMPUTING INC",
     "Ratio": "2"
   },
@@ -2088,6 +2088,11 @@
     "Cedears": "XLV",
     "Name": "The Health Care Select Sector SPDR Fund",
     "Ratio": "29"
+  },
+  {
+    "Cedears": "XME",
+    "Name": "State Street SPDR S&P Metals & Mining ETF",
+    "Ratio": "30"
   },
   {
     "Cedears": "XLY",

@@ -36,7 +36,7 @@ Publicada en Pages (sin backend):
 
 | Endpoint | Descripción |
 |----------|-------------|
-| [`/api/cedears.json`](https://ferminrp.github.io/google-sheets-argento/api/cedears.json) | Listado de CEDEARs con `Cedears`, `Name`, `Ratio` + metadata |
+| [`/api/cedears.json`](https://ferminrp.github.io/google-sheets-argento/api/cedears.json) | Listado de CEDEARs con `Cedears`, `Name`, `Market`, `Ratio` + metadata |
 
 Fuente canónica: [`data/cedears.json`](../data/cedears.json) (array plano).  
 `npm run build` regenera `docs/api/cedears.json` con un envelope para agentes/scripts.  

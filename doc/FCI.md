@@ -7,7 +7,7 @@ Esta función devuelve información sobre Fondos Comunes de Inversión (FCI) en 
 En cualquier celda de la hoja, escribe:
 
 ```
-=fci("tipoFondo"; "nombreFondo"; "fecha"; "campo")
+=FCI("tipoFondo"; "nombreFondo"; "fecha"; "campo")
 ```
 
 ## Parámetros
@@ -35,12 +35,12 @@ En cualquier celda de la hoja, escribe:
 
 | Fórmula | Descripción |
 |---------|-------------|
-| `=fci("mercadoDinero"; "Balanz Money Market USD - Clase A")` | Valor cuotaparte actual del fondo Balanz Money Market USD |
-| `=fci("rentaFija"; "Pionero Renta"; "2023-05-01")` | Valor cuotaparte del fondo Pionero Renta para la fecha indicada |
-| `=fci("rentaFija"; "Pionero Renta"; "01/05/2023")` | Mismo valor usando formato DD/MM/YYYY |
-| `=fci("rentaVariable"; "Alpha Acciones"; ; "patrimonio")` | Patrimonio actual del fondo Alpha Acciones |
-| `=fci("rentaMixta"; "Galileo Income"; ; "ccp")` | Cantidad de cuotapartes actual del fondo Galileo Income |
-| `=fci("retornoTotal"; "Cocos Pesos Plus - Clase A")` | Valor cuotaparte actual del fondo en la categoría retorno total |
+| `=FCI("mercadoDinero"; "Balanz Money Market USD - Clase A")` | Valor cuotaparte actual del fondo Balanz Money Market USD |
+| `=FCI("rentaFija"; "Pionero Renta"; "2023-05-01")` | Valor cuotaparte del fondo Pionero Renta para la fecha indicada |
+| `=FCI("rentaFija"; "Pionero Renta"; "01/05/2023")` | Mismo valor usando formato DD/MM/YYYY |
+| `=FCI("rentaVariable"; "Alpha Acciones"; ; "patrimonio")` | Patrimonio actual del fondo Alpha Acciones |
+| `=FCI("rentaMixta"; "Galileo Income"; ; "ccp")` | Cantidad de cuotapartes actual del fondo Galileo Income |
+| `=FCI("retornoTotal"; "Cocos Pesos Plus - Clase A")` | Valor cuotaparte actual del fondo en la categoría retorno total |
 
 ## Errores comunes
 

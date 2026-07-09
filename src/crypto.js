@@ -6,7 +6,7 @@
  * @return El precio actual de la criptomoneda especificada en la moneda indicada.
  * @customfunction
  */
-function crypto(symbol, moneda) {
+function CRYPTO(symbol, moneda) {
   if (symbol === undefined || symbol === null || symbol === '') {
     throw new Error("Símbolo no proporcionado. Debe ingresar un símbolo válido (ej: 'BTC').");
   }

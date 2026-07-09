@@ -8,7 +8,7 @@
  * @return El valor numérico del atributo solicitado para el símbolo especificado.
  * @customfunction
  */
-function obligaciones(symbol, value) {
+function OBLIGACIONES(symbol, value) {
   return panelCotizacion(
     'https://data912.com/live/arg_corp',
     symbol,
@@ -24,6 +24,6 @@ function obligaciones(symbol, value) {
  * @return {Array} Un arreglo con todas las obligaciones negociables y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
  * @customfunction
  */
-function obligacionesLista() {
+function OBLIGACIONESLISTA() {
   return panelLista('https://data912.com/live/arg_corp', 'panel:arg_corp');
 }

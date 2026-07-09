@@ -7,7 +7,7 @@
  * @return {number} Valor de la cotización para el tipo y fecha solicitados
  * @customfunction
  */
-function dolar_historico(tipo, fecha, valor) {
+function DOLARHISTORICO(tipo, fecha, valor) {
   valor = valor || "venta";
 
   if (!tipo) {
@@ -60,7 +60,7 @@ function dolar_historico(tipo, fecha, valor) {
  * @return {Array} Matriz con las cotizaciones de cada tipo de dólar para la fecha
  * @customfunction
  */
-function dolar_historico_todos(fecha) {
+function DOLARHISTORICOTODOS(fecha) {
   var fechaISO;
   if (!fecha) {
     var hoy = new Date();

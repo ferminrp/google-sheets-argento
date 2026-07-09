@@ -7,7 +7,7 @@ Esta función devuelve el índice de inflación mensual de Argentina.
 En cualquier celda de la hoja, escribe:
 
 ```
-=inflacion(fecha)
+=INFLACION(fecha)
 ```
 
 ## Parámetros
@@ -21,10 +21,10 @@ En cualquier celda de la hoja, escribe:
 
 | Fórmula | Descripción |
 |---------|-------------|
-| `=inflacion()` | Índice de inflación más reciente |
-| `=inflacion("2023-03-31")` | Índice de inflación para marzo de 2023 |
-| `=inflacion("03/31/2023")` | Mismo resultado que el anterior |
-| `=inflacion(A1)` | Índice de inflación para la fecha en la celda A1 |
+| `=INFLACION()` | Índice de inflación más reciente |
+| `=INFLACION("2023-03-31")` | Índice de inflación para marzo de 2023 |
+| `=INFLACION("03/31/2023")` | Mismo resultado que el anterior |
+| `=INFLACION(A1)` | Índice de inflación para la fecha en la celda A1 |
 
 ## Errores comunes
 

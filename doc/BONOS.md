@@ -1,8 +1,8 @@
-### Función Bonos
+### Función BONOS
 En cualquier celda de la hoja, escribe:
 
 ```
-=bonos("symbol"; "valor")
+=BONOS("symbol"; "valor")
 ```
 
 #### Parámetros
@@ -24,15 +24,15 @@ En cualquier celda de la hoja, escribe:
 
 | Fórmula | Descripción |
 |---------|-------------|
-| `=bonos("AL30"; "c")` | Precio actual del bono AL30 |
-| `=bonos("GD30"; "px_ask")` | Precio de oferta de venta del bono GD30 |
-| `=bonos("AE38"; "pct_change")` | Variación porcentual diaria del bono AE38 |
+| `=BONOS("AL30"; "c")` | Precio actual del bono AL30 |
+| `=BONOS("GD30"; "px_ask")` | Precio de oferta de venta del bono GD30 |
+| `=BONOS("AE38"; "pct_change")` | Variación porcentual diaria del bono AE38 |
 
-### Función BonosLista
+### Función BONOSLISTA
 En cualquier celda de la hoja, escribe:
 
 ```
-=bonosLista()
+=BONOSLISTA()
 ```
 
 Esta función devuelve una tabla con todos los bonos argentinos disponibles y sus datos actuales, incluyendo precio, variación porcentual, volumen y otras métricas.
@@ -41,4 +41,4 @@ Esta función devuelve una tabla con todos los bonos argentinos disponibles y su
 
 | Fórmula | Descripción |
 |---------|-------------|
-| `=bonosLista()` | Tabla completa de todos los bonos argentinos con sus datos actuales |
+| `=BONOSLISTA()` | Tabla completa de todos los bonos argentinos con sus datos actuales |

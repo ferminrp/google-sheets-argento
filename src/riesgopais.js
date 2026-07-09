@@ -5,7 +5,7 @@
  * @return El valor numérico del riesgo país para la fecha especificada o el último disponible.
  * @customfunction
  */
-function riesgopais(fecha) {
+function RIESGOPAIS(fecha) {
   var datos = fetchJson('https://api.argentinadatos.com/v1/finanzas/indices/riesgo-pais', {
     cacheKey: 'api:ad:riesgo-pais',
     cacheTtlSeconds: 300

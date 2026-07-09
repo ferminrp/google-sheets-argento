@@ -7,7 +7,7 @@ Esta función devuelve valores de variables económicas del Banco Central de la 
 En cualquier celda de la hoja, escribe:
 
 ```
-=bcra(id)
+=BCRA(id)
 ```
 
 ## Parámetros
@@ -24,10 +24,10 @@ En cualquier celda de la hoja, escribe:
 
 | Fórmula | Descripción |
 |---------|-------------|
-| `=bcra(1)` | Valor actual de las Reservas Internacionales del BCRA |
-| `=bcra(4)` | Tipo de cambio minorista promedio |
-| `=bcra(5)` | Tipo de cambio mayorista de referencia |
-| `=bcra(6)` | Tasa de Política Monetaria actual |
+| `=BCRA(1)` | Valor actual de las Reservas Internacionales del BCRA |
+| `=BCRA(4)` | Tipo de cambio minorista promedio |
+| `=BCRA(5)` | Tipo de cambio mayorista de referencia |
+| `=BCRA(6)` | Tasa de Política Monetaria actual |
 
 ## Errores comunes
 

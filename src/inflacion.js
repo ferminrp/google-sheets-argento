@@ -5,7 +5,7 @@
  * @return El valor numérico del índice de inflación para la fecha especificada o el último disponible.
  * @customfunction
  */
-function inflacion(fecha) {
+function INFLACION(fecha) {
   var datos = fetchJson('https://api.argentinadatos.com/v1/finanzas/indices/inflacion', {
     cacheKey: 'api:ad:inflacion',
     cacheTtlSeconds: 300

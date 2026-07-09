@@ -1,4 +1,4 @@
-# Función Obligaciones
+# Función OBLIGACIONES
 
 Esta función devuelve información sobre las obligaciones negociables que cotizan en el mercado argentino.
 
@@ -7,7 +7,7 @@ Esta función devuelve información sobre las obligaciones negociables que cotiz
 En cualquier celda de la hoja, escribe:
 
 ```
-=obligaciones("symbol"; "valor")
+=OBLIGACIONES("symbol"; "valor")
 ```
 
 ## Parámetros
@@ -29,16 +29,16 @@ En cualquier celda de la hoja, escribe:
 
 | Fórmula | Descripción |
 |---------|-------------|
-| `=obligaciones("AEC1D"; "c")` | Precio actual de la obligación negociable AEC1D |
-| `=obligaciones("YMCHO"; "px_ask")` | Precio de oferta de venta de la obligación negociable YMCHO |
-| `=obligaciones("BYCNO"; "pct_change")` | Variación porcentual diaria de la obligación negociable BYCNO |
+| `=OBLIGACIONES("AEC1D"; "c")` | Precio actual de la obligación negociable AEC1D |
+| `=OBLIGACIONES("YMCHO"; "px_ask")` | Precio de oferta de venta de la obligación negociable YMCHO |
+| `=OBLIGACIONES("BYCNO"; "pct_change")` | Variación porcentual diaria de la obligación negociable BYCNO |
 
-## Función ObligacionesLista
+## Función OBLIGACIONESLISTA
 
 En cualquier celda de la hoja, escribe:
 
 ```
-=obligacionesLista()
+=OBLIGACIONESLISTA()
 ```
 
 Esta función devuelve una tabla con todas las obligaciones negociables disponibles y sus datos actuales, incluyendo precio, variación porcentual, volumen y otras métricas.
@@ -47,4 +47,4 @@ Esta función devuelve una tabla con todas las obligaciones negociables disponib
 
 | Fórmula | Descripción |
 |---------|-------------|
-| `=obligacionesLista()` | Tabla completa de todas las obligaciones negociables con sus datos actuales |
+| `=OBLIGACIONESLISTA()` | Tabla completa de todas las obligaciones negociables con sus datos actuales |

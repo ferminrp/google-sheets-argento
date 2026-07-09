@@ -5,8 +5,8 @@ function createResponse(statusCode, body) {
   };
 }
 
-describe("dolar_historico", () => {
-  let dolar_historico;
+describe("DOLARHISTORICO", () => {
+  let DOLARHISTORICO;
   let fetchMock;
 
   beforeEach(() => {
@@ -22,7 +22,7 @@ describe("dolar_historico", () => {
       getScriptCache: () => ({ get: () => null, put: () => {} }),
     };
 
-    ({ dolar_historico } = require("./test-wrapper"));
+    ({ DOLARHISTORICO } = require("./test-wrapper"));
   });
 
   afterEach(() => {
@@ -43,7 +43,7 @@ describe("dolar_historico", () => {
       })
     );
 
-    const result = dolar_historico("blue", "2023-01-15", "venta");
+    const result = DOLARHISTORICO("blue", "2023-01-15", "venta");
 
     expect(result).toBe(369);
     expect(fetchMock).toHaveBeenCalledTimes(1);
@@ -61,7 +61,7 @@ describe("dolar_historico", () => {
       })
     );
 
-    const result = dolar_historico("mep", "15/01/2023", "compra");
+    const result = DOLARHISTORICO("mep", "15/01/2023", "compra");
 
     expect(result).toBe(100);
     expect(fetchMock.mock.calls[0][0]).toContain("/dolares/bolsa/2023/01/15");

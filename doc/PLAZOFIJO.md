@@ -7,7 +7,7 @@ Esta función devuelve las tasas de plazos fijos (TNA) ofrecidas por bancos en A
 En cualquier celda de la hoja, escribe:
 
 ```
-=plazofijo("banco"; "tipoCliente")
+=PLAZOFIJO("banco"; "tipoCliente")
 ```
 
 ## Parámetros
@@ -24,10 +24,10 @@ En cualquier celda de la hoja, escribe:
 
 | Fórmula | Descripción |
 |---------|-------------|
-| `=plazofijo()` | Mejor tasa de plazo fijo para clientes entre todos los bancos |
-| `=plazofijo("Nacion")` | Tasa de plazo fijo para clientes del Banco Nación |
-| `=plazofijo("Provincia"; "nocliente")` | Tasa de plazo fijo para no clientes del Banco Provincia |
-| `=plazofijo(; "nocliente")` | Mejor tasa de plazo fijo para no clientes entre todos los bancos |
+| `=PLAZOFIJO()` | Mejor tasa de plazo fijo para clientes entre todos los bancos |
+| `=PLAZOFIJO("Nacion")` | Tasa de plazo fijo para clientes del Banco Nación |
+| `=PLAZOFIJO("Provincia"; "nocliente")` | Tasa de plazo fijo para no clientes del Banco Provincia |
+| `=PLAZOFIJO(; "nocliente")` | Mejor tasa de plazo fijo para no clientes entre todos los bancos |
 
 ## Errores comunes
 

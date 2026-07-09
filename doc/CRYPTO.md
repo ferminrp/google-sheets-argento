@@ -7,7 +7,7 @@ Esta función devuelve el precio actual de criptomonedas desde Coinbase.
 En cualquier celda de la hoja, escribe:
 
 ```
-=crypto("symbol"; "moneda")
+=CRYPTO("symbol"; "moneda")
 ```
 
 ## Parámetros
@@ -23,10 +23,10 @@ En cualquier celda de la hoja, escribe:
 
 | Fórmula | Descripción |
 |---------|-------------|
-| `=crypto("BTC")` | Precio actual de Bitcoin en USD |
-| `=crypto("ETH"; "EUR")` | Precio actual de Ethereum en euros |
-| `=crypto("SOL"; "USD")` | Precio actual de Solana en USD |
-| `=crypto("MATIC"; "ARS")` | Precio actual de Polygon en pesos argentinos |
+| `=CRYPTO("BTC")` | Precio actual de Bitcoin en USD |
+| `=CRYPTO("ETH"; "EUR")` | Precio actual de Ethereum en euros |
+| `=CRYPTO("SOL"; "USD")` | Precio actual de Solana en USD |
+| `=CRYPTO("MATIC"; "ARS")` | Precio actual de Polygon en pesos argentinos |
 
 ## Errores comunes
 

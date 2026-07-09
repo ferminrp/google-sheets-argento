@@ -5,8 +5,8 @@ function createResponse(body) {
   };
 }
 
-describe("dolar", () => {
-  let dolar;
+describe("DOLAR", () => {
+  let DOLAR;
 
   beforeEach(() => {
     jest.resetModules();
@@ -26,7 +26,7 @@ describe("dolar", () => {
     global.CacheService = {
       getScriptCache: () => ({ get: () => null, put: () => {} }),
     };
-    ({ dolar } = require("./test-wrapper"));
+    ({ DOLAR } = require("./test-wrapper"));
   });
 
   afterEach(() => {
@@ -38,26 +38,26 @@ describe("dolar", () => {
   });
 
   test("promedio usa venta cuando compra es null", () => {
-    expect(dolar("blue", "promedio")).toBe(1200);
+    expect(DOLAR("blue", "promedio")).toBe(1200);
   });
 
   test("promedio calcula correctamente con compra y venta", () => {
-    expect(dolar("oficial", "promedio")).toBe(925);
+    expect(DOLAR("oficial", "promedio")).toBe(925);
   });
 
   test("alias mep resuelve a bolsa", () => {
-    expect(dolar("mep", "venta")).toBe(1010);
+    expect(DOLAR("mep", "venta")).toBe(1010);
   });
 
   test("alias ccl resuelve a contadoconliqui", () => {
-    expect(dolar("ccl", "compra")).toBe(1020);
+    expect(DOLAR("ccl", "compra")).toBe(1020);
   });
 
   test("operacion por defecto es venta", () => {
-    expect(dolar("blue")).toBe(1200);
+    expect(DOLAR("blue")).toBe(1200);
   });
 
   test("tipo vacío lanza error legible", () => {
-    expect(() => dolar("", "venta")).toThrow("Tipo no proporcionado");
+    expect(() => DOLAR("", "venta")).toThrow("Tipo no proporcionado");
   });
 });

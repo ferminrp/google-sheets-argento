@@ -1,4 +1,4 @@
-# Función Acciones
+# Función ACCIONES
 
 Esta función devuelve información sobre las acciones que cotizan en el mercado argentino.
 
@@ -7,7 +7,7 @@ Esta función devuelve información sobre las acciones que cotizan en el mercado
 En cualquier celda de la hoja, escribe:
 
 ```
-=acciones("symbol"; "valor")
+=ACCIONES("symbol"; "valor")
 ```
 
 ## Parámetros
@@ -25,12 +25,12 @@ En cualquier celda de la hoja, escribe:
 - "q_op" - Operaciones diarias
 - "pct_change" - Variación porcentual diaria
 
-## Función AccionesLista
+## Función ACCIONESLISTA
 
 En cualquier celda de la hoja, escribe:
 
 ```
-=accionesLista()
+=ACCIONESLISTA()
 ```
 
 Esta función devuelve una tabla con todas las acciones argentinas disponibles y sus datos actuales, incluyendo precio, variación porcentual, volumen y otras métricas.
@@ -39,7 +39,7 @@ Esta función devuelve una tabla con todas las acciones argentinas disponibles y
 
 | Fórmula | Descripción |
 |---------|-------------|
-| `=accionesLista()` | Tabla completa de todas las acciones argentinas con sus datos actuales |
+| `=ACCIONESLISTA()` | Tabla completa de todas las acciones argentinas con sus datos actuales |
 
 ## Errores comunes
 

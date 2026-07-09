@@ -7,7 +7,7 @@ Esta función devuelve el valor del índice UVA (Unidad de Valor Adquisitivo) de
 En cualquier celda de la hoja, escribe:
 
 ```
-=uva(fecha)
+=UVA(fecha)
 ```
 
 ## Parámetros
@@ -21,10 +21,10 @@ En cualquier celda de la hoja, escribe:
 
 | Fórmula | Descripción |
 |---------|-------------|
-| `=uva()` | Valor del UVA más reciente |
-| `=uva("2023-03-31")` | Valor del UVA para el 31 de marzo de 2023 |
-| `=uva("03/31/2023")` | Mismo resultado que el anterior |
-| `=uva(A1)` | Valor del UVA para la fecha en la celda A1 |
+| `=UVA()` | Valor del UVA más reciente |
+| `=UVA("2023-03-31")` | Valor del UVA para el 31 de marzo de 2023 |
+| `=UVA("03/31/2023")` | Mismo resultado que el anterior |
+| `=UVA(A1)` | Valor del UVA para la fecha en la celda A1 |
 
 ## Errores comunes
 

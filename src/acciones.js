@@ -8,7 +8,7 @@
  * @return El valor numérico del atributo solicitado para el símbolo especificado.
  * @customfunction
  */
-function acciones(symbol, value) {
+function ACCIONES(symbol, value) {
   return panelCotizacion(
     'https://data912.com/live/arg_stocks',
     symbol,
@@ -24,6 +24,6 @@ function acciones(symbol, value) {
  * @return Un arreglo bidimensional con todas las acciones y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
  * @customfunction
  */
-function accionesLista() {
+function ACCIONESLISTA() {
   return panelLista('https://data912.com/live/arg_stocks', 'panel:arg_stocks');
 }

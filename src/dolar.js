@@ -6,7 +6,7 @@
  * @return El valor numérico de la operación solicitada.
  * @customfunction
  */
-function dolar(tipo, operacion) {
+function DOLAR(tipo, operacion) {
   if (tipo === undefined || tipo === null || tipo === '') {
     throw new Error("Tipo no proporcionado. Usa 'blue', 'oficial', 'mep', 'ccl', etc.");
   }

@@ -7,7 +7,7 @@ Esta función devuelve el APY (rendimiento anual) de diferentes criptomonedas of
 En cualquier celda de la hoja, escribe:
 
 ```
-=rendimientos("moneda"; "proveedor")
+=RENDIMIENTOS("moneda"; "proveedor")
 ```
 
 ## Parámetros
@@ -23,10 +23,10 @@ En cualquier celda de la hoja, escribe:
 
 | Fórmula | Descripción |
 |---------|-------------|
-| `=rendimientos("USDT")` | Mejor rendimiento disponible para USDT entre todos los proveedores |
-| `=rendimientos("BTC"; "buenbit")` | Rendimiento anual de Bitcoin en Buenbit |
-| `=rendimientos("USDC"; "ripio")` | Rendimiento anual de USDC en Ripio |
-| `=rendimientos("SOL"; "letsbit")` | Rendimiento anual de Solana en Letsbit |
+| `=RENDIMIENTOS("USDT")` | Mejor rendimiento disponible para USDT entre todos los proveedores |
+| `=RENDIMIENTOS("BTC"; "buenbit")` | Rendimiento anual de Bitcoin en Buenbit |
+| `=RENDIMIENTOS("USDC"; "ripio")` | Rendimiento anual de USDC en Ripio |
+| `=RENDIMIENTOS("SOL"; "letsbit")` | Rendimiento anual de Solana en Letsbit |
 
 ## Errores comunes
 

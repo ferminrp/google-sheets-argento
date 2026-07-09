@@ -1,4 +1,4 @@
-# Función Opciones
+# Función OPCIONES
 
 Esta función devuelve información sobre las opciones que cotizan en el mercado argentino.
 
@@ -7,7 +7,7 @@ Esta función devuelve información sobre las opciones que cotizan en el mercado
 En cualquier celda de la hoja, escribe:
 
 ```
-=opciones("symbol"; "valor")
+=OPCIONES("symbol"; "valor")
 ```
 
 ## Parámetros
@@ -33,16 +33,16 @@ En cualquier celda de la hoja, escribe:
 
 | Fórmula | Descripción |
 |---------|-------------|
-| `=opciones("YPFC49000J"; "c")` | Precio actual de la opción CALL de YPF con strike 490 y vencimiento en Julio |
-| `=opciones("ALUC800JU"; "px_ask")` | Precio de oferta de venta de la opción CALL de Aluar con strike 800 |
-| `=opciones("GGALV53000S"; "pct_change")` | Variación porcentual diaria de la opción PUT de Grupo Galicia con strike 530 y vencimiento en Septiembre |
+| `=OPCIONES("YPFC49000J"; "c")` | Precio actual de la opción CALL de YPF con strike 490 y vencimiento en Julio |
+| `=OPCIONES("ALUC800JU"; "px_ask")` | Precio de oferta de venta de la opción CALL de Aluar con strike 800 |
+| `=OPCIONES("GGALV53000S"; "pct_change")` | Variación porcentual diaria de la opción PUT de Grupo Galicia con strike 530 y vencimiento en Septiembre |
 
-## Función OpcionesLista
+## Función OPCIONESLISTA
 
 En cualquier celda de la hoja, escribe:
 
 ```
-=opcionesLista()
+=OPCIONESLISTA()
 ```
 
 Esta función devuelve una tabla con todas las opciones disponibles y sus datos actuales, incluyendo precio, variación porcentual, volumen y otras métricas.
@@ -51,7 +51,7 @@ Esta función devuelve una tabla con todas las opciones disponibles y sus datos 
 
 | Fórmula | Descripción |
 |---------|-------------|
-| `=opcionesLista()` | Tabla completa de todas las opciones con sus datos actuales |
+| `=OPCIONESLISTA()` | Tabla completa de todas las opciones con sus datos actuales |
 
 ## Errores comunes
 

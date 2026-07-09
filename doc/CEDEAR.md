@@ -25,7 +25,7 @@ Cada entrada del listado contiene:
 
 ### Formatos de `ratio`
 
-La función `=cedear(symbol; "ratio")` devuelve el string del JSON **sin transformarlo**:
+La función `=CEDEAR(symbol; "ratio")` devuelve el string del JSON **sin transformarlo**:
 
 | Formato | Ejemplo | Significado habitual |
 |--------|---------|----------------------|
@@ -40,7 +40,7 @@ Si necesitás operar matemáticamente, parseá el string en la hoja (por ejemplo
 En cualquier celda de la hoja, escribe:
 
 ```
-=cedear("symbol"; "valor")
+=CEDEAR("symbol"; "valor")
 ```
 
 ## Parámetros
@@ -65,19 +65,19 @@ En cualquier celda de la hoja, escribe:
 
 | Fórmula | Descripción |
 |---------|-------------|
-| `=cedear("AAPL"; "c")` | Precio actual del CEDEAR de Apple |
-| `=cedear("MSFT"; "px_ask")` | Precio de oferta de venta del CEDEAR de Microsoft |
-| `=cedear("GOOGL"; "pct_change")` | Variación porcentual diaria del CEDEAR de Google |
-| `=cedear("TSLA"; "name")` | Nombre completo de la empresa Tesla |
-| `=cedear("AMZN"; "ratio")` | Ratio de conversión del CEDEAR de Amazon |
-| `=cedear("AAPL"; "market")` | Mercado donde cotiza Apple (NASDAQ) |
+| `=CEDEAR("AAPL"; "c")` | Precio actual del CEDEAR de Apple |
+| `=CEDEAR("MSFT"; "px_ask")` | Precio de oferta de venta del CEDEAR de Microsoft |
+| `=CEDEAR("GOOGL"; "pct_change")` | Variación porcentual diaria del CEDEAR de Google |
+| `=CEDEAR("TSLA"; "name")` | Nombre completo de la empresa Tesla |
+| `=CEDEAR("AMZN"; "ratio")` | Ratio de conversión del CEDEAR de Amazon |
+| `=CEDEAR("AAPL"; "market")` | Mercado donde cotiza Apple (NASDAQ) |
 
 ## Función CedearLista
 
 En cualquier celda de la hoja, escribe:
 
 ```
-=cedearLista()
+=CEDEARLISTA()
 ```
 
 Esta función devuelve una tabla con todos los CEDEARs disponibles y sus datos actuales, incluyendo precio, variación porcentual, volumen y otras métricas.
@@ -86,7 +86,7 @@ Esta función devuelve una tabla con todos los CEDEARs disponibles y sus datos a
 
 | Fórmula | Descripción |
 |---------|-------------|
-| `=cedearLista()` | Tabla completa de todos los CEDEARs con sus datos actuales |
+| `=CEDEARLISTA()` | Tabla completa de todos los CEDEARs con sus datos actuales |
 
 ## Errores comunes
 

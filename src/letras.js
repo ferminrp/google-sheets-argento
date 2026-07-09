@@ -6,7 +6,7 @@
  * @return The specified value for the given treasury bill
  * @customfunction
  */
-function letras(symbol, valor) {
+function LETRAS(symbol, valor) {
   return panelCotizacion(
     'https://data912.com/live/arg_notes',
     symbol,
@@ -22,6 +22,6 @@ function letras(symbol, valor) {
  * @return Un arreglo bidimensional con todas las letras y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
  * @customfunction
  */
-function letrasLista() {
+function LETRASLISTA() {
   return panelLista('https://data912.com/live/arg_notes', 'panel:arg_notes');
 }

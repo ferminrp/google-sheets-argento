@@ -9,59 +9,21 @@
  * @customfunction
  */
 function usa_stocks(symbol, value) {
-  // Consulta al API
-  var url = 'https://data912.com/live/usa_stocks';
-  var respuesta = UrlFetchApp.fetch(url);
-  var datos = JSON.parse(respuesta.getContentText());
-  
-  // Normalizo entradas
-  var simbolo = symbol.toString().toUpperCase().trim();
-  var atributo = value.toString().toLowerCase().trim();
-  
-  // Valores permitidos
-  var atributosPermitidos = ['c', 'v', 'q_bid', 'px_bid', 'px_ask', 'q_ask', 'q_op', 'pct_change'];
-  
-  // Verificar si el atributo es válido
-  if (!atributosPermitidos.includes(atributo)) {
-    throw new Error("Atributo inválido: '" + value + "'. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change.");
-  }
-  
-  // Buscar el símbolo solicitado
-  for (var i = 0; i < datos.length; i++) {
-    if (datos[i].symbol === simbolo) {
-      return datos[i][atributo];
-    }
-  }
-  
-  // Si no se encontró el símbolo
-  throw new Error("Símbolo inválido: '" + symbol + "'. No se encontró en la lista de acciones estadounidenses disponibles.");
+  return panelCotizacion(
+    'https://data912.com/live/usa_stocks',
+    symbol,
+    value,
+    'acciones estadounidenses',
+    'panel:usa_stocks'
+  );
 }
 
 /**
  * Obtiene la lista completa de acciones de Estados Unidos desde la API.
- * 
- * @return Un arreglo bidimensional con todas las acciones estadounidenses y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
+ *
+ * @return Un arreglo bidimensional con todas las acciones y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
  * @customfunction
  */
 function usa_stocksLista() {
-  // Consulta al API
-  var url = 'https://data912.com/live/usa_stocks';
-  var respuesta = UrlFetchApp.fetch(url);
-  var datos = JSON.parse(respuesta.getContentText());
-  
-  // Definir las columnas que queremos mostrar
-  var columnas = ['symbol', 'c', 'v', 'q_bid', 'px_bid', 'px_ask', 'q_ask', 'q_op', 'pct_change'];
-  
-  // Crear el arreglo bidimensional comenzando con los encabezados
-  var resultado = [columnas];
-  
-  // Agregar cada acción como una fila
-  datos.forEach(function(usaStock) {
-    var fila = columnas.map(function(columna) {
-      return usaStock[columna];
-    });
-    resultado.push(fila);
-  });
-  
-  return resultado;
+  return panelLista('https://data912.com/live/usa_stocks', 'panel:usa_stocks');
 }

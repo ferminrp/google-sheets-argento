@@ -12,6 +12,7 @@ global.Logger = {
 const {
   caucionColocadora,
   caucionTomadora,
+  calcularCaucion,
 } = require("./test-wrapper");
 
 describe("caucionColocadora", () => {
@@ -42,6 +43,19 @@ describe("caucionTomadora", () => {
 
     expect(typeof resultado).toBe("number");
     expect(resultado).toBeGreaterThan(importeBruto);
+  });
+});
+
+describe("calcularCaucion validación", () => {
+  test("rechaza dias === 0", () => {
+    expect(() => calcularCaucion(0, 1.2, 1000000)).toThrow("no puede ser 0");
+  });
+});
+
+describe("acciones validación", () => {
+  test("símbolo vacío lanza error legible", () => {
+    const { acciones } = require("./test-wrapper");
+    expect(() => acciones("", "c")).toThrow("Símbolo no proporcionado");
   });
 });
 

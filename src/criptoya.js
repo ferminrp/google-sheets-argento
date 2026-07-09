@@ -10,122 +10,83 @@
  * @customfunction
  */
 function criptoya(coin, fiat, volumen, exchange, operacion) {
-  // Valores por defecto
+  if (coin === undefined || coin === null || coin === '') {
+    throw new Error("Criptomoneda no proporcionada (ej: 'BTC', 'USDT').");
+  }
+  if (fiat === undefined || fiat === null || fiat === '') {
+    throw new Error("Moneda fiat no proporcionada (ej: 'ARS', 'USD').");
+  }
+
   volumen = volumen || 1;
   operacion = operacion || 'totalCompra';
-  
-  // Normalizo entradas
+
   var cripto = coin.toString().toUpperCase().trim();
   var moneda = fiat.toString().toUpperCase().trim();
   var vol = parseFloat(volumen);
   var tipoOperacion = operacion.toString().toLowerCase().trim();
-  
-  // Mapeo de nombres de operación a los campos de la API
+
   var camposOperacion = {
     'compra': 'ask',
     'totalcompra': 'totalAsk',
     'venta': 'bid',
     'totalventa': 'totalBid'
   };
-  
-  // Verificar si la operación es válida
+
   if (!Object.keys(camposOperacion).includes(tipoOperacion)) {
     throw new Error("Operación inválida: '" + operacion + "'. Operaciones disponibles: compra, totalCompra, venta, totalVenta.");
   }
-  
-  // Campo a consultar en la respuesta
+
   var campo = camposOperacion[tipoOperacion];
-  
-  // URL de la API de CriptoYa
   var url = 'https://criptoya.com/api/' + encodeURIComponent(cripto) + '/' + encodeURIComponent(moneda) + '/' + vol;
-  
+
   try {
-    // Consulta al API
-    var respuesta = UrlFetchApp.fetch(url, {
-      muteHttpExceptions: true,
-      headers: {
-        'Accept': 'application/json'
-      }
+    var datos = fetchJson(url, {
+      headers: { 'Accept': 'application/json' },
+      cacheKey: 'criptoya:' + cripto + ':' + moneda + ':' + vol,
+      cacheTtlSeconds: 60
     });
-    
-    // Comprobar si la respuesta es válida
-    if (respuesta.getResponseCode() !== 200) {
-      var mensajeError = "Código de error: " + respuesta.getResponseCode();
-      try {
-        var error = JSON.parse(respuesta.getContentText());
-        if (error.message) {
-          mensajeError = error.message;
-        }
-      } catch (parseError) {
-        // Mantener mensaje por código HTTP si el cuerpo no es JSON
-      }
-      throw new Error(mensajeError);
-    }
-    
-    // Analizar la respuesta JSON
-    var datos = JSON.parse(respuesta.getContentText());
-    
-    // Si se solicita un exchange específico
+
     if (exchange) {
       var exchangeKey = exchange.toString().toLowerCase().trim();
-      
-      // Verificar si el exchange existe en la respuesta
+
       if (!datos[exchangeKey]) {
         var exchangesDisponibles = Object.keys(datos).join(', ');
         throw new Error("Exchange '" + exchange + "' no disponible. Exchanges disponibles: " + exchangesDisponibles);
       }
-      
-      // Verificar si el campo solicitado existe para ese exchange
+
       if (datos[exchangeKey][campo] === undefined) {
         throw new Error("El campo '" + operacion + "' no está disponible para el exchange '" + exchange + "'");
       }
-      
-      // Devolver el precio del exchange específico
+
       return datos[exchangeKey][campo];
     }
-    
-    // Si no se especifica exchange, buscar el mejor precio según la operación
+
     var mejorPrecio;
-    var mejorExchange;
-    
-    // Determinar el mejor precio según el tipo de operación
     if (tipoOperacion.includes('compra')) {
-      // Para compra, el mejor precio es el más bajo
       mejorPrecio = Infinity;
       for (var ex in datos) {
-        // Verificar que el exchange tenga el campo solicitado
         if (datos[ex][campo] !== undefined && datos[ex][campo] < mejorPrecio) {
           mejorPrecio = datos[ex][campo];
-          mejorExchange = ex;
         }
       }
     } else {
-      // Para venta, el mejor precio es el más alto
       mejorPrecio = -Infinity;
-      for (var ex in datos) {
-        // Verificar que el exchange tenga el campo solicitado
-        if (datos[ex][campo] !== undefined && datos[ex][campo] > mejorPrecio) {
-          mejorPrecio = datos[ex][campo];
-          mejorExchange = ex;
+      for (var ex2 in datos) {
+        if (datos[ex2][campo] !== undefined && datos[ex2][campo] > mejorPrecio) {
+          mejorPrecio = datos[ex2][campo];
         }
       }
     }
-    
-    // Verificar si se encontró algún precio
+
     if (mejorPrecio === Infinity || mejorPrecio === -Infinity) {
       throw new Error("No se encontraron precios disponibles para " + cripto + "/" + moneda + " con el tipo de operación '" + operacion + "'");
     }
-    
-    // Devolver el mejor precio
+
     return mejorPrecio;
-    
   } catch (e) {
-    // Si el error indica que la moneda o criptomoneda no es válida
     if (e.message.includes("Not Found") || e.message.includes("404")) {
       throw new Error("Par " + cripto + "/" + moneda + " no encontrado. Verifica que la cripto y la moneda sean correctas.");
     }
-    
-    // Para otros errores, mostrar el mensaje original
     throw new Error("Error al consultar precio de " + cripto + "/" + moneda + ": " + e.message);
   }
-} 
+}

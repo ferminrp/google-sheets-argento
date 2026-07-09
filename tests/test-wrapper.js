@@ -5,13 +5,31 @@ Este wrapper permite importar las funciones desde all-in-one.js en los tests, ad
 const fs = require('fs');
 const path = require('path');
 
-// Crear un contexto global para ejecutar el script
+function createMemoryCache() {
+  const store = new Map();
+  return {
+    get: (key) => (store.has(key) ? store.get(key) : null),
+    put: (key, value) => {
+      store.set(key, value);
+    },
+    remove: (key) => {
+      store.delete(key);
+    },
+  };
+}
+
+// Cache en memoria por carga del wrapper (un Map compartido en este contexto)
+const memoryCache = createMemoryCache();
+
 const context = {
   CONSTANTS: {},
   UrlFetchApp: global.UrlFetchApp,
   Utilities: global.Utilities,
   DriveApp: global.DriveApp || {},
   Logger: global.Logger || {},
+  CacheService: global.CacheService || {
+    getScriptCache: () => memoryCache,
+  },
   console: console
 };
 
@@ -32,6 +50,7 @@ const script = new Function('context', `
       bonosLista,
       caucionColocadora,
       caucionTomadora,
+      calcularCaucion,
       cedear,
       criptoya,
       crypto,
@@ -41,6 +60,7 @@ const script = new Function('context', `
       formatearFechaISO,
       parsearFechaLocal,
       obtenerComponentesFecha,
+      fetchJson,
       fci,
       fciLista,
       inflacion,

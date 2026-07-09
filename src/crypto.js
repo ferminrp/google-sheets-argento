@@ -7,60 +7,33 @@
  * @customfunction
  */
 function crypto(symbol, moneda) {
-  // Valor por defecto
+  if (symbol === undefined || symbol === null || symbol === '') {
+    throw new Error("Símbolo no proporcionado. Debe ingresar un símbolo válido (ej: 'BTC').");
+  }
+
   moneda = moneda || 'USD';
-  
-  // Normalizo entradas
+
   var cripto = symbol.toString().toUpperCase().trim();
   var divisa = moneda.toString().toUpperCase().trim();
-  
-  // Par de trading
   var par = cripto + '-' + divisa;
-  
-  // URL de la API de Coinbase (versión pública)
-  var url = 'https://api.coinbase.com/v2/prices/' + par + '/spot';
-  
+  var url = 'https://api.coinbase.com/v2/prices/' + encodeURIComponent(par) + '/spot';
+
   try {
-    // Consulta al API
-    var respuesta = UrlFetchApp.fetch(url, {
-      muteHttpExceptions: true,
-      headers: {
-        'Accept': 'application/json'
-      }
+    var datos = fetchJson(url, {
+      headers: { 'Accept': 'application/json' },
+      cacheKey: 'crypto:' + par,
+      cacheTtlSeconds: 60
     });
-    
-    // Comprobar si la respuesta es válida
-    if (respuesta.getResponseCode() !== 200) {
-      var mensajeError = "Código de error: " + respuesta.getResponseCode();
-      try {
-        var error = JSON.parse(respuesta.getContentText());
-        if (error.errors && error.errors[0] && error.errors[0].message) {
-          mensajeError = error.errors[0].message;
-        }
-      } catch (parseError) {
-        // Mantener mensaje por código HTTP si el cuerpo no es JSON
-      }
-      throw new Error(mensajeError);
-    }
-    
-    // Analizar la respuesta JSON
-    var datos = JSON.parse(respuesta.getContentText());
-    
-    // Verificar si se recibió correctamente la respuesta
+
     if (!datos || !datos.data || !datos.data.amount) {
       throw new Error("Respuesta inválida de Coinbase");
     }
-    
-    // Devolver el precio
+
     return parseFloat(datos.data.amount);
-    
   } catch (e) {
-    // Si el error indica que no se encontró el par de trading
     if (e.message.includes("Not Found") || e.message.includes("404")) {
       throw new Error("Par de trading no encontrado: '" + par + "'. Verifica que el símbolo y la moneda sean correctos.");
     }
-    
-    // Para otros errores, mostrar el mensaje original
     throw new Error("Error al consultar el precio de " + cripto + ": " + e.message);
   }
-} 
+}

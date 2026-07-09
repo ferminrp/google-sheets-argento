@@ -13,28 +13,34 @@ En cualquier celda de la hoja, escribe:
 ## Parámetros
 
 **tipo (string):**
-- Tipo de dólar a consultar (ej: "blue", "oficial", "mayorista")
-- Tipos disponibles: blue, oficial, mayorista, y otros disponibles en la API
+- Tipo de dólar a consultar
+- Tipos de la API: `oficial`, `blue`, `bolsa`, `contadoconliqui`, `mayorista`, `cripto`, `tarjeta`
+- **Aliases:**
+  - `mep` → `bolsa`
+  - `ccl`, `contado` → `contadoconliqui`
 
-**operación (string):**
-- Tipo de operación a consultar: "compra", "venta", "promedio"
-- Por defecto: "venta"
+**operación (string):** [Opcional]
+- Tipo de operación: `compra`, `venta`, `promedio`
+- Por defecto: `venta`
 
 ## Ejemplos
 
 | Fórmula | Descripción |
 |---------|-------------|
 | `=dolar("blue")` | Precio de venta del dólar blue |
-| `=dolar("oficial")` | Precio de venta del dólar oficial |
-| `=dolar("mayorista")` | Precio de venta del dólar mayorista |
-| `=dolar("blue"; "compra")` | Precio de compra del dólar blue |
-| `=dolar("oficial"; "venta")` | Precio de compra del dólar oficial |
+| `=dolar("oficial"; "compra")` | Precio de compra del dólar oficial |
+| `=dolar("mep"; "venta")` | MEP (alias de bolsa) |
+| `=dolar("ccl"; "promedio")` | CCL (alias de contadoconliqui) |
 | `=dolar("mayorista"; "promedio")` | Precio promedio del dólar mayorista |
+
+## Notas
+
+- Las cotizaciones se cachean ~60 segundos en Apps Script (`CacheService`) para reducir llamadas a la API cuando muchas celdas piden el mismo dato.
 
 ## Errores comunes
 
 **Tipo inválido**  
-"Tipo inválido: 'xyz'. Tipos disponibles: oficial, blue, bolsa, contadoconliqui, mayorista, cripto, tarjeta."
+"Tipo inválido: 'xyz'. Tipos disponibles: oficial, blue, bolsa, contadoconliqui, mayorista, cripto, tarjeta (aliases: mep→bolsa, ccl→contadoconliqui)."
 
 **Operación inválida**  
 "Operación inválida: 'xyz'. Usa 'compra', 'venta' o 'promedio'."

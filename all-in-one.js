@@ -1,5 +1,5 @@
 // Archivo consolidado generado automáticamente
-// Fecha de generación: 2026-07-09T12:28:05.815Z
+// Fecha de generación: 2026-07-09T12:35:14.840Z
 
 // Namespace para constantes compartidas
 var CONSTANTS = {};
@@ -795,18 +795,11 @@ function dolar_historico(tipo, fecha, valor) {
     encodeURIComponent(casa) + '/' +
     componentes.year + '/' + componentes.month + '/' + componentes.day;
 
-  try {
-    var cotizacion = fetchJson(url, { skipCache: true });
-    if (cotizacion && cotizacion[campo] != null) {
-      return cotizacion[campo];
-    }
-    throw new Error("No se encontró cotización para la fecha y tipo especificados");
-  } catch (e) {
-    if (e.message && e.message.indexOf('Error HTTP') === 0) {
-      throw new Error("No se encontró cotización para la fecha y tipo especificados");
-    }
-    throw e;
+  var cotizacion = fetchJson(url, { skipCache: true });
+  if (cotizacion && cotizacion[campo] != null) {
+    return cotizacion[campo];
   }
+  throw new Error("No se encontró cotización para la fecha y tipo especificados");
 }
 
 /**
@@ -1415,14 +1408,13 @@ function panelLista(url, cacheKey) {
     cacheTtlSeconds: 60
   });
 
-  if (!datos || !datos.length) {
-    throw new Error("No se recibieron datos del panel.");
-  }
-
   var columnas = CONSTANTS.ATRIBUTOS_PANEL.slice();
   columnas.unshift('symbol');
 
   var resultado = [columnas];
+  if (!datos || !datos.length) {
+    return resultado;
+  }
   for (var i = 0; i < datos.length; i++) {
     var item = datos[i];
     var fila = [];

@@ -60,14 +60,13 @@ function panelLista(url, cacheKey) {
     cacheTtlSeconds: 60
   });
 
-  if (!datos || !datos.length) {
-    throw new Error("No se recibieron datos del panel.");
-  }
-
   var columnas = ATRIBUTOS_PANEL.slice();
   columnas.unshift('symbol');
 
   var resultado = [columnas];
+  if (!datos || !datos.length) {
+    return resultado;
+  }
   for (var i = 0; i < datos.length; i++) {
     var item = datos[i];
     var fila = [];

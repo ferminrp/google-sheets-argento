@@ -9,6 +9,7 @@ function getAllJsFiles() {
     const srcDir = path.join(__dirname, 'src');
     return fs.readdirSync(srcDir)
         .filter(file => file.endsWith('.js') && !excludeFiles.includes(file))
+        .sort()
         .map(file => path.join(srcDir, file));
 }
 

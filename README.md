@@ -79,9 +79,16 @@ Forzar recálculo:
 - [src/criptoya.js](src/criptoya.js) – Código fuente para comparador de precios de criptomonedas
 - [src/bcra.js](src/bcra.js) – Código fuente para variables del Banco Central
 - [src/caucion.js](src/caucion.js) – Código fuente para cálculo de cauciones
+- [src/fecha.js](src/fecha.js) – Utilidades compartidas de parseo de fechas (YYYY-MM-DD y DD/MM/YYYY)
 - [all-in-one.js](all-in-one.js) – Archivo único con todas las funciones combinadas
 
 ## Desarrollo
 
-- Ejecutar 'npm run build' para generar [all-in-one.js](all-in-one.js)
-- Ejecutar 'npm run test' para ejecutar tests unitarios [tests\all-in-one.test.js](atests\all-in-one.test.js)
+```bash
+npm install
+npm run build   # genera all-in-one.js a partir de src/
+npm test        # requiere haber corrido build antes
+```
+
+- Tests unitarios: [tests/](tests/) (`fci.test.js`, `fecha.test.js`, `dolar.test.js`, `all-in-one.test.js`)
+- Siempre ejecutar `npm run build` después de modificar archivos en `src/`

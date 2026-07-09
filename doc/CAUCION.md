@@ -44,10 +44,11 @@ En cualquier celda de la hoja, escribe:
 | `=caucion(30, 150%, 500000)` | Caución tomadora a 30 días con TNA 150% por $500.000 |
 | `=caucionColocadora(15, 130%, 750000)` | Caución colocadora a 15 días con TNA 130% por $750.000 |
 | `=caucionTomadora(1, 140%, 1500000, 3.5%)` | Caución tomadora a 1 día con TNA 140% por $1.500.000 y arancel personalizado de 3.5% |
-| `=caucion(-10, 125%, 2000000, 2, 4.5%)` | Caución colocadora a 10 días con TNA 125% por $2.000.000 y aranceles personalizados de 4.5% |
+| `=caucion(-10, 125%, 2000000, 2%, 4.5%)` | Caución colocadora a 10 días con TNA 125% por $2.000.000 y aranceles personalizados (2% colocadora, 4.5% tomadora) |
 
 #### Notas
 - Las funciones devuelven el importe neto final de la operación incluyendo todos los gastos (arancel, derechos de mercado, gastos de garantía e IVA)
 - Los gastos de garantía solo aplican para cauciones tomadoras
 - El IVA se calcula sobre todos los gastos (21%)
 - Los derechos de mercado y gastos de garantía se calculan a una tasa diaria proporcional al plazo de la operación (hasta 90 días)
+- **Importante:** TNA y aranceles deben ingresarse como porcentaje de Sheets (`120%`, `1.5%`). Un número sin `%` (ej. `2`) se interpreta como 200%, no como 2%

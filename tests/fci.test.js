@@ -51,7 +51,7 @@ describe("fci", () => {
     expect(fetchMock.mock.calls[0][0]).not.toContain("/rentaMixta/2026/04/12/");
   });
 
-  test("acepta MM/DD/YYYY y apunta al mismo endpoint normalizado", () => {
+  test("acepta DD/MM/YYYY y apunta al mismo endpoint normalizado", () => {
     fetchMock.mockReturnValue(
       createResponse(200, [
         {
@@ -63,11 +63,19 @@ describe("fci", () => {
       ])
     );
 
-    const result = fci("rentaMixta", "Cocos Rendimiento - Clase A", "04/13/2026");
+    const result = fci("rentaMixta", "Cocos Rendimiento - Clase A", "13/04/2026");
 
     expect(result).toBe(200);
     expect(fetchMock).toHaveBeenCalledTimes(1);
     expect(fetchMock.mock.calls[0][0]).toContain("/rentaMixta/2026/04/13/");
+  });
+
+  test("rechaza MM/DD/YYYY ambiguo (usa formato argentino DD/MM)", () => {
+    // 04/13/2026 se interpreta como día=4, mes=13 → inválido
+    expect(() =>
+      fci("rentaMixta", "Cocos Rendimiento - Clase A", "04/13/2026")
+    ).toThrow("Fecha inválida");
+    expect(fetchMock).not.toHaveBeenCalled();
   });
 
   test("rechaza fecha inválida y no consulta la API", () => {

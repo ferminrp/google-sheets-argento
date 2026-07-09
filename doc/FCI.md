@@ -20,7 +20,8 @@ En cualquier celda de la hoja, escribe:
 
 **fecha (string):** [Opcional]
 - Fecha para la cual se quiere obtener la información
-- Formato aceptado: "YYYY-MM-DD" o "MM/DD/YYYY"
+- Formato aceptado: "YYYY-MM-DD" o "DD/MM/YYYY" (formato argentino)
+- También acepta celdas con tipo fecha de Google Sheets
 - Si se omite, devuelve la información más reciente
 
 **campo (string):** [Opcional]
@@ -36,6 +37,7 @@ En cualquier celda de la hoja, escribe:
 |---------|-------------|
 | `=fci("mercadoDinero"; "Balanz Money Market USD - Clase A")` | Valor cuotaparte actual del fondo Balanz Money Market USD |
 | `=fci("rentaFija"; "Pionero Renta"; "2023-05-01")` | Valor cuotaparte del fondo Pionero Renta para la fecha indicada |
+| `=fci("rentaFija"; "Pionero Renta"; "01/05/2023")` | Mismo valor usando formato DD/MM/YYYY |
 | `=fci("rentaVariable"; "Alpha Acciones"; ; "patrimonio")` | Patrimonio actual del fondo Alpha Acciones |
 | `=fci("rentaMixta"; "Galileo Income"; ; "ccp")` | Cantidad de cuotapartes actual del fondo Galileo Income |
 | `=fci("retornoTotal"; "Cocos Pesos Plus - Clase A")` | Valor cuotaparte actual del fondo en la categoría retorno total |
@@ -52,7 +54,7 @@ En cualquier celda de la hoja, escribe:
 "Campo inválido. Campos permitidos: vcp (valor cuotaparte), ccp (cantidad cuotapartes), patrimonio."
 
 **Fecha inválida**  
-"Fecha inválida: 'xyz'. Usar formato 'YYYY-MM-DD' o 'MM/DD/YYYY'."
+"Fecha inválida: 'xyz'. Usar formato 'YYYY-MM-DD' o 'DD/MM/YYYY'."
 
 **Sin valor disponible**  
 "El fondo 'xyz' no tiene valor para el campo 'abc'."

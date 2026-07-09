@@ -1,5 +1,5 @@
 // Archivo consolidado generado automáticamente
-// Fecha de generación: 2026-05-22T11:38:59.406Z
+// Fecha de generación: 2026-07-09T12:03:19.736Z
 
 // Namespace para constantes compartidas
 var CONSTANTS = {};
@@ -991,80 +991,26 @@ function dolar_historico_todos(fecha) {
  *
  * @param {string} tipoFondo El tipo de fondo a consultar: "mercadoDinero", "rentaVariable", "rentaFija", "rentaMixta", "retornoTotal"
  * @param {string} nombreFondo El nombre del fondo a consultar (ej: "Balanz Money Market USD - Clase A")
- * @param {string} fecha [Opcional] Fecha en formato 'YYYY-MM-DD'. Si no se proporciona, devuelve la información más reciente.
+ * @param {string} fecha [Opcional] Fecha en formato 'YYYY-MM-DD' o 'DD/MM/YYYY'. Si no se proporciona, devuelve la información más reciente.
  * @param {string} campo [Opcional] Campo a consultar: "vcp" (valor cuotaparte), "ccp" (cantidad cuotapartes), "patrimonio". Por defecto: "vcp".
  * @return El valor solicitado para el fondo especificado.
  * @customfunction
  */
 function fci(tipoFondo, nombreFondo, fecha, campo) {
-  function esFechaValida(year, month, day) {
-    if (month < 1 || month > 12 || day < 1 || day > 31) {
-      return false;
-    }
-    var fechaUTC = new Date(Date.UTC(year, month - 1, day));
-    var fechaLocal = new Date(year, month - 1, day);
-    return fechaUTC.getUTCFullYear() === year &&
-           (fechaUTC.getUTCMonth() + 1) === month &&
-           fechaUTC.getUTCDate() === day &&
-           fechaLocal.getFullYear() === year &&
-           (fechaLocal.getMonth() + 1) === month &&
-           fechaLocal.getDate() === day;
-  }
-
-  function obtenerComponentesFecha(fechaInput) {
-    var year;
-    var month;
-    var day;
-
-    if (fechaInput instanceof Date) {
-      if (isNaN(fechaInput.getTime())) {
-        throw new Error("Fecha inválida: '" + fechaInput + "'. Usar formato 'YYYY-MM-DD' o 'MM/DD/YYYY'.");
-      }
-      year = fechaInput.getFullYear();
-      month = fechaInput.getMonth() + 1;
-      day = fechaInput.getDate();
-    } else {
-      var fechaStr = fechaInput.toString().trim();
-      var matchISO = fechaStr.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-      var matchUS = fechaStr.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
-
-      if (matchISO) {
-        year = parseInt(matchISO[1], 10);
-        month = parseInt(matchISO[2], 10);
-        day = parseInt(matchISO[3], 10);
-      } else if (matchUS) {
-        month = parseInt(matchUS[1], 10);
-        day = parseInt(matchUS[2], 10);
-        year = parseInt(matchUS[3], 10);
-      } else {
-        throw new Error("Fecha inválida: '" + fechaInput + "'. Usar formato 'YYYY-MM-DD' o 'MM/DD/YYYY'.");
-      }
-    }
-
-    if (!esFechaValida(year, month, day)) {
-      throw new Error("Fecha inválida: '" + fechaInput + "'. Usar formato 'YYYY-MM-DD' o 'MM/DD/YYYY'.");
-    }
-
-    return {
-      year: year.toString(),
-      month: month.toString().padStart(2, '0'),
-      day: day.toString().padStart(2, '0')
-    };
-  }
-
   // Normalizo entradas
   var tipo = tipoFondo ? tipoFondo.toString().toLowerCase().trim() : '';
   var nombre = nombreFondo ? nombreFondo.toString().trim() : '';
   var campoDatos = campo ? campo.toString().toLowerCase().trim() : 'vcp';
-  
-  // Validar tipo de fondo
+
+  // Validar tipo de fondo (normalización con replace global)
+  var tipoNormalizado = tipo.replace(/\s+/g, '').replace(/[óo]/g, 'o');
   var tiposPermitidos = ['mercadodinero', 'rentavariable', 'rentafija', 'rentamixta', 'retornototal'];
-  if (!tiposPermitidos.includes(tipo.replace(/\s+/g, '').replace(/[óo]/, 'o'))) {
+  if (!tiposPermitidos.includes(tipoNormalizado)) {
     throw new Error("Tipo de fondo inválido. Tipos permitidos: mercadoDinero, rentaVariable, rentaFija, rentaMixta, retornoTotal.");
   }
-  
+
   // Convertir tipo a formato de API
-  var tipoAPI = tipo.replace(/\s+/g, '').replace(/[óo]/, 'o');
+  var tipoAPI = tipoNormalizado;
   switch (tipoAPI) {
     case 'mercadodinero': tipoAPI = 'mercadoDinero'; break;
     case 'rentavariable': tipoAPI = 'rentaVariable'; break;
@@ -1072,18 +1018,18 @@ function fci(tipoFondo, nombreFondo, fecha, campo) {
     case 'rentamixta': tipoAPI = 'rentaMixta'; break;
     case 'retornototal': tipoAPI = 'retornoTotal'; break;
   }
-  
+
   // Validar el campo a consultar
   var camposPermitidos = ['vcp', 'ccp', 'patrimonio'];
   if (!camposPermitidos.includes(campoDatos)) {
     throw new Error("Campo inválido. Campos permitidos: vcp (valor cuotaparte), ccp (cantidad cuotapartes), patrimonio.");
   }
-  
+
   // Validar que se haya proporcionado un nombre de fondo
   if (!nombre) {
     throw new Error("Debe especificar un nombre de fondo.");
   }
-  
+
   // Construir URL según si se proporciona fecha o no
   var url;
   if (fecha) {
@@ -1091,25 +1037,25 @@ function fci(tipoFondo, nombreFondo, fecha, campo) {
       var componentesFecha = obtenerComponentesFecha(fecha);
       url = 'https://api.argentinadatos.com/v1/finanzas/fci/' + tipoAPI + '/' + componentesFecha.year + '/' + componentesFecha.month + '/' + componentesFecha.day + '/';
     } catch (e) {
-      throw new Error("Fecha inválida: '" + fecha + "'. Usar formato 'YYYY-MM-DD' o 'MM/DD/YYYY'.");
+      throw new Error("Fecha inválida: '" + fecha + "'. Usar formato 'YYYY-MM-DD' o 'DD/MM/YYYY'.");
     }
   } else {
     url = 'https://api.argentinadatos.com/v1/finanzas/fci/' + tipoAPI + '/ultimo';
   }
-  
+
   try {
     // Consulta al API
     var respuesta = UrlFetchApp.fetch(url, {
       muteHttpExceptions: true
     });
-    
+
     // Verificar si la respuesta es válida
     if (respuesta.getResponseCode() !== 200) {
       throw new Error("Error al consultar la API: Código " + respuesta.getResponseCode() + ". Verifique los parámetros.");
     }
-    
+
     var datos = JSON.parse(respuesta.getContentText());
-    
+
     function esFondoValido(item) {
       return item.fondo && !item.fondo.startsWith("Region:") &&
           !item.fondo.startsWith("Duration:") &&
@@ -1168,7 +1114,7 @@ function fci(tipoFondo, nombreFondo, fecha, campo) {
     }
     throw new Error("Error al consultar información de '" + tipoFondo + "': " + e.message);
   }
-} 
+}
 
 /**
  * Obtiene la lista completa de Fondos Comunes de Inversión (FCI) disponibles en Argentina.
@@ -1179,34 +1125,34 @@ function fci(tipoFondo, nombreFondo, fecha, campo) {
 function fciLista() {
   // Tipos de fondos a consultar
   var tipos = ['mercadoDinero', 'rentaVariable', 'rentaFija', 'rentaMixta', 'retornoTotal'];
-  
+
   // Matriz para almacenar todos los fondos
   var todosLosFondos = [['Nombre del Fondo', 'Tipo de Fondo', 'Valor Cuotaparte']];
-  
+
   // Recorrer cada tipo de fondo
   tipos.forEach(function(tipo) {
     try {
       // Construir URL para obtener la lista de fondos
       var url = 'https://api.argentinadatos.com/v1/finanzas/fci/' + tipo + '/ultimo';
-      
+
       // Consultar la API
       var respuesta = UrlFetchApp.fetch(url, {
         muteHttpExceptions: true
       });
-      
+
       // Verificar si la respuesta es válida
       if (respuesta.getResponseCode() === 200) {
         var datos = JSON.parse(respuesta.getContentText());
-        
+
         // Filtrar solo los fondos válidos (no categorías)
         var fondosValidos = datos.filter(function(d) {
-          return d.fondo && 
-                 !d.fondo.startsWith("Region:") && 
-                 !d.fondo.startsWith("Duration:") && 
-                 !d.fondo.startsWith("Benchmark:") && 
+          return d.fondo &&
+                 !d.fondo.startsWith("Region:") &&
+                 !d.fondo.startsWith("Duration:") &&
+                 !d.fondo.startsWith("Benchmark:") &&
                  !d.fondo.startsWith("Moneda:");
         });
-        
+
         // Agregar cada fondo a la matriz de resultados
         fondosValidos.forEach(function(fondo) {
           var nombreFormateado = tipo;
@@ -1217,7 +1163,7 @@ function fciLista() {
             case 'rentaMixta': nombreFormateado = 'Renta Mixta'; break;
             case 'retornoTotal': nombreFormateado = 'Retorno Total'; break;
           }
-          
+
           todosLosFondos.push([
             fondo.fondo,
             nombreFormateado,
@@ -1230,9 +1176,9 @@ function fciLista() {
       Logger.log("Error al consultar fondos de tipo '" + tipo + "': " + e.message);
     }
   });
-  
+
   return todosLosFondos;
-} 
+}
 
 // ================ fecha.js ================
 /**
@@ -1346,19 +1292,18 @@ function inflacion(fecha) {
   }
 
   // Si no se proporciona fecha, devolver el valor más reciente
+  // Comparar strings ISO (YYYY-MM-DD) evita desfases UTC de new Date(iso)
   if (!fecha) {
     datos.sort(function(a, b) {
-      return new Date(b.fecha) - new Date(a.fecha);
+      return b.fecha.localeCompare(a.fecha);
     });
 
     return datos[0].valor;
   }
 
   var fechaFormateada;
-  var fechaBusqueda;
   try {
     fechaFormateada = formatearFechaISO(fecha);
-    fechaBusqueda = parsearFechaLocal(fecha);
   } catch (e) {
     throw new Error("Fecha inválida: '" + fecha + "'. Usar formato 'YYYY-MM-DD' o 'DD/MM/YYYY'.");
   }
@@ -1372,12 +1317,12 @@ function inflacion(fecha) {
 
   // Si no se encuentra la fecha exacta, buscar la fecha más cercana anterior
   var fechasMenores = datos.filter(function(d) {
-    return new Date(d.fecha) <= fechaBusqueda;
+    return d.fecha <= fechaFormateada;
   });
 
   if (fechasMenores.length > 0) {
     fechasMenores.sort(function(a, b) {
-      return new Date(b.fecha) - new Date(a.fecha);
+      return b.fecha.localeCompare(a.fecha);
     });
 
     return fechasMenores[0].valor;
@@ -1385,7 +1330,7 @@ function inflacion(fecha) {
 
   // Si no hay fechas anteriores, devolver el dato más antiguo
   datos.sort(function(a, b) {
-    return new Date(a.fecha) - new Date(b.fecha);
+    return a.fecha.localeCompare(b.fecha);
   });
 
   return datos[0].valor;
@@ -1727,25 +1672,24 @@ function rendimientos(moneda, proveedor) {
   var url = 'https://api.argentinadatos.com/v1/finanzas/rendimientos';
   var respuesta = UrlFetchApp.fetch(url);
   var datos = JSON.parse(respuesta.getContentText());
-  
+
   // Normalizo entradas
   var crypto = moneda ? moneda.toString().toUpperCase().trim() : '';
   var exchange = proveedor ? proveedor.toString().toLowerCase().trim() : '';
-  
+
   // Verificar si se proporcionó la moneda
   if (!crypto) {
     throw new Error("Debe especificar una criptomoneda o moneda fiat.");
   }
-  
+
   // Si se especifica un proveedor, buscar solo en ese proveedor
   if (exchange) {
     var proveedorEncontrado = false;
-    var rendimientoEncontrado = false;
-    
+
     for (var i = 0; i < datos.length; i++) {
       if (datos[i].entidad === exchange) {
         proveedorEncontrado = true;
-        
+
         if (!datos[i].rendimientos || !datos[i].rendimientos.length) {
           continue;
         }
@@ -1753,16 +1697,15 @@ function rendimientos(moneda, proveedor) {
         // Buscar la moneda en los rendimientos del proveedor
         for (var j = 0; j < datos[i].rendimientos.length; j++) {
           if (datos[i].rendimientos[j].moneda.toUpperCase() === crypto) {
-            rendimientoEncontrado = true;
             return datos[i].rendimientos[j].apy;
           }
         }
-        
+
         // Si llegamos aquí, no se encontró la moneda en este proveedor
         throw new Error("La moneda '" + moneda + "' no está disponible en el proveedor '" + proveedor + "'.");
       }
     }
-    
+
     // Si llegamos aquí, no se encontró el proveedor
     if (!proveedorEncontrado) {
       // Obtener la lista de proveedores disponibles
@@ -1772,29 +1715,27 @@ function rendimientos(moneda, proveedor) {
   } else {
     // Si no se especifica proveedor, buscar el mejor rendimiento para la moneda
     var mejorApy = -1;
-    var mejorProveedor = "";
     var monedaEncontrada = false;
-    
-    for (var i = 0; i < datos.length; i++) {
-      var proveedor = datos[i];
 
-      if (!proveedor.rendimientos || !proveedor.rendimientos.length) {
+    for (var i = 0; i < datos.length; i++) {
+      var itemProveedor = datos[i];
+
+      if (!itemProveedor.rendimientos || !itemProveedor.rendimientos.length) {
         continue;
       }
 
-      for (var j = 0; j < proveedor.rendimientos.length; j++) {
-        if (proveedor.rendimientos[j].moneda.toUpperCase() === crypto) {
+      for (var j = 0; j < itemProveedor.rendimientos.length; j++) {
+        if (itemProveedor.rendimientos[j].moneda.toUpperCase() === crypto) {
           monedaEncontrada = true;
-          var apy = proveedor.rendimientos[j].apy;
-          
+          var apy = itemProveedor.rendimientos[j].apy;
+
           if (apy > mejorApy) {
             mejorApy = apy;
-            mejorProveedor = proveedor.entidad;
           }
         }
       }
     }
-    
+
     // Verificar si se encontró la moneda
     if (!monedaEncontrada) {
       // Obtener lista de monedas disponibles (sin duplicados)
@@ -1802,25 +1743,26 @@ function rendimientos(moneda, proveedor) {
       for (var i = 0; i < datos.length; i++) {
         if (!datos[i].rendimientos) continue;
         for (var j = 0; j < datos[i].rendimientos.length; j++) {
-          var moneda = datos[i].rendimientos[j].moneda.toUpperCase();
-          if (monedasDisponibles.indexOf(moneda) === -1) {
-            monedasDisponibles.push(moneda);
+          var mon = datos[i].rendimientos[j].moneda.toUpperCase();
+          if (monedasDisponibles.indexOf(mon) === -1) {
+            monedasDisponibles.push(mon);
           }
         }
       }
       monedasDisponibles.sort();
-      
+
       throw new Error("Moneda '" + moneda + "' no encontrada. Algunas monedas disponibles: " + monedasDisponibles.slice(0, 15).join(", ") + "...");
     }
-    
+
     // Si el mejor APY es 0, indicar que no hay rendimiento disponible
     if (mejorApy === 0) {
       return 0; // No hay rendimiento disponible para esta moneda
     }
-    
+
     return mejorApy;
   }
-} 
+}
+
 // ================ riesgopais.js ================
 /**
  * Obtiene el valor del riesgo país de Argentina.
@@ -1840,19 +1782,18 @@ function riesgopais(fecha) {
   }
 
   // Si no se proporciona fecha, devolver el valor más reciente
+  // Comparar strings ISO (YYYY-MM-DD) evita desfases UTC de new Date(iso)
   if (!fecha) {
     datos.sort(function(a, b) {
-      return new Date(b.fecha) - new Date(a.fecha);
+      return b.fecha.localeCompare(a.fecha);
     });
 
     return datos[0].valor;
   }
 
   var fechaFormateada;
-  var fechaBusqueda;
   try {
     fechaFormateada = formatearFechaISO(fecha);
-    fechaBusqueda = parsearFechaLocal(fecha);
   } catch (e) {
     throw new Error("Fecha inválida: '" + fecha + "'. Usar formato 'YYYY-MM-DD' o 'DD/MM/YYYY'.");
   }
@@ -1866,12 +1807,12 @@ function riesgopais(fecha) {
 
   // Si no se encuentra la fecha exacta, buscar la fecha más cercana anterior
   var fechasMenores = datos.filter(function(d) {
-    return new Date(d.fecha) <= fechaBusqueda;
+    return d.fecha <= fechaFormateada;
   });
 
   if (fechasMenores.length > 0) {
     fechasMenores.sort(function(a, b) {
-      return new Date(b.fecha) - new Date(a.fecha);
+      return b.fecha.localeCompare(a.fecha);
     });
 
     return fechasMenores[0].valor;
@@ -1879,7 +1820,7 @@ function riesgopais(fecha) {
 
   // Si no hay fechas anteriores, devolver el dato más antiguo
   datos.sort(function(a, b) {
-    return new Date(a.fecha) - new Date(b.fecha);
+    return a.fecha.localeCompare(b.fecha);
   });
 
   return datos[0].valor;
@@ -1972,19 +1913,18 @@ function uva(fecha) {
   }
 
   // Si no se proporciona fecha, devolver el valor más reciente
+  // Comparar strings ISO (YYYY-MM-DD) evita desfases UTC de new Date(iso)
   if (!fecha) {
     datos.sort(function(a, b) {
-      return new Date(b.fecha) - new Date(a.fecha);
+      return b.fecha.localeCompare(a.fecha);
     });
 
     return datos[0].valor;
   }
 
   var fechaFormateada;
-  var fechaBusqueda;
   try {
     fechaFormateada = formatearFechaISO(fecha);
-    fechaBusqueda = parsearFechaLocal(fecha);
   } catch (e) {
     throw new Error("Fecha inválida: '" + fecha + "'. Usar formato 'YYYY-MM-DD' o 'DD/MM/YYYY'.");
   }
@@ -1998,12 +1938,12 @@ function uva(fecha) {
 
   // Si no se encuentra la fecha exacta, buscar la fecha más cercana anterior
   var fechasMenores = datos.filter(function(d) {
-    return new Date(d.fecha) <= fechaBusqueda;
+    return d.fecha <= fechaFormateada;
   });
 
   if (fechasMenores.length > 0) {
     fechasMenores.sort(function(a, b) {
-      return new Date(b.fecha) - new Date(a.fecha);
+      return b.fecha.localeCompare(a.fecha);
     });
 
     return fechasMenores[0].valor;
@@ -2011,7 +1951,7 @@ function uva(fecha) {
 
   // Si no hay fechas anteriores, devolver el dato más antiguo
   datos.sort(function(a, b) {
-    return new Date(a.fecha) - new Date(b.fecha);
+    return a.fecha.localeCompare(b.fecha);
   });
 
   return datos[0].valor;

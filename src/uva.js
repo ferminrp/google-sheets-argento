@@ -16,19 +16,18 @@ function uva(fecha) {
   }
 
   // Si no se proporciona fecha, devolver el valor más reciente
+  // Comparar strings ISO (YYYY-MM-DD) evita desfases UTC de new Date(iso)
   if (!fecha) {
     datos.sort(function(a, b) {
-      return new Date(b.fecha) - new Date(a.fecha);
+      return b.fecha.localeCompare(a.fecha);
     });
 
     return datos[0].valor;
   }
 
   var fechaFormateada;
-  var fechaBusqueda;
   try {
     fechaFormateada = formatearFechaISO(fecha);
-    fechaBusqueda = parsearFechaLocal(fecha);
   } catch (e) {
     throw new Error("Fecha inválida: '" + fecha + "'. Usar formato 'YYYY-MM-DD' o 'DD/MM/YYYY'.");
   }
@@ -42,12 +41,12 @@ function uva(fecha) {
 
   // Si no se encuentra la fecha exacta, buscar la fecha más cercana anterior
   var fechasMenores = datos.filter(function(d) {
-    return new Date(d.fecha) <= fechaBusqueda;
+    return d.fecha <= fechaFormateada;
   });
 
   if (fechasMenores.length > 0) {
     fechasMenores.sort(function(a, b) {
-      return new Date(b.fecha) - new Date(a.fecha);
+      return b.fecha.localeCompare(a.fecha);
     });
 
     return fechasMenores[0].valor;
@@ -55,7 +54,7 @@ function uva(fecha) {
 
   // Si no hay fechas anteriores, devolver el dato más antiguo
   datos.sort(function(a, b) {
-    return new Date(a.fecha) - new Date(b.fecha);
+    return a.fecha.localeCompare(b.fecha);
   });
 
   return datos[0].valor;

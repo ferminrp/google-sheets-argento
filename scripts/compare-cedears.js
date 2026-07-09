@@ -3,8 +3,12 @@
  * Compare data/cedears.json against external CEDEAR ratio sources.
  */
 const fs = require('fs');
+const path = require('path');
 const https = require('https');
 const http = require('http');
+
+const ROOT = path.join(__dirname, '..');
+const OUTPUT_DIR = path.join(__dirname, 'output');
 
 function fetch(url) {
   return new Promise((resolve, reject) => {
@@ -55,7 +59,7 @@ function ratiosEqual(a, b) {
 }
 
 function loadOurs() {
-  const data = JSON.parse(fs.readFileSync('data/cedears.json', 'utf8'));
+  const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/cedears.json'), 'utf8'));
   const map = new Map();
   for (const row of data) {
     map.set(row.Cedears.toUpperCase(), {
@@ -158,6 +162,13 @@ function buildMarcosAliasMap(marcos) {
     }
   }
   return byUnderlying;
+}
+
+function resolveMarcosRow(ticker, marcos, byUnderlying) {
+  const direct = marcos.get(ticker);
+  if (direct) return direct;
+  const candidates = byUnderlying.get(ticker) || [];
+  return candidates.length === 1 ? candidates[0] : null;
 }
 
 function compareMarcosWithAliases(ours, marcos) {
@@ -281,10 +292,12 @@ async function main() {
     console.log(`  ${label}: nosotros=${d.ours.ratio} | Marcos=${d.marcos.ratio}`);
   }
 
+  const marcosByUnderlying = buildMarcosAliasMap(marcos);
+
   // Cross-source: items in all 3 externals but not ours
   const inAllExternal = [];
   for (const [ticker] of gabriel) {
-    if (logos.has(ticker) && marcos.has(ticker) && !ours.has(ticker)) {
+    if (logos.has(ticker) && resolveMarcosRow(ticker, marcos, marcosByUnderlying) && !ours.has(ticker)) {
       inAllExternal.push(ticker);
     }
   }
@@ -295,7 +308,7 @@ async function main() {
   for (const [ticker, our] of ours) {
     const g = gabriel.get(ticker);
     const l = logos.get(ticker);
-    const m = marcos.get(ticker);
+    const m = resolveMarcosRow(ticker, marcos, marcosByUnderlying);
     if (!g || !l || !m) continue;
     const gL = ratiosEqual(g.ratio, l.ratio);
     const gM = ratiosEqual(g.ratio, m.ratio);
@@ -320,9 +333,10 @@ async function main() {
     console.log(`  ${d.ticker}: nosotros=${d.ours} | consenso=${d.consensus}`);
   }
 
-  fs.mkdirSync('scripts/output', { recursive: true });
-  fs.writeFileSync('scripts/output/cedears-comparison.json', JSON.stringify(report, null, 2));
-  console.log('\nReporte JSON guardado en scripts/output/cedears-comparison.json');
+  fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+  const reportPath = path.join(OUTPUT_DIR, 'cedears-comparison.json');
+  fs.writeFileSync(reportPath, JSON.stringify(report, null, 2));
+  console.log(`\nReporte JSON guardado en ${reportPath}`);
 }
 
 main().catch((err) => {

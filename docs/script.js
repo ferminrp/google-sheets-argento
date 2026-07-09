@@ -1,19 +1,6 @@
 (function () {
   'use strict';
 
-  var DOC_BASE =
-    'https://github.com/ferminrp/google-sheets-argento/blob/main/doc/';
-  var REPO = 'https://github.com/ferminrp/google-sheets-argento';
-  var RAW_ALL_IN_ONE =
-    'https://raw.githubusercontent.com/ferminrp/google-sheets-argento/main/all-in-one.js';
-
-  // Expose raw link for any UI that needs it
-  window.GSA = {
-    docBase: DOC_BASE,
-    repo: REPO,
-    rawAllInOne: RAW_ALL_IN_ONE,
-  };
-
   // ——— Mobile nav ———
   var toggle = document.querySelector('.nav-toggle');
   var links = document.querySelector('.nav-links');

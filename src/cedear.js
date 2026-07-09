@@ -10,7 +10,7 @@
  * @return El valor del atributo solicitado para el símbolo especificado.
  * @customfunction
  */
-function cedear(symbol, value) {
+function CEDEAR(symbol, value) {
   if (symbol === undefined || symbol === null || symbol === '') {
     throw new Error("Símbolo no proporcionado. Debe ingresar un símbolo válido (ej: 'AAPL').");
   }
@@ -104,6 +104,6 @@ function getCedearDataFromJson(symbol, attribute) {
  * @return Un arreglo bidimensional con todos los CEDEARs y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
  * @customfunction
  */
-function cedearLista() {
+function CEDEARLISTA() {
   return panelLista('https://data912.com/live/arg_cedears', 'panel:arg_cedears');
 }

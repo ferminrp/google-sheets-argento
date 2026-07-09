@@ -5,9 +5,9 @@ function createResponse(statusCode, body) {
   };
 }
 
-describe("fci", () => {
-  let fci;
-  let fciLista;
+describe("FCI", () => {
+  let FCI;
+  let FCILISTA;
   let fetchMock;
 
   beforeEach(() => {
@@ -21,7 +21,7 @@ describe("fci", () => {
     global.DriveApp = {};
     global.Logger = { log: jest.fn() };
 
-    ({ fci, fciLista } = require("./test-wrapper"));
+    ({ FCI, FCILISTA } = require("./test-wrapper"));
   });
 
   afterEach(() => {
@@ -43,7 +43,7 @@ describe("fci", () => {
       ])
     );
 
-    const result = fci("rentaMixta", "Cocos Rendimiento - Clase A", "2026-04-13");
+    const result = FCI("rentaMixta", "Cocos Rendimiento - Clase A", "2026-04-13");
 
     expect(result).toBe(123.45);
     expect(fetchMock).toHaveBeenCalledTimes(1);
@@ -63,7 +63,7 @@ describe("fci", () => {
       ])
     );
 
-    const result = fci("rentaMixta", "Cocos Rendimiento - Clase A", "13/04/2026");
+    const result = FCI("rentaMixta", "Cocos Rendimiento - Clase A", "13/04/2026");
 
     expect(result).toBe(200);
     expect(fetchMock).toHaveBeenCalledTimes(1);
@@ -73,14 +73,14 @@ describe("fci", () => {
   test("rechaza MM/DD/YYYY ambiguo (usa formato argentino DD/MM)", () => {
     // 04/13/2026 se interpreta como día=4, mes=13 → inválido
     expect(() =>
-      fci("rentaMixta", "Cocos Rendimiento - Clase A", "04/13/2026")
+      FCI("rentaMixta", "Cocos Rendimiento - Clase A", "04/13/2026")
     ).toThrow("Fecha inválida");
     expect(fetchMock).not.toHaveBeenCalled();
   });
 
   test("rechaza fecha inválida y no consulta la API", () => {
     expect(() =>
-      fci("rentaMixta", "Cocos Rendimiento - Clase A", "2026-13-40")
+      FCI("rentaMixta", "Cocos Rendimiento - Clase A", "2026-13-40")
     ).toThrow("Fecha inválida");
     expect(fetchMock).not.toHaveBeenCalled();
   });
@@ -97,7 +97,7 @@ describe("fci", () => {
       ])
     );
 
-    const result = fci("rentaMixta", "Cocos Rendimiento - Clase A");
+    const result = FCI("rentaMixta", "Cocos Rendimiento - Clase A");
 
     expect(result).toBe(321);
     expect(fetchMock).toHaveBeenCalledTimes(1);
@@ -116,7 +116,7 @@ describe("fci", () => {
       ])
     );
 
-    const result = fci("rentaMixta", "cocos rendimiento - clase a");
+    const result = FCI("rentaMixta", "cocos rendimiento - clase a");
 
     expect(result).toBe(111);
   });
@@ -133,14 +133,14 @@ describe("fci", () => {
       ])
     );
 
-    const result = fci("retornoTotal", "Cocos Pesos Plus - Clase A");
+    const result = FCI("retornoTotal", "Cocos Pesos Plus - Clase A");
 
     expect(result).toBe(555.55);
     expect(fetchMock).toHaveBeenCalledTimes(1);
     expect(fetchMock.mock.calls[0][0]).toContain("/retornoTotal/ultimo");
   });
 
-  test("fciLista incluye la categoría retornoTotal", () => {
+  test("FCILISTA incluye la categoría retornoTotal", () => {
     fetchMock.mockImplementation((url) => {
       if (url.includes("/retornoTotal/ultimo")) {
         return createResponse(200, [
@@ -153,7 +153,7 @@ describe("fci", () => {
       return createResponse(200, []);
     });
 
-    const result = fciLista();
+    const result = FCILISTA();
 
     expect(fetchMock).toHaveBeenCalledTimes(5);
     expect(fetchMock).toHaveBeenCalledWith(

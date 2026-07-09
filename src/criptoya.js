@@ -9,7 +9,7 @@
  * @return El precio de la operación solicitada.
  * @customfunction
  */
-function criptoya(coin, fiat, volumen, exchange, operacion) {
+function CRIPTOYA(coin, fiat, volumen, exchange, operacion) {
   if (coin === undefined || coin === null || coin === '') {
     throw new Error("Criptomoneda no proporcionada (ej: 'BTC', 'USDT').");
   }

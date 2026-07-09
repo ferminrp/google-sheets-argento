@@ -25,7 +25,7 @@ CONSTANTS.ATRIBUTOS_PANEL = ['c', 'v', 'q_bid', 'px_bid', 'px_ask', 'q_ask', 'q_
  * @return El valor numérico del atributo solicitado para el símbolo especificado.
  * @customfunction
  */
-function acciones(symbol, value) {
+function ACCIONES(symbol, value) {
   return panelCotizacion(
     'https://data912.com/live/arg_stocks',
     symbol,
@@ -41,7 +41,7 @@ function acciones(symbol, value) {
  * @return Un arreglo bidimensional con todas las acciones y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
  * @customfunction
  */
-function accionesLista() {
+function ACCIONESLISTA() {
   return panelLista('https://data912.com/live/arg_stocks', 'panel:arg_stocks');
 }
 
@@ -53,7 +53,7 @@ function accionesLista() {
  * @return {Array} Un array de variables del BCRA donde cada elemento es [idVariable, valor]
  * @customfunction
  */
-function bcraVariables() {
+function BCRAVARIABLES() {
   try {
     var data = fetchBcraMonetarias_();
     return data.results.map(function(item) {
@@ -72,7 +72,7 @@ function bcraVariables() {
  * @return The value of the specified variable
  * @customfunction
  */
-function bcra(id) {
+function BCRA(id) {
   if (id === undefined || id === null || id === '' || isNaN(parseInt(id, 10))) {
     throw new Error("ID inválido. Debe ser un número válido (1, 4, 5, 6, etc).");
   }
@@ -123,7 +123,7 @@ function fetchBcraMonetarias_() {
  * @return El valor numérico del atributo solicitado para el símbolo especificado.
  * @customfunction
  */
-function bonos(symbol, value) {
+function BONOS(symbol, value) {
   return panelCotizacion(
     'https://data912.com/live/arg_bonds',
     symbol,
@@ -139,7 +139,7 @@ function bonos(symbol, value) {
  * @return {Array} Un arreglo con todos los bonos y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
  * @customfunction
  */
-function bonosLista() {
+function BONOSLISTA() {
   return panelLista('https://data912.com/live/arg_bonds', 'panel:arg_bonds');
 }
 
@@ -169,7 +169,7 @@ function bonosLista() {
  * @return {number} Importe neto de la operación.
  * @customfunction
  */
-function caucionColocadora(
+function CAUCIONCOLOCADORA(
   dias,
   tna,
   importeBruto,
@@ -180,7 +180,7 @@ function caucionColocadora(
       "Para caución colocadora, los días deben ser un número positivo."
     );
   }
-  return calcularCaucion(-dias, tna, importeBruto, arancelCaucionColocadoraTna)
+  return CALCULARCAUCION(-dias, tna, importeBruto, arancelCaucionColocadoraTna)
     .importeNeto;
 }
 
@@ -195,13 +195,13 @@ function caucionColocadora(
  * @return {number} Importe neto de la operación.
  * @customfunction
  */
-function caucionTomadora(dias, tna, importeBruto, arancelCaucionTomadoraTna) {
+function CAUCIONTOMADORA(dias, tna, importeBruto, arancelCaucionTomadoraTna) {
   if (dias <= 0) {
     throw new Error(
       "Para caución tomadora, los días deben ser un número positivo."
     );
   }
-  return calcularCaucion(
+  return CALCULARCAUCION(
     dias,
     tna,
     importeBruto,
@@ -221,14 +221,14 @@ function caucionTomadora(dias, tna, importeBruto, arancelCaucionTomadoraTna) {
  * @return {Object} Un objeto con todos los valores calculados de la operación.
  * @customfunction
  */
-function caucion(
+function CAUCION(
   dias,
   tna,
   importeBruto,
   arancelCaucionColocadoraTna,
   arancelCaucionTomadoraTna
 ) {
-  const calculoCaucion = calcularCaucion(
+  const calculoCaucion = CALCULARCAUCION(
     dias,
     tna,
     importeBruto,
@@ -249,14 +249,14 @@ function caucion(
  * @return {Array} Un array con todos los valores calculados de la operación.
  * @customfunction
  */
-function caucionDetallada(
+function CAUCIONDETALLADA(
   dias,
   tna,
   importeBruto,
   arancelCaucionColocadoraTna,
   arancelCaucionTomadoraTna
 ) {
-  const resultado = calcularCaucion(
+  const resultado = CALCULARCAUCION(
     dias,
     tna,
     importeBruto,
@@ -367,7 +367,7 @@ function calcularIva(total) {
  * @return {Object} Un objeto con todos los valores calculados de la operación.
  * @customfunction
  */
-function calcularCaucion(
+function CALCULARCAUCION(
   dias,
   tna,
   importeBruto,
@@ -457,7 +457,7 @@ function calcularCaucion(
  * @return El valor del atributo solicitado para el símbolo especificado.
  * @customfunction
  */
-function cedear(symbol, value) {
+function CEDEAR(symbol, value) {
   if (symbol === undefined || symbol === null || symbol === '') {
     throw new Error("Símbolo no proporcionado. Debe ingresar un símbolo válido (ej: 'AAPL').");
   }
@@ -551,7 +551,7 @@ function getCedearDataFromJson(symbol, attribute) {
  * @return Un arreglo bidimensional con todos los CEDEARs y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
  * @customfunction
  */
-function cedearLista() {
+function CEDEARLISTA() {
   return panelLista('https://data912.com/live/arg_cedears', 'panel:arg_cedears');
 }
 
@@ -567,7 +567,7 @@ function cedearLista() {
  * @return El precio de la operación solicitada.
  * @customfunction
  */
-function criptoya(coin, fiat, volumen, exchange, operacion) {
+function CRIPTOYA(coin, fiat, volumen, exchange, operacion) {
   if (coin === undefined || coin === null || coin === '') {
     throw new Error("Criptomoneda no proporcionada (ej: 'BTC', 'USDT').");
   }
@@ -658,7 +658,7 @@ function criptoya(coin, fiat, volumen, exchange, operacion) {
  * @return El precio actual de la criptomoneda especificada en la moneda indicada.
  * @customfunction
  */
-function crypto(symbol, moneda) {
+function CRYPTO(symbol, moneda) {
   if (symbol === undefined || symbol === null || symbol === '') {
     throw new Error("Símbolo no proporcionado. Debe ingresar un símbolo válido (ej: 'BTC').");
   }
@@ -699,7 +699,7 @@ function crypto(symbol, moneda) {
  * @return El valor numérico de la operación solicitada.
  * @customfunction
  */
-function dolar(tipo, operacion) {
+function DOLAR(tipo, operacion) {
   if (tipo === undefined || tipo === null || tipo === '') {
     throw new Error("Tipo no proporcionado. Usa 'blue', 'oficial', 'mep', 'ccl', etc.");
   }
@@ -766,7 +766,7 @@ function normalizarCasaDolar_(tipo) {
  * @return {number} Valor de la cotización para el tipo y fecha solicitados
  * @customfunction
  */
-function dolar_historico(tipo, fecha, valor) {
+function DOLARHISTORICO(tipo, fecha, valor) {
   valor = valor || "venta";
 
   if (!tipo) {
@@ -819,7 +819,7 @@ function dolar_historico(tipo, fecha, valor) {
  * @return {Array} Matriz con las cotizaciones de cada tipo de dólar para la fecha
  * @customfunction
  */
-function dolar_historico_todos(fecha) {
+function DOLARHISTORICOTODOS(fecha) {
   var fechaISO;
   if (!fecha) {
     var hoy = new Date();
@@ -871,7 +871,7 @@ function dolar_historico_todos(fecha) {
  * @return El valor solicitado para el fondo especificado.
  * @customfunction
  */
-function fci(tipoFondo, nombreFondo, fecha, campo) {
+function FCI(tipoFondo, nombreFondo, fecha, campo) {
   var tipo = tipoFondo ? tipoFondo.toString().toLowerCase().trim() : '';
   var nombre = nombreFondo ? nombreFondo.toString().trim() : '';
   var campoDatos = campo ? campo.toString().toLowerCase().trim() : 'vcp';
@@ -995,7 +995,7 @@ function fci(tipoFondo, nombreFondo, fecha, campo) {
  * @return {Array} Una matriz con todos los fondos disponibles, incluyendo el nombre, tipo y valor de cuotaparte.
  * @customfunction
  */
-function fciLista() {
+function FCILISTA() {
   var tipos = ['mercadoDinero', 'rentaVariable', 'rentaFija', 'rentaMixta', 'retornoTotal'];
   var todosLosFondos = [['Nombre del Fondo', 'Tipo de Fondo', 'Valor Cuotaparte']];
 
@@ -1277,7 +1277,7 @@ function fetchJson(url, options) {
  * @return El valor numérico del índice de inflación para la fecha especificada o el último disponible.
  * @customfunction
  */
-function inflacion(fecha) {
+function INFLACION(fecha) {
   var datos = fetchJson('https://api.argentinadatos.com/v1/finanzas/indices/inflacion', {
     cacheKey: 'api:ad:inflacion',
     cacheTtlSeconds: 300
@@ -1334,7 +1334,7 @@ function inflacion(fecha) {
  * @return The specified value for the given treasury bill
  * @customfunction
  */
-function letras(symbol, valor) {
+function LETRAS(symbol, valor) {
   return panelCotizacion(
     'https://data912.com/live/arg_notes',
     symbol,
@@ -1350,7 +1350,7 @@ function letras(symbol, valor) {
  * @return Un arreglo bidimensional con todas las letras y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
  * @customfunction
  */
-function letrasLista() {
+function LETRASLISTA() {
   return panelLista('https://data912.com/live/arg_notes', 'panel:arg_notes');
 }
 
@@ -1447,7 +1447,7 @@ function panelLista(url, cacheKey) {
  * @return El valor numérico del atributo solicitado para el símbolo especificado.
  * @customfunction
  */
-function obligaciones(symbol, value) {
+function OBLIGACIONES(symbol, value) {
   return panelCotizacion(
     'https://data912.com/live/arg_corp',
     symbol,
@@ -1463,7 +1463,7 @@ function obligaciones(symbol, value) {
  * @return {Array} Un arreglo con todas las obligaciones negociables y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
  * @customfunction
  */
-function obligacionesLista() {
+function OBLIGACIONESLISTA() {
   return panelLista('https://data912.com/live/arg_corp', 'panel:arg_corp');
 }
 
@@ -1478,7 +1478,7 @@ function obligacionesLista() {
  * @return El valor numérico del atributo solicitado para el símbolo especificado.
  * @customfunction
  */
-function opciones(symbol, value) {
+function OPCIONES(symbol, value) {
   return panelCotizacion(
     'https://data912.com/live/arg_options',
     symbol,
@@ -1494,7 +1494,7 @@ function opciones(symbol, value) {
  * @return Un arreglo bidimensional con todas las opciones y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
  * @customfunction
  */
-function opcionesLista() {
+function OPCIONESLISTA() {
   return panelLista('https://data912.com/live/arg_options', 'panel:arg_options');
 }
 
@@ -1507,7 +1507,7 @@ function opcionesLista() {
  * @return La tasa nominal anual (TNA) expresada como porcentaje.
  * @customfunction
  */
-function plazofijo(banco, tipoCliente) {
+function PLAZOFIJO(banco, tipoCliente) {
   var datos = fetchJson('https://api.argentinadatos.com/v1/finanzas/tasas/plazoFijo', {
     cacheKey: 'api:ad:plazofijo',
     cacheTtlSeconds: 120
@@ -1611,7 +1611,7 @@ function plazofijo(banco, tipoCliente) {
  * @return El APY (rendimiento anual) expresado como porcentaje.
  * @customfunction
  */
-function rendimientos(moneda, proveedor) {
+function RENDIMIENTOS(moneda, proveedor) {
   var datos = fetchJson('https://api.argentinadatos.com/v1/finanzas/rendimientos', {
     cacheKey: 'api:ad:rendimientos',
     cacheTtlSeconds: 120
@@ -1715,7 +1715,7 @@ function rendimientos(moneda, proveedor) {
  * @return El valor numérico del riesgo país para la fecha especificada o el último disponible.
  * @customfunction
  */
-function riesgopais(fecha) {
+function RIESGOPAIS(fecha) {
   var datos = fetchJson('https://api.argentinadatos.com/v1/finanzas/indices/riesgo-pais', {
     cacheKey: 'api:ad:riesgo-pais',
     cacheTtlSeconds: 300
@@ -1774,7 +1774,7 @@ function riesgopais(fecha) {
  * @return El valor numérico del atributo solicitado para el símbolo especificado.
  * @customfunction
  */
-function usa_stocks(symbol, value) {
+function USASTOCKS(symbol, value) {
   return panelCotizacion(
     'https://data912.com/live/usa_stocks',
     symbol,
@@ -1790,7 +1790,7 @@ function usa_stocks(symbol, value) {
  * @return Un arreglo bidimensional con todas las acciones y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
  * @customfunction
  */
-function usa_stocksLista() {
+function USASTOCKSLISTA() {
   return panelLista('https://data912.com/live/usa_stocks', 'panel:usa_stocks');
 }
 
@@ -1802,7 +1802,7 @@ function usa_stocksLista() {
  * @return El valor numérico del índice UVA para la fecha especificada o el último disponible.
  * @customfunction
  */
-function uva(fecha) {
+function UVA(fecha) {
   var datos = fetchJson('https://api.argentinadatos.com/v1/finanzas/indices/uva', {
     cacheKey: 'api:ad:uva',
     cacheTtlSeconds: 300

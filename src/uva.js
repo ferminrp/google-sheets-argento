@@ -5,7 +5,7 @@
  * @return El valor numérico del índice UVA para la fecha especificada o el último disponible.
  * @customfunction
  */
-function uva(fecha) {
+function UVA(fecha) {
   var datos = fetchJson('https://api.argentinadatos.com/v1/finanzas/indices/uva', {
     cacheKey: 'api:ad:uva',
     cacheTtlSeconds: 300

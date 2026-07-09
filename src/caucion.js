@@ -18,7 +18,7 @@ const ARANCEL_CAUCION_TOMADORA_TNA = 4.0 / 100;
  * @return {number} Importe neto de la operación.
  * @customfunction
  */
-function caucionColocadora(
+function CAUCIONCOLOCADORA(
   dias,
   tna,
   importeBruto,
@@ -29,7 +29,7 @@ function caucionColocadora(
       "Para caución colocadora, los días deben ser un número positivo."
     );
   }
-  return calcularCaucion(-dias, tna, importeBruto, arancelCaucionColocadoraTna)
+  return CALCULARCAUCION(-dias, tna, importeBruto, arancelCaucionColocadoraTna)
     .importeNeto;
 }
 
@@ -44,13 +44,13 @@ function caucionColocadora(
  * @return {number} Importe neto de la operación.
  * @customfunction
  */
-function caucionTomadora(dias, tna, importeBruto, arancelCaucionTomadoraTna) {
+function CAUCIONTOMADORA(dias, tna, importeBruto, arancelCaucionTomadoraTna) {
   if (dias <= 0) {
     throw new Error(
       "Para caución tomadora, los días deben ser un número positivo."
     );
   }
-  return calcularCaucion(
+  return CALCULARCAUCION(
     dias,
     tna,
     importeBruto,
@@ -70,14 +70,14 @@ function caucionTomadora(dias, tna, importeBruto, arancelCaucionTomadoraTna) {
  * @return {Object} Un objeto con todos los valores calculados de la operación.
  * @customfunction
  */
-function caucion(
+function CAUCION(
   dias,
   tna,
   importeBruto,
   arancelCaucionColocadoraTna,
   arancelCaucionTomadoraTna
 ) {
-  const calculoCaucion = calcularCaucion(
+  const calculoCaucion = CALCULARCAUCION(
     dias,
     tna,
     importeBruto,
@@ -98,14 +98,14 @@ function caucion(
  * @return {Array} Un array con todos los valores calculados de la operación.
  * @customfunction
  */
-function caucionDetallada(
+function CAUCIONDETALLADA(
   dias,
   tna,
   importeBruto,
   arancelCaucionColocadoraTna,
   arancelCaucionTomadoraTna
 ) {
-  const resultado = calcularCaucion(
+  const resultado = CALCULARCAUCION(
     dias,
     tna,
     importeBruto,
@@ -216,7 +216,7 @@ function calcularIva(total) {
  * @return {Object} Un objeto con todos los valores calculados de la operación.
  * @customfunction
  */
-function calcularCaucion(
+function CALCULARCAUCION(
   dias,
   tna,
   importeBruto,

@@ -7,7 +7,7 @@ Esta función devuelve el valor del riesgo país de Argentina.
 En cualquier celda de la hoja, escribe:
 
 ```
-=riesgopais(fecha)
+=RIESGOPAIS(fecha)
 ```
 
 ## Parámetros
@@ -21,10 +21,10 @@ En cualquier celda de la hoja, escribe:
 
 | Fórmula | Descripción |
 |---------|-------------|
-| `=riesgopais()` | Valor del riesgo país más reciente |
-| `=riesgopais("2023-03-31")` | Valor del riesgo país para el 31 de marzo de 2023 |
-| `=riesgopais("03/31/2023")` | Mismo resultado que el anterior |
-| `=riesgopais(A1)` | Valor del riesgo país para la fecha en la celda A1 |
+| `=RIESGOPAIS()` | Valor del riesgo país más reciente |
+| `=RIESGOPAIS("2023-03-31")` | Valor del riesgo país para el 31 de marzo de 2023 |
+| `=RIESGOPAIS("03/31/2023")` | Mismo resultado que el anterior |
+| `=RIESGOPAIS(A1)` | Valor del riesgo país para la fecha en la celda A1 |
 
 ## Errores comunes
 

@@ -5,7 +5,7 @@
  * @return {Array} Un array de variables del BCRA donde cada elemento es [idVariable, valor]
  * @customfunction
  */
-function bcraVariables() {
+function BCRAVARIABLES() {
   try {
     var data = fetchBcraMonetarias_();
     return data.results.map(function(item) {
@@ -24,7 +24,7 @@ function bcraVariables() {
  * @return The value of the specified variable
  * @customfunction
  */
-function bcra(id) {
+function BCRA(id) {
   if (id === undefined || id === null || id === '' || isNaN(parseInt(id, 10))) {
     throw new Error("ID inválido. Debe ser un número válido (1, 4, 5, 6, etc).");
   }

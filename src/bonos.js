@@ -8,7 +8,7 @@
  * @return El valor numérico del atributo solicitado para el símbolo especificado.
  * @customfunction
  */
-function bonos(symbol, value) {
+function BONOS(symbol, value) {
   return panelCotizacion(
     'https://data912.com/live/arg_bonds',
     symbol,
@@ -24,6 +24,6 @@ function bonos(symbol, value) {
  * @return {Array} Un arreglo con todos los bonos y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
  * @customfunction
  */
-function bonosLista() {
+function BONOSLISTA() {
   return panelLista('https://data912.com/live/arg_bonds', 'panel:arg_bonds');
 }

@@ -56,7 +56,7 @@
         <h1>Google Sheets Argento</h1>
         <p class="hero-sub">
           Funciones listas para pegar en tu planilla: dólar, mercado argentino,
-          CEDEARs, inflación, UVA, crypto y más. Sin add-ons de pago.
+          CEDEARs, inflación, UVA, CRYPTO y más. Sin add-ons de pago.
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#instalacion">Instalar en 2 minutos</a>
@@ -83,7 +83,7 @@
             <tbody>
               <tr>
                 <td class="cell-label">Dólar blue (venta)</td>
-                <td class="cell-formula">=dolar("blue")</td>
+                <td class="cell-formula">=DOLAR("blue")</td>
                 <td class="cell-value" data-demo="blue" aria-busy="true">
                   <span class="cell-skeleton" aria-hidden="true"></span>
                   <span class="cell-value-text sr-only">Cargando…</span>
@@ -91,7 +91,7 @@
               </tr>
               <tr>
                 <td class="cell-label">MEP</td>
-                <td class="cell-formula">=dolar("mep";"venta")</td>
+                <td class="cell-formula">=DOLAR("mep";"venta")</td>
                 <td class="cell-value" data-demo="mep" aria-busy="true">
                   <span class="cell-skeleton" aria-hidden="true"></span>
                   <span class="cell-value-text sr-only">Cargando…</span>
@@ -99,7 +99,7 @@
               </tr>
               <tr>
                 <td class="cell-label">Galicia (precio)</td>
-                <td class="cell-formula">=acciones("GGAL";"c")</td>
+                <td class="cell-formula">=ACCIONES("GGAL";"c")</td>
                 <td class="cell-value" data-demo="ggal" aria-busy="true">
                   <span class="cell-skeleton" aria-hidden="true"></span>
                   <span class="cell-value-text sr-only">Cargando…</span>
@@ -107,7 +107,7 @@
               </tr>
               <tr>
                 <td class="cell-label">Riesgo país</td>
-                <td class="cell-formula">=riesgopais()</td>
+                <td class="cell-formula">=RIESGOPAIS()</td>
                 <td class="cell-value" data-demo="riesgo" aria-busy="true">
                   <span class="cell-skeleton" aria-hidden="true"></span>
                   <span class="cell-value-text sr-only">Cargando…</span>
@@ -133,32 +133,32 @@
           <article class="card">
             <h3>Dólar y BCRA</h3>
             <p>Blue, oficial, MEP, CCL, tarjeta, histórico y variables del BCRA.</p>
-            <code>=dolar("blue")</code>
+            <code>=DOLAR("blue")</code>
           </article>
           <article class="card">
             <h3>Mercado argentino</h3>
             <p>Acciones, bonos, letras, opciones y obligaciones negociables.</p>
-            <code>=acciones("YPF";"c")</code>
+            <code>=ACCIONES("YPF";"c")</code>
           </article>
           <article class="card">
             <h3>CEDEARs y USA</h3>
             <p>Precios, ratios y paneles de CEDEARs y acciones de EE.UU.</p>
-            <code>=cedear("AAPL";"c")</code>
+            <code>=CEDEAR("AAPL";"c")</code>
           </article>
           <article class="card">
             <h3>Indicadores</h3>
             <p>Inflación mensual, UVA y riesgo país, con fecha opcional.</p>
-            <code>=inflacion()</code>
+            <code>=INFLACION()</code>
           </article>
           <article class="card">
             <h3>Crypto</h3>
             <p>Precios spot y comparador por exchange (CriptoYa), más APYs.</p>
-            <code>=criptoya("BTC";"ARS")</code>
+            <code>=CRIPTOYA("BTC";"ARS")</code>
           </article>
           <article class="card">
             <h3>Inversiones</h3>
             <p>Plazos fijos, FCI y cálculo de cauciones tomadora/colocadora.</p>
-            <code>=plazofijo("Nacion")</code>
+            <code>=PLAZOFIJO("Nacion")</code>
           </article>
         </div>
       </div>
@@ -211,7 +211,7 @@
                 el script (acceso a servicios externos). Aceptá y listo.
               </p>
               <div class="code-block">
-                <pre>=dolar("blue")</pre>
+                <pre>=DOLAR("blue")</pre>
               </div>
             </div>
           </li>
@@ -246,75 +246,75 @@
             </thead>
             <tbody>
               <tr>
-                <td><code>=dolar("blue")</code></td>
+                <td><code>=DOLAR("blue")</code></td>
                 <td>Venta del dólar blue (default)</td>
               </tr>
               <tr>
-                <td><code>=dolar("mep";"venta")</code></td>
+                <td><code>=DOLAR("mep";"venta")</code></td>
                 <td>MEP (alias de bolsa)</td>
               </tr>
               <tr>
-                <td><code>=dolar("ccl";"promedio")</code></td>
+                <td><code>=DOLAR("ccl";"promedio")</code></td>
                 <td>CCL promedio (alias de contadoconliqui)</td>
               </tr>
               <tr>
-                <td><code>=dolar_historico("blue";"15/01/2024")</code></td>
+                <td><code>=DOLARHISTORICO("blue";"15/01/2024")</code></td>
                 <td>Blue en una fecha (también acepta YYYY-MM-DD)</td>
               </tr>
               <tr>
-                <td><code>=acciones("GGAL";"c")</code></td>
+                <td><code>=ACCIONES("GGAL";"c")</code></td>
                 <td>Precio de Galicia</td>
               </tr>
               <tr>
-                <td><code>=accionesLista()</code></td>
+                <td><code>=ACCIONESLISTA()</code></td>
                 <td>Tabla con todo el panel de acciones AR</td>
               </tr>
               <tr>
-                <td><code>=bonos("AL30";"pct_change")</code></td>
+                <td><code>=BONOS("AL30";"pct_change")</code></td>
                 <td>Variación diaria del AL30</td>
               </tr>
               <tr>
-                <td><code>=cedear("AAPL";"c")</code></td>
+                <td><code>=CEDEAR("AAPL";"c")</code></td>
                 <td>Precio del CEDEAR de Apple</td>
               </tr>
               <tr>
-                <td><code>=cedear("AAPL";"ratio")</code></td>
+                <td><code>=CEDEAR("AAPL";"ratio")</code></td>
                 <td>Ratio CEDEAR / acción</td>
               </tr>
               <tr>
-                <td><code>=inflacion()</code></td>
+                <td><code>=INFLACION()</code></td>
                 <td>Último dato de inflación mensual</td>
               </tr>
               <tr>
-                <td><code>=uva()</code></td>
+                <td><code>=UVA()</code></td>
                 <td>Valor actual del UVA</td>
               </tr>
               <tr>
-                <td><code>=riesgopais()</code></td>
+                <td><code>=RIESGOPAIS()</code></td>
                 <td>Riesgo país más reciente</td>
               </tr>
               <tr>
-                <td><code>=bcra(1)</code></td>
+                <td><code>=BCRA(1)</code></td>
                 <td>Reservas internacionales (variable BCRA id 1)</td>
               </tr>
               <tr>
-                <td><code>=criptoya("BTC";"ARS")</code></td>
+                <td><code>=CRIPTOYA("BTC";"ARS")</code></td>
                 <td>Mejor precio BTC/ARS entre exchanges</td>
               </tr>
               <tr>
-                <td><code>=crypto("BTC")</code></td>
+                <td><code>=CRYPTO("BTC")</code></td>
                 <td>Spot BTC en USD (Coinbase)</td>
               </tr>
               <tr>
-                <td><code>=plazofijo()</code></td>
+                <td><code>=PLAZOFIJO()</code></td>
                 <td>Mejor TNA de plazo fijo (clientes)</td>
               </tr>
               <tr>
-                <td><code>=fci("mercadoDinero";"Balanz Money Market USD - Clase A")</code></td>
+                <td><code>=FCI("mercadoDinero";"Balanz Money Market USD - Clase A")</code></td>
                 <td>Valor cuotaparte del FCI</td>
               </tr>
               <tr>
-                <td><code>=caucionColocadora(30; 40%; 1000000)</code></td>
+                <td><code>=CAUCIONCOLOCADORA(30; 40%; 1000000)</code></td>
                 <td>Resultado de una caución colocadora</td>
               </tr>
             </tbody>
@@ -352,19 +352,19 @@
           <h3>Cotizaciones y tipos de cambio</h3>
           <div class="catalog-list">
             <div class="catalog-item">
-              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/DOLAR.md" target="_blank" rel="noopener">dolar</a>
+              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/DOLAR.md" target="_blank" rel="noopener">DOLAR</a>
               <span class="desc">Cotizaciones actuales (blue, oficial, MEP, CCL…)</span>
-              <span class="example">=dolar("blue";"venta")</span>
+              <span class="example">=DOLAR("blue";"venta")</span>
             </div>
             <div class="catalog-item">
-              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/DOLAR_HISTORICO.md" target="_blank" rel="noopener">dolar_historico</a>
+              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/DOLAR_HISTORICO.md" target="_blank" rel="noopener">DOLARHISTORICO</a>
               <span class="desc">Cotización de un tipo de dólar en una fecha</span>
-              <span class="example">=dolar_historico("blue";"2024-01-15")</span>
+              <span class="example">=DOLARHISTORICO("blue";"2024-01-15")</span>
             </div>
             <div class="catalog-item">
-              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/BCRA.md" target="_blank" rel="noopener">bcra</a>
+              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/BCRA.md" target="_blank" rel="noopener">BCRA</a>
               <span class="desc">Variables económicas del Banco Central</span>
-              <span class="example">=bcra(1)</span>
+              <span class="example">=BCRA(1)</span>
             </div>
           </div>
         </div>
@@ -373,34 +373,34 @@
           <h3>Instrumentos financieros argentinos</h3>
           <div class="catalog-list">
             <div class="catalog-item">
-              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/ACCIONES.md" target="_blank" rel="noopener">acciones</a>
-              <span class="desc">Panel de acciones BYMA (+ accionesLista)</span>
-              <span class="example">=acciones("PAMP";"c")</span>
+              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/ACCIONES.md" target="_blank" rel="noopener">ACCIONES</a>
+              <span class="desc">Panel de acciones BYMA (+ ACCIONESLISTA)</span>
+              <span class="example">=ACCIONES("PAMP";"c")</span>
             </div>
             <div class="catalog-item">
-              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/BONOS.md" target="_blank" rel="noopener">bonos</a>
+              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/BONOS.md" target="_blank" rel="noopener">BONOS</a>
               <span class="desc">Bonos soberanos y panel completo</span>
-              <span class="example">=bonos("AL30";"c")</span>
+              <span class="example">=BONOS("AL30";"c")</span>
             </div>
             <div class="catalog-item">
-              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/LETRAS.md" target="_blank" rel="noopener">letras</a>
+              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/LETRAS.md" target="_blank" rel="noopener">LETRAS</a>
               <span class="desc">Letras del tesoro</span>
-              <span class="example">=letras("S31L25";"c")</span>
+              <span class="example">=LETRAS("S31L25";"c")</span>
             </div>
             <div class="catalog-item">
-              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/OPCIONES.md" target="_blank" rel="noopener">opciones</a>
+              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/OPCIONES.md" target="_blank" rel="noopener">OPCIONES</a>
               <span class="desc">Opciones sobre acciones argentinas</span>
-              <span class="example">=opciones("GFGC550.AB";"c")</span>
+              <span class="example">=OPCIONES("GFGC550.AB";"c")</span>
             </div>
             <div class="catalog-item">
-              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/OBLIGACIONES.md" target="_blank" rel="noopener">obligaciones</a>
+              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/OBLIGACIONES.md" target="_blank" rel="noopener">OBLIGACIONES</a>
               <span class="desc">Obligaciones negociables</span>
-              <span class="example">=obligaciones("YPFD";"c")</span>
+              <span class="example">=OBLIGACIONES("YPFD";"c")</span>
             </div>
             <div class="catalog-item">
-              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/CAUCION.md" target="_blank" rel="noopener">caucion</a>
+              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/CAUCION.md" target="_blank" rel="noopener">CAUCION</a>
               <span class="desc">Cálculo de cauciones tomadora y colocadora</span>
-              <span class="example">=caucionColocadora(7; 50%; 500000)</span>
+              <span class="example">=CAUCIONCOLOCADORA(7; 50%; 500000)</span>
             </div>
           </div>
         </div>
@@ -409,14 +409,14 @@
           <h3>Instrumentos internacionales</h3>
           <div class="catalog-list">
             <div class="catalog-item">
-              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/CEDEAR.md" target="_blank" rel="noopener">cedear</a>
-              <span class="desc">CEDEARs: precio, nombre, ratio, market (+ cedearLista)</span>
-              <span class="example">=cedear("AAPL";"market")</span>
+              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/CEDEAR.md" target="_blank" rel="noopener">CEDEAR</a>
+              <span class="desc">CEDEARs: precio, nombre, ratio, market (+ CEDEARLISTA)</span>
+              <span class="example">=CEDEAR("AAPL";"market")</span>
             </div>
             <div class="catalog-item">
-              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/USA_STOCKS.md" target="_blank" rel="noopener">usa_stocks</a>
+              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/USA_STOCKS.md" target="_blank" rel="noopener">USASTOCKS</a>
               <span class="desc">Acciones de EE.UU. en panel data912</span>
-              <span class="example">=usa_stocks("AAPL";"c")</span>
+              <span class="example">=USASTOCKS("AAPL";"c")</span>
             </div>
           </div>
         </div>
@@ -425,19 +425,19 @@
           <h3>Indicadores económicos</h3>
           <div class="catalog-list">
             <div class="catalog-item">
-              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/INFLACION.md" target="_blank" rel="noopener">inflacion</a>
+              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/INFLACION.md" target="_blank" rel="noopener">INFLACION</a>
               <span class="desc">IPC / inflación mensual</span>
-              <span class="example">=inflacion("2024-03-01")</span>
+              <span class="example">=INFLACION("2024-03-01")</span>
             </div>
             <div class="catalog-item">
-              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/UVA.md" target="_blank" rel="noopener">uva</a>
+              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/UVA.md" target="_blank" rel="noopener">UVA</a>
               <span class="desc">Índice UVA</span>
-              <span class="example">=uva()</span>
+              <span class="example">=UVA()</span>
             </div>
             <div class="catalog-item">
-              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/RIESGOPAIS.md" target="_blank" rel="noopener">riesgopais</a>
+              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/RIESGOPAIS.md" target="_blank" rel="noopener">RIESGOPAIS</a>
               <span class="desc">Riesgo país EMBI</span>
-              <span class="example">=riesgopais()</span>
+              <span class="example">=RIESGOPAIS()</span>
             </div>
           </div>
         </div>
@@ -446,19 +446,19 @@
           <h3>Criptomonedas</h3>
           <div class="catalog-list">
             <div class="catalog-item">
-              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/CRYPTO.md" target="_blank" rel="noopener">crypto</a>
+              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/CRYPTO.md" target="_blank" rel="noopener">CRYPTO</a>
               <span class="desc">Precio spot vía Coinbase</span>
-              <span class="example">=crypto("ETH";"USD")</span>
+              <span class="example">=CRYPTO("ETH";"USD")</span>
             </div>
             <div class="catalog-item">
-              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/CRIPTOYA.md" target="_blank" rel="noopener">criptoya</a>
+              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/CRIPTOYA.md" target="_blank" rel="noopener">CRIPTOYA</a>
               <span class="desc">Comparador de precios por exchange</span>
-              <span class="example">=criptoya("USDT";"ARS";1000)</span>
+              <span class="example">=CRIPTOYA("USDT";"ARS";1000)</span>
             </div>
             <div class="catalog-item">
-              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/RENDIMIENTOS.md" target="_blank" rel="noopener">rendimientos</a>
-              <span class="desc">APY de crypto en proveedores AR</span>
-              <span class="example">=rendimientos("USDT")</span>
+              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/RENDIMIENTOS.md" target="_blank" rel="noopener">RENDIMIENTOS</a>
+              <span class="desc">APY de CRYPTO en proveedores AR</span>
+              <span class="example">=RENDIMIENTOS("USDT")</span>
             </div>
           </div>
         </div>
@@ -467,14 +467,14 @@
           <h3>Inversiones y plazos fijos</h3>
           <div class="catalog-list">
             <div class="catalog-item">
-              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/PLAZOFIJO.md" target="_blank" rel="noopener">plazofijo</a>
+              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/PLAZOFIJO.md" target="_blank" rel="noopener">PLAZOFIJO</a>
               <span class="desc">TNA de plazos fijos por banco</span>
-              <span class="example">=plazofijo("Galicia";"cliente")</span>
+              <span class="example">=PLAZOFIJO("Galicia";"cliente")</span>
             </div>
             <div class="catalog-item">
-              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/FCI.md" target="_blank" rel="noopener">fci</a>
+              <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/FCI.md" target="_blank" rel="noopener">FCI</a>
               <span class="desc">Fondos comunes: vcp, ccp, patrimonio</span>
-              <span class="example">=fci("rentaFija";"Pionero Renta")</span>
+              <span class="example">=FCI("rentaFija";"Pionero Renta")</span>
             </div>
           </div>
         </div>
@@ -576,12 +576,12 @@ const aapl = items.find((c) => c.Cedears === 'AAPL');</pre>
             <tbody>
               <tr>
                 <td class="fn-name">DolarAPI</td>
-                <td>Cotizaciones live de dólar (<code>dolar</code>)</td>
+                <td>Cotizaciones live de dólar (<code>DOLAR</code>)</td>
                 <td><a href="https://dolarapi.com" target="_blank" rel="noopener">dolarapi.com</a></td>
               </tr>
               <tr>
                 <td class="fn-name">Argentina Datos</td>
-                <td>Inflación, UVA, FCI, dólar histórico, riesgo país, plazos fijos, rendimientos</td>
+                <td>Inflación, UVA, FCI, dólar histórico, riesgo país, plazos fijos, RENDIMIENTOS</td>
                 <td>
                   <a href="https://argentinadatos.com/" target="_blank" rel="noopener">argentinadatos.com</a>
                   · <a href="https://github.com/enzonotario/" target="_blank" rel="noopener">@enzonotario</a>
@@ -597,18 +597,18 @@ const aapl = items.find((c) => c.Cedears === 'AAPL');</pre>
               </tr>
               <tr>
                 <td class="fn-name">CriptoYa</td>
-                <td>Comparador de precios crypto por exchange</td>
-                <td><a href="https://criptoya.com/" target="_blank" rel="noopener">criptoya.com</a></td>
+                <td>Comparador de precios CRYPTO por exchange</td>
+                <td><a href="https://CRIPTOYA.com/" target="_blank" rel="noopener">CRIPTOYA.com</a></td>
               </tr>
               <tr>
                 <td class="fn-name">Coinbase</td>
-                <td>Spot de criptomonedas (<code>crypto</code>)</td>
+                <td>Spot de criptomonedas (<code>CRYPTO</code>)</td>
                 <td><a href="https://www.coinbase.com/" target="_blank" rel="noopener">api.coinbase.com</a></td>
               </tr>
               <tr>
                 <td class="fn-name">BCRA</td>
                 <td>Variables monetarias oficiales</td>
-                <td><a href="https://www.bcra.gob.ar/" target="_blank" rel="noopener">bcra.gob.ar</a></td>
+                <td><a href="https://www.BCRA.gob.ar/" target="_blank" rel="noopener">BCRA.gob.ar</a></td>
               </tr>
               <tr>
                 <td class="fn-name">cedears.json</td>
@@ -622,7 +622,7 @@ const aapl = items.find((c) => c.Cedears === 'AAPL');</pre>
               <tr>
                 <td class="fn-name">Cálculo local</td>
                 <td>Cauciones (fórmulas + aranceles de referencia BYMA)</td>
-                <td><a href="https://github.com/ferminrp/google-sheets-argento/blob/main/src/caucion.js" target="_blank" rel="noopener">caucion.js</a></td>
+                <td><a href="https://github.com/ferminrp/google-sheets-argento/blob/main/src/CAUCION.js" target="_blank" rel="noopener">CAUCION.js</a></td>
               </tr>
             </tbody>
           </table>
@@ -686,7 +686,7 @@ const aapl = items.find((c) => c.Cedears === 'AAPL');</pre>
             <p>
               En muchas cuentas de Google en Argentina el separador de argumentos es
               <strong>punto y coma</strong>:
-              <code class="inline-code">=dolar("blue";"venta")</code>.
+              <code class="inline-code">=DOLAR("blue";"venta")</code>.
               Si tu hoja usa coma, probá con el locale de la planilla.
             </p>
           </details>

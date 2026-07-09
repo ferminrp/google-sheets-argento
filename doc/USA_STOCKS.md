@@ -1,4 +1,4 @@
-# Función USA Stocks
+# Función USASTOCKS
 
 Esta función devuelve información sobre las acciones que cotizan en el mercado estadounidense.
 
@@ -7,7 +7,7 @@ Esta función devuelve información sobre las acciones que cotizan en el mercado
 En cualquier celda de la hoja, escribe:
 
 ```
-=usa_stocks("symbol"; "valor")
+=USASTOCKS("symbol"; "valor")
 ```
 
 ## Parámetros
@@ -29,16 +29,16 @@ En cualquier celda de la hoja, escribe:
 
 | Fórmula | Descripción |
 |---------|-------------|
-| `=usa_stocks("AAPL"; "c")` | Precio actual de la acción de Apple |
-| `=usa_stocks("MSFT"; "px_ask")` | Precio de oferta de venta de Microsoft |
-| `=usa_stocks("GOOGL"; "pct_change")` | Variación porcentual diaria de Google |
+| `=USASTOCKS("AAPL"; "c")` | Precio actual de la acción de Apple |
+| `=USASTOCKS("MSFT"; "px_ask")` | Precio de oferta de venta de Microsoft |
+| `=USASTOCKS("GOOGL"; "pct_change")` | Variación porcentual diaria de Google |
 
-## Función USA_StocksLista
+## Función USASTOCKSLISTA
 
 En cualquier celda de la hoja, escribe:
 
 ```
-=usa_stocksLista()
+=USASTOCKSLISTA()
 ```
 
 Esta función devuelve una tabla con todas las acciones estadounidenses disponibles y sus datos actuales, incluyendo precio, variación porcentual, volumen y otras métricas.
@@ -47,7 +47,7 @@ Esta función devuelve una tabla con todas las acciones estadounidenses disponib
 
 | Fórmula | Descripción |
 |---------|-------------|
-| `=usa_stocksLista()` | Tabla completa de todas las acciones estadounidenses con sus datos actuales |
+| `=USASTOCKSLISTA()` | Tabla completa de todas las acciones estadounidenses con sus datos actuales |
 
 ## Errores comunes
 

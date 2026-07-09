@@ -6,7 +6,7 @@
  * @return El APY (rendimiento anual) expresado como porcentaje.
  * @customfunction
  */
-function rendimientos(moneda, proveedor) {
+function RENDIMIENTOS(moneda, proveedor) {
   var datos = fetchJson('https://api.argentinadatos.com/v1/finanzas/rendimientos', {
     cacheKey: 'api:ad:rendimientos',
     cacheTtlSeconds: 120

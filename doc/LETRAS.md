@@ -1,4 +1,4 @@
-# Función Letras
+# Función LETRAS
 
 Esta función devuelve información sobre las letras del tesoro que cotizan en el mercado argentino.
 
@@ -7,7 +7,7 @@ Esta función devuelve información sobre las letras del tesoro que cotizan en e
 En cualquier celda de la hoja, escribe:
 
 ```
-=letras("symbol"; "valor")
+=LETRAS("symbol"; "valor")
 ```
 
 ## Parámetros
@@ -29,16 +29,16 @@ En cualquier celda de la hoja, escribe:
 
 | Fórmula | Descripción |
 |---------|-------------|
-| `=letras("BB2Y5"; "c")` | Precio actual de la letra BB2Y5 |
-| `=letras("BNA6D"; "px_ask")` | Precio de oferta de venta de la letra BNA6D |
-| `=letras("S31L5"; "pct_change")` | Variación porcentual diaria de la letra S31L5 |
+| `=LETRAS("BB2Y5"; "c")` | Precio actual de la letra BB2Y5 |
+| `=LETRAS("BNA6D"; "px_ask")` | Precio de oferta de venta de la letra BNA6D |
+| `=LETRAS("S31L5"; "pct_change")` | Variación porcentual diaria de la letra S31L5 |
 
-## Función LetrasLista
+## Función LETRASLISTA
 
 En cualquier celda de la hoja, escribe:
 
 ```
-=letrasLista()
+=LETRASLISTA()
 ```
 
 Esta función devuelve una tabla con todas las letras del tesoro disponibles y sus datos actuales, incluyendo precio, variación porcentual, volumen y otras métricas.
@@ -47,7 +47,7 @@ Esta función devuelve una tabla con todas las letras del tesoro disponibles y s
 
 | Fórmula | Descripción |
 |---------|-------------|
-| `=letrasLista()` | Tabla completa de todas las letras del tesoro con sus datos actuales |
+| `=LETRASLISTA()` | Tabla completa de todas las letras del tesoro con sus datos actuales |
 
 ## Errores comunes
 

@@ -10,18 +10,18 @@ global.Logger = {
 };
 
 const {
-  caucionColocadora,
-  caucionTomadora,
-  calcularCaucion,
+  CAUCIONCOLOCADORA,
+  CAUCIONTOMADORA,
+  CALCULARCAUCION,
 } = require("./test-wrapper");
 
-describe("caucionColocadora", () => {
+describe("CAUCIONCOLOCADORA", () => {
   test("debe calcular correctamente el resultado de una caución colocadora", () => {
     const dias = 30;
     const tna = 1.2; // 120% TNA (formato porcentaje de Sheets)
     const importeBruto = 1000000;
 
-    const resultado = caucionColocadora(dias, tna, importeBruto);
+    const resultado = CAUCIONCOLOCADORA(dias, tna, importeBruto);
 
     const tasaEfectiva = (tna * dias) / 365;
     const interes = importeBruto * tasaEfectiva;
@@ -33,29 +33,29 @@ describe("caucionColocadora", () => {
   });
 });
 
-describe("caucionTomadora", () => {
+describe("CAUCIONTOMADORA", () => {
   test("debe calcular correctamente el resultado de una caución tomadora", () => {
     const dias = 30;
     const tna = 1.2; // 120% TNA (formato porcentaje de Sheets)
     const importeBruto = 1000000;
 
-    const resultado = caucionTomadora(dias, tna, importeBruto);
+    const resultado = CAUCIONTOMADORA(dias, tna, importeBruto);
 
     expect(typeof resultado).toBe("number");
     expect(resultado).toBeGreaterThan(importeBruto);
   });
 });
 
-describe("calcularCaucion validación", () => {
+describe("CALCULARCAUCION validación", () => {
   test("rechaza dias === 0", () => {
-    expect(() => calcularCaucion(0, 1.2, 1000000)).toThrow("no puede ser 0");
+    expect(() => CALCULARCAUCION(0, 1.2, 1000000)).toThrow("no puede ser 0");
   });
 });
 
-describe("acciones validación", () => {
+describe("ACCIONES validación", () => {
   test("símbolo vacío lanza error legible", () => {
-    const { acciones } = require("./test-wrapper");
-    expect(() => acciones("", "c")).toThrow("Símbolo no proporcionado");
+    const { ACCIONES } = require("./test-wrapper");
+    expect(() => ACCIONES("", "c")).toThrow("Símbolo no proporcionado");
   });
 });
 

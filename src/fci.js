@@ -8,7 +8,7 @@
  * @return El valor solicitado para el fondo especificado.
  * @customfunction
  */
-function fci(tipoFondo, nombreFondo, fecha, campo) {
+function FCI(tipoFondo, nombreFondo, fecha, campo) {
   var tipo = tipoFondo ? tipoFondo.toString().toLowerCase().trim() : '';
   var nombre = nombreFondo ? nombreFondo.toString().trim() : '';
   var campoDatos = campo ? campo.toString().toLowerCase().trim() : 'vcp';
@@ -132,7 +132,7 @@ function fci(tipoFondo, nombreFondo, fecha, campo) {
  * @return {Array} Una matriz con todos los fondos disponibles, incluyendo el nombre, tipo y valor de cuotaparte.
  * @customfunction
  */
-function fciLista() {
+function FCILISTA() {
   var tipos = ['mercadoDinero', 'rentaVariable', 'rentaFija', 'rentaMixta', 'retornoTotal'];
   var todosLosFondos = [['Nombre del Fondo', 'Tipo de Fondo', 'Valor Cuotaparte']];
 

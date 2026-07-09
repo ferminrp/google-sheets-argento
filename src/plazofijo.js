@@ -6,7 +6,7 @@
  * @return La tasa nominal anual (TNA) expresada como porcentaje.
  * @customfunction
  */
-function plazofijo(banco, tipoCliente) {
+function PLAZOFIJO(banco, tipoCliente) {
   var datos = fetchJson('https://api.argentinadatos.com/v1/finanzas/tasas/plazoFijo', {
     cacheKey: 'api:ad:plazofijo',
     cacheTtlSeconds: 120

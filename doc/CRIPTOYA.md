@@ -7,7 +7,7 @@ Esta función devuelve y compara precios de criptomonedas en diferentes exchange
 En cualquier celda de la hoja, escribe:
 
 ```
-=criptoya("coin"; "fiat"; volumen; "exchange"; "operacion")
+=CRIPTOYA("coin"; "fiat"; volumen; "exchange"; "operacion")
 ```
 
 ## Parámetros
@@ -40,10 +40,10 @@ En cualquier celda de la hoja, escribe:
 
 | Fórmula | Descripción |
 |---------|-------------|
-| `=criptoya("BTC"; "ARS")` | Mejor precio de compra de Bitcoin en pesos argentinos |
-| `=criptoya("ETH"; "USD"; 0.5; "binance"; "venta")` | Precio de venta de 0.5 ETH en USD en Binance |
-| `=criptoya("DAI"; "ARS"; 100; ; "totalVenta")` | Mejor precio de venta (con comisiones) de 100 DAI en pesos |
-| `=criptoya("USDT"; "ARS"; 1000; "ripio")` | Precio de compra de 1000 USDT en pesos en Ripio |
+| `=CRIPTOYA("BTC"; "ARS")` | Mejor precio de compra de Bitcoin en pesos argentinos |
+| `=CRIPTOYA("ETH"; "USD"; 0.5; "binance"; "venta")` | Precio de venta de 0.5 ETH en USD en Binance |
+| `=CRIPTOYA("DAI"; "ARS"; 100; ; "totalVenta")` | Mejor precio de venta (con comisiones) de 100 DAI en pesos |
+| `=CRIPTOYA("USDT"; "ARS"; 1000; "ripio")` | Precio de compra de 1000 USDT en pesos en Ripio |
 
 ## Errores comunes
 

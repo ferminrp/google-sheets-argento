@@ -1,4 +1,4 @@
-# Función Dólar
+# Función DOLAR
 
 Esta función devuelve la cotización de los distintos tipos de dólar en Argentina.
 
@@ -7,7 +7,7 @@ Esta función devuelve la cotización de los distintos tipos de dólar en Argent
 En cualquier celda de la hoja, escribe:
 
 ```
-=dolar("tipo"; "operación")
+=DOLAR("tipo"; "operación")
 ```
 
 ## Parámetros
@@ -27,11 +27,11 @@ En cualquier celda de la hoja, escribe:
 
 | Fórmula | Descripción |
 |---------|-------------|
-| `=dolar("blue")` | Precio de venta del dólar blue |
-| `=dolar("oficial"; "compra")` | Precio de compra del dólar oficial |
-| `=dolar("mep"; "venta")` | MEP (alias de bolsa) |
-| `=dolar("ccl"; "promedio")` | CCL (alias de contadoconliqui) |
-| `=dolar("mayorista"; "promedio")` | Precio promedio del dólar mayorista |
+| `=DOLAR("blue")` | Precio de venta del dólar blue |
+| `=DOLAR("oficial"; "compra")` | Precio de compra del dólar oficial |
+| `=DOLAR("mep"; "venta")` | MEP (alias de bolsa) |
+| `=DOLAR("ccl"; "promedio")` | CCL (alias de contadoconliqui) |
+| `=DOLAR("mayorista"; "promedio")` | Precio promedio del dólar mayorista |
 
 ## Notas
 

@@ -31,7 +31,7 @@ Timeline curada a mano (no se auto-genera desde la API de GitHub). Cuando se mer
 
 ## Demo live del hero
 
-La tabla del hero (`=dolar`, `=acciones`, `=riesgopais`) **no usa valores fijos**: al abrir la página, `script.js` hace 3 `fetch` client-side a las APIs públicas (CORS abierto) y muestra skeleton hasta que llegan los datos.
+La tabla del hero (`=DOLAR`, `=ACCIONES`, `=RIESGOPAIS`) **no usa valores fijos**: al abrir la página, `script.js` hace 3 `fetch` client-side a las APIs públicas (CORS abierto) y muestra skeleton hasta que llegan los datos.
 
 | Celda | Endpoint |
 |-------|----------|

@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Modificado
+- **Breaking:** Todas las funciones públicas (`@customfunction`) usan nomenclatura **UPPERCASE** al estilo de Google Sheets (`DOLAR`, `ACCIONESLISTA`, `DOLARHISTORICO`, `USASTOCKS`, etc.). Los nombres con guión bajo (`dolar_historico`, `usa_stocks`) pasan a concatenación en mayúsculas (`DOLARHISTORICO`, `USASTOCKS`). Google Sheets no distingue mayúsculas/minúsculas, pero sí los guiones bajos: actualizá fórmulas que usaban `dolar_historico` o `usa_stocks`.
+
 ### Añadido
 - Página pública **`changelog.html`**: historial del producto agrupado por fecha, poblado desde PRs mergeados (curado, no auto-sync).
 - Enlace **Changelog** en nav y footer de la landing.
@@ -19,7 +22,7 @@
 
 ### Modificado
 - Landing API: ejemplo de respuesta y textos incluyen el campo **`Market`** (mercado del subyacente), alineado a `data/cedears.json` y a `docs/api/cedears.json` tras #26.
-- Catálogo: `=cedear("AAPL";"market")` como ejemplo.
+- Catálogo: `=CEDEAR("AAPL";"market")` como ejemplo.
 
 ### Añadido
 - **Hero demo con datos en vivo** (client-side): las 4 celdas de resultado llaman a las mismas APIs públicas que las fórmulas de Sheets, con skeleton mientras cargan.

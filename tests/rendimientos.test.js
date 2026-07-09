@@ -5,8 +5,8 @@ function createResponse(body) {
   };
 }
 
-describe("rendimientos", () => {
-  let rendimientos;
+describe("RENDIMIENTOS", () => {
+  let RENDIMIENTOS;
 
   beforeEach(() => {
     jest.resetModules();
@@ -33,7 +33,7 @@ describe("rendimientos", () => {
     global.Utilities = {};
     global.DriveApp = {};
     global.Logger = { log: jest.fn() };
-    ({ rendimientos } = require("./test-wrapper"));
+    ({ RENDIMIENTOS } = require("./test-wrapper"));
   });
 
   afterEach(() => {
@@ -44,15 +44,15 @@ describe("rendimientos", () => {
   });
 
   test("devuelve el mejor APY cuando no hay proveedor", () => {
-    expect(rendimientos("USDT")).toBe(8);
+    expect(RENDIMIENTOS("USDT")).toBe(8);
   });
 
   test("error por moneda inexistente usa el ticker pedido (no el último del dataset)", () => {
-    expect(() => rendimientos("DOGE")).toThrow("Moneda 'DOGE' no encontrada");
+    expect(() => RENDIMIENTOS("DOGE")).toThrow("Moneda 'DOGE' no encontrada");
   });
 
   test("error por moneda en proveedor específico usa el ticker pedido", () => {
-    expect(() => rendimientos("ETH", "ripio")).toThrow(
+    expect(() => RENDIMIENTOS("ETH", "ripio")).toThrow(
       "La moneda 'ETH' no está disponible en el proveedor 'ripio'"
     );
   });

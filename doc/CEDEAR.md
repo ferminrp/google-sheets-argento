@@ -9,16 +9,19 @@ El proyecto incluye un archivo `data/cedears.json` que contiene información út
 Cada entrada del archivo contiene:
 - **Cedears**: Símbolo/ticker del CEDEAR
 - **Name**: Nombre completo de la empresa
-- **Ratio**: Ratio de conversión entre el CEDEAR y la acción subyacente
+- **Ratio**: Ratio de conversión entre el CEDEAR y la acción subyacente (string)
 
-Ejemplo de uso:
-```json
-{
-  "Cedears": "AAPL",
-  "Name": "Apple Inc",
-  "Ratio": "20"
-}
-```
+### Formatos de `ratio`
+
+La función `=cedear(symbol; "ratio")` devuelve el string del JSON **sin transformarlo**:
+
+| Formato | Ejemplo | Significado habitual |
+|--------|---------|----------------------|
+| Número como string | `"20"` | 20 CEDEARs = 1 acción subyacente (ej. AAPL) |
+| Razón `A:B` | `"1:3"` | Ratio 1 a 3 (presente en ~16 tickers del listado) |
+
+Si necesitás operar matemáticamente, parseá el string en la hoja (por ejemplo con `SPLIT` / `VALUE`) según el formato del ticker.
+
 
 ## Uso
 

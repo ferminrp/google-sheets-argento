@@ -1,5 +1,5 @@
 // Archivo consolidado generado automáticamente
-// Fecha de generación: 2026-07-09T12:03:19.736Z
+// No editar a mano: npm run build
 
 // Namespace para constantes compartidas
 var CONSTANTS = {};
@@ -10,6 +10,9 @@ CONSTANTS.GASTOS_GARANTIA_TASA_DIARIA = 0.045 / 100 / 90;
 CONSTANTS.IVA_PORCENTAJE = 21 / 100;
 CONSTANTS.ARANCEL_CAUCION_COLOCADORA_TNA = 1.5 / 100;
 CONSTANTS.ARANCEL_CAUCION_TOMADORA_TNA = 4.0 / 100;
+CONSTANTS.HTTP_CACHE_MAX_CHARS = 90000;
+CONSTANTS.HTTP_DEFAULT_TTL = 120;
+CONSTANTS.ATRIBUTOS_PANEL = ['c', 'v', 'q_bid', 'px_bid', 'px_ask', 'q_ask', 'q_op', 'pct_change'];
 
 // ================ acciones.js ================
 /**
@@ -23,63 +26,25 @@ CONSTANTS.ARANCEL_CAUCION_TOMADORA_TNA = 4.0 / 100;
  * @customfunction
  */
 function acciones(symbol, value) {
-  // Consulta al API
-  var url = 'https://data912.com/live/arg_stocks';
-  var respuesta = UrlFetchApp.fetch(url);
-  var datos = JSON.parse(respuesta.getContentText());
-  
-  // Normalizo entradas
-  var simbolo = symbol.toString().toUpperCase().trim();
-  var atributo = value.toString().toLowerCase().trim();
-  
-  // Valores permitidos
-  var atributosPermitidos = ['c', 'v', 'q_bid', 'px_bid', 'px_ask', 'q_ask', 'q_op', 'pct_change'];
-  
-  // Verificar si el atributo es válido
-  if (!atributosPermitidos.includes(atributo)) {
-    throw new Error("Atributo inválido: '" + value + "'. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change.");
-  }
-  
-  // Buscar el símbolo solicitado
-  for (var i = 0; i < datos.length; i++) {
-    if (datos[i].symbol === simbolo) {
-      return datos[i][atributo];
-    }
-  }
-  
-  // Si no se encontró el símbolo
-  var disponibles = datos.map(function(o){ return o.symbol; }).join(', ');
-  throw new Error("Símbolo inválido: '" + symbol + "'. No se encontró en la lista de acciones disponibles.");
+  return panelCotizacion(
+    'https://data912.com/live/arg_stocks',
+    symbol,
+    value,
+    'acciones',
+    'panel:arg_stocks'
+  );
 }
 
 /**
  * Obtiene la lista completa de acciones que cotizan en el mercado argentino desde la API.
- * 
+ *
  * @return Un arreglo bidimensional con todas las acciones y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
  * @customfunction
  */
 function accionesLista() {
-  // Consulta al API
-  var url = 'https://data912.com/live/arg_stocks';
-  var respuesta = UrlFetchApp.fetch(url);
-  var datos = JSON.parse(respuesta.getContentText());
-  
-  // Definir las columnas que queremos mostrar
-  var columnas = ['symbol', 'c', 'v', 'q_bid', 'px_bid', 'px_ask', 'q_ask', 'q_op', 'pct_change'];
-  
-  // Crear el arreglo bidimensional comenzando con los encabezados
-  var resultado = [columnas];
-  
-  // Agregar cada acción como una fila
-  datos.forEach(function(accion) {
-    var fila = columnas.map(function(columna) {
-      return accion[columna];
-    });
-    resultado.push(fila);
-  });
-  
-  return resultado;
+  return panelLista('https://data912.com/live/arg_stocks', 'panel:arg_stocks');
 }
+
 // ================ bcra.js ================
 /**
  * Devuelve un array con todas las variables disponibles del BCRA (Banco Central de la República Argentina).
@@ -90,20 +55,12 @@ function accionesLista() {
  */
 function bcraVariables() {
   try {
-    // Fetch data from the BCRA API
-    const url = "https://api.bcra.gob.ar/estadisticas/v3.0/Monetarias";
-    const response = UrlFetchApp.fetch(url);
-    const data = JSON.parse(response.getContentText());
-    
-    // Check if the API response is valid
-    if (data.status !== 200 || !data.results || !Array.isArray(data.results)) {
-      throw new Error("Error en la respuesta de la API del BCRA.");
-    }
-    
-    // Return the array of results
-    return data.results.map(item => [item.categoria, item.idVariable, item.descripcion, item.valor, item.fecha]);
+    var data = fetchBcraMonetarias_();
+    return data.results.map(function(item) {
+      return [item.categoria, item.idVariable, item.descripcion, item.valor, item.fecha];
+    });
   } catch (error) {
-    throw new Error(`Error al consultar el BCRA: ${error.message}`);
+    throw new Error("Error al consultar el BCRA: " + error.message);
   }
 }
 
@@ -116,38 +73,45 @@ function bcraVariables() {
  * @customfunction
  */
 function bcra(id) {
-  // Validate input
-  if (!id || isNaN(parseInt(id))) {
+  if (id === undefined || id === null || id === '' || isNaN(parseInt(id, 10))) {
     throw new Error("ID inválido. Debe ser un número válido (1, 4, 5, 6, etc).");
   }
-  
-  // Convert to integer in case it's passed as a string
-  const variableId = parseInt(id);
-  
+
+  var variableId = parseInt(id, 10);
+
   try {
-    // Fetch data from the BCRA API
-    const url = "https://api.bcra.gob.ar/estadisticas/v3.0/Monetarias";
-    const response = UrlFetchApp.fetch(url);
-    const data = JSON.parse(response.getContentText());
-    
-    // Check if the API response is valid
-    if (data.status !== 200 || !data.results || !Array.isArray(data.results)) {
-      throw new Error("Error en la respuesta de la API del BCRA.");
-    }
-    
-    // Find the variable with the specified ID
-    const variable = data.results.find(item => Number(item.idVariable) === variableId);
-    
-    // Return the value if found, otherwise throw an error
+    var data = fetchBcraMonetarias_();
+    var variable = data.results.find(function(item) {
+      return Number(item.idVariable) === variableId;
+    });
+
     if (variable) {
       return variable.valor;
-    } else {
-      throw new Error(`Variable con ID ${variableId} no encontrada. IDs disponibles: ${data.results.map(item => item.idVariable).join(', ')}.`);
     }
+    throw new Error(
+      "Variable con ID " + variableId + " no encontrada. IDs disponibles: " +
+      data.results.map(function(item) { return item.idVariable; }).join(', ') + "."
+    );
   } catch (error) {
-    throw new Error(`Error al consultar el BCRA: ${error.message}`);
+    throw new Error("Error al consultar el BCRA: " + error.message);
   }
 }
+
+/**
+ * @return {{status: number, results: Array}}
+ */
+function fetchBcraMonetarias_() {
+  var data = fetchJson("https://api.bcra.gob.ar/estadisticas/v3.0/Monetarias", {
+    cacheKey: 'api:bcra:monetarias',
+    cacheTtlSeconds: 300
+  });
+
+  if (data.status !== 200 || !data.results || !Array.isArray(data.results)) {
+    throw new Error("Error en la respuesta de la API del BCRA.");
+  }
+  return data;
+}
+
 // ================ bonos.js ================
 /**
  * Obtiene información de bonos que cotizan en el mercado argentino desde la API.
@@ -160,63 +124,25 @@ function bcra(id) {
  * @customfunction
  */
 function bonos(symbol, value) {
-  // Consulta al API
-  var url = 'https://data912.com/live/arg_bonds';
-  var respuesta = UrlFetchApp.fetch(url);
-  var datos = JSON.parse(respuesta.getContentText());
-  
-  // Normalizo entradas
-  var simbolo = symbol.toString().toUpperCase().trim();
-  var atributo = value.toString().toLowerCase().trim();
-  
-  // Valores permitidos
-  var atributosPermitidos = ['c', 'v', 'q_bid', 'px_bid', 'px_ask', 'q_ask', 'q_op', 'pct_change'];
-  
-  // Verificar si el atributo es válido
-  if (!atributosPermitidos.includes(atributo)) {
-    throw new Error("Atributo inválido: '" + value + "'. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change.");
-  }
-  
-  // Buscar el símbolo solicitado
-  for (var i = 0; i < datos.length; i++) {
-    if (datos[i].symbol === simbolo) {
-      return datos[i][atributo];
-    }
-  }
-  
-  // Si no se encontró el símbolo
-  var disponibles = datos.map(function(o){ return o.symbol; }).join(', ');
-  throw new Error("Símbolo inválido: '" + symbol + "'. No se encontró en la lista de bonos disponibles.");
+  return panelCotizacion(
+    'https://data912.com/live/arg_bonds',
+    symbol,
+    value,
+    'bonos',
+    'panel:arg_bonds'
+  );
 }
 
 /**
  * Obtiene la lista completa de bonos que cotizan en el mercado argentino desde la API.
- * 
+ *
  * @return {Array} Un arreglo con todos los bonos y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
  * @customfunction
  */
 function bonosLista() {
-  // Consulta al API
-  var url = 'https://data912.com/live/arg_bonds';
-  var respuesta = UrlFetchApp.fetch(url);
-  var datos = JSON.parse(respuesta.getContentText());
-  
-  // Definir las columnas que queremos mostrar
-  var columnas = ['symbol', 'c', 'v', 'q_bid', 'px_bid', 'px_ask', 'q_ask', 'q_op', 'pct_change'];
-  
-  // Crear el arreglo bidimensional comenzando con los encabezados
-  var resultado = [columnas];
-  
-  // Agregar cada bono como una fila
-  datos.forEach(function(bono) {
-    var fila = columnas.map(function(columna) {
-      return bono[columna];
-    });
-    resultado.push(fila);
-  });
-  
-  return resultado;
+  return panelLista('https://data912.com/live/arg_bonds', 'panel:arg_bonds');
 }
+
 // ================ caucion.js ================
 // https://www.byma.com.ar/que-es-byma/derechos-membresias-2/
 // https://www.byma.com.ar/wp-content/uploads/dlm_uploads/2023/10/BYMA-Derechos-Mercado-sobre-Operaciones-2023-10-11.pdf
@@ -461,6 +387,9 @@ function calcularCaucion(
   if (!Number.isInteger(dias)) {
     throw new Error("El parámetro 'dias' debe ser un número entero.");
   }
+  if (dias === 0) {
+    throw new Error("El parámetro 'dias' no puede ser 0. Usar un valor positivo (tomadora) o negativo (colocadora).");
+  }
   if (typeof tna !== "number" || tna < 0) {
     throw new Error("El parámetro 'tna' debe ser un número positivo.");
   }
@@ -528,46 +457,34 @@ function calcularCaucion(
  * @customfunction
  */
 function cedear(symbol, value) {
-  // Normalizo entradas
+  if (symbol === undefined || symbol === null || symbol === '') {
+    throw new Error("Símbolo no proporcionado. Debe ingresar un símbolo válido (ej: 'AAPL').");
+  }
+  if (value === undefined || value === null || value === '') {
+    throw new Error("Atributo no proporcionado. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change, name, ratio.");
+  }
+
   var simbolo = symbol.toString().toUpperCase().trim();
   var atributo = value.toString().toLowerCase().trim();
-  
-  // Valores permitidos para API de cotizaciones
-  var atributosPermitidosApi = ['c', 'v', 'q_bid', 'px_bid', 'px_ask', 'q_ask', 'q_op', 'pct_change'];
-  
-  // Valores permitidos para JSON local
+
   var atributosPermitidosJson = ['name', 'ratio'];
-  
-  // Verificar si es un atributo que viene del archivo JSON local
+
   if (atributosPermitidosJson.includes(atributo)) {
     return getCedearDataFromJson(simbolo, atributo);
   }
-  
-  // Si no es del JSON local, verificar si es un atributo válido de la API
-  if (!atributosPermitidosApi.includes(atributo)) {
-    throw new Error("Atributo inválido: '" + value + "'. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change, name, ratio.");
-  }
-  
-  // Consulta al API para cotizaciones
-  var url = 'https://data912.com/live/arg_cedears';
-  var respuesta = UrlFetchApp.fetch(url);
-  var datos = JSON.parse(respuesta.getContentText());
-  
-  // Buscar el símbolo solicitado
-  for (var i = 0; i < datos.length; i++) {
-    if (datos[i].symbol === simbolo) {
-      return datos[i][atributo];
-    }
-  }
-  
-  // Si no se encontró el símbolo
-  var disponibles = datos.map(function(o){ return o.symbol; }).join(', ');
-  throw new Error("Símbolo inválido: '" + symbol + "'. No se encontró en la lista de CEDEARs disponibles.");
+
+  return panelCotizacion(
+    'https://data912.com/live/arg_cedears',
+    simbolo,
+    atributo,
+    'CEDEARs',
+    'panel:arg_cedears'
+  );
 }
 
 /**
  * Obtiene datos de CEDEARs desde el archivo JSON local.
- * 
+ *
  * @param {string} symbol El símbolo del CEDEAR
  * @param {string} attribute El atributo que se quiere obtener ('name' o 'ratio')
  * @return El valor del atributo solicitado
@@ -578,6 +495,7 @@ function buscarCedearEnJson(cedears, symbol, attribute) {
       if (attribute === 'name') {
         return cedears[i].Name;
       } else if (attribute === 'ratio') {
+        // Se devuelve el string original del JSON ("20" o "1:3"). Ver doc/CEDEAR.md.
         return cedears[i].Ratio;
       }
     }
@@ -595,9 +513,13 @@ function cargarCedearsDesdeDrive() {
 }
 
 function cargarCedearsDesdeGitHub() {
-  var url = 'https://raw.githubusercontent.com/ferminrp/google-sheets-argento/main/data/cedears.json';
-  var response = UrlFetchApp.fetch(url);
-  return JSON.parse(response.getContentText());
+  return fetchJson(
+    'https://raw.githubusercontent.com/ferminrp/google-sheets-argento/main/data/cedears.json',
+    {
+      cacheKey: 'cedears:json',
+      cacheTtlSeconds: 3600
+    }
+  );
 }
 
 function getCedearDataFromJson(symbol, attribute) {
@@ -622,32 +544,14 @@ function getCedearDataFromJson(symbol, attribute) {
 
 /**
  * Obtiene la lista completa de CEDEARs (Certificados de Depósito Argentinos) desde la API.
- * 
+ *
  * @return Un arreglo bidimensional con todos los CEDEARs y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
  * @customfunction
  */
 function cedearLista() {
-  // Consulta al API
-  var url = 'https://data912.com/live/arg_cedears';
-  var respuesta = UrlFetchApp.fetch(url);
-  var datos = JSON.parse(respuesta.getContentText());
-  
-  // Definir las columnas que queremos mostrar
-  var columnas = ['symbol', 'c', 'v', 'q_bid', 'px_bid', 'px_ask', 'q_ask', 'q_op', 'pct_change'];
-  
-  // Crear el arreglo bidimensional comenzando con los encabezados
-  var resultado = [columnas];
-  
-  // Agregar cada CEDEAR como una fila
-  datos.forEach(function(cedear) {
-    var fila = columnas.map(function(columna) {
-      return cedear[columna];
-    });
-    resultado.push(fila);
-  });
-  
-  return resultado;
+  return panelLista('https://data912.com/live/arg_cedears', 'panel:arg_cedears');
 }
+
 // ================ criptoya.js ================
 /**
  * Obtiene los precios de compra y venta de criptomonedas desde CriptoYa.
@@ -661,125 +565,87 @@ function cedearLista() {
  * @customfunction
  */
 function criptoya(coin, fiat, volumen, exchange, operacion) {
-  // Valores por defecto
+  if (coin === undefined || coin === null || coin === '') {
+    throw new Error("Criptomoneda no proporcionada (ej: 'BTC', 'USDT').");
+  }
+  if (fiat === undefined || fiat === null || fiat === '') {
+    throw new Error("Moneda fiat no proporcionada (ej: 'ARS', 'USD').");
+  }
+
   volumen = volumen || 1;
   operacion = operacion || 'totalCompra';
-  
-  // Normalizo entradas
+
   var cripto = coin.toString().toUpperCase().trim();
   var moneda = fiat.toString().toUpperCase().trim();
   var vol = parseFloat(volumen);
   var tipoOperacion = operacion.toString().toLowerCase().trim();
-  
-  // Mapeo de nombres de operación a los campos de la API
+
   var camposOperacion = {
     'compra': 'ask',
     'totalcompra': 'totalAsk',
     'venta': 'bid',
     'totalventa': 'totalBid'
   };
-  
-  // Verificar si la operación es válida
+
   if (!Object.keys(camposOperacion).includes(tipoOperacion)) {
     throw new Error("Operación inválida: '" + operacion + "'. Operaciones disponibles: compra, totalCompra, venta, totalVenta.");
   }
-  
-  // Campo a consultar en la respuesta
+
   var campo = camposOperacion[tipoOperacion];
-  
-  // URL de la API de CriptoYa
   var url = 'https://criptoya.com/api/' + encodeURIComponent(cripto) + '/' + encodeURIComponent(moneda) + '/' + vol;
-  
+
   try {
-    // Consulta al API
-    var respuesta = UrlFetchApp.fetch(url, {
-      muteHttpExceptions: true,
-      headers: {
-        'Accept': 'application/json'
-      }
+    var datos = fetchJson(url, {
+      headers: { 'Accept': 'application/json' },
+      cacheKey: 'criptoya:' + cripto + ':' + moneda + ':' + vol,
+      cacheTtlSeconds: 60
     });
-    
-    // Comprobar si la respuesta es válida
-    if (respuesta.getResponseCode() !== 200) {
-      var mensajeError = "Código de error: " + respuesta.getResponseCode();
-      try {
-        var error = JSON.parse(respuesta.getContentText());
-        if (error.message) {
-          mensajeError = error.message;
-        }
-      } catch (parseError) {
-        // Mantener mensaje por código HTTP si el cuerpo no es JSON
-      }
-      throw new Error(mensajeError);
-    }
-    
-    // Analizar la respuesta JSON
-    var datos = JSON.parse(respuesta.getContentText());
-    
-    // Si se solicita un exchange específico
+
     if (exchange) {
       var exchangeKey = exchange.toString().toLowerCase().trim();
-      
-      // Verificar si el exchange existe en la respuesta
+
       if (!datos[exchangeKey]) {
         var exchangesDisponibles = Object.keys(datos).join(', ');
         throw new Error("Exchange '" + exchange + "' no disponible. Exchanges disponibles: " + exchangesDisponibles);
       }
-      
-      // Verificar si el campo solicitado existe para ese exchange
+
       if (datos[exchangeKey][campo] === undefined) {
         throw new Error("El campo '" + operacion + "' no está disponible para el exchange '" + exchange + "'");
       }
-      
-      // Devolver el precio del exchange específico
+
       return datos[exchangeKey][campo];
     }
-    
-    // Si no se especifica exchange, buscar el mejor precio según la operación
+
     var mejorPrecio;
-    var mejorExchange;
-    
-    // Determinar el mejor precio según el tipo de operación
     if (tipoOperacion.includes('compra')) {
-      // Para compra, el mejor precio es el más bajo
       mejorPrecio = Infinity;
       for (var ex in datos) {
-        // Verificar que el exchange tenga el campo solicitado
         if (datos[ex][campo] !== undefined && datos[ex][campo] < mejorPrecio) {
           mejorPrecio = datos[ex][campo];
-          mejorExchange = ex;
         }
       }
     } else {
-      // Para venta, el mejor precio es el más alto
       mejorPrecio = -Infinity;
-      for (var ex in datos) {
-        // Verificar que el exchange tenga el campo solicitado
-        if (datos[ex][campo] !== undefined && datos[ex][campo] > mejorPrecio) {
-          mejorPrecio = datos[ex][campo];
-          mejorExchange = ex;
+      for (var ex2 in datos) {
+        if (datos[ex2][campo] !== undefined && datos[ex2][campo] > mejorPrecio) {
+          mejorPrecio = datos[ex2][campo];
         }
       }
     }
-    
-    // Verificar si se encontró algún precio
+
     if (mejorPrecio === Infinity || mejorPrecio === -Infinity) {
       throw new Error("No se encontraron precios disponibles para " + cripto + "/" + moneda + " con el tipo de operación '" + operacion + "'");
     }
-    
-    // Devolver el mejor precio
+
     return mejorPrecio;
-    
   } catch (e) {
-    // Si el error indica que la moneda o criptomoneda no es válida
     if (e.message.includes("Not Found") || e.message.includes("404")) {
       throw new Error("Par " + cripto + "/" + moneda + " no encontrado. Verifica que la cripto y la moneda sean correctas.");
     }
-    
-    // Para otros errores, mostrar el mensaje original
     throw new Error("Error al consultar precio de " + cripto + "/" + moneda + ": " + e.message);
   }
-} 
+}
+
 // ================ crypto.js ================
 /**
  * Obtiene el precio actual de criptomonedas desde la API de Coinbase.
@@ -790,111 +656,108 @@ function criptoya(coin, fiat, volumen, exchange, operacion) {
  * @customfunction
  */
 function crypto(symbol, moneda) {
-  // Valor por defecto
+  if (symbol === undefined || symbol === null || symbol === '') {
+    throw new Error("Símbolo no proporcionado. Debe ingresar un símbolo válido (ej: 'BTC').");
+  }
+
   moneda = moneda || 'USD';
-  
-  // Normalizo entradas
+
   var cripto = symbol.toString().toUpperCase().trim();
   var divisa = moneda.toString().toUpperCase().trim();
-  
-  // Par de trading
   var par = cripto + '-' + divisa;
-  
-  // URL de la API de Coinbase (versión pública)
-  var url = 'https://api.coinbase.com/v2/prices/' + par + '/spot';
-  
+  var url = 'https://api.coinbase.com/v2/prices/' + encodeURIComponent(par) + '/spot';
+
   try {
-    // Consulta al API
-    var respuesta = UrlFetchApp.fetch(url, {
-      muteHttpExceptions: true,
-      headers: {
-        'Accept': 'application/json'
-      }
+    var datos = fetchJson(url, {
+      headers: { 'Accept': 'application/json' },
+      cacheKey: 'crypto:' + par,
+      cacheTtlSeconds: 60
     });
-    
-    // Comprobar si la respuesta es válida
-    if (respuesta.getResponseCode() !== 200) {
-      var mensajeError = "Código de error: " + respuesta.getResponseCode();
-      try {
-        var error = JSON.parse(respuesta.getContentText());
-        if (error.errors && error.errors[0] && error.errors[0].message) {
-          mensajeError = error.errors[0].message;
-        }
-      } catch (parseError) {
-        // Mantener mensaje por código HTTP si el cuerpo no es JSON
-      }
-      throw new Error(mensajeError);
-    }
-    
-    // Analizar la respuesta JSON
-    var datos = JSON.parse(respuesta.getContentText());
-    
-    // Verificar si se recibió correctamente la respuesta
+
     if (!datos || !datos.data || !datos.data.amount) {
       throw new Error("Respuesta inválida de Coinbase");
     }
-    
-    // Devolver el precio
+
     return parseFloat(datos.data.amount);
-    
   } catch (e) {
-    // Si el error indica que no se encontró el par de trading
     if (e.message.includes("Not Found") || e.message.includes("404")) {
       throw new Error("Par de trading no encontrado: '" + par + "'. Verifica que el símbolo y la moneda sean correctos.");
     }
-    
-    // Para otros errores, mostrar el mensaje original
     throw new Error("Error al consultar el precio de " + cripto + ": " + e.message);
   }
-} 
+}
+
 // ================ dolar.js ================
 /**
  * Obtiene la cotización de los distintos tipos de dólar en Argentina.
  *
- * @param {string} tipo La “casa” del dólar: oficial, blue, bolsa, contadoconliqui, mayorista, cripto o tarjeta.
- * @param {string} operacion 'compra', 'venta' o 'promedio'.
+ * @param {string} tipo La “casa” del dólar: oficial, blue, bolsa/mep, contadoconliqui/ccl, mayorista, cripto o tarjeta.
+ * @param {string} operacion 'compra', 'venta' o 'promedio'. Por defecto: 'venta'.
  * @return El valor numérico de la operación solicitada.
  * @customfunction
  */
 function dolar(tipo, operacion) {
-  // Consulta al API
-  var url = 'https://dolarapi.com/v1/dolares';
-  var respuesta = UrlFetchApp.fetch(url);
-  var datos = JSON.parse(respuesta.getContentText());
-  
-  // Normalizo entradas
-  var casa = tipo.toString().toLowerCase().trim();
+  if (tipo === undefined || tipo === null || tipo === '') {
+    throw new Error("Tipo no proporcionado. Usa 'blue', 'oficial', 'mep', 'ccl', etc.");
+  }
+
+  operacion = (operacion === undefined || operacion === null || operacion === '')
+    ? 'venta'
+    : operacion;
+
+  var casa = normalizarCasaDolar_(tipo);
   var op = operacion.toString().toLowerCase().trim();
-  
-  // Busco la casa solicitada
+
+  var datos = fetchJson('https://dolarapi.com/v1/dolares', {
+    cacheKey: 'api:dolarapi:dolares',
+    cacheTtlSeconds: 60
+  });
+
   for (var i = 0; i < datos.length; i++) {
     if (datos[i].casa.toLowerCase() === casa) {
       var compra = datos[i].compra;
-      var venta  = datos[i].venta;
-      
-      if (op === 'compra')     return compra;
-      if (op === 'venta')      return venta;
+      var venta = datos[i].venta;
+
+      if (op === 'compra') return compra;
+      if (op === 'venta') return venta;
       if (op === 'promedio') {
         if (compra != null && venta != null) return (compra + venta) / 2;
         if (compra != null) return compra;
         if (venta != null) return venta;
         throw new Error("No hay cotización disponible para calcular el promedio de '" + tipo + "'.");
       }
-      
+
       throw new Error("Operación inválida: '" + operacion + "'. Usa 'compra', 'venta' o 'promedio'.");
     }
   }
-  
-  // Si no encontró la casa
-  var disponibles = datos.map(function(o){ return o.casa; }).join(', ');
-  throw new Error("Tipo inválido: '" + tipo + "'. Tipos disponibles: " + disponibles + ".");
+
+  var disponibles = datos.map(function(o) { return o.casa; }).join(', ');
+  throw new Error("Tipo inválido: '" + tipo + "'. Tipos disponibles: " + disponibles + " (aliases: mep→bolsa, ccl→contadoconliqui).");
+}
+
+/**
+ * Normaliza aliases comunes de casas de dólar.
+ *
+ * @param {*} tipo
+ * @return {string}
+ */
+function normalizarCasaDolar_(tipo) {
+  var casa = tipo.toString().toLowerCase().trim().replace(/\s+/g, '');
+
+  if (casa === 'mep' || casa === 'bolsa') {
+    return 'bolsa';
+  }
+  if (casa === 'ccl' || casa === 'contado' || casa === 'contadoconliqui' || casa === 'contadoconliquidacion') {
+    return 'contadoconliqui';
+  }
+  return casa;
 }
 
 // ================ dolar_historico.js ================
 /**
  * Obtiene la cotización histórica del dólar según el tipo y fecha especificados
- * 
- * @param {string} tipo - Tipo de dólar (blue, oficial, mayorista, etc.)
+ *
+ * @param {string} tipo - Tipo de dólar (blue, oficial, mayorista, mep, ccl, etc.)
  * @param {string} fecha - Fecha en formato YYYY-MM-DD o DD/MM/YYYY
  * @param {string} valor - Opcional: "compra" o "venta" (por defecto es "venta")
  * @return {number} Valor de la cotización para el tipo y fecha solicitados
@@ -903,77 +766,86 @@ function dolar(tipo, operacion) {
 function dolar_historico(tipo, fecha, valor) {
   valor = valor || "venta";
 
-  // URL de la API de ArgentinaDatos para cotizaciones de dólares
-  const url = 'https://api.argentinadatos.com/v1/cotizaciones/dolares';
-
   if (!tipo) {
     throw new Error("Debe especificar un tipo de dólar");
   }
 
+  var casa = normalizarCasaDolar_(tipo);
+
   // Si no se proporciona fecha, usar la fecha actual en Argentina
+  var fechaISO;
   if (!fecha) {
-    const hoy = new Date();
-    fecha = Utilities.formatDate(hoy, "GMT-3", "yyyy-MM-dd");
+    var hoy = new Date();
+    fechaISO = Utilities.formatDate(hoy, "GMT-3", "yyyy-MM-dd");
   } else {
     try {
-      fecha = formatearFechaISO(fecha);
+      fechaISO = formatearFechaISO(fecha);
     } catch (e) {
       throw new Error("Fecha inválida: '" + fecha + "'. Usar formato 'YYYY-MM-DD' o 'DD/MM/YYYY'.");
     }
   }
 
-  if (valor.toLowerCase() !== "compra" && valor.toLowerCase() !== "venta") {
+  var campo = valor.toString().toLowerCase().trim();
+  if (campo !== "compra" && campo !== "venta") {
     throw new Error("El valor debe ser 'compra' o 'venta'");
   }
 
-  const response = UrlFetchApp.fetch(url);
-  const data = JSON.parse(response.getContentText());
+  var componentes = obtenerComponentesFecha(fechaISO);
+  var url = 'https://api.argentinadatos.com/v1/cotizaciones/dolares/' +
+    encodeURIComponent(casa) + '/' +
+    componentes.year + '/' + componentes.month + '/' + componentes.day;
 
-  const cotizacion = data.filter(item =>
-    item.casa.toLowerCase() === tipo.toLowerCase() &&
-    item.fecha === fecha
-  );
-
-  if (cotizacion.length > 0) {
-    return cotizacion[0][valor.toLowerCase()];
+  try {
+    var cotizacion = fetchJson(url, { skipCache: true });
+    if (cotizacion && cotizacion[campo] != null) {
+      return cotizacion[campo];
+    }
+    throw new Error("No se encontró cotización para la fecha y tipo especificados");
+  } catch (e) {
+    if (e.message && e.message.indexOf('Error HTTP') === 0) {
+      throw new Error("No se encontró cotización para la fecha y tipo especificados");
+    }
+    throw e;
   }
-
-  throw new Error("No se encontró cotización para la fecha y tipo especificados");
 }
 
 /**
  * Obtiene todas las cotizaciones de dólar para una fecha específica
- * 
+ *
  * @param {string} fecha - Fecha en formato YYYY-MM-DD o DD/MM/YYYY
  * @return {Array} Matriz con las cotizaciones de cada tipo de dólar para la fecha
  * @customfunction
  */
 function dolar_historico_todos(fecha) {
-  const url = 'https://api.argentinadatos.com/v1/cotizaciones/dolares';
-
+  var fechaISO;
   if (!fecha) {
-    const hoy = new Date();
-    fecha = Utilities.formatDate(hoy, "GMT-3", "yyyy-MM-dd");
+    var hoy = new Date();
+    fechaISO = Utilities.formatDate(hoy, "GMT-3", "yyyy-MM-dd");
   } else {
     try {
-      fecha = formatearFechaISO(fecha);
+      fechaISO = formatearFechaISO(fecha);
     } catch (e) {
       throw new Error("Fecha inválida: '" + fecha + "'. Usar formato 'YYYY-MM-DD' o 'DD/MM/YYYY'.");
     }
   }
 
-  const response = UrlFetchApp.fetch(url);
-  const data = JSON.parse(response.getContentText());
+  // Serie completa cacheada (payload grande: solo cachear si entra en el límite de CacheService)
+  var data = fetchJson('https://api.argentinadatos.com/v1/cotizaciones/dolares', {
+    cacheKey: 'api:ad:dolares:all',
+    cacheTtlSeconds: 300
+  });
 
-  const cotizaciones = data.filter(item => item.fecha === fecha);
+  var cotizaciones = data.filter(function(item) {
+    return item.fecha === fechaISO;
+  });
 
   if (cotizaciones.length === 0) {
     throw new Error("No se encontraron cotizaciones para la fecha especificada");
   }
 
-  const resultado = [["Tipo", "Compra", "Venta", "Fecha"]];
+  var resultado = [["Tipo", "Compra", "Venta", "Fecha"]];
 
-  cotizaciones.forEach(cotizacion => {
+  cotizaciones.forEach(function(cotizacion) {
     resultado.push([
       cotizacion.casa,
       cotizacion.compra,
@@ -997,19 +869,16 @@ function dolar_historico_todos(fecha) {
  * @customfunction
  */
 function fci(tipoFondo, nombreFondo, fecha, campo) {
-  // Normalizo entradas
   var tipo = tipoFondo ? tipoFondo.toString().toLowerCase().trim() : '';
   var nombre = nombreFondo ? nombreFondo.toString().trim() : '';
   var campoDatos = campo ? campo.toString().toLowerCase().trim() : 'vcp';
 
-  // Validar tipo de fondo (normalización con replace global)
   var tipoNormalizado = tipo.replace(/\s+/g, '').replace(/[óo]/g, 'o');
   var tiposPermitidos = ['mercadodinero', 'rentavariable', 'rentafija', 'rentamixta', 'retornototal'];
   if (!tiposPermitidos.includes(tipoNormalizado)) {
     throw new Error("Tipo de fondo inválido. Tipos permitidos: mercadoDinero, rentaVariable, rentaFija, rentaMixta, retornoTotal.");
   }
 
-  // Convertir tipo a formato de API
   var tipoAPI = tipoNormalizado;
   switch (tipoAPI) {
     case 'mercadodinero': tipoAPI = 'mercadoDinero'; break;
@@ -1019,19 +888,17 @@ function fci(tipoFondo, nombreFondo, fecha, campo) {
     case 'retornototal': tipoAPI = 'retornoTotal'; break;
   }
 
-  // Validar el campo a consultar
   var camposPermitidos = ['vcp', 'ccp', 'patrimonio'];
   if (!camposPermitidos.includes(campoDatos)) {
     throw new Error("Campo inválido. Campos permitidos: vcp (valor cuotaparte), ccp (cantidad cuotapartes), patrimonio.");
   }
 
-  // Validar que se haya proporcionado un nombre de fondo
   if (!nombre) {
     throw new Error("Debe especificar un nombre de fondo.");
   }
 
-  // Construir URL según si se proporciona fecha o no
   var url;
+  var cacheKey = null;
   if (fecha) {
     try {
       var componentesFecha = obtenerComponentesFecha(fecha);
@@ -1041,20 +908,14 @@ function fci(tipoFondo, nombreFondo, fecha, campo) {
     }
   } else {
     url = 'https://api.argentinadatos.com/v1/finanzas/fci/' + tipoAPI + '/ultimo';
+    cacheKey = 'api:ad:fci:' + tipoAPI + ':ultimo';
   }
 
   try {
-    // Consulta al API
-    var respuesta = UrlFetchApp.fetch(url, {
-      muteHttpExceptions: true
-    });
-
-    // Verificar si la respuesta es válida
-    if (respuesta.getResponseCode() !== 200) {
-      throw new Error("Error al consultar la API: Código " + respuesta.getResponseCode() + ". Verifique los parámetros.");
-    }
-
-    var datos = JSON.parse(respuesta.getContentText());
+    var datos = fetchJson(url, cacheKey ? {
+      cacheKey: cacheKey,
+      cacheTtlSeconds: 120
+    } : { skipCache: true });
 
     function esFondoValido(item) {
       return item.fondo && !item.fondo.startsWith("Region:") &&
@@ -1071,45 +932,54 @@ function fci(tipoFondo, nombreFondo, fecha, campo) {
       return valor;
     }
 
-    // Buscar el fondo por nombre (exacto primero, luego parcial sin ambigüedad)
+    var nombreLower = nombre.toLowerCase();
     var coincidenciasExactas = [];
+    var coincidenciasExactasCI = [];
     var coincidenciasParciales = [];
+    var coincidenciasParcialesCI = [];
+
     for (var i = 0; i < datos.length; i++) {
       if (!esFondoValido(datos[i])) continue;
-      if (datos[i].fondo === nombre) {
+      var fondoNombre = datos[i].fondo;
+      var fondoLower = fondoNombre.toLowerCase();
+
+      if (fondoNombre === nombre) {
         coincidenciasExactas.push(datos[i]);
-      } else if (datos[i].fondo.includes(nombre)) {
+      } else if (fondoLower === nombreLower) {
+        coincidenciasExactasCI.push(datos[i]);
+      } else if (fondoNombre.includes(nombre)) {
         coincidenciasParciales.push(datos[i]);
+      } else if (fondoLower.includes(nombreLower)) {
+        coincidenciasParcialesCI.push(datos[i]);
       }
     }
 
-    if (coincidenciasExactas.length === 1) {
-      return valorCampoFondo(coincidenciasExactas[0]);
-    }
-    if (coincidenciasExactas.length > 1) {
-      throw new Error("Varios fondos coinciden con '" + nombre + "': " + coincidenciasExactas.map(function(f) { return f.fondo; }).join(', ') + ".");
-    }
-    if (coincidenciasParciales.length === 1) {
-      return valorCampoFondo(coincidenciasParciales[0]);
-    }
-    if (coincidenciasParciales.length > 1) {
-      throw new Error("Varios fondos coinciden con '" + nombre + "': " + coincidenciasParciales.slice(0, 10).map(function(f) { return f.fondo; }).join(', ') + "...");
+    function resolverCoincidencias(lista) {
+      if (lista.length === 1) return valorCampoFondo(lista[0]);
+      if (lista.length > 1) {
+        throw new Error("Varios fondos coinciden con '" + nombre + "': " + lista.slice(0, 10).map(function(f) { return f.fondo; }).join(', ') + (lista.length > 10 ? "..." : "."));
+      }
+      return null;
     }
 
-    // Si no se encontró el fondo, mostrar algunos disponibles
+    var r = resolverCoincidencias(coincidenciasExactas);
+    if (r !== null) return r;
+    r = resolverCoincidencias(coincidenciasExactasCI);
+    if (r !== null) return r;
+    r = resolverCoincidencias(coincidenciasParciales);
+    if (r !== null) return r;
+    r = resolverCoincidencias(coincidenciasParcialesCI);
+    if (r !== null) return r;
+
     var fondosDisponibles = datos
-      .filter(function(d) {
-        return esFondoValido(d);
-      })
-      .map(function(d) {
-        return d.fondo;
-      })
+      .filter(esFondoValido)
+      .map(function(d) { return d.fondo; })
       .slice(0, 10)
       .join(", ") + "...";
 
     throw new Error("Fondo '" + nombre + "' no encontrado para el tipo '" + tipoFondo + "'. Algunos fondos disponibles: " + fondosDisponibles);
   } catch (e) {
-    if (e.message.includes("Error al consultar la API")) {
+    if (e.message.includes("Error HTTP") || e.message.includes("Error al consultar")) {
       throw e;
     }
     throw new Error("Error al consultar información de '" + tipoFondo + "': " + e.message);
@@ -1123,56 +993,42 @@ function fci(tipoFondo, nombreFondo, fecha, campo) {
  * @customfunction
  */
 function fciLista() {
-  // Tipos de fondos a consultar
   var tipos = ['mercadoDinero', 'rentaVariable', 'rentaFija', 'rentaMixta', 'retornoTotal'];
-
-  // Matriz para almacenar todos los fondos
   var todosLosFondos = [['Nombre del Fondo', 'Tipo de Fondo', 'Valor Cuotaparte']];
 
-  // Recorrer cada tipo de fondo
   tipos.forEach(function(tipo) {
     try {
-      // Construir URL para obtener la lista de fondos
       var url = 'https://api.argentinadatos.com/v1/finanzas/fci/' + tipo + '/ultimo';
-
-      // Consultar la API
-      var respuesta = UrlFetchApp.fetch(url, {
-        muteHttpExceptions: true
+      var datos = fetchJson(url, {
+        cacheKey: 'api:ad:fci:' + tipo + ':ultimo',
+        cacheTtlSeconds: 120
       });
 
-      // Verificar si la respuesta es válida
-      if (respuesta.getResponseCode() === 200) {
-        var datos = JSON.parse(respuesta.getContentText());
+      var fondosValidos = datos.filter(function(d) {
+        return d.fondo &&
+               !d.fondo.startsWith("Region:") &&
+               !d.fondo.startsWith("Duration:") &&
+               !d.fondo.startsWith("Benchmark:") &&
+               !d.fondo.startsWith("Moneda:");
+      });
 
-        // Filtrar solo los fondos válidos (no categorías)
-        var fondosValidos = datos.filter(function(d) {
-          return d.fondo &&
-                 !d.fondo.startsWith("Region:") &&
-                 !d.fondo.startsWith("Duration:") &&
-                 !d.fondo.startsWith("Benchmark:") &&
-                 !d.fondo.startsWith("Moneda:");
-        });
+      fondosValidos.forEach(function(fondo) {
+        var nombreFormateado = tipo;
+        switch (tipo) {
+          case 'mercadoDinero': nombreFormateado = 'Mercado de Dinero'; break;
+          case 'rentaVariable': nombreFormateado = 'Renta Variable'; break;
+          case 'rentaFija': nombreFormateado = 'Renta Fija'; break;
+          case 'rentaMixta': nombreFormateado = 'Renta Mixta'; break;
+          case 'retornoTotal': nombreFormateado = 'Retorno Total'; break;
+        }
 
-        // Agregar cada fondo a la matriz de resultados
-        fondosValidos.forEach(function(fondo) {
-          var nombreFormateado = tipo;
-          switch (tipo) {
-            case 'mercadoDinero': nombreFormateado = 'Mercado de Dinero'; break;
-            case 'rentaVariable': nombreFormateado = 'Renta Variable'; break;
-            case 'rentaFija': nombreFormateado = 'Renta Fija'; break;
-            case 'rentaMixta': nombreFormateado = 'Renta Mixta'; break;
-            case 'retornoTotal': nombreFormateado = 'Retorno Total'; break;
-          }
-
-          todosLosFondos.push([
-            fondo.fondo,
-            nombreFormateado,
-            fondo.vcp
-          ]);
-        });
-      }
+        todosLosFondos.push([
+          fondo.fondo,
+          nombreFormateado,
+          fondo.vcp
+        ]);
+      });
     } catch (e) {
-      // Si hay un error con un tipo de fondo, continuar con los demás
       Logger.log("Error al consultar fondos de tipo '" + tipo + "': " + e.message);
     }
   });
@@ -1273,6 +1129,143 @@ function parsearFechaLocal(fechaInput) {
   );
 }
 
+// ================ http.js ================
+/**
+ * Helpers HTTP + cache para Google Apps Script.
+ * Usa CacheService.getScriptCache() cuando está disponible.
+ * Los valores de cache no están garantizados; siempre se puede re-fetchear.
+ */
+
+// Constante CONSTANTS.HTTP_CACHE_MAX_CHARS movida al namespace CONSTANTS
+// var HTTP_CACHE_MAX_CHARS = 90000; // margen bajo el límite ~100KB de CacheService
+// Constante CONSTANTS.HTTP_DEFAULT_TTL movida al namespace CONSTANTS
+// var HTTP_DEFAULT_TTL = 120;
+
+/**
+ * Lee un valor del script cache. Devuelve null si no hay cache, falla o no hay key.
+ *
+ * @param {string} key
+ * @return {string|null}
+ */
+function cacheGet_(key) {
+  if (!key) return null;
+  try {
+    if (typeof CacheService === 'undefined' || !CacheService.getScriptCache) {
+      return null;
+    }
+    var cache = CacheService.getScriptCache();
+    if (!cache) return null;
+    return cache.get(key);
+  } catch (e) {
+    return null;
+  }
+}
+
+/**
+ * Guarda un valor en el script cache. Ignora fallos y payloads grandes.
+ *
+ * @param {string} key
+ * @param {string} value
+ * @param {number} ttlSeconds
+ */
+function cachePut_(key, value, ttlSeconds) {
+  if (!key || value == null) return;
+  if (value.length > CONSTANTS.HTTP_CACHE_MAX_CHARS) return;
+  try {
+    if (typeof CacheService === 'undefined' || !CacheService.getScriptCache) {
+      return;
+    }
+    var cache = CacheService.getScriptCache();
+    if (!cache) return;
+    var ttl = ttlSeconds || CONSTANTS.HTTP_DEFAULT_TTL;
+    if (ttl < 1) ttl = 1;
+    if (ttl > 21600) ttl = 21600;
+    cache.put(key, value, ttl);
+  } catch (e) {
+    // Cache es best-effort
+  }
+}
+
+/**
+ * Fetch JSON con muteHttpExceptions, validación de status y cache opcional.
+ *
+ * @param {string} url
+ * @param {Object} [options]
+ * @param {Object} [options.headers] Headers HTTP adicionales
+ * @param {string} [options.cacheKey] Clave de CacheService
+ * @param {number} [options.cacheTtlSeconds] TTL en segundos (default 120)
+ * @param {boolean} [options.skipCache] Si true, no lee ni escribe cache
+ * @return {*} JSON parseado
+ */
+function fetchJson(url, options) {
+  options = options || {};
+  var cacheKey = options.cacheKey;
+  var skipCache = options.skipCache === true;
+  var ttl = options.cacheTtlSeconds != null ? options.cacheTtlSeconds : CONSTANTS.HTTP_DEFAULT_TTL;
+
+  if (!skipCache && cacheKey) {
+    var cached = cacheGet_(cacheKey);
+    if (cached != null) {
+      try {
+        return JSON.parse(cached);
+      } catch (parseCacheError) {
+        // Cache corrupto: seguir con fetch
+      }
+    }
+  }
+
+  var fetchOptions = {
+    muteHttpExceptions: true,
+    headers: options.headers || {}
+  };
+
+  var respuesta;
+  try {
+    respuesta = UrlFetchApp.fetch(url, fetchOptions);
+  } catch (fetchError) {
+    throw new Error("Error de red al consultar la API: " + fetchError.message);
+  }
+
+  var code = respuesta.getResponseCode();
+  var text = respuesta.getContentText();
+
+  if (code < 200 || code >= 300) {
+    var detalle = text;
+    try {
+      var errBody = JSON.parse(text);
+      if (errBody && errBody.message) {
+        detalle = errBody.message;
+      } else if (errBody && errBody.error) {
+        detalle = errBody.error;
+      } else if (errBody && errBody.errors && errBody.errors[0] && errBody.errors[0].message) {
+        detalle = errBody.errors[0].message;
+      }
+    } catch (e) {
+      if (detalle && detalle.length > 200) {
+        detalle = detalle.substring(0, 200) + "...";
+      }
+    }
+    throw new Error("Error HTTP " + code + " al consultar la API: " + detalle);
+  }
+
+  var datos;
+  try {
+    datos = JSON.parse(text);
+  } catch (parseError) {
+    throw new Error("Respuesta inválida (no JSON) de la API.");
+  }
+
+  if (!skipCache && cacheKey) {
+    try {
+      cachePut_(cacheKey, text, ttl);
+    } catch (e) {
+      // ignore
+    }
+  }
+
+  return datos;
+}
+
 // ================ inflacion.js ================
 /**
  * Obtiene los índices de inflación de Argentina.
@@ -1282,22 +1275,19 @@ function parsearFechaLocal(fechaInput) {
  * @customfunction
  */
 function inflacion(fecha) {
-  // Consulta al API
-  var url = 'https://api.argentinadatos.com/v1/finanzas/indices/inflacion';
-  var respuesta = UrlFetchApp.fetch(url);
-  var datos = JSON.parse(respuesta.getContentText());
+  var datos = fetchJson('https://api.argentinadatos.com/v1/finanzas/indices/inflacion', {
+    cacheKey: 'api:ad:inflacion',
+    cacheTtlSeconds: 300
+  });
 
   if (!datos || !datos.length) {
     throw new Error("No se recibieron datos de inflación desde la API.");
   }
 
-  // Si no se proporciona fecha, devolver el valor más reciente
-  // Comparar strings ISO (YYYY-MM-DD) evita desfases UTC de new Date(iso)
   if (!fecha) {
     datos.sort(function(a, b) {
       return b.fecha.localeCompare(a.fecha);
     });
-
     return datos[0].valor;
   }
 
@@ -1308,14 +1298,12 @@ function inflacion(fecha) {
     throw new Error("Fecha inválida: '" + fecha + "'. Usar formato 'YYYY-MM-DD' o 'DD/MM/YYYY'.");
   }
 
-  // Buscar la fecha exacta
   for (var i = 0; i < datos.length; i++) {
     if (datos[i].fecha === fechaFormateada) {
       return datos[i].valor;
     }
   }
 
-  // Si no se encuentra la fecha exacta, buscar la fecha más cercana anterior
   var fechasMenores = datos.filter(function(d) {
     return d.fecha <= fechaFormateada;
   });
@@ -1324,11 +1312,9 @@ function inflacion(fecha) {
     fechasMenores.sort(function(a, b) {
       return b.fecha.localeCompare(a.fecha);
     });
-
     return fechasMenores[0].valor;
   }
 
-  // Si no hay fechas anteriores, devolver el dato más antiguo
   datos.sort(function(a, b) {
     return a.fecha.localeCompare(b.fecha);
   });
@@ -1346,77 +1332,107 @@ function inflacion(fecha) {
  * @customfunction
  */
 function letras(symbol, valor) {
-  // Validate inputs
-  if (!symbol) {
-    throw new Error("Símbolo no proporcionado. Debe ingresar un símbolo válido (ej: BB2Y5, BNA6D, etc).");
-  }
-  
-  if (!valor) {
-    throw new Error("Valor no proporcionado. Valores disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change.");
-  }
-  
-  // Standardize symbol and value
-  symbol = symbol.toUpperCase().trim();
-  valor = valor.toLowerCase().trim();
-  
-  // Validate valor parameter
-  const validValues = ["c", "v", "q_bid", "px_bid", "px_ask", "q_ask", "q_op", "pct_change"];
-  if (!validValues.includes(valor)) {
-    throw new Error(`Atributo inválido: '${valor}'. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change.`);
-  }
-  
-  try {
-    // Fetch data from the API
-    const url = "https://data912.com/live/arg_notes";
-    const response = UrlFetchApp.fetch(url);
-    const letrasList = JSON.parse(response.getContentText());
-    
-    // Find the requested treasury bill
-    const letra = letrasList.find(letra => letra.symbol === symbol);
-    
-    // Return the value if found, otherwise throw an error
-    if (letra) {
-      return letra[valor];
-    } else {
-      throw new Error(`Símbolo inválido: '${symbol}'. No se encontró en la lista de letras disponibles.`);
-    }
-  } catch (error) {
-    throw new Error(`Error al consultar datos de letras: ${error.message}`);
-  }
+  return panelCotizacion(
+    'https://data912.com/live/arg_notes',
+    symbol,
+    valor,
+    'letras',
+    'panel:arg_notes'
+  );
 }
 
 /**
  * Obtiene la lista completa de letras del tesoro desde la API.
- * 
+ *
  * @return Un arreglo bidimensional con todas las letras y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
  * @customfunction
  */
 function letrasLista() {
-  try {
-    // Fetch data from the API
-    const url = "https://data912.com/live/arg_notes";
-    const response = UrlFetchApp.fetch(url);
-    const datos = JSON.parse(response.getContentText());
-    
-    // Definir las columnas que queremos mostrar
-    const columnas = ['symbol', 'c', 'v', 'q_bid', 'px_bid', 'px_ask', 'q_ask', 'q_op', 'pct_change'];
-    
-    // Crear el arreglo bidimensional comenzando con los encabezados
-    const resultado = [columnas];
-    
-    // Agregar cada letra como una fila
-    datos.forEach(function(letra) {
-      const fila = columnas.map(function(columna) {
-        return letra[columna];
-      });
-      resultado.push(fila);
-    });
-    
-    return resultado;
-  } catch (error) {
-    throw new Error(`Error al consultar datos de letras: ${error.message}`);
-  }
+  return panelLista('https://data912.com/live/arg_notes', 'panel:arg_notes');
 }
+
+// ================ market_panel.js ================
+/**
+ * Helpers compartidos para paneles live de data912 (acciones, bonos, etc.).
+ */
+
+// Constante CONSTANTS.ATRIBUTOS_PANEL movida al namespace CONSTANTS
+// var ATRIBUTOS_PANEL = ['c', 'v', 'q_bid', 'px_bid', 'px_ask', 'q_ask', 'q_op', 'pct_change'];
+
+/**
+ * Cotización de un símbolo en un panel live.
+ *
+ * @param {string} url URL del panel
+ * @param {*} symbol Símbolo del instrumento
+ * @param {*} value Atributo a devolver
+ * @param {string} nombreMercado Nombre para mensajes de error (ej: 'acciones')
+ * @param {string} cacheKey Clave de cache del panel
+ * @return {*} Valor del atributo
+ */
+function panelCotizacion(url, symbol, value, nombreMercado, cacheKey) {
+  if (symbol === undefined || symbol === null || symbol === '') {
+    throw new Error("Símbolo no proporcionado. Debe ingresar un símbolo válido.");
+  }
+  if (value === undefined || value === null || value === '') {
+    throw new Error("Atributo no proporcionado. Atributos disponibles: " + CONSTANTS.ATRIBUTOS_PANEL.join(', ') + ".");
+  }
+
+  var simbolo = symbol.toString().toUpperCase().trim();
+  var atributo = value.toString().toLowerCase().trim();
+
+  if (!CONSTANTS.ATRIBUTOS_PANEL.includes(atributo)) {
+    throw new Error("Atributo inválido: '" + value + "'. Atributos disponibles: " + CONSTANTS.ATRIBUTOS_PANEL.join(', ') + ".");
+  }
+
+  var datos = fetchJson(url, {
+    cacheKey: cacheKey,
+    cacheTtlSeconds: 60
+  });
+
+  if (!datos || !datos.length) {
+    throw new Error("No se recibieron datos del panel de " + nombreMercado + ".");
+  }
+
+  for (var i = 0; i < datos.length; i++) {
+    if (datos[i].symbol === simbolo) {
+      return datos[i][atributo];
+    }
+  }
+
+  throw new Error("Símbolo inválido: '" + symbol + "'. No se encontró en la lista de " + nombreMercado + " disponibles.");
+}
+
+/**
+ * Lista completa de un panel live como matriz (headers + filas).
+ *
+ * @param {string} url URL del panel
+ * @param {string} cacheKey Clave de cache del panel
+ * @return {Array}
+ */
+function panelLista(url, cacheKey) {
+  var datos = fetchJson(url, {
+    cacheKey: cacheKey,
+    cacheTtlSeconds: 60
+  });
+
+  var columnas = CONSTANTS.ATRIBUTOS_PANEL.slice();
+  columnas.unshift('symbol');
+
+  var resultado = [columnas];
+  if (!datos || !datos.length) {
+    return resultado;
+  }
+  for (var i = 0; i < datos.length; i++) {
+    var item = datos[i];
+    var fila = [];
+    for (var j = 0; j < columnas.length; j++) {
+      fila.push(item[columnas[j]]);
+    }
+    resultado.push(fila);
+  }
+  return resultado;
+}
+
 // ================ obligaciones.js ================
 /**
  * Obtiene información de obligaciones negociables que cotizan en el mercado argentino desde la API.
@@ -1429,63 +1445,25 @@ function letrasLista() {
  * @customfunction
  */
 function obligaciones(symbol, value) {
-  // Consulta al API
-  var url = 'https://data912.com/live/arg_corp';
-  var respuesta = UrlFetchApp.fetch(url);
-  var datos = JSON.parse(respuesta.getContentText());
-  
-  // Normalizo entradas
-  var simbolo = symbol.toString().toUpperCase().trim();
-  var atributo = value.toString().toLowerCase().trim();
-  
-  // Valores permitidos
-  var atributosPermitidos = ['c', 'v', 'q_bid', 'px_bid', 'px_ask', 'q_ask', 'q_op', 'pct_change'];
-  
-  // Verificar si el atributo es válido
-  if (!atributosPermitidos.includes(atributo)) {
-    throw new Error("Atributo inválido: '" + value + "'. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change.");
-  }
-  
-  // Buscar el símbolo solicitado
-  for (var i = 0; i < datos.length; i++) {
-    if (datos[i].symbol === simbolo) {
-      return datos[i][atributo];
-    }
-  }
-  
-  // Si no se encontró el símbolo
-  var disponibles = datos.map(function(o){ return o.symbol; }).join(', ');
-  throw new Error("Símbolo inválido: '" + symbol + "'. No se encontró en la lista de obligaciones negociables disponibles.");
+  return panelCotizacion(
+    'https://data912.com/live/arg_corp',
+    symbol,
+    value,
+    'obligaciones negociables',
+    'panel:arg_corp'
+  );
 }
 
 /**
  * Obtiene la lista completa de obligaciones negociables que cotizan en el mercado argentino desde la API.
- * 
+ *
  * @return {Array} Un arreglo con todas las obligaciones negociables y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
  * @customfunction
  */
 function obligacionesLista() {
-  // Consulta al API
-  var url = 'https://data912.com/live/arg_corp';
-  var respuesta = UrlFetchApp.fetch(url);
-  var datos = JSON.parse(respuesta.getContentText());
-  
-  // Definir las columnas que queremos mostrar
-  var columnas = ['symbol', 'c', 'v', 'q_bid', 'px_bid', 'px_ask', 'q_ask', 'q_op', 'pct_change'];
-  
-  // Crear el arreglo bidimensional comenzando con los encabezados
-  var resultado = [columnas];
-  
-  // Agregar cada obligación negociable como una fila
-  datos.forEach(function(obligacion) {
-    var fila = columnas.map(function(columna) {
-      return obligacion[columna];
-    });
-    resultado.push(fila);
-  });
-  
-  return resultado;
-} 
+  return panelLista('https://data912.com/live/arg_corp', 'panel:arg_corp');
+}
+
 // ================ opciones.js ================
 /**
  * Obtiene información de opciones (calls y puts) que cotizan en el mercado argentino.
@@ -1498,62 +1476,25 @@ function obligacionesLista() {
  * @customfunction
  */
 function opciones(symbol, value) {
-  // Consulta al API
-  var url = 'https://data912.com/live/arg_options';
-  var respuesta = UrlFetchApp.fetch(url);
-  var datos = JSON.parse(respuesta.getContentText());
-  
-  // Normalizo entradas
-  var simbolo = symbol.toString().toUpperCase().trim();
-  var atributo = value.toString().toLowerCase().trim();
-  
-  // Valores permitidos
-  var atributosPermitidos = ['c', 'v', 'q_bid', 'px_bid', 'px_ask', 'q_ask', 'q_op', 'pct_change'];
-  
-  // Verificar si el atributo es válido
-  if (!atributosPermitidos.includes(atributo)) {
-    throw new Error("Atributo inválido: '" + value + "'. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change.");
-  }
-  
-  // Buscar el símbolo solicitado
-  for (var i = 0; i < datos.length; i++) {
-    if (datos[i].symbol === simbolo) {
-      return datos[i][atributo];
-    }
-  }
-  
-  // Si no se encontró el símbolo
-  throw new Error("Símbolo de opción inválido: '" + symbol + "'. No se encontró en la lista de opciones disponibles.");
+  return panelCotizacion(
+    'https://data912.com/live/arg_options',
+    symbol,
+    value,
+    'opciones',
+    'panel:arg_options'
+  );
 }
 
 /**
  * Obtiene la lista completa de opciones (calls y puts) que cotizan en el mercado argentino.
- * 
+ *
  * @return Un arreglo bidimensional con todas las opciones y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
  * @customfunction
  */
 function opcionesLista() {
-  // Consulta al API
-  var url = 'https://data912.com/live/arg_options';
-  var respuesta = UrlFetchApp.fetch(url);
-  var datos = JSON.parse(respuesta.getContentText());
-  
-  // Definir las columnas que queremos mostrar
-  var columnas = ['symbol', 'c', 'v', 'q_bid', 'px_bid', 'px_ask', 'q_ask', 'q_op', 'pct_change'];
-  
-  // Crear el arreglo bidimensional comenzando con los encabezados
-  var resultado = [columnas];
-  
-  // Agregar cada opción como una fila
-  datos.forEach(function(opcion) {
-    var fila = columnas.map(function(columna) {
-      return opcion[columna];
-    });
-    resultado.push(fila);
-  });
-  
-  return resultado;
+  return panelLista('https://data912.com/live/arg_options', 'panel:arg_options');
 }
+
 // ================ plazofijo.js ================
 /**
  * Obtiene las tasas de plazos fijos ofrecidas por bancos en Argentina.
@@ -1564,11 +1505,11 @@ function opcionesLista() {
  * @customfunction
  */
 function plazofijo(banco, tipoCliente) {
-  // Consulta al API
-  var url = 'https://api.argentinadatos.com/v1/finanzas/tasas/plazoFijo';
-  var respuesta = UrlFetchApp.fetch(url);
-  var datos = JSON.parse(respuesta.getContentText());
-  
+  var datos = fetchJson('https://api.argentinadatos.com/v1/finanzas/tasas/plazoFijo', {
+    cacheKey: 'api:ad:plazofijo',
+    cacheTtlSeconds: 120
+  });
+
   // Normalizo entradas
   var nombreBanco = banco ? banco.toString().toUpperCase().trim() : '';
   var tipo = tipoCliente ? tipoCliente.toString().toLowerCase().trim() : 'cliente';
@@ -1668,10 +1609,10 @@ function plazofijo(banco, tipoCliente) {
  * @customfunction
  */
 function rendimientos(moneda, proveedor) {
-  // Consulta al API
-  var url = 'https://api.argentinadatos.com/v1/finanzas/rendimientos';
-  var respuesta = UrlFetchApp.fetch(url);
-  var datos = JSON.parse(respuesta.getContentText());
+  var datos = fetchJson('https://api.argentinadatos.com/v1/finanzas/rendimientos', {
+    cacheKey: 'api:ad:rendimientos',
+    cacheTtlSeconds: 120
+  });
 
   // Normalizo entradas
   var crypto = moneda ? moneda.toString().toUpperCase().trim() : '';
@@ -1772,22 +1713,19 @@ function rendimientos(moneda, proveedor) {
  * @customfunction
  */
 function riesgopais(fecha) {
-  // Consulta al API
-  var url = 'https://api.argentinadatos.com/v1/finanzas/indices/riesgo-pais';
-  var respuesta = UrlFetchApp.fetch(url);
-  var datos = JSON.parse(respuesta.getContentText());
+  var datos = fetchJson('https://api.argentinadatos.com/v1/finanzas/indices/riesgo-pais', {
+    cacheKey: 'api:ad:riesgo-pais',
+    cacheTtlSeconds: 300
+  });
 
   if (!datos || !datos.length) {
     throw new Error("No se recibieron datos de riesgo país desde la API.");
   }
 
-  // Si no se proporciona fecha, devolver el valor más reciente
-  // Comparar strings ISO (YYYY-MM-DD) evita desfases UTC de new Date(iso)
   if (!fecha) {
     datos.sort(function(a, b) {
       return b.fecha.localeCompare(a.fecha);
     });
-
     return datos[0].valor;
   }
 
@@ -1798,14 +1736,12 @@ function riesgopais(fecha) {
     throw new Error("Fecha inválida: '" + fecha + "'. Usar formato 'YYYY-MM-DD' o 'DD/MM/YYYY'.");
   }
 
-  // Buscar la fecha exacta
   for (var i = 0; i < datos.length; i++) {
     if (datos[i].fecha === fechaFormateada) {
       return datos[i].valor;
     }
   }
 
-  // Si no se encuentra la fecha exacta, buscar la fecha más cercana anterior
   var fechasMenores = datos.filter(function(d) {
     return d.fecha <= fechaFormateada;
   });
@@ -1814,11 +1750,9 @@ function riesgopais(fecha) {
     fechasMenores.sort(function(a, b) {
       return b.fecha.localeCompare(a.fecha);
     });
-
     return fechasMenores[0].valor;
   }
 
-  // Si no hay fechas anteriores, devolver el dato más antiguo
   datos.sort(function(a, b) {
     return a.fecha.localeCompare(b.fecha);
   });
@@ -1838,62 +1772,25 @@ function riesgopais(fecha) {
  * @customfunction
  */
 function usa_stocks(symbol, value) {
-  // Consulta al API
-  var url = 'https://data912.com/live/usa_stocks';
-  var respuesta = UrlFetchApp.fetch(url);
-  var datos = JSON.parse(respuesta.getContentText());
-  
-  // Normalizo entradas
-  var simbolo = symbol.toString().toUpperCase().trim();
-  var atributo = value.toString().toLowerCase().trim();
-  
-  // Valores permitidos
-  var atributosPermitidos = ['c', 'v', 'q_bid', 'px_bid', 'px_ask', 'q_ask', 'q_op', 'pct_change'];
-  
-  // Verificar si el atributo es válido
-  if (!atributosPermitidos.includes(atributo)) {
-    throw new Error("Atributo inválido: '" + value + "'. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change.");
-  }
-  
-  // Buscar el símbolo solicitado
-  for (var i = 0; i < datos.length; i++) {
-    if (datos[i].symbol === simbolo) {
-      return datos[i][atributo];
-    }
-  }
-  
-  // Si no se encontró el símbolo
-  throw new Error("Símbolo inválido: '" + symbol + "'. No se encontró en la lista de acciones estadounidenses disponibles.");
+  return panelCotizacion(
+    'https://data912.com/live/usa_stocks',
+    symbol,
+    value,
+    'acciones estadounidenses',
+    'panel:usa_stocks'
+  );
 }
 
 /**
  * Obtiene la lista completa de acciones de Estados Unidos desde la API.
- * 
- * @return Un arreglo bidimensional con todas las acciones estadounidenses y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
+ *
+ * @return Un arreglo bidimensional con todas las acciones y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
  * @customfunction
  */
 function usa_stocksLista() {
-  // Consulta al API
-  var url = 'https://data912.com/live/usa_stocks';
-  var respuesta = UrlFetchApp.fetch(url);
-  var datos = JSON.parse(respuesta.getContentText());
-  
-  // Definir las columnas que queremos mostrar
-  var columnas = ['symbol', 'c', 'v', 'q_bid', 'px_bid', 'px_ask', 'q_ask', 'q_op', 'pct_change'];
-  
-  // Crear el arreglo bidimensional comenzando con los encabezados
-  var resultado = [columnas];
-  
-  // Agregar cada acción como una fila
-  datos.forEach(function(usaStock) {
-    var fila = columnas.map(function(columna) {
-      return usaStock[columna];
-    });
-    resultado.push(fila);
-  });
-  
-  return resultado;
+  return panelLista('https://data912.com/live/usa_stocks', 'panel:usa_stocks');
 }
+
 // ================ uva.js ================
 /**
  * Obtiene los índices UVA (Unidad de Valor Adquisitivo) de Argentina.
@@ -1903,22 +1800,19 @@ function usa_stocksLista() {
  * @customfunction
  */
 function uva(fecha) {
-  // Consulta al API
-  var url = 'https://api.argentinadatos.com/v1/finanzas/indices/uva';
-  var respuesta = UrlFetchApp.fetch(url);
-  var datos = JSON.parse(respuesta.getContentText());
+  var datos = fetchJson('https://api.argentinadatos.com/v1/finanzas/indices/uva', {
+    cacheKey: 'api:ad:uva',
+    cacheTtlSeconds: 300
+  });
 
   if (!datos || !datos.length) {
     throw new Error("No se recibieron datos de UVA desde la API.");
   }
 
-  // Si no se proporciona fecha, devolver el valor más reciente
-  // Comparar strings ISO (YYYY-MM-DD) evita desfases UTC de new Date(iso)
   if (!fecha) {
     datos.sort(function(a, b) {
       return b.fecha.localeCompare(a.fecha);
     });
-
     return datos[0].valor;
   }
 
@@ -1929,14 +1823,12 @@ function uva(fecha) {
     throw new Error("Fecha inválida: '" + fecha + "'. Usar formato 'YYYY-MM-DD' o 'DD/MM/YYYY'.");
   }
 
-  // Buscar la fecha exacta
   for (var i = 0; i < datos.length; i++) {
     if (datos[i].fecha === fechaFormateada) {
       return datos[i].valor;
     }
   }
 
-  // Si no se encuentra la fecha exacta, buscar la fecha más cercana anterior
   var fechasMenores = datos.filter(function(d) {
     return d.fecha <= fechaFormateada;
   });
@@ -1945,11 +1837,9 @@ function uva(fecha) {
     fechasMenores.sort(function(a, b) {
       return b.fecha.localeCompare(a.fecha);
     });
-
     return fechasMenores[0].valor;
   }
 
-  // Si no hay fechas anteriores, devolver el dato más antiguo
   datos.sort(function(a, b) {
     return a.fecha.localeCompare(b.fecha);
   });

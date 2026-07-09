@@ -7,10 +7,10 @@
  * @customfunction
  */
 function rendimientos(moneda, proveedor) {
-  // Consulta al API
-  var url = 'https://api.argentinadatos.com/v1/finanzas/rendimientos';
-  var respuesta = UrlFetchApp.fetch(url);
-  var datos = JSON.parse(respuesta.getContentText());
+  var datos = fetchJson('https://api.argentinadatos.com/v1/finanzas/rendimientos', {
+    cacheKey: 'api:ad:rendimientos',
+    cacheTtlSeconds: 120
+  });
 
   // Normalizo entradas
   var crypto = moneda ? moneda.toString().toUpperCase().trim() : '';

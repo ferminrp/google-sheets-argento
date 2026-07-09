@@ -10,46 +10,34 @@
  * @customfunction
  */
 function cedear(symbol, value) {
-  // Normalizo entradas
+  if (symbol === undefined || symbol === null || symbol === '') {
+    throw new Error("Símbolo no proporcionado. Debe ingresar un símbolo válido (ej: 'AAPL').");
+  }
+  if (value === undefined || value === null || value === '') {
+    throw new Error("Atributo no proporcionado. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change, name, ratio.");
+  }
+
   var simbolo = symbol.toString().toUpperCase().trim();
   var atributo = value.toString().toLowerCase().trim();
-  
-  // Valores permitidos para API de cotizaciones
-  var atributosPermitidosApi = ['c', 'v', 'q_bid', 'px_bid', 'px_ask', 'q_ask', 'q_op', 'pct_change'];
-  
-  // Valores permitidos para JSON local
+
   var atributosPermitidosJson = ['name', 'ratio'];
-  
-  // Verificar si es un atributo que viene del archivo JSON local
+
   if (atributosPermitidosJson.includes(atributo)) {
     return getCedearDataFromJson(simbolo, atributo);
   }
-  
-  // Si no es del JSON local, verificar si es un atributo válido de la API
-  if (!atributosPermitidosApi.includes(atributo)) {
-    throw new Error("Atributo inválido: '" + value + "'. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change, name, ratio.");
-  }
-  
-  // Consulta al API para cotizaciones
-  var url = 'https://data912.com/live/arg_cedears';
-  var respuesta = UrlFetchApp.fetch(url);
-  var datos = JSON.parse(respuesta.getContentText());
-  
-  // Buscar el símbolo solicitado
-  for (var i = 0; i < datos.length; i++) {
-    if (datos[i].symbol === simbolo) {
-      return datos[i][atributo];
-    }
-  }
-  
-  // Si no se encontró el símbolo
-  var disponibles = datos.map(function(o){ return o.symbol; }).join(', ');
-  throw new Error("Símbolo inválido: '" + symbol + "'. No se encontró en la lista de CEDEARs disponibles.");
+
+  return panelCotizacion(
+    'https://data912.com/live/arg_cedears',
+    simbolo,
+    atributo,
+    'CEDEARs',
+    'panel:arg_cedears'
+  );
 }
 
 /**
  * Obtiene datos de CEDEARs desde el archivo JSON local.
- * 
+ *
  * @param {string} symbol El símbolo del CEDEAR
  * @param {string} attribute El atributo que se quiere obtener ('name' o 'ratio')
  * @return El valor del atributo solicitado
@@ -60,6 +48,7 @@ function buscarCedearEnJson(cedears, symbol, attribute) {
       if (attribute === 'name') {
         return cedears[i].Name;
       } else if (attribute === 'ratio') {
+        // Se devuelve el string original del JSON ("20" o "1:3"). Ver doc/CEDEAR.md.
         return cedears[i].Ratio;
       }
     }
@@ -77,9 +66,13 @@ function cargarCedearsDesdeDrive() {
 }
 
 function cargarCedearsDesdeGitHub() {
-  var url = 'https://raw.githubusercontent.com/ferminrp/google-sheets-argento/main/data/cedears.json';
-  var response = UrlFetchApp.fetch(url);
-  return JSON.parse(response.getContentText());
+  return fetchJson(
+    'https://raw.githubusercontent.com/ferminrp/google-sheets-argento/main/data/cedears.json',
+    {
+      cacheKey: 'cedears:json',
+      cacheTtlSeconds: 3600
+    }
+  );
 }
 
 function getCedearDataFromJson(symbol, attribute) {
@@ -104,29 +97,10 @@ function getCedearDataFromJson(symbol, attribute) {
 
 /**
  * Obtiene la lista completa de CEDEARs (Certificados de Depósito Argentinos) desde la API.
- * 
+ *
  * @return Un arreglo bidimensional con todos los CEDEARs y sus propiedades (symbol, c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change)
  * @customfunction
  */
 function cedearLista() {
-  // Consulta al API
-  var url = 'https://data912.com/live/arg_cedears';
-  var respuesta = UrlFetchApp.fetch(url);
-  var datos = JSON.parse(respuesta.getContentText());
-  
-  // Definir las columnas que queremos mostrar
-  var columnas = ['symbol', 'c', 'v', 'q_bid', 'px_bid', 'px_ask', 'q_ask', 'q_op', 'pct_change'];
-  
-  // Crear el arreglo bidimensional comenzando con los encabezados
-  var resultado = [columnas];
-  
-  // Agregar cada CEDEAR como una fila
-  datos.forEach(function(cedear) {
-    var fila = columnas.map(function(columna) {
-      return cedear[columna];
-    });
-    resultado.push(fila);
-  });
-  
-  return resultado;
+  return panelLista('https://data912.com/live/arg_cedears', 'panel:arg_cedears');
 }

@@ -7,20 +7,12 @@
  */
 function bcraVariables() {
   try {
-    // Fetch data from the BCRA API
-    const url = "https://api.bcra.gob.ar/estadisticas/v3.0/Monetarias";
-    const response = UrlFetchApp.fetch(url);
-    const data = JSON.parse(response.getContentText());
-    
-    // Check if the API response is valid
-    if (data.status !== 200 || !data.results || !Array.isArray(data.results)) {
-      throw new Error("Error en la respuesta de la API del BCRA.");
-    }
-    
-    // Return the array of results
-    return data.results.map(item => [item.categoria, item.idVariable, item.descripcion, item.valor, item.fecha]);
+    var data = fetchBcraMonetarias_();
+    return data.results.map(function(item) {
+      return [item.categoria, item.idVariable, item.descripcion, item.valor, item.fecha];
+    });
   } catch (error) {
-    throw new Error(`Error al consultar el BCRA: ${error.message}`);
+    throw new Error("Error al consultar el BCRA: " + error.message);
   }
 }
 
@@ -33,35 +25,41 @@ function bcraVariables() {
  * @customfunction
  */
 function bcra(id) {
-  // Validate input
-  if (!id || isNaN(parseInt(id))) {
+  if (id === undefined || id === null || id === '' || isNaN(parseInt(id, 10))) {
     throw new Error("ID inválido. Debe ser un número válido (1, 4, 5, 6, etc).");
   }
-  
-  // Convert to integer in case it's passed as a string
-  const variableId = parseInt(id);
-  
+
+  var variableId = parseInt(id, 10);
+
   try {
-    // Fetch data from the BCRA API
-    const url = "https://api.bcra.gob.ar/estadisticas/v3.0/Monetarias";
-    const response = UrlFetchApp.fetch(url);
-    const data = JSON.parse(response.getContentText());
-    
-    // Check if the API response is valid
-    if (data.status !== 200 || !data.results || !Array.isArray(data.results)) {
-      throw new Error("Error en la respuesta de la API del BCRA.");
-    }
-    
-    // Find the variable with the specified ID
-    const variable = data.results.find(item => Number(item.idVariable) === variableId);
-    
-    // Return the value if found, otherwise throw an error
+    var data = fetchBcraMonetarias_();
+    var variable = data.results.find(function(item) {
+      return Number(item.idVariable) === variableId;
+    });
+
     if (variable) {
       return variable.valor;
-    } else {
-      throw new Error(`Variable con ID ${variableId} no encontrada. IDs disponibles: ${data.results.map(item => item.idVariable).join(', ')}.`);
     }
+    throw new Error(
+      "Variable con ID " + variableId + " no encontrada. IDs disponibles: " +
+      data.results.map(function(item) { return item.idVariable; }).join(', ') + "."
+    );
   } catch (error) {
-    throw new Error(`Error al consultar el BCRA: ${error.message}`);
+    throw new Error("Error al consultar el BCRA: " + error.message);
   }
+}
+
+/**
+ * @return {{status: number, results: Array}}
+ */
+function fetchBcraMonetarias_() {
+  var data = fetchJson("https://api.bcra.gob.ar/estadisticas/v3.0/Monetarias", {
+    cacheKey: 'api:bcra:monetarias',
+    cacheTtlSeconds: 300
+  });
+
+  if (data.status !== 200 || !data.results || !Array.isArray(data.results)) {
+    throw new Error("Error en la respuesta de la API del BCRA.");
+  }
+  return data;
 }

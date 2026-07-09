@@ -236,6 +236,9 @@ function calcularCaucion(
   if (!Number.isInteger(dias)) {
     throw new Error("El parámetro 'dias' debe ser un número entero.");
   }
+  if (dias === 0) {
+    throw new Error("El parámetro 'dias' no puede ser 0. Usar un valor positivo (tomadora) o negativo (colocadora).");
+  }
   if (typeof tna !== "number" || tna < 0) {
     throw new Error("El parámetro 'tna' debe ser un número positivo.");
   }

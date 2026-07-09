@@ -7,11 +7,11 @@
  * @customfunction
  */
 function plazofijo(banco, tipoCliente) {
-  // Consulta al API
-  var url = 'https://api.argentinadatos.com/v1/finanzas/tasas/plazoFijo';
-  var respuesta = UrlFetchApp.fetch(url);
-  var datos = JSON.parse(respuesta.getContentText());
-  
+  var datos = fetchJson('https://api.argentinadatos.com/v1/finanzas/tasas/plazoFijo', {
+    cacheKey: 'api:ad:plazofijo',
+    cacheTtlSeconds: 120
+  });
+
   // Normalizo entradas
   var nombreBanco = banco ? banco.toString().toUpperCase().trim() : '';
   var tipo = tipoCliente ? tipoCliente.toString().toLowerCase().trim() : 'cliente';

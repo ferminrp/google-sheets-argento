@@ -104,6 +104,23 @@ describe("fci", () => {
     expect(fetchMock.mock.calls[0][0]).toContain("/rentaMixta/ultimo");
   });
 
+  test("match case-insensitive del nombre del fondo", () => {
+    fetchMock.mockReturnValue(
+      createResponse(200, [
+        {
+          fondo: "Cocos Rendimiento - Clase A",
+          vcp: 111,
+          ccp: 100,
+          patrimonio: 1000,
+        },
+      ])
+    );
+
+    const result = fci("rentaMixta", "cocos rendimiento - clase a");
+
+    expect(result).toBe(111);
+  });
+
   test("acepta retornoTotal y consulta su endpoint", () => {
     fetchMock.mockReturnValue(
       createResponse(200, [

@@ -80,6 +80,8 @@ Forzar recálculo:
 - [src/bcra.js](src/bcra.js) – Código fuente para variables del Banco Central
 - [src/caucion.js](src/caucion.js) – Código fuente para cálculo de cauciones
 - [src/fecha.js](src/fecha.js) – Utilidades compartidas de parseo de fechas (YYYY-MM-DD y DD/MM/YYYY)
+- [src/http.js](src/http.js) – `fetchJson` + cache (`CacheService`) para todas las APIs
+- [src/market_panel.js](src/market_panel.js) – Helpers compartidos de paneles data912
 - [all-in-one.js](all-in-one.js) – Archivo único con todas las funciones combinadas
 
 ## Desarrollo
@@ -90,5 +92,8 @@ npm run build   # genera all-in-one.js a partir de src/
 npm test        # requiere haber corrido build antes
 ```
 
-- Tests unitarios: [tests/](tests/) (`fci.test.js`, `fecha.test.js`, `dolar.test.js`, `all-in-one.test.js`)
+- Tests unitarios: [tests/](tests/)
 - Siempre ejecutar `npm run build` después de modificar archivos en `src/`
+- Las cotizaciones live usan cache de ~60s en Apps Script para ahorrar cuota de UrlFetch
+- Aliases de dólar: `mep` → bolsa, `ccl` → contadoconliqui
+

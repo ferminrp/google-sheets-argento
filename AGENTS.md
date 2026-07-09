@@ -9,13 +9,22 @@ This is a **Google Apps Script library** (not a web app/server). Source files in
 | Action | Command |
 |--------|---------|
 | Install deps | `npm install` |
-| Build | `npm run build` (concatenates `src/*.js` into `all-in-one.js`) |
-| Test | `npm test` (Jest, includes integration tests with 30s timeout) |
+| Build | `npm run build` (concatenates `src/*.js` into `all-in-one.js`, sorted alphabetically) |
+| Test | `npm test` (Jest; unit tests mock UrlFetchApp/CacheService) |
+
+### Architecture notes
+
+- **`src/http.js`**: `fetchJson(url, options)` centralizes HTTP (`muteHttpExceptions`, status check, JSON parse) and optional `CacheService.getScriptCache()` via `cacheKey` / `cacheTtlSeconds`.
+- **`src/market_panel.js`**: shared helpers for data912 live panels (`panelCotizacion`, `panelLista`).
+- **`src/fecha.js`**: shared date parsing (`YYYY-MM-DD` and Argentine `DD/MM/YYYY`).
+- Public custom functions must use `function name()` declarations (Apps Script hoist); avoid assigning helpers to `const`/`var` if other files call them.
+- Cache is best-effort: values may expire early; payloads &gt; ~90KB are not cached.
 
 ### Notes
 
 - **No linter** is configured in this project.
 - **Build before test**: Tests load `all-in-one.js` via `tests/test-wrapper.js`, so you must run `npm run build` before `npm test` whenever source files change.
-- **Integration tests call live APIs** (DolarAPI, ArgentinaDatos, Data912, etc.). These may occasionally fail due to API downtime or rate limiting — this is expected and not a code issue.
+- **Commit `all-in-one.js`** after build so the shipped bundle matches `src/`.
+- **Integration-style caucion tests** do not hit the network; most unit tests mock APIs.
 - **No environment variables or secrets** are required.
 - **No Docker, no database, no backend server** — the only service needed is Node.js with npm.

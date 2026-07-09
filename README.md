@@ -2,11 +2,18 @@
 
 Scripts de Apps Script que añaden a tu Google Sheet funciones típicas para el día a día de un Argentino de bien.
 
+🌐 **Documentación y guía de uso:** [ferminrp.github.io/google-sheets-argento](https://ferminrp.github.io/google-sheets-argento/)
+
 [![Invitame un café en cafecito.app](https://cdn.cafecito.app/imgs/buttons/button_1.svg)](https://cafecito.app/ferminrp)
 
 ## Instalación
 
-Puedes utilizar el archivo `all-in-one.js` que incluye todas las funciones combinadas para una instalación simplificada.
+1. Abrí tu Google Sheet → **Extensiones → Apps Script**
+2. Pegá el contenido de [`all-in-one.js`](https://raw.githubusercontent.com/ferminrp/google-sheets-argento/main/all-in-one.js) (archivo único con todas las funciones)
+3. Guardá y volvé a la hoja
+4. Probá: `=dolar("blue")` (la primera vez Google pide autorizar el script)
+
+Guía paso a paso, catálogo de fórmulas y fuentes de datos: **[sitio web](https://ferminrp.github.io/google-sheets-argento/)**.
 
 ## Documentación de Funciones
 

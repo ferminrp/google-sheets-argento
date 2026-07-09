@@ -75,9 +75,10 @@ function buildConsolidatedFile() {
     // Objeto para almacenar todas las constantes
     const allConstants = {};
 
+    // Header sin timestamp: el build debe ser determinista (CI hace git diff --exit-code)
     let consolidatedContent = '// Archivo consolidado generado automáticamente\n';
-    consolidatedContent += '// Fecha de generación: ' + new Date().toISOString() + '\n\n';
-    
+    consolidatedContent += '// No editar a mano: npm run build\n\n';
+
     // Agregar el namespace CONSTANTS al inicio
     consolidatedContent += '// Namespace para constantes compartidas\n';
     consolidatedContent += 'var CONSTANTS = {};\n';

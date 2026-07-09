@@ -1,5 +1,5 @@
 // Archivo consolidado generado automáticamente
-// Fecha de generación: 2026-07-09T12:35:14.840Z
+// No editar a mano: npm run build
 
 // Namespace para constantes compartidas
 var CONSTANTS = {};

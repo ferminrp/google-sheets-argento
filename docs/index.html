@@ -28,6 +28,7 @@
         <li><a href="#instalacion">Instalar</a></li>
         <li><a href="#uso">Uso</a></li>
         <li><a href="#funciones">Funciones</a></li>
+        <li><a href="#api">API</a></li>
         <li><a href="#fuentes">Fuentes</a></li>
         <li><a href="#faq">FAQ</a></li>
       </ul>
@@ -457,6 +458,80 @@
       </div>
     </section>
 
+    <section class="section" id="api">
+      <div class="wrap">
+        <h2>API / datos abiertos</h2>
+        <p class="section-lead">
+          Miscelánea de la página: JSON estático servido por GitHub Pages.
+          Pensado para agentes, scripts y quien no quiera pelearse con el PDF de BYMA.
+        </p>
+
+        <div class="cards">
+          <article class="card">
+            <h3>CEDEARs + ratios</h3>
+            <p>
+              Listado con ticker, nombre y ratio de conversión.
+              Ideal para alimentar un agente o un script sin scrapear el PDF de BYMA.
+            </p>
+            <p style="margin: 0 0 0.75rem;">
+              <a href="api/cedears.json"><strong>GET api/cedears.json</strong></a>
+            </p>
+            <code>Content-Type: application/json</code>
+          </article>
+        </div>
+
+        <h3 style="margin-top: 2rem;">Endpoint</h3>
+        <div class="code-block">
+          <pre>https://ferminrp.github.io/google-sheets-argento/api/cedears.json</pre>
+        </div>
+
+        <h3 style="margin-top: 1.5rem;">Forma de la respuesta</h3>
+        <div class="code-block">
+          <pre>{
+  "schema_version": 1,
+  "name": "cedears",
+  "count": 428,
+  "fields": {
+    "Cedears": "Ticker del CEDEAR en BYMA",
+    "Name": "Nombre de la empresa / instrumento subyacente",
+    "Ratio": "String de conversión…"
+  },
+  "items": [
+    { "Cedears": "AAPL", "Name": "Apple Inc.", "Ratio": "20" },
+    { "Cedears": "ABEV", "Name": "Ambev S.A.", "Ratio": "1:3" }
+  ]
+}</pre>
+        </div>
+
+        <div class="callout">
+          <strong>Cómo leer el ratio</strong>
+          <ul>
+            <li><code class="inline-code">"20"</code> → 20 CEDEARs = 1 acción subyacente (ej. AAPL)</li>
+            <li><code class="inline-code">"1:3"</code> → razón 1:3 (formato alternativo en algunos tickers)</li>
+            <li>El valor se expone <strong>sin normalizar</strong>; parsealo según el formato del ticker</li>
+            <li>Fuente canónica en el repo: <code class="inline-code">data/cedears.json</code> (array plano). El endpoint de Pages agrega metadata para agentes.</li>
+          </ul>
+        </div>
+
+        <h3 style="margin-top: 1.5rem;">Ejemplos</h3>
+        <div class="code-block">
+          <pre># curl
+curl -s https://ferminrp.github.io/google-sheets-argento/api/cedears.json | jq '.items[] | select(.Cedears=="AAPL")'
+
+# JavaScript
+const res = await fetch('https://ferminrp.github.io/google-sheets-argento/api/cedears.json');
+const { items } = await res.json();
+const aapl = items.find((c) => c.Cedears === 'AAPL');</pre>
+        </div>
+
+        <p class="disclaimer">
+          Es un snapshot versionado en el repo, no una API de cotizaciones en vivo.
+          Los precios siguen viniendo de data912 vía las fórmulas de Sheets.
+          CORS: GET público (ideal para fetch desde scripts y agentes).
+        </p>
+      </div>
+    </section>
+
     <section class="section" id="fuentes">
       <div class="wrap">
         <h2>Fuentes de datos</h2>
@@ -513,8 +588,12 @@
               </tr>
               <tr>
                 <td class="fn-name">cedears.json</td>
-                <td>Nombres y ratios de CEDEARs (repo)</td>
-                <td><a href="https://github.com/ferminrp/google-sheets-argento/blob/main/data/cedears.json" target="_blank" rel="noopener">data/cedears.json</a></td>
+                <td>Nombres y ratios de CEDEARs (repo + API Pages)</td>
+                <td>
+                  <a href="api/cedears.json">api/cedears.json</a>
+                  ·
+                  <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/data/cedears.json" target="_blank" rel="noopener">data/</a>
+                </td>
               </tr>
               <tr>
                 <td class="fn-name">Cálculo local</td>
@@ -608,6 +687,7 @@
         <li><a href="https://github.com/ferminrp/google-sheets-argento" target="_blank" rel="noopener">GitHub</a></li>
         <li><a href="https://github.com/ferminrp/google-sheets-argento/issues" target="_blank" rel="noopener">Issues</a></li>
         <li><a href="https://raw.githubusercontent.com/ferminrp/google-sheets-argento/main/all-in-one.js" target="_blank" rel="noopener">all-in-one.js</a></li>
+        <li><a href="api/cedears.json">API CEDEARs</a></li>
         <li><a href="https://cafecito.app/ferminrp" target="_blank" rel="noopener">Cafecito</a></li>
       </ul>
       <p class="footer-note">

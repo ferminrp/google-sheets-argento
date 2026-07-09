@@ -9,7 +9,7 @@ This is a **Google Apps Script library** (not a web app/server). Source files in
 | Action | Command |
 |--------|---------|
 | Install deps | `npm install` |
-| Build | `npm run build` (concatenates `src/*.js` into `all-in-one.js`, sorted alphabetically) |
+| Build | `npm run build` (concatenates `src/*.js` into `all-in-one.js`, sorted alphabetically; also publishes `docs/api/cedears.json` from `data/cedears.json`) |
 | Test | `npm test` (Jest; unit tests mock UrlFetchApp/CacheService) |
 
 ### Architecture notes
@@ -25,6 +25,7 @@ This is a **Google Apps Script library** (not a web app/server). Source files in
 - **No linter** is configured in this project.
 - **Build before test**: Tests load `all-in-one.js` via `tests/test-wrapper.js`, so you must run `npm run build` before `npm test` whenever source files change.
 - **Commit `all-in-one.js`** after build so the shipped bundle matches `src/`.
+- **Commit `docs/api/cedears.json`** after build if `data/cedears.json` changed (GitHub Pages API for CEDEAR ratios).
 - **Integration-style caucion tests** do not hit the network; most unit tests mock APIs.
 - **No environment variables or secrets** are required.
 - **No Docker, no database, no backend server** — the only service needed is Node.js with npm.

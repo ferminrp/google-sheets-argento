@@ -1,0 +1,2157 @@
+{
+  "schema_version": 1,
+  "name": "cedears",
+  "description": "Listado de CEDEARs (BYMA) con nombre y ratio de conversión. Alternativa práctica al PDF de BYMA para agentes, scripts y planillas.",
+  "homepage": "https://ferminrp.github.io/google-sheets-argento/#api",
+  "endpoint": "https://ferminrp.github.io/google-sheets-argento/api/cedears.json",
+  "source_repo": "https://github.com/ferminrp/google-sheets-argento",
+  "source_file": "data/cedears.json",
+  "fields": {
+    "Cedears": "Ticker del CEDEAR en BYMA",
+    "Name": "Nombre de la empresa / instrumento subyacente",
+    "Ratio": "String de conversión. Formato 'N' (ej. \"20\") = N CEDEARs por 1 acción; formato 'A:B' (ej. \"1:3\") = razón A:B. No se normaliza."
+  },
+  "count": 428,
+  "items": [
+    {
+      "Cedears": "AABA",
+      "Name": "Altaba Inc.",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "AAL",
+      "Name": "American Airlines Group Inc",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "AAP",
+      "Name": "Advanced Auto Parts Inc",
+      "Ratio": "14"
+    },
+    {
+      "Cedears": "AAPL",
+      "Name": "Apple Inc.",
+      "Ratio": "20"
+    },
+    {
+      "Cedears": "ABBV",
+      "Name": "AbbVie Inc.",
+      "Ratio": "10"
+    },
+    {
+      "Cedears": "ABEV",
+      "Name": "Ambev S.A.",
+      "Ratio": "1:3"
+    },
+    {
+      "Cedears": "ABEV3",
+      "Name": "Ambev S.A.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "ABNB",
+      "Name": "Airbnb Inc",
+      "Ratio": "15"
+    },
+    {
+      "Cedears": "ABT",
+      "Name": "Abbott Labs",
+      "Ratio": "4"
+    },
+    {
+      "Cedears": "ACN",
+      "Name": "Accenture",
+      "Ratio": "75"
+    },
+    {
+      "Cedears": "ACWI",
+      "Name": "iShares MSCI ACWI ETF",
+      "Ratio": "26"
+    },
+    {
+      "Cedears": "ADBE",
+      "Name": "Adobe Systems Incorporated",
+      "Ratio": "44"
+    },
+    {
+      "Cedears": "ADGO",
+      "Name": "Adecoagro S.A.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "ADI",
+      "Name": "Analog Devices",
+      "Ratio": "15"
+    },
+    {
+      "Cedears": "ADP",
+      "Name": "Automatic Data Processing Inc.",
+      "Ratio": "6"
+    },
+    {
+      "Cedears": "ADS",
+      "Name": "Adidas AG",
+      "Ratio": "22"
+    },
+    {
+      "Cedears": "AEG",
+      "Name": "Aegon N.V.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "AEM",
+      "Name": "Agnico Eagle Mines Limited",
+      "Ratio": "6"
+    },
+    {
+      "Cedears": "AI",
+      "Name": "C3.AI INC",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "AIG",
+      "Name": "American International Group (AIG)",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "AKO.B",
+      "Name": "Embotelladora Andina S.A.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "ALAB",
+      "Name": "Astera Labs Inc",
+      "Ratio": "44"
+    },
+    {
+      "Cedears": "AMAT",
+      "Name": "Applied Materials Inc.",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "AMD",
+      "Name": "Advanced Micro Devices, Inc.",
+      "Ratio": "10"
+    },
+    {
+      "Cedears": "AMGN",
+      "Name": "Amgen Inc.",
+      "Ratio": "30"
+    },
+    {
+      "Cedears": "AMX",
+      "Name": "America Movil",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "AMZN",
+      "Name": "Amazon.Com, Inc.",
+      "Ratio": "144"
+    },
+    {
+      "Cedears": "ANET",
+      "Name": "Arista Networks Inc",
+      "Ratio": "29"
+    },
+    {
+      "Cedears": "ANF",
+      "Name": "Abercrombie & Fitch Co",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "AOCA",
+      "Name": "Aluminum Corp Of China",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "ARCO",
+      "Name": "Arcos Dorados Holdings Inc.",
+      "Ratio": "1:2"
+    },
+    {
+      "Cedears": "ARKK",
+      "Name": "ARK INNOVATION",
+      "Ratio": "10"
+    },
+    {
+      "Cedears": "ARM",
+      "Name": "ARM Holdings Plc",
+      "Ratio": "27"
+    },
+    {
+      "Cedears": "ASML",
+      "Name": "ASML HOLDING NV",
+      "Ratio": "146"
+    },
+    {
+      "Cedears": "ASR",
+      "Name": "Grupo Aeroportuario Del Sureste, S.A.B. de C.V.",
+      "Ratio": "20"
+    },
+    {
+      "Cedears": "ASTS",
+      "Name": "AST SpaceMobile Inc",
+      "Ratio": "15"
+    },
+    {
+      "Cedears": "ATAD",
+      "Name": "Pjsc Tatneft",
+      "Ratio": "4"
+    },
+    {
+      "Cedears": "AUY",
+      "Name": "Yamana Gold Inc.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "AVGO",
+      "Name": "Broadcom Inc.",
+      "Ratio": "39"
+    },
+    {
+      "Cedears": "AVY",
+      "Name": "Avery Dennison Corp.",
+      "Ratio": "18"
+    },
+    {
+      "Cedears": "AXP",
+      "Name": "American Express Co",
+      "Ratio": "15"
+    },
+    {
+      "Cedears": "AZN",
+      "Name": "Astrazeneca Plc",
+      "Ratio": "4"
+    },
+    {
+      "Cedears": "B",
+      "Name": "Barrick Gold Corp",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "BA",
+      "Name": "The Boeing Company",
+      "Ratio": "24"
+    },
+    {
+      "Cedears": "BABA",
+      "Name": "Alibaba Group Holding Limited",
+      "Ratio": "9"
+    },
+    {
+      "Cedears": "BA.C",
+      "Name": "Bank Of America Corporation",
+      "Ratio": "4"
+    },
+    {
+      "Cedears": "BAK",
+      "Name": "Braskem SA",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "BAS",
+      "Name": "Basf SE",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "BAYN",
+      "Name": "Bayer AG",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "BB",
+      "Name": "Blackberry Limited",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "BBAS3",
+      "Name": "Banco do Brasil S.A.",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "BBD",
+      "Name": "Banco Bradesco S.A.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "BBDC3",
+      "Name": "Banco Bradesco S.A.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "BBV",
+      "Name": "Bilbao Vizcaya Argentaria S.A.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "BCS",
+      "Name": "Barclays Bank Plc",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "BHP",
+      "Name": "Bhp Group Ltd",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "BIDU",
+      "Name": "Baidu, Inc.",
+      "Ratio": "11"
+    },
+    {
+      "Cedears": "BIIB",
+      "Name": "Biogen Inc.",
+      "Ratio": "13"
+    },
+    {
+      "Cedears": "BIOX",
+      "Name": "Bioceres Crop Solutions Corp.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "BK",
+      "Name": "The Bank Of New York Mellon Corp.",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "BKNG",
+      "Name": "Booking",
+      "Ratio": "700"
+    },
+    {
+      "Cedears": "BKR",
+      "Name": "Baker Hughes Co",
+      "Ratio": "7"
+    },
+    {
+      "Cedears": "BMNR",
+      "Name": "Bitmine Inmersion Technologies, Inc.",
+      "Ratio": "8"
+    },
+    {
+      "Cedears": "BMY",
+      "Name": "Bristol-Myers Squibb Company",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "BNG",
+      "Name": "Bunge Limited",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "BP",
+      "Name": "BP PCL",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "BPA11",
+      "Name": "Banco BTG Pactual S.A.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "BRFS",
+      "Name": "BRF S.A.",
+      "Ratio": "1:3"
+    },
+    {
+      "Cedears": "BRKB",
+      "Name": "Berkshire Hathaway Inc.",
+      "Ratio": "22"
+    },
+    {
+      "Cedears": "BSBR",
+      "Name": "Banco Santander (Brasil) S.A.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "BSN",
+      "Name": "Danone",
+      "Ratio": "20"
+    },
+    {
+      "Cedears": "BX",
+      "Name": "Blackstone Inc.",
+      "Ratio": "30"
+    },
+    {
+      "Cedears": "C",
+      "Name": "Citigroup Inc",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "CAAP",
+      "Name": "Corporación America Airports S.A.",
+      "Ratio": "1:4"
+    },
+    {
+      "Cedears": "CAH",
+      "Name": "Cardinal Health Inc",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "CAJ",
+      "Name": "Canon Inc",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "CAR",
+      "Name": "Avis Budget Group Inc.",
+      "Ratio": "26"
+    },
+    {
+      "Cedears": "CAT",
+      "Name": "Caterpillar Inc",
+      "Ratio": "20"
+    },
+    {
+      "Cedears": "CBRD",
+      "Name": "Companhia Brasileira De Dis NPV ADR",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "CCJ",
+      "Name": "Cameco Corporation",
+      "Ratio": "23"
+    },
+    {
+      "Cedears": "CCL",
+      "Name": "Carnival",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "CDE",
+      "Name": "Coeur Mining Inc.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "CEG",
+      "Name": "CONSTELLATION ENERGY CORPORATION",
+      "Ratio": "45"
+    },
+    {
+      "Cedears": "CIBR",
+      "Name": "First Trust NASDAQ Cybersecurity",
+      "Ratio": "10"
+    },
+    {
+      "Cedears": "CL",
+      "Name": "Colgate Palmolive Co",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "CLS",
+      "Name": "CELESTICA INC",
+      "Ratio": "20"
+    },
+    {
+      "Cedears": "COIN",
+      "Name": "Coinbase Global Inc",
+      "Ratio": "27"
+    },
+    {
+      "Cedears": "COP",
+      "Name": "ConocoPhillips",
+      "Ratio": "25"
+    },
+    {
+      "Cedears": "COPX",
+      "Name": "Global X Copper Miners ETF",
+      "Ratio": "14"
+    },
+    {
+      "Cedears": "COST",
+      "Name": "Costco Wholesale Corp",
+      "Ratio": "48"
+    },
+    {
+      "Cedears": "CRM",
+      "Name": "Salesforce Inc.",
+      "Ratio": "18"
+    },
+    {
+      "Cedears": "CRWD",
+      "Name": "CrowdStrike Holdings, Inc.",
+      "Ratio": "79"
+    },
+    {
+      "Cedears": "CRWV",
+      "Name": "CoreWeave Inc",
+      "Ratio": "27"
+    },
+    {
+      "Cedears": "CS",
+      "Name": "Credit Suisse Group",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "CSCO",
+      "Name": "Cisco Systems Inc",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "CSNA3",
+      "Name": "Companhia Siderúrgica Nacional S.A.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "CVS",
+      "Name": "CVS Health",
+      "Ratio": "15"
+    },
+    {
+      "Cedears": "CVX",
+      "Name": "Chevron Corp.",
+      "Ratio": "16"
+    },
+    {
+      "Cedears": "CX",
+      "Name": "Cemex S.A.B. de CV",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "DAL",
+      "Name": "Delta Air Lines",
+      "Ratio": "8"
+    },
+    {
+      "Cedears": "DD",
+      "Name": "Dupont de Nemours Inc.",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "DE",
+      "Name": "Deere & Co.",
+      "Ratio": "40"
+    },
+    {
+      "Cedears": "DECK",
+      "Name": "DECKERS OUTDOOR CORPORATION",
+      "Ratio": "25"
+    },
+    {
+      "Cedears": "DEO",
+      "Name": "Diageo PLC",
+      "Ratio": "6"
+    },
+    {
+      "Cedears": "DHR",
+      "Name": "Danaher Corp",
+      "Ratio": "54"
+    },
+    {
+      "Cedears": "DIA",
+      "Name": "SPDR DOW JONES INDUSTRIAL",
+      "Ratio": "20"
+    },
+    {
+      "Cedears": "DISN",
+      "Name": "The Walt Disney Co.",
+      "Ratio": "12"
+    },
+    {
+      "Cedears": "DOCU",
+      "Name": "DocuSign Inc.",
+      "Ratio": "22"
+    },
+    {
+      "Cedears": "DOW",
+      "Name": "DOW Inc",
+      "Ratio": "6"
+    },
+    {
+      "Cedears": "DTEA",
+      "Name": "Deutsche Telekom Ag",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "E",
+      "Name": "Eni Spa",
+      "Ratio": "4"
+    },
+    {
+      "Cedears": "EA",
+      "Name": "Electronic Arts Inc",
+      "Ratio": "14"
+    },
+    {
+      "Cedears": "EBAY",
+      "Name": "Ebay Inc.",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "EBR",
+      "Name": "Centrais Eléctricas Brasileiras S.A. - Eletrobras",
+      "Ratio": "1:4"
+    },
+    {
+      "Cedears": "ECL",
+      "Name": "Ecolab Inc",
+      "Ratio": "56"
+    },
+    {
+      "Cedears": "EEM",
+      "Name": "ISHARES MSCI EMERGING MARKET",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "EFA",
+      "Name": "iShares MSCI EAFE ETF",
+      "Ratio": "18"
+    },
+    {
+      "Cedears": "EFX",
+      "Name": "Equifax Inc.",
+      "Ratio": "16"
+    },
+    {
+      "Cedears": "ELP",
+      "Name": "Companhia Paranaense de Energía - COPEL",
+      "Ratio": "1:3"
+    },
+    {
+      "Cedears": "EOAN",
+      "Name": "E.On Se",
+      "Ratio": "6"
+    },
+    {
+      "Cedears": "EQNR",
+      "Name": "Equinor Asa",
+      "Ratio": "6"
+    },
+    {
+      "Cedears": "ERIC",
+      "Name": "Lm Ericsson Telephone Co.",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "ERJ",
+      "Name": "Embraer-Empresa Brasileira de Aeronáutica S.A.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "ESGU",
+      "Name": "IShares ESG Aware MSCI USA ETF",
+      "Ratio": "30"
+    },
+    {
+      "Cedears": "ETHA",
+      "Name": "ISHARES ETHEREUM TR ETF",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "ETSY",
+      "Name": "Etsy Inc.",
+      "Ratio": "16"
+    },
+    {
+      "Cedears": "EWJ",
+      "Name": "iShares MSCI JAPAN ETF",
+      "Ratio": "14"
+    },
+    {
+      "Cedears": "EWY",
+      "Name": "iShares MSCI South Korea ETF",
+      "Ratio": "50"
+    },
+    {
+      "Cedears": "EWZ",
+      "Name": "ISHARES MSCI BRAZIL CAP",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "F",
+      "Name": "Ford Motor Company",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "FCX",
+      "Name": "Freeport Mcmoran Copper & Gold Inc.",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "FDX",
+      "Name": "Fedex Corp",
+      "Ratio": "10"
+    },
+    {
+      "Cedears": "FISV",
+      "Name": "Fiserv, Inc.",
+      "Ratio": "11"
+    },
+    {
+      "Cedears": "FMCC",
+      "Name": "Freddie Mac (Federal Home Loan)",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "FMX",
+      "Name": "Fomento Economico Mexicano - Femsa",
+      "Ratio": "6"
+    },
+    {
+      "Cedears": "FNMA",
+      "Name": "Fed. Natl, Mortgage - Fannie Mae",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "FSLR",
+      "Name": "First Solar Inc.",
+      "Ratio": "18"
+    },
+    {
+      "Cedears": "FXI",
+      "Name": "ISHARES CHINA LARGE-CAP ETF",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "GDX",
+      "Name": "Van Eck Gold Miners ETF/USA",
+      "Ratio": "10"
+    },
+    {
+      "Cedears": "GE",
+      "Name": "General Electric Co.",
+      "Ratio": "8"
+    },
+    {
+      "Cedears": "GFI",
+      "Name": "Gold Fields Ltd.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "GGB",
+      "Name": "Gerdau S.A.",
+      "Ratio": "1:4"
+    },
+    {
+      "Cedears": "GILD",
+      "Name": "Gilead Sciences, Inc.",
+      "Ratio": "4"
+    },
+    {
+      "Cedears": "GLD",
+      "Name": "ETF SPDR GOLD TRUST",
+      "Ratio": "50"
+    },
+    {
+      "Cedears": "GLNG",
+      "Name": "Golar LNG Ltd.",
+      "Ratio": "10"
+    },
+    {
+      "Cedears": "GLOB",
+      "Name": "Globant S.A.",
+      "Ratio": "18"
+    },
+    {
+      "Cedears": "GLW",
+      "Name": "Corning Inc.",
+      "Ratio": "4"
+    },
+    {
+      "Cedears": "GM",
+      "Name": "General Motors Co",
+      "Ratio": "6"
+    },
+    {
+      "Cedears": "GOOGL",
+      "Name": "Alphabet Inc.",
+      "Ratio": "58"
+    },
+    {
+      "Cedears": "GPRK",
+      "Name": "Geopark Ltd.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "GRMN",
+      "Name": "Garmin Ltd.",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "GS",
+      "Name": "The Goldman Sachs Group, Inc",
+      "Ratio": "13"
+    },
+    {
+      "Cedears": "GSK",
+      "Name": "GSK Plc.",
+      "Ratio": "4"
+    },
+    {
+      "Cedears": "GT",
+      "Name": "Goodyear Tire & Rubber co./the",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "HAL",
+      "Name": "Halliburton Co.",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "HAPV3",
+      "Name": "Hapvida Participacoes E Investimentos S.A.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "HD",
+      "Name": "The Home Depot Inc.",
+      "Ratio": "32"
+    },
+    {
+      "Cedears": "HDB",
+      "Name": "Hdfc Bank Limited.",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "HHPD",
+      "Name": "Hon Hai Precision Industry Co. Ltd.",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "HIMS",
+      "Name": "Hims & Hers Health, Inc.",
+      "Ratio": "4"
+    },
+    {
+      "Cedears": "HL",
+      "Name": "Hecla Mining Co.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "HMC",
+      "Name": "Honda Motor Co. Ltd",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "HMY",
+      "Name": "Harmony Gold Mining Company Ltd.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "HNPIY",
+      "Name": "Huaneng Power Intl",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "HOG",
+      "Name": "Harley-Davidson Inc.",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "HON",
+      "Name": "Honeywell International Inc.",
+      "Ratio": "8"
+    },
+    {
+      "Cedears": "HOOD",
+      "Name": "Robinhood Markets Inc",
+      "Ratio": "29"
+    },
+    {
+      "Cedears": "HPQ",
+      "Name": "Hp Inc",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "HSBC",
+      "Name": "Hsbc Holdings Plc",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "HSY",
+      "Name": "The Hershey Company",
+      "Ratio": "21"
+    },
+    {
+      "Cedears": "HUT",
+      "Name": "Hut 8 Mining Corp.",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "HWM",
+      "Name": "Howmet Aerospace Inc.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "IBB",
+      "Name": "iShares Nasdaq Biotechnology ETF",
+      "Ratio": "27"
+    },
+    {
+      "Cedears": "IBIT",
+      "Name": "ISHARES BITCOIN TRUST",
+      "Ratio": "10"
+    },
+    {
+      "Cedears": "IBM",
+      "Name": "International Business Machines",
+      "Ratio": "15"
+    },
+    {
+      "Cedears": "IBN",
+      "Name": "Icici Bank Ltd.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "ICLN",
+      "Name": "iShares Global Clean Energy ETF",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "IEMG",
+      "Name": "iShares Core MSCI Emerging Markets ETF",
+      "Ratio": "12"
+    },
+    {
+      "Cedears": "IEUR",
+      "Name": "iShares Core MSCI Europe ETF",
+      "Ratio": "11"
+    },
+    {
+      "Cedears": "IFF",
+      "Name": "International Flavors & Fragrances Inc.",
+      "Ratio": "12"
+    },
+    {
+      "Cedears": "IJH",
+      "Name": "iShares CORE S&P MID-CAP ETF",
+      "Ratio": "12"
+    },
+    {
+      "Cedears": "ILF",
+      "Name": "IShares Latin America 40 ETF",
+      "Ratio": "6"
+    },
+    {
+      "Cedears": "INFY",
+      "Name": "Infosys Limited",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "ING",
+      "Name": "Ing Groep Nv",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "INTC",
+      "Name": "Intel Corporation",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "IP",
+      "Name": "International Paper Co.",
+      "Ratio": "4"
+    },
+    {
+      "Cedears": "IREN",
+      "Name": "Iren Ltd",
+      "Ratio": "12"
+    },
+    {
+      "Cedears": "ISRG",
+      "Name": "Intuitive Surgical inc",
+      "Ratio": "90"
+    },
+    {
+      "Cedears": "ITA",
+      "Name": "iShares U.S. Aerospace & Defense",
+      "Ratio": "50"
+    },
+    {
+      "Cedears": "ITUB",
+      "Name": "Itaú Unibanco Holding S.A.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "ITUB3",
+      "Name": "Banco Itaú Unibanco S.A",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "IVE",
+      "Name": "iShares S&P 500 Value ETF",
+      "Ratio": "40"
+    },
+    {
+      "Cedears": "IVV",
+      "Name": "IShares Core S&P 500 ETF",
+      "Ratio": "692"
+    },
+    {
+      "Cedears": "IVW",
+      "Name": "iShares S&P 500 Growth ETF",
+      "Ratio": "20"
+    },
+    {
+      "Cedears": "IWM",
+      "Name": "ISHARES TRUST RUSSELL 2000",
+      "Ratio": "10"
+    },
+    {
+      "Cedears": "JCI",
+      "Name": "Johnson Controls International",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "JD",
+      "Name": "Jd.Com, Inc.",
+      "Ratio": "4"
+    },
+    {
+      "Cedears": "JMIA",
+      "Name": "Adr Jumia Technologies Ag",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "JNJ",
+      "Name": "Johnson & Johnson",
+      "Ratio": "15"
+    },
+    {
+      "Cedears": "JOYY",
+      "Name": "JOYY Inc.",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "JPM",
+      "Name": "J.P. Morgan & Chase Co.",
+      "Ratio": "15"
+    },
+    {
+      "Cedears": "KB",
+      "Name": "Kb Financial Group Inc.",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "KEEL",
+      "Name": "Bitfarms Ltd.",
+      "Ratio": "1:5"
+    },
+    {
+      "Cedears": "KEP",
+      "Name": "Korea Electric Power Corp.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "KGC",
+      "Name": "Kinross Gold Corp",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "KMB",
+      "Name": "Kimberly-Clark Corp.",
+      "Ratio": "6"
+    },
+    {
+      "Cedears": "KO",
+      "Name": "The Coca Cola Company",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "KOFM",
+      "Name": "Coca-Cola Femsa, S.A.B. De C.V.",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "LAC",
+      "Name": "Lithium Americas Corp",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "LAR",
+      "Name": "Lithium Americas (Argentina) Corp",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "LFC",
+      "Name": "China Life Insurance",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "LKOD",
+      "Name": "Pjsc Lukoil",
+      "Ratio": "4"
+    },
+    {
+      "Cedears": "LLY",
+      "Name": "Eli Lilly and Company",
+      "Ratio": "56"
+    },
+    {
+      "Cedears": "LMT",
+      "Name": "Lockheed Martin Corporation",
+      "Ratio": "20"
+    },
+    {
+      "Cedears": "LND",
+      "Name": "Brasilagro - Co Brasileira de Propriedades Agrícolas",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "LRCX",
+      "Name": "Lam Research Corp",
+      "Ratio": "56"
+    },
+    {
+      "Cedears": "LREN3",
+      "Name": "Lojas Renner S.A.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "LVS",
+      "Name": "Las Vegas Sands Corp",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "LYG",
+      "Name": "Lloyds Banking Group Plc",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "MA",
+      "Name": "Mastercard Inc.",
+      "Ratio": "33"
+    },
+    {
+      "Cedears": "MBG",
+      "Name": "Mercedes-Benz Group AG",
+      "Ratio": "4"
+    },
+    {
+      "Cedears": "MBT",
+      "Name": "Mobile Telesystems",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "MCD",
+      "Name": "Mcdonald'S Corp.",
+      "Ratio": "24"
+    },
+    {
+      "Cedears": "MDLZ",
+      "Name": "Mondelez",
+      "Ratio": "15"
+    },
+    {
+      "Cedears": "MDT",
+      "Name": "Medtronic Public Limited Company",
+      "Ratio": "4"
+    },
+    {
+      "Cedears": "MELI",
+      "Name": "Mercadolibre Inc.",
+      "Ratio": "120"
+    },
+    {
+      "Cedears": "META",
+      "Name": "Meta Platforms Inc",
+      "Ratio": "24"
+    },
+    {
+      "Cedears": "MFG",
+      "Name": "Mizuho Financial Group",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "MGLU3",
+      "Name": "Magazine Luiza S.A.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "MMC",
+      "Name": "Marsh & Mclennan Companies Inc.",
+      "Ratio": "16"
+    },
+    {
+      "Cedears": "MMM",
+      "Name": "3M Company",
+      "Ratio": "10"
+    },
+    {
+      "Cedears": "MO",
+      "Name": "Altria Group Inc.",
+      "Ratio": "4"
+    },
+    {
+      "Cedears": "MOS",
+      "Name": "The Mosaic Co",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "MP",
+      "Name": "MP Materials Corp.",
+      "Ratio": "10"
+    },
+    {
+      "Cedears": "MRK",
+      "Name": "Merck & Co. Inc.",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "MRNA",
+      "Name": "Moderna Inc",
+      "Ratio": "19"
+    },
+    {
+      "Cedears": "MRVL",
+      "Name": "Marvell Technology Inc",
+      "Ratio": "14"
+    },
+    {
+      "Cedears": "MSFT",
+      "Name": "Microsoft Corp.",
+      "Ratio": "30"
+    },
+    {
+      "Cedears": "MSI",
+      "Name": "Motorola Solutions, Inc.",
+      "Ratio": "20"
+    },
+    {
+      "Cedears": "MSTR",
+      "Name": "Microstrategy Inc Cl A New",
+      "Ratio": "20"
+    },
+    {
+      "Cedears": "MU",
+      "Name": "Micron Technology Inc",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "MUFG",
+      "Name": "Mitsubishi Ufj Financial Group",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "MUX",
+      "Name": "McEwen Mining Inc",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "NATU3",
+      "Name": "Natura Cosméticos S.A.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "NBIS",
+      "Name": "Nebius Group N.V.",
+      "Ratio": "27"
+    },
+    {
+      "Cedears": "NEC1",
+      "Name": "Nec Corporation",
+      "Ratio": "1:3"
+    },
+    {
+      "Cedears": "NEE",
+      "Name": "NextEra Energy, Inc.",
+      "Ratio": "19"
+    },
+    {
+      "Cedears": "NEM",
+      "Name": "Newmont Corporation",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "NFLX",
+      "Name": "Netflix, Inc.",
+      "Ratio": "48"
+    },
+    {
+      "Cedears": "NG",
+      "Name": "Novagold Resources INC.",
+      "Ratio": "1:4"
+    },
+    {
+      "Cedears": "NGG",
+      "Name": "National Grid Plc",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "NIO",
+      "Name": "NIO Inc.",
+      "Ratio": "4"
+    },
+    {
+      "Cedears": "NKE",
+      "Name": "Nike Inc.",
+      "Ratio": "12"
+    },
+    {
+      "Cedears": "NLM",
+      "Name": "Novolipetsk Steel PJSC",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "NMR",
+      "Name": "Nomura Holdings, Inc",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "NOKA",
+      "Name": "Nokia Corporation",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "NOW",
+      "Name": "SERVICENOW INC",
+      "Ratio": "172"
+    },
+    {
+      "Cedears": "NSAN",
+      "Name": "Nissan Motor Co., Ltd",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "NTES",
+      "Name": "Netease, Inc",
+      "Ratio": "14"
+    },
+    {
+      "Cedears": "NUE",
+      "Name": "Nucor Corp",
+      "Ratio": "16"
+    },
+    {
+      "Cedears": "NVDA",
+      "Name": "Nvidia Corporation",
+      "Ratio": "24"
+    },
+    {
+      "Cedears": "NVO",
+      "Name": "Novo Nordisk A/S",
+      "Ratio": "7"
+    },
+    {
+      "Cedears": "NVS",
+      "Name": "Novartis Ag",
+      "Ratio": "4"
+    },
+    {
+      "Cedears": "NXE",
+      "Name": "Nexgen Energy LTD",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "O",
+      "Name": "Realty Income Corp.",
+      "Ratio": "13"
+    },
+    {
+      "Cedears": "OGZD",
+      "Name": "Pjsc Gazprom",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "OKLO",
+      "Name": "Oklo Inc",
+      "Ratio": "28"
+    },
+    {
+      "Cedears": "ONDS",
+      "Name": "Ondas Holdings Inc.",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "ORAN",
+      "Name": "Orange S.A.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "ORCL",
+      "Name": "Oracle Corporation",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "ORLY",
+      "Name": "O'reilly Automotive Inc",
+      "Ratio": "222"
+    },
+    {
+      "Cedears": "OXY",
+      "Name": "Occidental Petroleum Corp.",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "PAAS",
+      "Name": "Pan American Silver Corp.",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "PAC",
+      "Name": "Grupo Aeroportuario del Pacifico, S.A.B. de C.V.",
+      "Ratio": "16"
+    },
+    {
+      "Cedears": "PAGS",
+      "Name": "Pagseguro Digital Ltd",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "PANW",
+      "Name": "Palo Alto Networks Inc",
+      "Ratio": "50"
+    },
+    {
+      "Cedears": "PATH",
+      "Name": "UIPATH INC",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "PBI",
+      "Name": "Pitney Bowes Inc",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "PBR",
+      "Name": "Petrobras (ADR)",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "PCAR",
+      "Name": "Paccar Inc.",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "PCRF",
+      "Name": "Panasonic Corporation",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "PDD",
+      "Name": "PDD HOLDINGS INC",
+      "Ratio": "25"
+    },
+    {
+      "Cedears": "PEP",
+      "Name": "Pepsico Inc",
+      "Ratio": "18"
+    },
+    {
+      "Cedears": "PETR3",
+      "Name": "Petrobras - Petróleo Brasileiro S.A.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "PFE",
+      "Name": "Pfizer Inc.",
+      "Ratio": "4"
+    },
+    {
+      "Cedears": "PG",
+      "Name": "Procter & Gamble",
+      "Ratio": "15"
+    },
+    {
+      "Cedears": "PHG",
+      "Name": "Koninklijke Philips N.V.",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "PINS",
+      "Name": "Pinterest",
+      "Ratio": "7"
+    },
+    {
+      "Cedears": "PKS",
+      "Name": "Posco Holdings Inc.",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "PLTR",
+      "Name": "Palantir Technologies Inc",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "PM",
+      "Name": "Philip Morris International",
+      "Ratio": "18"
+    },
+    {
+      "Cedears": "PRIO3",
+      "Name": "Petro Rio S.A.",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "PSO",
+      "Name": "Pearson Plc",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "PSQ",
+      "Name": "PROSHARES SHORT QQQ",
+      "Ratio": "8"
+    },
+    {
+      "Cedears": "PSX",
+      "Name": "Phillips 66",
+      "Ratio": "6"
+    },
+    {
+      "Cedears": "PTR",
+      "Name": "Petrochina Co Ltd",
+      "Ratio": "4"
+    },
+    {
+      "Cedears": "PYPL",
+      "Name": "Paypal Holdings, Inc.",
+      "Ratio": "8"
+    },
+    {
+      "Cedears": "QCOM",
+      "Name": "Qualcomm Inc.",
+      "Ratio": "11"
+    },
+    {
+      "Cedears": "QQQ",
+      "Name": "INVESCO QQQ TRUST",
+      "Ratio": "20"
+    },
+    {
+      "Cedears": "RACE",
+      "Name": "Ferrari",
+      "Ratio": "83"
+    },
+    {
+      "Cedears": "RBLX",
+      "Name": "Roblox Corp.",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "RCTB4",
+      "Name": "Telebras PN",
+      "Ratio": "1:1000"
+    },
+    {
+      "Cedears": "RGTI",
+      "Name": "RIGETTI COMPUTING INC",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "RENT3",
+      "Name": "Localiza Rent A Car S.A.",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "RIO",
+      "Name": "Rio Tinto Plc",
+      "Ratio": "8"
+    },
+    {
+      "Cedears": "RIOT",
+      "Name": "Riot Platforms",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "RKLB",
+      "Name": "Rocket Lab Corp",
+      "Ratio": "12"
+    },
+    {
+      "Cedears": "ROKU",
+      "Name": "Roku",
+      "Ratio": "13"
+    },
+    {
+      "Cedears": "ROST",
+      "Name": "Ross Stores, Inc.",
+      "Ratio": "4"
+    },
+    {
+      "Cedears": "RSP",
+      "Name": "Invesco S&P 500 Equal Weight ETF",
+      "Ratio": "30"
+    },
+    {
+      "Cedears": "RTX",
+      "Name": "Raytheon Technologies Corp",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "SAN",
+      "Name": "Banco Santander S.A",
+      "Ratio": "1:4"
+    },
+    {
+      "Cedears": "SAP",
+      "Name": "Sap Se",
+      "Ratio": "6"
+    },
+    {
+      "Cedears": "SATL",
+      "Name": "Satellogic Inc.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "SBS",
+      "Name": "Companhia de Saneamento Básico do Estado de São Paulo–Sabesp",
+      "Ratio": "1:2"
+    },
+    {
+      "Cedears": "SBSP3",
+      "Name": "Cia Saneamento Básico de SP",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "SBUX",
+      "Name": "Starbucks Corporation",
+      "Ratio": "12"
+    },
+    {
+      "Cedears": "SCCO",
+      "Name": "Southern Copper Corp",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "SCHW",
+      "Name": "Charles Schwab",
+      "Ratio": "13"
+    },
+    {
+      "Cedears": "SDA",
+      "Name": "SunCar Technology Group Inc",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "SE",
+      "Name": "Sea Ltd.",
+      "Ratio": "32"
+    },
+    {
+      "Cedears": "SH",
+      "Name": "PROSHARES SHORT S&P500",
+      "Ratio": "8"
+    },
+    {
+      "Cedears": "SHEL",
+      "Name": "Royal Dutch Shell Plc",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "SHOP",
+      "Name": "Shopify Inc.",
+      "Ratio": "107"
+    },
+    {
+      "Cedears": "SHPW",
+      "Name": "Shapeways Holdings Inc",
+      "Ratio": "1:2"
+    },
+    {
+      "Cedears": "SI",
+      "Name": "Silvergate Bancorp",
+      "Ratio": "10"
+    },
+    {
+      "Cedears": "SID",
+      "Name": "Companhia Siderúrgica Nacional",
+      "Ratio": "1:8"
+    },
+    {
+      "Cedears": "SIEGY",
+      "Name": "Siemens Ag Adr",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "SLB",
+      "Name": "Schlumberger Ltd",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "SLV",
+      "Name": "iShares SILVER TRUST",
+      "Ratio": "6"
+    },
+    {
+      "Cedears": "SMH",
+      "Name": "VAN ECK SEMICONDUCTOR ETF",
+      "Ratio": "50"
+    },
+    {
+      "Cedears": "SMSN",
+      "Name": "Samsung Electronics Co. Ltd.",
+      "Ratio": "14"
+    },
+    {
+      "Cedears": "SNA",
+      "Name": "Snap-On Inc",
+      "Ratio": "6"
+    },
+    {
+      "Cedears": "SNAP",
+      "Name": "Snap Inc.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "SNDK",
+      "Name": "Sandisk Corporation",
+      "Ratio": "170"
+    },
+    {
+      "Cedears": "SNOW",
+      "Name": "Snowflake Inc.",
+      "Ratio": "30"
+    },
+    {
+      "Cedears": "SNP",
+      "Name": "China Petroleum & Chem",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "SONY",
+      "Name": "Sony Group Corporation",
+      "Ratio": "8"
+    },
+    {
+      "Cedears": "SPCE",
+      "Name": "Virgin Galactic",
+      "Ratio": "1:2"
+    },
+    {
+      "Cedears": "SPCX",
+      "Name": "Space Exploration Technologies Corp.",
+      "Ratio": "50"
+    },
+    {
+      "Cedears": "SPGI",
+      "Name": "S&P Global Inc",
+      "Ratio": "45"
+    },
+    {
+      "Cedears": "SPHQ",
+      "Name": "Invesco S&P 500 Quality ETF",
+      "Ratio": "14"
+    },
+    {
+      "Cedears": "SPOT",
+      "Name": "Spotify Technology S.A.",
+      "Ratio": "28"
+    },
+    {
+      "Cedears": "SPXL",
+      "Name": "DIREXION DAILY S&P 500 BULL 3X",
+      "Ratio": "25"
+    },
+    {
+      "Cedears": "SPY",
+      "Name": "SPDR S&P 500",
+      "Ratio": "60"
+    },
+    {
+      "Cedears": "STLA",
+      "Name": "Stellantis",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "STNE",
+      "Name": "StoneCo Ltd",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "SUZ",
+      "Name": "Suzano Papel E Celulose S.A.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "SUZB3",
+      "Name": "Suzano S.A.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "SWKS",
+      "Name": "Skyworks Solutions",
+      "Ratio": "21"
+    },
+    {
+      "Cedears": "SYY",
+      "Name": "Sysco Corp.",
+      "Ratio": "8"
+    },
+    {
+      "Cedears": "T",
+      "Name": "At &T Inc.",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "TCOM",
+      "Name": "TRIP.COM Group Ltd.",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "TEAM",
+      "Name": "ATLASSIAN CORPORATION",
+      "Ratio": "47"
+    },
+    {
+      "Cedears": "TEFO",
+      "Name": "Telefonica S.A.",
+      "Ratio": "8"
+    },
+    {
+      "Cedears": "TEM",
+      "Name": "TEMPUS AI INC",
+      "Ratio": "12"
+    },
+    {
+      "Cedears": "TEN",
+      "Name": "Tenaris",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "TGT",
+      "Name": "Target Corporation",
+      "Ratio": "24"
+    },
+    {
+      "Cedears": "TIIAY",
+      "Name": "Telecom Italia S.P.A. Ordinary Shares",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "TIMB",
+      "Name": "Tim Participações S.A.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "TIMS3",
+      "Name": "TIM S.A.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "TJX",
+      "Name": "TJX Companies Inc/The",
+      "Ratio": "22"
+    },
+    {
+      "Cedears": "TM",
+      "Name": "Toyota Motor Corporation",
+      "Ratio": "15"
+    },
+    {
+      "Cedears": "TMO",
+      "Name": "Thermo Fisher Scientific Inc.",
+      "Ratio": "22"
+    },
+    {
+      "Cedears": "TMUS",
+      "Name": "T-mobile",
+      "Ratio": "33"
+    },
+    {
+      "Cedears": "TQQQ",
+      "Name": "ProShares UltraPro QQQ",
+      "Ratio": "25"
+    },
+    {
+      "Cedears": "TRIP",
+      "Name": "Tripadvisor, Inc.",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "TRVV",
+      "Name": "The Travelers Cos. Inc.",
+      "Ratio": "6"
+    },
+    {
+      "Cedears": "TSLA",
+      "Name": "Tesla, Inc.",
+      "Ratio": "15"
+    },
+    {
+      "Cedears": "TSM",
+      "Name": "Taiwan Semiconductor Manufacturing",
+      "Ratio": "9"
+    },
+    {
+      "Cedears": "TTE",
+      "Name": "TotalEnergies SE",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "TTM",
+      "Name": "Tata Motors Ltd",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "TV",
+      "Name": "Grupo Televisa S.A.",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "TWLO",
+      "Name": "Twilio Inc",
+      "Ratio": "36"
+    },
+    {
+      "Cedears": "TWTR",
+      "Name": "Twitter, Inc.",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "TXN",
+      "Name": "Texas Instruments Inc",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "TXR",
+      "Name": "Ternium S.A.",
+      "Ratio": "4"
+    },
+    {
+      "Cedears": "UAL",
+      "Name": "United Airlines Holdings Inc.",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "UBER",
+      "Name": "Uber Technologies Inc.",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "UGP",
+      "Name": "Ultrapar Participações S.A.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "UL",
+      "Name": "Unilever PLC - Sponsored",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "UN",
+      "Name": "NU Holdings Ltd/Cayman Islands",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "UNH",
+      "Name": "UnitedHealth Group Inc.",
+      "Ratio": "33"
+    },
+    {
+      "Cedears": "UNP",
+      "Name": "Union Pacific Corp.",
+      "Ratio": "20"
+    },
+    {
+      "Cedears": "UPST",
+      "Name": "Upstart Hldgs Inc",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "URA",
+      "Name": "Global X Uranium ETF",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "URBN",
+      "Name": "Urban Outfitters INC.",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "USB",
+      "Name": "U.S. Bancorp",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "USO",
+      "Name": "United States Oil Fund",
+      "Ratio": "15"
+    },
+    {
+      "Cedears": "V",
+      "Name": "Visa Inc",
+      "Ratio": "18"
+    },
+    {
+      "Cedears": "VALE",
+      "Name": "Vale S.A.",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "VALE3",
+      "Name": "Vale S.A.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "VEA",
+      "Name": "Vanguard FTSE Developed Markets ETF",
+      "Ratio": "10"
+    },
+    {
+      "Cedears": "VIG",
+      "Name": "VANGUARD DIVIDEND APPRECIATION",
+      "Ratio": "39"
+    },
+    {
+      "Cedears": "VIST",
+      "Name": "Vista Energy S.A.B. de C.V.",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "VIV",
+      "Name": "Telefônica Brasil S.A.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "VIVT3",
+      "Name": "Telefônica Brasil S.A.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "VOD",
+      "Name": "Vodafone Group Plc",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "VRSN",
+      "Name": "Verisign, Inc.",
+      "Ratio": "6"
+    },
+    {
+      "Cedears": "VRTX",
+      "Name": "VERTEX PHARMACEUTICALS INC",
+      "Ratio": "101"
+    },
+    {
+      "Cedears": "VST",
+      "Name": "VISTRA CORPORATION",
+      "Ratio": "26"
+    },
+    {
+      "Cedears": "VXX",
+      "Name": "iPath Series B S&P 500 VIX",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "VZ",
+      "Name": "Verizon Communications Inc.",
+      "Ratio": "4"
+    },
+    {
+      "Cedears": "WBA",
+      "Name": "Walgreens Boots Alliance Inc.",
+      "Ratio": "3"
+    },
+    {
+      "Cedears": "WBO",
+      "Name": "Weibo Corporation",
+      "Ratio": "6"
+    },
+    {
+      "Cedears": "WEGE3",
+      "Name": "Weg S.A.",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "WFC",
+      "Name": "Wells Fargo & Co.",
+      "Ratio": "5"
+    },
+    {
+      "Cedears": "WMT",
+      "Name": "Walmart Inc.",
+      "Ratio": "18"
+    },
+    {
+      "Cedears": "XLB",
+      "Name": "The Materials Select Sector SPDR Fund",
+      "Ratio": "18"
+    },
+    {
+      "Cedears": "XLC",
+      "Name": "The Communication Services Select Sector SPDR Fund",
+      "Ratio": "19"
+    },
+    {
+      "Cedears": "XLE",
+      "Name": "ENERGY SELECT SECTOR SPDR FUND",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "XLF",
+      "Name": "FINANCIAL SELECT SECTOR SPDR FUND",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "XLI",
+      "Name": "The Industrial Select Sector SPDR Fund",
+      "Ratio": "28"
+    },
+    {
+      "Cedears": "XLK",
+      "Name": "The Technology Select Sector SPDR Fund",
+      "Ratio": "46"
+    },
+    {
+      "Cedears": "XLP",
+      "Name": "The Consumer Staples Select Sector SPDR Fund",
+      "Ratio": "16"
+    },
+    {
+      "Cedears": "XLRE",
+      "Name": "The Real Estate Select Sector SPDR Fund",
+      "Ratio": "9"
+    },
+    {
+      "Cedears": "XLU",
+      "Name": "Utilities Select Sector SPDR Fund",
+      "Ratio": "15"
+    },
+    {
+      "Cedears": "XLV",
+      "Name": "The Health Care Select Sector SPDR Fund",
+      "Ratio": "29"
+    },
+    {
+      "Cedears": "XME",
+      "Name": "State Street SPDR S&P Metals & Mining ETF",
+      "Ratio": "30"
+    },
+    {
+      "Cedears": "XLY",
+      "Name": "The Consumer Discretionary Select Sector SPDR Fund",
+      "Ratio": "43"
+    },
+    {
+      "Cedears": "XOM",
+      "Name": "Exxon Mobil Corporation",
+      "Ratio": "10"
+    },
+    {
+      "Cedears": "XP",
+      "Name": "XP Inc",
+      "Ratio": "4"
+    },
+    {
+      "Cedears": "XPEV",
+      "Name": "XPENG INC",
+      "Ratio": "4"
+    },
+    {
+      "Cedears": "XROX",
+      "Name": "Xerox Holding Corporation",
+      "Ratio": "1"
+    },
+    {
+      "Cedears": "XYZ",
+      "Name": "Square Inc.",
+      "Ratio": "20"
+    },
+    {
+      "Cedears": "YELP",
+      "Name": "Yelp Inc.",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "YZCA",
+      "Name": "Yanzhou Coal Mining Co. Ltd.",
+      "Ratio": "2"
+    },
+    {
+      "Cedears": "ZM",
+      "Name": "Zoom Video Communications Inc.",
+      "Ratio": "47"
+    }
+  ]
+}

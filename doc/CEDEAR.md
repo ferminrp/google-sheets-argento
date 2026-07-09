@@ -6,7 +6,18 @@ Esta función devuelve información sobre los CEDEARs (Certificados de Depósito
 
 El proyecto incluye un archivo `data/cedears.json` que contiene información útil sobre todos los CEDEARs disponibles en el mercado argentino. Este archivo puede ser utilizado como referencia o para importar en tus propias aplicaciones.
 
-Cada entrada del archivo contiene:
+### API pública (GitHub Pages)
+
+Para agentes y scripts, preferí el endpoint estático de la página del proyecto (incluye metadata y el listado completo):
+
+```
+https://ferminrp.github.io/google-sheets-argento/api/cedears.json
+```
+
+El array plano del repo sigue en [`data/cedears.json`](../data/cedears.json).  
+`npm run build` publica la versión de Pages en `docs/api/cedears.json`.
+
+Cada entrada del listado contiene:
 - **Cedears**: Símbolo/ticker del CEDEAR
 - **Name**: Nombre completo de la empresa
 - **Ratio**: Ratio de conversión entre el CEDEAR y la acción subyacente (string)

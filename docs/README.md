@@ -10,12 +10,25 @@ Esta carpeta es la **landing pública** del proyecto:
 |---------|-----|
 | `index.html` | Landing: qué es, instalación, uso, catálogo, API, fuentes, FAQ |
 | `styles.css` | Estilos (light / dark con `prefers-color-scheme`) |
-| `script.js` | Menú mobile, nav activa, copiar código |
+| `script.js` | Menú mobile, nav activa, copiar código, **demo live del hero** |
 | `favicon.svg` | Icono |
 | `og.png` | Imagen Open Graph / Twitter (misma social preview del repo) |
 | `api/cedears.json` | API estática de CEDEARs + ratios (generada por `npm run build`) |
+| `CHANGELOG.md` | Historial de cambios del sitio |
 
 La documentación detallada de cada función sigue en [`../doc/`](../doc/) del repo (no se duplica acá).
+
+## Demo live del hero
+
+La tabla del hero (`=dolar`, `=acciones`, `=riesgopais`) **no usa valores fijos**: al abrir la página, `script.js` hace 3 `fetch` client-side a las APIs públicas (CORS abierto) y muestra skeleton hasta que llegan los datos.
+
+| Celda | Endpoint |
+|-------|----------|
+| Blue + MEP | `https://dolarapi.com/v1/dolares` |
+| GGAL | `https://data912.com/live/arg_stocks` |
+| Riesgo país | `https://api.argentinadatos.com/v1/finanzas/indices/riesgo-pais/ultimo` |
+
+Si una fuente falla, esa celda muestra `—`. Si fallan las cuatro, aparece un mensaje breve bajo la tabla.
 
 ## API estática
 

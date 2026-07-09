@@ -63,12 +63,13 @@
           <a class="btn btn-ghost" href="https://cafecito.app/ferminrp" target="_blank" rel="noopener">Invitame un cafecito</a>
         </div>
 
-        <div class="hero-demo" aria-label="Ejemplo de fórmulas en una hoja">
+        <div class="hero-demo" aria-label="Ejemplo de fórmulas con datos en vivo">
           <div class="hero-demo-bar">
             <span class="dot" aria-hidden="true"></span>
             <span class="dot" aria-hidden="true"></span>
             <span class="dot" aria-hidden="true"></span>
-            Mi planilla · Google Sheets
+            <span class="hero-demo-title">Mi planilla · Google Sheets</span>
+            <span class="hero-demo-live" id="hero-demo-live" hidden>Datos en vivo</span>
           </div>
           <table class="sheet-table">
             <thead>
@@ -82,28 +83,40 @@
               <tr>
                 <td class="cell-label">Dólar blue (venta)</td>
                 <td class="cell-formula">=dolar("blue")</td>
-                <td class="cell-value">1.250,00</td>
+                <td class="cell-value" data-demo="blue" aria-busy="true">
+                  <span class="cell-skeleton" aria-hidden="true"></span>
+                  <span class="cell-value-text sr-only">Cargando…</span>
+                </td>
               </tr>
               <tr>
                 <td class="cell-label">MEP</td>
                 <td class="cell-formula">=dolar("mep";"venta")</td>
-                <td class="cell-value">1.180,50</td>
+                <td class="cell-value" data-demo="mep" aria-busy="true">
+                  <span class="cell-skeleton" aria-hidden="true"></span>
+                  <span class="cell-value-text sr-only">Cargando…</span>
+                </td>
               </tr>
               <tr>
                 <td class="cell-label">Galicia (precio)</td>
                 <td class="cell-formula">=acciones("GGAL";"c")</td>
-                <td class="cell-value">6.420,00</td>
+                <td class="cell-value" data-demo="ggal" aria-busy="true">
+                  <span class="cell-skeleton" aria-hidden="true"></span>
+                  <span class="cell-value-text sr-only">Cargando…</span>
+                </td>
               </tr>
               <tr>
                 <td class="cell-label">Riesgo país</td>
                 <td class="cell-formula">=riesgopais()</td>
-                <td class="cell-value">1.245</td>
+                <td class="cell-value" data-demo="riesgo" aria-busy="true">
+                  <span class="cell-skeleton" aria-hidden="true"></span>
+                  <span class="cell-value-text sr-only">Cargando…</span>
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p class="disclaimer" style="margin-top: 1rem;">
-          Los valores de la tabla son ilustrativos. Las fórmulas traen datos en vivo desde APIs públicas.
+        <p class="hero-demo-error" id="hero-demo-error" hidden>
+          No se pudieron cargar cotizaciones. Probá de nuevo más tarde.
         </p>
       </div>
     </section>

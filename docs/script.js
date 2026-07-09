@@ -96,4 +96,181 @@
       }
     });
   });
+
+  // ——— Hero demo: cotizaciones en vivo (client-side) ———
+  var FETCH_TIMEOUT_MS = 10000;
+  var URL_DOLAR = 'https://dolarapi.com/v1/dolares';
+  var URL_STOCKS = 'https://data912.com/live/arg_stocks';
+  var URL_RIESGO = 'https://api.argentinadatos.com/v1/finanzas/indices/riesgo-pais/ultimo';
+
+  function formatAR(value, maxFractionDigits) {
+    if (typeof value !== 'number' || !isFinite(value)) return null;
+    return new Intl.NumberFormat('es-AR', {
+      maximumFractionDigits: maxFractionDigits,
+      minimumFractionDigits: 0
+    }).format(value);
+  }
+
+  function cellByDemo(key) {
+    return document.querySelector('.cell-value[data-demo="' + key + '"]');
+  }
+
+  function setCellValue(el, text, isError) {
+    if (!el) return;
+    var skeleton = el.querySelector('.cell-skeleton');
+    var textEl = el.querySelector('.cell-value-text');
+    if (skeleton) skeleton.remove();
+    if (textEl) {
+      textEl.textContent = text;
+      textEl.classList.remove('sr-only');
+    } else {
+      el.textContent = text;
+    }
+    el.setAttribute('aria-busy', 'false');
+    if (isError) {
+      el.classList.add('is-error');
+      el.setAttribute('title', 'No se pudo cargar');
+      el.setAttribute('aria-label', 'No se pudo cargar');
+    } else {
+      el.classList.remove('is-error');
+      el.removeAttribute('title');
+      el.removeAttribute('aria-label');
+    }
+  }
+
+  function setCellError(key) {
+    setCellValue(cellByDemo(key), '—', true);
+  }
+
+  function fetchJson(url) {
+    var controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    var timer = null;
+    if (controller) {
+      timer = setTimeout(function () {
+        controller.abort();
+      }, FETCH_TIMEOUT_MS);
+    }
+
+    return fetch(url, {
+      credentials: 'omit',
+      signal: controller ? controller.signal : undefined
+    }).then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    }).finally(function () {
+      if (timer) clearTimeout(timer);
+    });
+  }
+
+  function findCasa(datos, casa) {
+    if (!datos || !datos.length) return null;
+    for (var i = 0; i < datos.length; i++) {
+      if (datos[i].casa && datos[i].casa.toLowerCase() === casa) {
+        return datos[i];
+      }
+    }
+    return null;
+  }
+
+  function findSymbol(datos, symbol) {
+    if (!datos || !datos.length) return null;
+    var target = symbol.toUpperCase();
+    for (var i = 0; i < datos.length; i++) {
+      if (datos[i].symbol === target) return datos[i];
+    }
+    return null;
+  }
+
+  function loadHeroDemo() {
+    var cells = document.querySelectorAll('.cell-value[data-demo]');
+    if (!cells.length) return;
+
+    var successCount = 0;
+    var settledCount = 0;
+    var totalKeys = 4;
+
+    function markSettled(ok) {
+      settledCount += 1;
+      if (ok) successCount += 1;
+      if (settledCount < totalKeys) return;
+
+      var live = document.getElementById('hero-demo-live');
+      var err = document.getElementById('hero-demo-error');
+      if (successCount > 0 && live) {
+        live.hidden = false;
+      }
+      if (successCount === 0 && err) {
+        err.hidden = false;
+      }
+    }
+
+    // DolarAPI: blue + mep (bolsa) en un solo request
+    fetchJson(URL_DOLAR)
+      .then(function (datos) {
+        var blue = findCasa(datos, 'blue');
+        var bolsa = findCasa(datos, 'bolsa');
+        var blueTxt = blue && blue.venta != null ? formatAR(Number(blue.venta), 2) : null;
+        var mepTxt = bolsa && bolsa.venta != null ? formatAR(Number(bolsa.venta), 2) : null;
+
+        if (blueTxt) {
+          setCellValue(cellByDemo('blue'), blueTxt, false);
+          markSettled(true);
+        } else {
+          setCellError('blue');
+          markSettled(false);
+        }
+
+        if (mepTxt) {
+          setCellValue(cellByDemo('mep'), mepTxt, false);
+          markSettled(true);
+        } else {
+          setCellError('mep');
+          markSettled(false);
+        }
+      })
+      .catch(function () {
+        setCellError('blue');
+        setCellError('mep');
+        markSettled(false);
+        markSettled(false);
+      });
+
+    // data912: GGAL precio (c)
+    fetchJson(URL_STOCKS)
+      .then(function (datos) {
+        var row = findSymbol(datos, 'GGAL');
+        var txt = row && row.c != null ? formatAR(Number(row.c), 2) : null;
+        if (txt) {
+          setCellValue(cellByDemo('ggal'), txt, false);
+          markSettled(true);
+        } else {
+          setCellError('ggal');
+          markSettled(false);
+        }
+      })
+      .catch(function () {
+        setCellError('ggal');
+        markSettled(false);
+      });
+
+    // Argentina Datos: riesgo país último
+    fetchJson(URL_RIESGO)
+      .then(function (datos) {
+        var valor = datos && datos.valor != null ? Number(datos.valor) : NaN;
+        var txt = formatAR(valor, 0);
+        if (txt) {
+          setCellValue(cellByDemo('riesgo'), txt, false);
+          markSettled(true);
+        } else {
+          setCellError('riesgo');
+          markSettled(false);
+        }
+      })
+      .catch(function () {
+        setCellError('riesgo');
+        markSettled(false);
+      });
+  }
+
+  loadHeroDemo();
 })();

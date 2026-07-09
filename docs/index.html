@@ -409,8 +409,8 @@
           <div class="catalog-list">
             <div class="catalog-item">
               <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/CEDEAR.md" target="_blank" rel="noopener">cedear</a>
-              <span class="desc">CEDEARs: precio, nombre, ratio (+ cedearLista)</span>
-              <span class="example">=cedear("MSFT";"name")</span>
+              <span class="desc">CEDEARs: precio, nombre, ratio, market (+ cedearLista)</span>
+              <span class="example">=cedear("AAPL";"market")</span>
             </div>
             <div class="catalog-item">
               <a href="https://github.com/ferminrp/google-sheets-argento/blob/main/doc/USA_STOCKS.md" target="_blank" rel="noopener">usa_stocks</a>
@@ -492,7 +492,7 @@
           <article class="card">
             <h3>CEDEARs + ratios</h3>
             <p>
-              Listado con ticker, nombre y ratio de conversión.
+              Listado con ticker, nombre, mercado del subyacente y ratio de conversión.
               Ideal para alimentar un agente o un script sin scrapear el PDF de BYMA.
             </p>
             <p style="margin: 0 0 0.75rem;">
@@ -516,11 +516,12 @@
   "fields": {
     "Cedears": "Ticker del CEDEAR en BYMA",
     "Name": "Nombre de la empresa / instrumento subyacente",
+    "Market": "Mercado del subyacente (ej. NYSE, NASDAQ, B3)",
     "Ratio": "String de conversión…"
   },
   "items": [
-    { "Cedears": "AAPL", "Name": "Apple Inc.", "Ratio": "20" },
-    { "Cedears": "ABEV", "Name": "Ambev S.A.", "Ratio": "1:3" }
+    { "Cedears": "AAPL", "Name": "Apple Inc.", "Market": "NASDAQ", "Ratio": "20" },
+    { "Cedears": "ABEV", "Name": "Ambev S.A.", "Market": "NASDAQ", "Ratio": "1:3" }
   ]
 }</pre>
         </div>
@@ -610,7 +611,7 @@ const aapl = items.find((c) => c.Cedears === 'AAPL');</pre>
               </tr>
               <tr>
                 <td class="fn-name">cedears.json</td>
-                <td>Nombres y ratios de CEDEARs (repo + API Pages)</td>
+                <td>Nombres, mercado y ratios de CEDEARs (repo + API Pages)</td>
                 <td>
                   <a href="api/cedears.json">api/cedears.json</a>
                   ·

@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Modificado
+- Landing API: ejemplo de respuesta y textos incluyen el campo **`Market`** (mercado del subyacente), alineado a `data/cedears.json` y a `docs/api/cedears.json` tras #26.
+- Catálogo: `=cedear("AAPL";"market")` como ejemplo.
+
 ### Añadido
 - **Hero demo con datos en vivo** (client-side): las 4 celdas de resultado llaman a las mismas APIs públicas que las fórmulas de Sheets, con skeleton mientras cargan.
   - Blue / MEP → [DolarAPI](https://dolarapi.com/v1/dolares)

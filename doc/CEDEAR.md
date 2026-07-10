@@ -95,3 +95,7 @@ Esta función devuelve una tabla con todos los CEDEARs disponibles y sus datos a
 
 **Atributo inválido**  
 "Atributo inválido: 'xyz'. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change, name, ratio, market."
+
+## Ver también
+
+- [CEDEARHISTORICO](CEDEAR_HISTORICO.md) — OHLC histórico (cierre, high/low, volumen, retorno diario)

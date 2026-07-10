@@ -24,7 +24,9 @@ Guía paso a paso, catálogo de fórmulas y fuentes de datos: **[sitio web](http
 
 ### Instrumentos financieros argentinos
 - [Acciones](doc/ACCIONES.md) - Información de acciones argentinas
+- [Acciones Histórico](doc/ACCIONES_HISTORICO.md) - OHLC histórico de acciones (data912)
 - [Bonos](doc/BONOS.md) - Información de bonos argentinos
+- [Bonos Histórico](doc/BONOS_HISTORICO.md) - OHLC histórico de bonos (data912)
 - [Letras](doc/LETRAS.md) - Información de letras del tesoro
 - [Opciones](doc/OPCIONES.md) - Información de opciones argentinas
 - [Obligaciones Negociables](doc/OBLIGACIONES.md) - Información de ONs
@@ -32,6 +34,7 @@ Guía paso a paso, catálogo de fórmulas y fuentes de datos: **[sitio web](http
 
 ### Instrumentos financieros internacionales
 - [CEDEAR](doc/CEDEAR.md) - Información de CEDEARs
+- [CEDEAR Histórico](doc/CEDEAR_HISTORICO.md) - OHLC histórico de CEDEARs (data912)
 - [USA Stocks](doc/USA_STOCKS.md) - Información de acciones estadounidenses
 
 ### Indicadores económicos
@@ -71,6 +74,7 @@ Forzar recálculo:
 - [src/dolar_historico.js](src/dolar_historico.js) – Código fuente para cotizaciones históricas de dólar
 - [src/cedear.js](src/cedear.js) – Código fuente para información de CEDEARs
 - [src/acciones.js](src/acciones.js) – Código fuente para información de acciones argentinas
+- [src/market_historico.js](src/market_historico.js) – Helpers de series históricas OHLC (data912)
 - [src/usa_stocks.js](src/usa_stocks.js) – Código fuente para información de acciones estadounidenses
 - [src/bonos.js](src/bonos.js) – Código fuente para información de bonos argentinos
 - [src/letras.js](src/letras.js) – Código fuente para información de letras del tesoro

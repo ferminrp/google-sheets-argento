@@ -27,3 +27,17 @@ function BONOS(symbol, value) {
 function BONOSLISTA() {
   return panelLista('https://data912.com/live/arg_bonds', 'panel:arg_bonds');
 }
+
+/**
+ * Obtiene un valor histórico OHLC de un bono argentino (data912).
+ *
+ * @param {string} symbol Símbolo del bono (ej: 'AL30', 'GD30', 'AE38')
+ * @param {string} fecha [Opcional] 'YYYY-MM-DD' o 'DD/MM/YYYY'. Sin fecha → último bar.
+ *                      Si no hay rueda ese día, usa el último día hábil ≤ fecha.
+ * @param {string} campo [Opcional] o, h, l, c, v, dr, sa. Por defecto: 'c'
+ * @return El valor del campo solicitado
+ * @customfunction
+ */
+function BONOSHISTORICO(symbol, fecha, campo) {
+  return historicoCotizacion('bonds', symbol, fecha, campo, 'bonos');
+}

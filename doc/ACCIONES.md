@@ -48,3 +48,7 @@ Esta función devuelve una tabla con todas las acciones argentinas disponibles y
 
 **Atributo inválido**  
 "Atributo inválido: 'xyz'. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change."
+
+## Ver también
+
+- [ACCIONESHISTORICO](ACCIONES_HISTORICO.md) — OHLC histórico (cierre, high/low, volumen, retorno diario)

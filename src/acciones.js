@@ -27,3 +27,17 @@ function ACCIONES(symbol, value) {
 function ACCIONESLISTA() {
   return panelLista('https://data912.com/live/arg_stocks', 'panel:arg_stocks');
 }
+
+/**
+ * Obtiene un valor histórico OHLC de una acción argentina (data912).
+ *
+ * @param {string} symbol Símbolo (ej: 'GGAL', 'YPFD', 'PAMP')
+ * @param {string} fecha [Opcional] 'YYYY-MM-DD' o 'DD/MM/YYYY'. Sin fecha → último bar.
+ *                      Si no hay rueda ese día, usa el último día hábil ≤ fecha.
+ * @param {string} campo [Opcional] o, h, l, c, v, dr, sa. Por defecto: 'c'
+ * @return El valor del campo solicitado
+ * @customfunction
+ */
+function ACCIONESHISTORICO(symbol, fecha, campo) {
+  return historicoCotizacion('stocks', symbol, fecha, campo, 'acciones');
+}

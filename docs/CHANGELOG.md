@@ -2,6 +2,18 @@
 
 ## [Unreleased]
 
+### Añadido
+- Catálogo y ejemplos de **`ACCIONESHISTORICO`**, **`CEDEARHISTORICO`** y **`BONOSHISTORICO`** (OHLC data912).
+- En fuentes: data912 también cubre series históricas OHLC, no solo paneles live.
+
+### Archivos afectados
+- `docs/index.html`
+- `docs/changelog.html`
+- `docs/CHANGELOG.md`
+
+### Decisiones técnicas
+- Funciones nuevas en Apps Script (`src/market_historico.js`); la landing solo documenta el catálogo.
+
 ### Modificado
 - **Breaking:** Todas las funciones públicas (`@customfunction`) usan nomenclatura **UPPERCASE** al estilo de Google Sheets (`DOLAR`, `ACCIONESLISTA`, `DOLARHISTORICO`, `USASTOCKS`, etc.). Los nombres con guión bajo (`dolar_historico`, `usa_stocks`) pasan a concatenación en mayúsculas (`DOLARHISTORICO`, `USASTOCKS`). Google Sheets no distingue mayúsculas/minúsculas, pero sí los guiones bajos: actualizá fórmulas que usaban `dolar_historico` o `usa_stocks`.
 

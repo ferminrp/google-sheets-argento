@@ -43,15 +43,18 @@ const script = new Function('context', `
     ${scriptContent}
     return {
       ACCIONES,
+      ACCIONESHISTORICO,
       ACCIONESLISTA,
       BCRA,
       BCRAVARIABLES,
       BONOS,
+      BONOSHISTORICO,
       BONOSLISTA,
       CAUCIONCOLOCADORA,
       CAUCIONTOMADORA,
       CALCULARCAUCION,
       CEDEAR,
+      CEDEARHISTORICO,
       CRIPTOYA,
       CRYPTO,
       DOLAR,

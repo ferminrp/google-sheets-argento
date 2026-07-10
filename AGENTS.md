@@ -16,6 +16,7 @@ This is a **Google Apps Script library** (not a web app/server). Source files in
 
 - **`src/http.js`**: `fetchJson(url, options)` centralizes HTTP (`muteHttpExceptions`, status check, JSON parse) and optional `CacheService.getScriptCache()` via `cacheKey` / `cacheTtlSeconds`.
 - **`src/market_panel.js`**: shared helpers for data912 live panels (`panelCotizacion`, `panelLista`).
+- **`src/market_historico.js`**: shared helpers for data912 OHLC history (`historicoCotizacion` → `ACCIONESHISTORICO` / `CEDEARHISTORICO` / `BONOSHISTORICO`). Full series is not cached (payloads &gt; 90KB); scalar results are cached after lookup.
 - **`src/fecha.js`**: shared date parsing (`YYYY-MM-DD` and Argentine `DD/MM/YYYY`).
 - Public custom functions must use `function name()` declarations (Apps Script hoist); avoid assigning helpers to `const`/`var` if other files call them.
 - Cache is best-effort: values may expire early; payloads &gt; ~90KB are not cached.

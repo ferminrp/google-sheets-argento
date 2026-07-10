@@ -42,3 +42,7 @@ Esta función devuelve una tabla con todos los bonos argentinos disponibles y su
 | Fórmula | Descripción |
 |---------|-------------|
 | `=BONOSLISTA()` | Tabla completa de todos los bonos argentinos con sus datos actuales |
+
+## Ver también
+
+- [BONOSHISTORICO](BONOS_HISTORICO.md) — OHLC histórico (cierre, high/low, volumen, retorno diario)

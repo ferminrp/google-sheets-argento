@@ -147,6 +147,8 @@ function publishCedearsApi() {
             Ratio:
                 "String de conversión. Formato 'N' (ej. \"20\") = N CEDEARs por 1 acción; " +
                 "formato 'A:B' (ej. \"1:3\") = razón A:B. No se normaliza.",
+            TickerOriginal:
+                'Ticker del instrumento subyacente en su mercado de origen (puede diferir del ticker BYMA)',
         },
         count: items.length,
         items: items,

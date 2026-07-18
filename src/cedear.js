@@ -6,7 +6,8 @@
  *                      'q_bid' (cantidad bid), 'px_bid' (precio bid), 'px_ask' (precio ask),
  *                      'q_ask' (cantidad ask), 'q_op' (operaciones diarias), 'pct_change' (variación porcentual),
  *                      'name' (nombre completo), 'ratio' (ratio de conversión),
- *                      'market' (mercado donde cotiza el subyacente)
+ *                      'market' (mercado donde cotiza el subyacente),
+ *                      'ticker_original' (ticker del subyacente en su mercado de origen)
  * @return El valor del atributo solicitado para el símbolo especificado.
  * @customfunction
  */
@@ -15,13 +16,13 @@ function CEDEAR(symbol, value) {
     throw new Error("Símbolo no proporcionado. Debe ingresar un símbolo válido (ej: 'AAPL').");
   }
   if (value === undefined || value === null || value === '') {
-    throw new Error("Atributo no proporcionado. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change, name, ratio, market.");
+    throw new Error("Atributo no proporcionado. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change, name, ratio, market, ticker_original.");
   }
 
   var simbolo = symbol.toString().toUpperCase().trim();
   var atributo = value.toString().toLowerCase().trim();
 
-  var atributosPermitidosJson = ['name', 'ratio', 'market'];
+  var atributosPermitidosJson = ['name', 'ratio', 'market', 'ticker_original'];
 
   if (atributosPermitidosJson.includes(atributo)) {
     return getCedearDataFromJson(simbolo, atributo);
@@ -40,7 +41,7 @@ function CEDEAR(symbol, value) {
  * Obtiene datos de CEDEARs desde el archivo JSON local.
  *
  * @param {string} symbol El símbolo del CEDEAR
- * @param {string} attribute El atributo que se quiere obtener ('name', 'ratio' o 'market')
+ * @param {string} attribute El atributo que se quiere obtener ('name', 'ratio', 'market' o 'ticker_original')
  * @return El valor del atributo solicitado
  */
 function buscarCedearEnJson(cedears, symbol, attribute) {
@@ -53,6 +54,8 @@ function buscarCedearEnJson(cedears, symbol, attribute) {
         return cedears[i].Ratio;
       } else if (attribute === 'market') {
         return cedears[i].Market;
+      } else if (attribute === 'ticker_original') {
+        return cedears[i].TickerOriginal;
       }
     }
   }

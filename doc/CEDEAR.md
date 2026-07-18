@@ -22,6 +22,7 @@ Cada entrada del listado contiene:
 - **Name**: Nombre completo de la empresa
 - **Market**: Mercado donde cotiza el instrumento subyacente (ej. NYSE, NASDAQ, B3)
 - **Ratio**: Ratio de conversión entre el CEDEAR y la acción subyacente (string)
+- **TickerOriginal**: Ticker del subyacente en su mercado de origen (puede diferir del ticker BYMA; ej. `ADGO` → `AGRO`)
 
 ### Formatos de `ratio`
 
@@ -60,6 +61,7 @@ En cualquier celda de la hoja, escribe:
 - "name" - Nombre completo de la empresa
 - "ratio" - Ratio de conversión entre el CEDEAR y la acción subyacente
 - "market" - Mercado donde cotiza el subyacente (ej. NYSE, NASDAQ, B3)
+- "ticker_original" - Ticker del subyacente en su mercado de origen (ej. ADGO → AGRO)
 
 ## Ejemplos
 
@@ -71,6 +73,7 @@ En cualquier celda de la hoja, escribe:
 | `=CEDEAR("TSLA"; "name")` | Nombre completo de la empresa Tesla |
 | `=CEDEAR("AMZN"; "ratio")` | Ratio de conversión del CEDEAR de Amazon |
 | `=CEDEAR("AAPL"; "market")` | Mercado donde cotiza Apple (NASDAQ) |
+| `=CEDEAR("ADGO"; "ticker_original")` | Ticker del subyacente Adecoagro (AGRO) |
 
 ## Función CedearLista
 

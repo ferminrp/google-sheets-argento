@@ -24,16 +24,9 @@ Cada entrada del listado contiene:
 - **Ratio**: Ratio de conversión entre el CEDEAR y la acción subyacente (string)
 - **TickerOriginal**: Ticker del subyacente en su mercado de origen (puede diferir del ticker BYMA; ej. `ADGO` → `AGRO`)
 
-### Formatos de `ratio`
+### Formato de `ratio`
 
-La función `=CEDEAR(symbol; "ratio")` devuelve el string del JSON **sin transformarlo**:
-
-| Formato | Ejemplo | Significado habitual |
-|--------|---------|----------------------|
-| Número como string | `"20"` | 20 CEDEARs = 1 acción subyacente (ej. AAPL) |
-| Razón `A:B` | `"1:3"` | Ratio 1 a 3 (presente en ~16 tickers del listado) |
-
-Si necesitás operar matemáticamente, parseá el string en la hoja (por ejemplo con `SPLIT` / `VALUE`) según el formato del ticker.
+La función `=CEDEAR(symbol; "ratio")` devuelve un string numérico: **N CEDEARs = 1 acción subyacente** (ej. `"20"` para AAPL, `"3"` para ABEV).
 
 
 ## Uso

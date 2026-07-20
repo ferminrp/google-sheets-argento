@@ -38,7 +38,7 @@
     "Cedears": "ABEV",
     "Name": "Ambev S.A.",
     "Market": "NASDAQ",
-    "Ratio": "1:3",
+    "Ratio": "3",
     "TickerOriginal": "ABEV"
   },
   {
@@ -213,7 +213,7 @@
     "Cedears": "ARCO",
     "Name": "Arcos Dorados Holdings Inc.",
     "Market": "NYSE",
-    "Ratio": "1:2",
+    "Ratio": "2",
     "TickerOriginal": "ARCO"
   },
   {
@@ -472,7 +472,7 @@
     "Cedears": "BRFS",
     "Name": "BRF S.A.",
     "Market": "NYSE",
-    "Ratio": "1:3",
+    "Ratio": "3",
     "TickerOriginal": "BRFS"
   },
   {
@@ -514,7 +514,7 @@
     "Cedears": "CAAP",
     "Name": "Corporación America Airports S.A.",
     "Market": "NYSE",
-    "Ratio": "1:4",
+    "Ratio": "4",
     "TickerOriginal": "CAAP"
   },
   {
@@ -794,7 +794,7 @@
     "Cedears": "EBR",
     "Name": "Centrais Eléctricas Brasileiras S.A. - Eletrobras",
     "Market": "NYSE",
-    "Ratio": "1:4",
+    "Ratio": "4",
     "TickerOriginal": "EBR"
   },
   {
@@ -829,7 +829,7 @@
     "Cedears": "ELP",
     "Name": "Companhia Paranaense de Energía - COPEL",
     "Market": "NYSE",
-    "Ratio": "1:3",
+    "Ratio": "3",
     "TickerOriginal": "ELP"
   },
   {
@@ -990,7 +990,7 @@
     "Cedears": "GGB",
     "Name": "Gerdau S.A.",
     "Market": "NYSE",
-    "Ratio": "1:4",
+    "Ratio": "4",
     "TickerOriginal": "GGB"
   },
   {
@@ -1417,7 +1417,7 @@
     "Cedears": "KEEL",
     "Name": "Bitfarms Ltd.",
     "Market": "NASDAQ GM",
-    "Ratio": "1:5",
+    "Ratio": "5",
     "TickerOriginal": "KEEL"
   },
   {
@@ -1718,7 +1718,7 @@
     "Cedears": "NEC1",
     "Name": "Nec Corporation",
     "Market": "FRANKFURT",
-    "Ratio": "1:3",
+    "Ratio": "3",
     "TickerOriginal": "NEC1"
   },
   {
@@ -1746,7 +1746,7 @@
     "Cedears": "NG",
     "Name": "Novagold Resources INC.",
     "Market": "NYSE",
-    "Ratio": "1:4",
+    "Ratio": "4",
     "TickerOriginal": "NG"
   },
   {
@@ -2110,7 +2110,7 @@
     "Cedears": "RCTB4",
     "Name": "Telebras PN",
     "Market": "BOVESPA",
-    "Ratio": "1:1000",
+    "Ratio": "1000",
     "TickerOriginal": "RCTB4"
   },
   {
@@ -2180,7 +2180,7 @@
     "Cedears": "SAN",
     "Name": "Banco Santander S.A",
     "Market": "NYSE",
-    "Ratio": "1:4",
+    "Ratio": "4",
     "TickerOriginal": "SAN"
   },
   {
@@ -2201,7 +2201,7 @@
     "Cedears": "SBS",
     "Name": "Companhia de Saneamento Básico do Estado de São Paulo–Sabesp",
     "Market": "NYSE",
-    "Ratio": "1:2",
+    "Ratio": "2",
     "TickerOriginal": "SBS"
   },
   {
@@ -2271,7 +2271,7 @@
     "Cedears": "SHPW",
     "Name": "Shapeways Holdings Inc",
     "Market": "NYSE",
-    "Ratio": "1:2",
+    "Ratio": "2",
     "TickerOriginal": "SHPW"
   },
   {
@@ -2285,7 +2285,7 @@
     "Cedears": "SID",
     "Name": "Companhia Siderúrgica Nacional",
     "Market": "NYSE",
-    "Ratio": "1:8",
+    "Ratio": "8",
     "TickerOriginal": "SID"
   },
   {
@@ -2369,7 +2369,7 @@
     "Cedears": "SPCE",
     "Name": "Virgin Galactic",
     "Market": "NYSE",
-    "Ratio": "1:2",
+    "Ratio": "2",
     "TickerOriginal": "SPCE"
   },
   {

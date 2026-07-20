@@ -529,7 +529,7 @@ function buscarCedearEnJson(cedears, symbol, attribute) {
       if (attribute === 'name') {
         return cedears[i].Name;
       } else if (attribute === 'ratio') {
-        // Se devuelve el string original del JSON ("20" o "1:3"). Ver doc/CEDEAR.md.
+        // N CEDEARs = 1 acción subyacente (ej. "20"). Ver doc/CEDEAR.md.
         return cedears[i].Ratio;
       } else if (attribute === 'market') {
         return cedears[i].Market;

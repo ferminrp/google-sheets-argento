@@ -3,22 +3,6 @@
 ## [Unreleased]
 
 ### Añadido
-- Sección **Listado de CEDEARs** en la home (`#cedears`): tabla desde `api/cedears.json` con filtro dropdown por `tags`.
-- Páginas SEO por categoría en `/categoria/{slug}/` (generadas por `npm run build` desde los tags del JSON).
-- `docs/sitemap.xml` (home, changelog, categorías).
-- Ejemplo de API actualizado con el campo `tags`.
-
-### Archivos afectados
-- `docs/index.html`, `docs/script.js`, `docs/styles.css`
-- `docs/categoria/**`, `docs/sitemap.xml`
-- `scripts/cedear-category-pages.js`, `build.js`
-- `docs/README.md`, `docs/changelog.html`, `docs/CHANGELOG.md`
-
-### Decisiones técnicas
-- Sitio sigue siendo HTML/CSS/JS estático; las landings de categoría se generan en el build (no hay router).
-- Slug: NFD + minúsculas; override `Tech` → `tecnologia`.
-
-### Añadido
 - Catálogo y ejemplos de **`ACCIONESHISTORICO`**, **`CEDEARHISTORICO`** y **`BONOSHISTORICO`** (OHLC data912).
 - En fuentes: data912 también cubre series históricas OHLC, no solo paneles live.
 

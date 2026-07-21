@@ -683,67 +683,6 @@ a:hover {
   font-weight: 600;
 }
 
-/* ——— CEDEARs table ——— */
-
-.cedears-toolbar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.65rem 1rem;
-  margin-bottom: 1rem;
-}
-
-.cedears-toolbar label {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--ink-muted);
-}
-
-.cedears-toolbar select {
-  min-width: 12rem;
-  padding: 0.45rem 0.65rem;
-  font-family: inherit;
-  font-size: 0.92rem;
-  color: var(--ink);
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-}
-
-#cedears-count {
-  font-size: 0.88rem;
-  color: var(--ink-muted);
-  font-variant-numeric: tabular-nums;
-}
-
-.cedears-tags-cell {
-  line-height: 1.5;
-}
-
-.cedear-tag {
-  display: inline-block;
-  margin: 0.1rem 0.35rem 0.1rem 0;
-  padding: 0.1rem 0.35rem;
-  font-size: 0.84rem;
-  font-weight: 500;
-  color: var(--accent);
-  text-decoration: none;
-  border-radius: 4px;
-  background: var(--accent-wash);
-  border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
-}
-
-.cedear-tag:hover {
-  text-decoration: underline;
-  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
-}
-
-#cedears-error {
-  margin-top: 1rem;
-  font-size: 0.92rem;
-  color: var(--danger);
-}
-
 /* ——— Catalog ——— */
 
 .catalog-group {

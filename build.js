@@ -164,7 +164,10 @@ function publishCedearsApi() {
     console.log(
         `API CEDEARs publicada en docs/api/cedears.json (${items.length} items)`
     );
+    return items;
 }
 
 buildConsolidatedFile();
-publishCedearsApi();
+const items = publishCedearsApi();
+const { publishCedearCategoryPages } = require('./scripts/cedear-category-pages');
+publishCedearCategoryPages(items);

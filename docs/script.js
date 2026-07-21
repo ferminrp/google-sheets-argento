@@ -273,4 +273,165 @@
   }
 
   loadHeroDemo();
+
+  // ——— CEDEARs table ———
+  var TAG_TITLE_OVERRIDES = { Tech: 'Tecnología' };
+  var URL_CEDEARS = 'api/cedears.json';
+
+  var cedearsItems = [];
+  var cedearsTbody = document.getElementById('cedears-tbody');
+  var cedearsTagFilter = document.getElementById('cedears-tag-filter');
+  var cedearsCount = document.getElementById('cedears-count');
+  var cedearsError = document.getElementById('cedears-error');
+
+  function slugifyTag(tag) {
+    if (tag === 'Tech') return 'tecnologia';
+    return tag
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .replace(/&/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
+  }
+
+  function escapeHtml(text) {
+    if (text == null) return '';
+    return String(text)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function collectUniqueTags(items) {
+    var seen = {};
+    var tags = [];
+    items.forEach(function (item) {
+      var itemTags = item.tags;
+      if (!itemTags || !itemTags.length) return;
+      itemTags.forEach(function (tag) {
+        if (!tag || seen[tag]) return;
+        seen[tag] = true;
+        tags.push(tag);
+      });
+    });
+    tags.sort(function (a, b) {
+      return a.localeCompare(b, 'es');
+    });
+    return tags;
+  }
+
+  function populateTagFilter(tags) {
+    if (!cedearsTagFilter) return;
+    tags.forEach(function (tag) {
+      var opt = document.createElement('option');
+      opt.value = tag;
+      opt.textContent = tag;
+      cedearsTagFilter.appendChild(opt);
+    });
+  }
+
+  function renderTagsCell(tags) {
+    if (!tags || !tags.length) return '—';
+    return tags.map(function (tag) {
+      var slug = slugifyTag(tag);
+      var title = TAG_TITLE_OVERRIDES[tag] || tag;
+      return (
+        '<a class="cedear-tag" href="categoria/' +
+        escapeHtml(slug) +
+        '/" title="' +
+        escapeHtml(title) +
+        '">' +
+        escapeHtml(tag) +
+        '</a>'
+      );
+    }).join(' ');
+  }
+
+  function getFilteredItems() {
+    if (!cedearsTagFilter) return cedearsItems;
+    var selected = cedearsTagFilter.value;
+    if (!selected) return cedearsItems;
+    return cedearsItems.filter(function (item) {
+      var tags = item.tags;
+      if (!tags || !tags.length) return false;
+      return tags.indexOf(selected) !== -1;
+    });
+  }
+
+  function updateCedearsCount(visibleCount) {
+    if (!cedearsCount) return;
+    var total = cedearsItems.length;
+    var selected = cedearsTagFilter ? cedearsTagFilter.value : '';
+    if (selected) {
+      cedearsCount.textContent = 'Mostrando ' + visibleCount + ' de ' + total;
+    } else {
+      cedearsCount.textContent = visibleCount + ' de ' + total;
+    }
+  }
+
+  function renderCedearsTable() {
+    if (!cedearsTbody) return;
+    var filtered = getFilteredItems();
+
+    if (!filtered.length) {
+      cedearsTbody.innerHTML =
+        '<tr><td colspan="5">No hay CEDEARs para esta categoría.</td></tr>';
+      updateCedearsCount(0);
+      return;
+    }
+
+    var rows = filtered.map(function (item) {
+      return (
+        '<tr>' +
+        '<td><code>' + escapeHtml(item.Cedears) + '</code></td>' +
+        '<td>' + escapeHtml(item.Name) + '</td>' +
+        '<td>' + escapeHtml(item.Market) + '</td>' +
+        '<td>' + escapeHtml(item.Ratio) + '</td>' +
+        '<td class="cedears-tags-cell">' + renderTagsCell(item.tags) + '</td>' +
+        '</tr>'
+      );
+    });
+
+    cedearsTbody.innerHTML = rows.join('');
+    updateCedearsCount(filtered.length);
+  }
+
+  function showCedearsError() {
+    if (cedearsTbody) {
+      cedearsTbody.innerHTML = '';
+    }
+    if (cedearsError) {
+      cedearsError.hidden = false;
+    }
+    if (cedearsCount) {
+      cedearsCount.textContent = '';
+    }
+  }
+
+  function loadCedearsTable() {
+    if (!cedearsTbody) return;
+
+    fetchJson(URL_CEDEARS)
+      .then(function (data) {
+        cedearsItems = data && data.items ? data.items : [];
+        if (!cedearsItems.length) {
+          showCedearsError();
+          return;
+        }
+        populateTagFilter(collectUniqueTags(cedearsItems));
+        renderCedearsTable();
+      })
+      .catch(function () {
+        showCedearsError();
+      });
+  }
+
+  if (cedearsTagFilter) {
+    cedearsTagFilter.addEventListener('change', renderCedearsTable);
+  }
+
+  loadCedearsTable();
 })();

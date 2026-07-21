@@ -149,8 +149,7 @@ function publishCedearsApi() {
             TickerOriginal:
                 'Ticker del instrumento subyacente en su mercado de origen (puede diferir del ticker BYMA)',
             tags:
-                'Array de categor?as tem?ticas del CEDEAR (ej. Tech, Bancos). ' +
-                'Generado con scripts/enrich-cedears-tags.js desde data/cedear-tag-categories.json.',
+                'Array de categor?as tem?ticas del CEDEAR (ej. Tech, Bancos).',
             'yfinance-metadata':
                 'Perfil de la empresa desde Yahoo Finance (descripci?n, sector, industria, web, etc.). ' +
                 'Generado con scripts/enrich-cedears-yfinance.py a partir de TickerOriginal.',

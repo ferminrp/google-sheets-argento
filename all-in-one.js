@@ -10,6 +10,8 @@ CONSTANTS.GASTOS_GARANTIA_TASA_DIARIA = 0.045 / 100 / 90;
 CONSTANTS.IVA_PORCENTAJE = 21 / 100;
 CONSTANTS.ARANCEL_CAUCION_COLOCADORA_TNA = 1.5 / 100;
 CONSTANTS.ARANCEL_CAUCION_TOMADORA_TNA = 4.0 / 100;
+CONSTANTS.ATRIBUTOS_JSON_CEDEAR = ['name', 'ratio', 'market', 'ticker_original'];
+CONSTANTS.ATRIBUTOS_YFINANCE_METADATA = ['yahoo_symbol', 'fetched_at', 'long_description', 'city', 'state', 'country', 'zip', 'address', 'sector', 'industry', 'website', 'phone', 'employees', 'long_name', 'short_name', 'exchange', 'quote_type', 'currency', 'logo_url', 'error'];
 CONSTANTS.HTTP_CACHE_MAX_CHARS = 90000;
 CONSTANTS.HTTP_DEFAULT_TTL = 120;
 CONSTANTS.ATRIBUTOS_HISTORICO = ['o', 'h', 'l', 'c', 'v', 'dr', 'sa'];
@@ -486,7 +488,8 @@ function CALCULARCAUCION(
  *                      'q_ask' (cantidad ask), 'q_op' (operaciones diarias), 'pct_change' (variación porcentual),
  *                      'name' (nombre completo), 'ratio' (ratio de conversión),
  *                      'market' (mercado donde cotiza el subyacente),
- *                      'ticker_original' (ticker del subyacente en su mercado de origen)
+ *                      'ticker_original' (ticker del subyacente en su mercado de origen),
+ *                      o campos de yfinance-metadata (sector, industry, website, long_description, etc.)
  * @return El valor del atributo solicitado para el símbolo especificado.
  * @customfunction
  */
@@ -495,15 +498,13 @@ function CEDEAR(symbol, value) {
     throw new Error("Símbolo no proporcionado. Debe ingresar un símbolo válido (ej: 'AAPL').");
   }
   if (value === undefined || value === null || value === '') {
-    throw new Error("Atributo no proporcionado. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change, name, ratio, market, ticker_original.");
+    throw new Error('Atributo no proporcionado. Atributos disponibles: ' + mensajeAtributosCedear() + '.');
   }
 
   var simbolo = symbol.toString().toUpperCase().trim();
   var atributo = value.toString().toLowerCase().trim();
 
-  var atributosPermitidosJson = ['name', 'ratio', 'market', 'ticker_original'];
-
-  if (atributosPermitidosJson.includes(atributo)) {
+  if (esAtributoDesdeJsonCedear(atributo)) {
     return getCedearDataFromJson(simbolo, atributo);
   }
 
@@ -516,11 +517,28 @@ function CEDEAR(symbol, value) {
   );
 }
 
+// Constante CONSTANTS.ATRIBUTOS_JSON_CEDEAR movida al namespace CONSTANTS
+// var ATRIBUTOS_JSON_CEDEAR = ['name', 'ratio', 'market', 'ticker_original'];
+// Constante CONSTANTS.ATRIBUTOS_YFINANCE_METADATA movida al namespace CONSTANTS
+// var ATRIBUTOS_YFINANCE_METADATA = ['yahoo_symbol', 'fetched_at', 'long_description', 'city', 'state', 'country', 'zip', 'address', 'sector', 'industry', 'website', 'phone', 'employees', 'long_name', 'short_name', 'exchange', 'quote_type', 'currency', 'logo_url', 'error'];
+
+function esAtributoDesdeJsonCedear(atributo) {
+  return CONSTANTS.ATRIBUTOS_JSON_CEDEAR.indexOf(atributo) !== -1 ||
+    CONSTANTS.ATRIBUTOS_YFINANCE_METADATA.indexOf(atributo) !== -1;
+}
+
+function mensajeAtributosCedear() {
+  return (
+    'c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change, name, ratio, market, ticker_original, ' +
+    CONSTANTS.ATRIBUTOS_YFINANCE_METADATA.join(', ')
+  );
+}
+
 /**
  * Obtiene datos de CEDEARs desde el archivo JSON local.
  *
  * @param {string} symbol El símbolo del CEDEAR
- * @param {string} attribute El atributo que se quiere obtener ('name', 'ratio', 'market' o 'ticker_original')
+ * @param {string} attribute El atributo que se quiere obtener
  * @return El valor del atributo solicitado
  */
 function buscarCedearEnJson(cedears, symbol, attribute) {
@@ -535,10 +553,23 @@ function buscarCedearEnJson(cedears, symbol, attribute) {
         return cedears[i].Market;
       } else if (attribute === 'ticker_original') {
         return cedears[i].TickerOriginal;
+      } else if (CONSTANTS.ATRIBUTOS_YFINANCE_METADATA.indexOf(attribute) !== -1) {
+        return obtenerCedearMetadataYfinance(cedears[i], symbol, attribute);
       }
     }
   }
   throw new Error("Símbolo inválido: '" + symbol + "'. No se encontró en el archivo de CEDEARs.");
+}
+
+function obtenerCedearMetadataYfinance(item, symbol, attribute) {
+  var metadata = item['yfinance-metadata'];
+  if (!metadata) {
+    throw new Error("Metadata yfinance no disponible para '" + symbol + "'.");
+  }
+  if (metadata[attribute] === undefined || metadata[attribute] === null) {
+    return '';
+  }
+  return metadata[attribute];
 }
 
 function cargarCedearsDesdeDrive() {

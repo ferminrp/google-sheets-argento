@@ -88,6 +88,7 @@ En cualquier celda de la hoja, escribe:
 - "ratio" - Ratio de conversión entre el CEDEAR y la acción subyacente
 - "market" - Mercado donde cotiza el subyacente (ej. NYSE, NASDAQ, B3)
 - "ticker_original" - Ticker del subyacente en su mercado de origen (ej. ADGO → AGRO)
+- Campos de **yfinance-metadata** (desde `data/cedears.json`): `sector`, `industry`, `website`, `long_description`, `city`, `state`, `country`, `employees`, `logo_url`, `yahoo_symbol`, `error`, etc. (ver tabla arriba)
 
 ## Ejemplos
 
@@ -100,6 +101,9 @@ En cualquier celda de la hoja, escribe:
 | `=CEDEAR("AMZN"; "ratio")` | Ratio de conversión del CEDEAR de Amazon |
 | `=CEDEAR("AAPL"; "market")` | Mercado donde cotiza Apple (NASDAQ) |
 | `=CEDEAR("ADGO"; "ticker_original")` | Ticker del subyacente Adecoagro (AGRO) |
+| `=CEDEAR("AAPL"; "sector")` | Sector del subyacente (Technology) |
+| `=CEDEAR("AAPL"; "website")` | Sitio web de la empresa |
+| `=CEDEAR("AAPL"; "long_description")` | Descripción del negocio desde Yahoo Finance |
 
 ## Función CedearLista
 
@@ -123,7 +127,10 @@ Esta función devuelve una tabla con todos los CEDEARs disponibles y sus datos a
 "Símbolo inválido: 'xyz'. No se encontró en la lista de CEDEARs disponibles."
 
 **Atributo inválido**  
-"Atributo inválido: 'xyz'. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change, name, ratio, market."
+"Atributo inválido: 'xyz'. Atributos disponibles: c, v, q_bid, px_bid, px_ask, q_ask, q_op, pct_change, name, ratio, market, ticker_original, sector, industry, website, ..."
+
+**Metadata yfinance no disponible**  
+"Metadata yfinance no disponible para 'XYZ'." (el CEDEAR existe pero no tiene bloque `yfinance-metadata` en el JSON)
 
 ## Ver también
 

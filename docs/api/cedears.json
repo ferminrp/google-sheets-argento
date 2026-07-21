@@ -12,6 +12,7 @@
     "Market": "Mercado donde cotiza el subyacente (ej. NYSE, NASDAQ, B3)",
     "Ratio": "String numérico: N CEDEARs por 1 acción subyacente (ej. \"20\" para AAPL, \"3\" para ABEV).",
     "TickerOriginal": "Ticker del instrumento subyacente en su mercado de origen (puede diferir del ticker BYMA)",
+    "tags": "Array de categor?as tem?ticas del CEDEAR (ej. Tech, Bancos).",
     "yfinance-metadata": "Perfil de la empresa desde Yahoo Finance (descripci?n, sector, industria, web, etc.). Generado con scripts/enrich-cedears-yfinance.py a partir de TickerOriginal."
   },
   "count": 428,
@@ -26,7 +27,8 @@
         "yahoo_symbol": "AABA",
         "fetched_at": "2026-07-21T10:55:44Z",
         "quote_type": "NONE"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "AAL",
@@ -53,7 +55,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Viajes & Turismo"
+      ]
     },
     {
       "Cedears": "AAP",
@@ -79,7 +84,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Retail & E-commerce"
+      ]
     },
     {
       "Cedears": "AAPL",
@@ -106,7 +114,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech"
+      ]
     },
     {
       "Cedears": "ABBV",
@@ -133,7 +144,11 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Salud",
+        "Farma & Biotecnología"
+      ]
     },
     {
       "Cedears": "ABEV",
@@ -160,7 +175,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Consumo básico"
+      ]
     },
     {
       "Cedears": "ABEV3",
@@ -187,7 +205,10 @@
         "exchange": "SAO",
         "quote_type": "EQUITY",
         "currency": "BRL"
-      }
+      },
+      "tags": [
+        "Consumo básico"
+      ]
     },
     {
       "Cedears": "ABNB",
@@ -214,7 +235,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Viajes & Turismo"
+      ]
     },
     {
       "Cedears": "ABT",
@@ -240,7 +264,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Salud"
+      ]
     },
     {
       "Cedears": "ACN",
@@ -266,7 +293,11 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Software & Cloud"
+      ]
     },
     {
       "Cedears": "ACWI",
@@ -284,7 +315,8 @@
         "exchange": "NGM",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "ADBE",
@@ -311,7 +343,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Software & Cloud"
+      ]
     },
     {
       "Cedears": "ADGO",
@@ -336,7 +372,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Agro"
+      ]
     },
     {
       "Cedears": "ADI",
@@ -362,7 +401,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Semiconductores"
+      ]
     },
     {
       "Cedears": "ADP",
@@ -389,7 +432,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Software & Cloud"
+      ]
     },
     {
       "Cedears": "ADS",
@@ -414,7 +461,8 @@
         "exchange": "GER",
         "quote_type": "EQUITY",
         "currency": "EUR"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "AEG",
@@ -440,7 +488,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Seguros"
+      ]
     },
     {
       "Cedears": "AEM",
@@ -466,7 +517,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Oro & Plata"
+      ]
     },
     {
       "Cedears": "AI",
@@ -492,7 +546,12 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Inteligencia Artificial",
+        "Software & Cloud"
+      ]
     },
     {
       "Cedears": "AIG",
@@ -518,7 +577,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Seguros"
+      ]
     },
     {
       "Cedears": "AKO.B",
@@ -530,7 +592,10 @@
         "yahoo_symbol": "AKO.B",
         "fetched_at": "2026-07-21T10:55:54Z",
         "error": "no_data"
-      }
+      },
+      "tags": [
+        "Consumo básico"
+      ]
     },
     {
       "Cedears": "ALAB",
@@ -557,7 +622,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Semiconductores"
+      ]
     },
     {
       "Cedears": "AMAT",
@@ -584,7 +653,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Semiconductores"
+      ]
     },
     {
       "Cedears": "AMD",
@@ -610,7 +683,12 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Semiconductores",
+        "Inteligencia Artificial"
+      ]
     },
     {
       "Cedears": "AMGN",
@@ -637,7 +715,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Salud",
+        "Farma & Biotecnología"
+      ]
     },
     {
       "Cedears": "AMX",
@@ -664,7 +746,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Telecomunicaciones"
+      ]
     },
     {
       "Cedears": "AMZN",
@@ -691,7 +776,12 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Inteligencia Artificial",
+        "Retail & E-commerce"
+      ]
     },
     {
       "Cedears": "ANET",
@@ -718,7 +808,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech"
+      ]
     },
     {
       "Cedears": "ANF",
@@ -745,7 +838,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "AOCA",
@@ -771,7 +865,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Minería & Metales"
+      ]
     },
     {
       "Cedears": "ARCO",
@@ -796,7 +893,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "ARKK",
@@ -814,7 +912,8 @@
         "exchange": "BTS",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "ARM",
@@ -840,7 +939,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Semiconductores"
+      ]
     },
     {
       "Cedears": "ASML",
@@ -866,7 +969,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Semiconductores"
+      ]
     },
     {
       "Cedears": "ASR",
@@ -892,7 +999,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Viajes & Turismo"
+      ]
     },
     {
       "Cedears": "ASTS",
@@ -919,7 +1029,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Telecomunicaciones"
+      ]
     },
     {
       "Cedears": "ATAD",
@@ -931,7 +1044,10 @@
         "yahoo_symbol": "ATAD.L",
         "fetched_at": "2026-07-21T10:56:02Z",
         "quote_type": "NONE"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "AUY",
@@ -943,7 +1059,10 @@
         "yahoo_symbol": "AUY",
         "fetched_at": "2026-07-21T10:56:02Z",
         "quote_type": "NONE"
-      }
+      },
+      "tags": [
+        "Oro & Plata"
+      ]
     },
     {
       "Cedears": "AVGO",
@@ -970,7 +1089,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Semiconductores"
+      ]
     },
     {
       "Cedears": "AVY",
@@ -996,7 +1119,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "AXP",
@@ -1023,7 +1147,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Fintech & Pagos"
+      ]
     },
     {
       "Cedears": "AZN",
@@ -1048,7 +1175,11 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Salud",
+        "Farma & Biotecnología"
+      ]
     },
     {
       "Cedears": "B",
@@ -1073,7 +1204,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Oro & Plata"
+      ]
     },
     {
       "Cedears": "BA",
@@ -1100,7 +1234,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Aeroespacial & Defensa"
+      ]
     },
     {
       "Cedears": "BABA",
@@ -1126,7 +1263,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Retail & E-commerce"
+      ]
     },
     {
       "Cedears": "BA.C",
@@ -1152,7 +1292,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Bancos"
+      ]
     },
     {
       "Cedears": "BAK",
@@ -1179,7 +1322,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "BAS",
@@ -1204,7 +1348,8 @@
         "exchange": "GER",
         "quote_type": "EQUITY",
         "currency": "EUR"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "BAYN",
@@ -1230,7 +1375,11 @@
         "exchange": "GER",
         "quote_type": "EQUITY",
         "currency": "EUR"
-      }
+      },
+      "tags": [
+        "Salud",
+        "Farma & Biotecnología"
+      ]
     },
     {
       "Cedears": "BB",
@@ -1257,7 +1406,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "BBAS3",
@@ -1284,7 +1434,10 @@
         "exchange": "SAO",
         "quote_type": "EQUITY",
         "currency": "BRL"
-      }
+      },
+      "tags": [
+        "Bancos"
+      ]
     },
     {
       "Cedears": "BBD",
@@ -1311,7 +1464,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Bancos"
+      ]
     },
     {
       "Cedears": "BBDC3",
@@ -1338,7 +1494,10 @@
         "exchange": "SAO",
         "quote_type": "EQUITY",
         "currency": "BRL"
-      }
+      },
+      "tags": [
+        "Bancos"
+      ]
     },
     {
       "Cedears": "BBV",
@@ -1351,7 +1510,10 @@
         "fetched_at": "2026-07-21T10:56:10Z",
         "exchange": "YHD",
         "quote_type": "MUTUALFUND"
-      }
+      },
+      "tags": [
+        "Bancos"
+      ]
     },
     {
       "Cedears": "BCS",
@@ -1377,7 +1539,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Bancos"
+      ]
     },
     {
       "Cedears": "BHP",
@@ -1404,7 +1569,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Minería & Metales"
+      ]
     },
     {
       "Cedears": "BIDU",
@@ -1430,7 +1598,8 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "BIIB",
@@ -1457,7 +1626,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Salud",
+        "Farma & Biotecnología"
+      ]
     },
     {
       "Cedears": "BIOX",
@@ -1483,7 +1656,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Agro"
+      ]
     },
     {
       "Cedears": "BK",
@@ -1510,7 +1686,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Bancos"
+      ]
     },
     {
       "Cedears": "BKNG",
@@ -1537,7 +1716,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Viajes & Turismo"
+      ]
     },
     {
       "Cedears": "BKR",
@@ -1564,7 +1746,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "BMNR",
@@ -1591,7 +1776,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Cripto & Bitcoin"
+      ]
     },
     {
       "Cedears": "BMY",
@@ -1618,7 +1806,11 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Salud",
+        "Farma & Biotecnología"
+      ]
     },
     {
       "Cedears": "BNG",
@@ -1632,7 +1824,10 @@
         "short_name": "15013",
         "exchange": "YHD",
         "quote_type": "MUTUALFUND"
-      }
+      },
+      "tags": [
+        "Agro"
+      ]
     },
     {
       "Cedears": "BP",
@@ -1658,7 +1853,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "BPA11",
@@ -1670,7 +1868,10 @@
         "yahoo_symbol": "BPA11",
         "fetched_at": "2026-07-21T10:56:16Z",
         "error": "no_data"
-      }
+      },
+      "tags": [
+        "Bancos"
+      ]
     },
     {
       "Cedears": "BRFS",
@@ -1682,7 +1883,11 @@
         "yahoo_symbol": "BRFS",
         "fetched_at": "2026-07-21T10:56:17Z",
         "error": "no_data"
-      }
+      },
+      "tags": [
+        "Agro",
+        "Consumo básico"
+      ]
     },
     {
       "Cedears": "BRKB",
@@ -1694,7 +1899,10 @@
         "yahoo_symbol": "BRKB",
         "fetched_at": "2026-07-21T10:56:17Z",
         "quote_type": "NONE"
-      }
+      },
+      "tags": [
+        "Seguros"
+      ]
     },
     {
       "Cedears": "BSBR",
@@ -1721,7 +1929,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Bancos"
+      ]
     },
     {
       "Cedears": "BSN",
@@ -1747,7 +1958,10 @@
         "exchange": "GER",
         "quote_type": "EQUITY",
         "currency": "EUR"
-      }
+      },
+      "tags": [
+        "Consumo básico"
+      ]
     },
     {
       "Cedears": "BX",
@@ -1774,7 +1988,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "C",
@@ -1801,7 +2016,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Bancos"
+      ]
     },
     {
       "Cedears": "CAAP",
@@ -1826,7 +2044,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Viajes & Turismo"
+      ]
     },
     {
       "Cedears": "CAH",
@@ -1853,7 +2074,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Salud"
+      ]
     },
     {
       "Cedears": "CAJ",
@@ -1865,7 +2089,8 @@
         "yahoo_symbol": "CAJ",
         "fetched_at": "2026-07-21T10:56:21Z",
         "quote_type": "NONE"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "CAR",
@@ -1891,7 +2116,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Viajes & Turismo"
+      ]
     },
     {
       "Cedears": "CAT",
@@ -1917,7 +2145,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Industriales"
+      ]
     },
     {
       "Cedears": "CBRD",
@@ -1929,7 +2160,10 @@
         "yahoo_symbol": "CBRD",
         "fetched_at": "2026-07-21T10:56:22Z",
         "error": "no_data"
-      }
+      },
+      "tags": [
+        "Retail & E-commerce"
+      ]
     },
     {
       "Cedears": "CCJ",
@@ -1954,7 +2188,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Nuclear & Uranio"
+      ]
     },
     {
       "Cedears": "CCL",
@@ -1981,7 +2218,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Viajes & Turismo"
+      ]
     },
     {
       "Cedears": "CDE",
@@ -2008,7 +2248,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Oro & Plata"
+      ]
     },
     {
       "Cedears": "CEG",
@@ -2035,7 +2278,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Nuclear & Uranio"
+      ]
     },
     {
       "Cedears": "CIBR",
@@ -2053,7 +2299,11 @@
         "exchange": "NGM",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Ciberseguridad"
+      ]
     },
     {
       "Cedears": "CL",
@@ -2079,7 +2329,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Consumo básico"
+      ]
     },
     {
       "Cedears": "CLS",
@@ -2105,7 +2358,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech"
+      ]
     },
     {
       "Cedears": "COIN",
@@ -2132,7 +2388,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Fintech & Pagos",
+        "Cripto & Bitcoin"
+      ]
     },
     {
       "Cedears": "COP",
@@ -2159,7 +2419,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "COPX",
@@ -2177,7 +2440,10 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Minería & Metales"
+      ]
     },
     {
       "Cedears": "COST",
@@ -2204,7 +2470,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Retail & E-commerce"
+      ]
     },
     {
       "Cedears": "CRM",
@@ -2230,7 +2499,11 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Software & Cloud"
+      ]
     },
     {
       "Cedears": "CRWD",
@@ -2257,7 +2530,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Ciberseguridad"
+      ]
     },
     {
       "Cedears": "CRWV",
@@ -2284,7 +2561,12 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Inteligencia Artificial",
+        "Software & Cloud"
+      ]
     },
     {
       "Cedears": "CS",
@@ -2296,7 +2578,8 @@
         "yahoo_symbol": "CS",
         "fetched_at": "2026-07-21T10:56:29Z",
         "quote_type": "NONE"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "CSCO",
@@ -2323,7 +2606,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Ciberseguridad"
+      ]
     },
     {
       "Cedears": "CSNA3",
@@ -2350,7 +2637,10 @@
         "exchange": "SAO",
         "quote_type": "EQUITY",
         "currency": "BRL"
-      }
+      },
+      "tags": [
+        "Minería & Metales"
+      ]
     },
     {
       "Cedears": "CVS",
@@ -2377,7 +2667,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Salud"
+      ]
     },
     {
       "Cedears": "CVX",
@@ -2404,7 +2697,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "CX",
@@ -2430,7 +2726,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "DAL",
@@ -2456,7 +2753,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Viajes & Turismo"
+      ]
     },
     {
       "Cedears": "DD",
@@ -2482,7 +2782,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "DE",
@@ -2509,7 +2810,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Industriales"
+      ]
     },
     {
       "Cedears": "DECK",
@@ -2536,7 +2840,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "DEO",
@@ -2562,7 +2867,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Consumo básico"
+      ]
     },
     {
       "Cedears": "DHR",
@@ -2589,7 +2897,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Salud"
+      ]
     },
     {
       "Cedears": "DIA",
@@ -2606,7 +2917,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "DISN",
@@ -2618,7 +2930,10 @@
         "yahoo_symbol": "DISN",
         "fetched_at": "2026-07-21T10:56:36Z",
         "error": "no_data"
-      }
+      },
+      "tags": [
+        "Medios & Streaming"
+      ]
     },
     {
       "Cedears": "DOCU",
@@ -2645,7 +2960,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Software & Cloud"
+      ]
     },
     {
       "Cedears": "DOW",
@@ -2672,7 +2991,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "DTEA",
@@ -2684,7 +3004,10 @@
         "yahoo_symbol": "DTEA",
         "fetched_at": "2026-07-21T10:56:37Z",
         "quote_type": "NONE"
-      }
+      },
+      "tags": [
+        "Telecomunicaciones"
+      ]
     },
     {
       "Cedears": "E",
@@ -2711,7 +3034,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "EA",
@@ -2737,7 +3063,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Medios & Streaming"
+      ]
     },
     {
       "Cedears": "EBAY",
@@ -2764,7 +3093,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Retail & E-commerce"
+      ]
     },
     {
       "Cedears": "EBR",
@@ -2776,7 +3108,8 @@
         "yahoo_symbol": "EBR",
         "fetched_at": "2026-07-21T10:56:39Z",
         "error": "no_data"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "ECL",
@@ -2803,7 +3136,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "EEM",
@@ -2819,7 +3153,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "EFA",
@@ -2837,7 +3172,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "EFX",
@@ -2864,7 +3200,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "ELP",
@@ -2876,7 +3213,8 @@
         "yahoo_symbol": "ELP",
         "fetched_at": "2026-07-21T10:56:41Z",
         "error": "no_data"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "EOAN",
@@ -2902,7 +3240,8 @@
         "exchange": "GER",
         "quote_type": "EQUITY",
         "currency": "EUR"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "EQNR",
@@ -2928,7 +3267,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "ERIC",
@@ -2954,7 +3296,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Telecomunicaciones"
+      ]
     },
     {
       "Cedears": "ERJ",
@@ -2966,7 +3311,10 @@
         "yahoo_symbol": "ERJ",
         "fetched_at": "2026-07-21T10:56:43Z",
         "error": "no_data"
-      }
+      },
+      "tags": [
+        "Aeroespacial & Defensa"
+      ]
     },
     {
       "Cedears": "ESGU",
@@ -2984,7 +3332,8 @@
         "exchange": "NGM",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "ETHA",
@@ -3001,7 +3350,10 @@
         "exchange": "NGM",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Cripto & Bitcoin"
+      ]
     },
     {
       "Cedears": "ETSY",
@@ -3028,7 +3380,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Retail & E-commerce"
+      ]
     },
     {
       "Cedears": "EWJ",
@@ -3044,7 +3399,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "EWY",
@@ -3060,7 +3416,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "EWZ",
@@ -3077,7 +3434,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "F",
@@ -3103,7 +3461,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Automotrices & EV"
+      ]
     },
     {
       "Cedears": "FCX",
@@ -3129,7 +3490,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Minería & Metales"
+      ]
     },
     {
       "Cedears": "FDX",
@@ -3154,7 +3518,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Industriales"
+      ]
     },
     {
       "Cedears": "FISV",
@@ -3170,7 +3537,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Fintech & Pagos"
+      ]
     },
     {
       "Cedears": "FMCC",
@@ -3197,7 +3567,8 @@
         "exchange": "OQB",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "FMX",
@@ -3224,7 +3595,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Consumo básico"
+      ]
     },
     {
       "Cedears": "FNMA",
@@ -3251,7 +3625,8 @@
         "exchange": "OQB",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "FSLR",
@@ -3278,7 +3653,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Energía limpia"
+      ]
     },
     {
       "Cedears": "FXI",
@@ -3295,7 +3673,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "GDX",
@@ -3312,7 +3691,10 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Oro & Plata"
+      ]
     },
     {
       "Cedears": "GE",
@@ -3338,7 +3720,11 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Industriales",
+        "Aeroespacial & Defensa"
+      ]
     },
     {
       "Cedears": "GFI",
@@ -3362,7 +3748,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Oro & Plata"
+      ]
     },
     {
       "Cedears": "GGB",
@@ -3387,7 +3776,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Minería & Metales"
+      ]
     },
     {
       "Cedears": "GILD",
@@ -3414,7 +3806,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Salud",
+        "Farma & Biotecnología"
+      ]
     },
     {
       "Cedears": "GLD",
@@ -3431,7 +3827,10 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Oro & Plata"
+      ]
     },
     {
       "Cedears": "GLNG",
@@ -3457,7 +3856,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "GLOB",
@@ -3483,7 +3885,11 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Software & Cloud"
+      ]
     },
     {
       "Cedears": "GLW",
@@ -3509,7 +3915,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech"
+      ]
     },
     {
       "Cedears": "GM",
@@ -3535,7 +3944,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Automotrices & EV"
+      ]
     },
     {
       "Cedears": "GOOGL",
@@ -3562,7 +3974,12 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Inteligencia Artificial",
+        "Medios & Streaming"
+      ]
     },
     {
       "Cedears": "GPRK",
@@ -3587,7 +4004,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "GRMN",
@@ -3613,7 +4033,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "GS",
@@ -3639,7 +4060,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "GSK",
@@ -3664,7 +4086,11 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Salud",
+        "Farma & Biotecnología"
+      ]
     },
     {
       "Cedears": "GT",
@@ -3690,7 +4116,8 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "HAL",
@@ -3717,7 +4144,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "HAPV3",
@@ -3741,7 +4171,10 @@
         "exchange": "SAO",
         "quote_type": "EQUITY",
         "currency": "BRL"
-      }
+      },
+      "tags": [
+        "Salud"
+      ]
     },
     {
       "Cedears": "HD",
@@ -3767,7 +4200,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Retail & E-commerce"
+      ]
     },
     {
       "Cedears": "HDB",
@@ -3793,7 +4229,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Bancos"
+      ]
     },
     {
       "Cedears": "HHPD",
@@ -3817,7 +4256,10 @@
         "exchange": "LSE",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech"
+      ]
     },
     {
       "Cedears": "HIMS",
@@ -3844,7 +4286,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Salud"
+      ]
     },
     {
       "Cedears": "HL",
@@ -3871,7 +4316,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Oro & Plata"
+      ]
     },
     {
       "Cedears": "HMC",
@@ -3896,7 +4344,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Automotrices & EV"
+      ]
     },
     {
       "Cedears": "HMY",
@@ -3921,7 +4372,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Oro & Plata"
+      ]
     },
     {
       "Cedears": "HNPIY",
@@ -3933,7 +4387,8 @@
         "yahoo_symbol": "HNPIY",
         "fetched_at": "2026-07-21T10:57:03Z",
         "quote_type": "NONE"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "HOG",
@@ -3959,7 +4414,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Automotrices & EV"
+      ]
     },
     {
       "Cedears": "HON",
@@ -3985,7 +4443,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Industriales"
+      ]
     },
     {
       "Cedears": "HOOD",
@@ -4012,7 +4473,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Fintech & Pagos",
+        "Cripto & Bitcoin"
+      ]
     },
     {
       "Cedears": "HPQ",
@@ -4038,7 +4503,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech"
+      ]
     },
     {
       "Cedears": "HSBC",
@@ -4064,7 +4532,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Bancos"
+      ]
     },
     {
       "Cedears": "HSY",
@@ -4091,7 +4562,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Consumo básico"
+      ]
     },
     {
       "Cedears": "HUT",
@@ -4118,7 +4592,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Cripto & Bitcoin"
+      ]
     },
     {
       "Cedears": "HWM",
@@ -4145,7 +4622,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Aeroespacial & Defensa"
+      ]
     },
     {
       "Cedears": "IBB",
@@ -4162,7 +4642,11 @@
         "exchange": "NGM",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Salud",
+        "Farma & Biotecnología"
+      ]
     },
     {
       "Cedears": "IBIT",
@@ -4179,7 +4663,10 @@
         "exchange": "NGM",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Cripto & Bitcoin"
+      ]
     },
     {
       "Cedears": "IBM",
@@ -4206,7 +4693,12 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Inteligencia Artificial",
+        "Software & Cloud"
+      ]
     },
     {
       "Cedears": "IBN",
@@ -4230,7 +4722,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Bancos"
+      ]
     },
     {
       "Cedears": "ICLN",
@@ -4248,7 +4743,10 @@
         "exchange": "NGM",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Energía limpia"
+      ]
     },
     {
       "Cedears": "IEMG",
@@ -4265,7 +4763,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "IEUR",
@@ -4283,7 +4782,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "IFF",
@@ -4309,7 +4809,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "IJH",
@@ -4327,7 +4828,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "ILF",
@@ -4345,7 +4847,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "INFY",
@@ -4371,7 +4874,11 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Software & Cloud"
+      ]
     },
     {
       "Cedears": "ING",
@@ -4396,7 +4903,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Bancos"
+      ]
     },
     {
       "Cedears": "INTC",
@@ -4423,7 +4933,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Semiconductores"
+      ]
     },
     {
       "Cedears": "IP",
@@ -4449,7 +4963,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "IREN",
@@ -4476,7 +4991,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Cripto & Bitcoin"
+      ]
     },
     {
       "Cedears": "ISRG",
@@ -4503,7 +5021,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Salud"
+      ]
     },
     {
       "Cedears": "ITA",
@@ -4521,7 +5042,10 @@
         "exchange": "BTS",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Aeroespacial & Defensa"
+      ]
     },
     {
       "Cedears": "ITUB",
@@ -4547,7 +5071,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Bancos"
+      ]
     },
     {
       "Cedears": "ITUB3",
@@ -4573,7 +5100,10 @@
         "exchange": "SAO",
         "quote_type": "EQUITY",
         "currency": "BRL"
-      }
+      },
+      "tags": [
+        "Bancos"
+      ]
     },
     {
       "Cedears": "IVE",
@@ -4590,7 +5120,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "IVV",
@@ -4608,7 +5139,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "IVW",
@@ -4625,7 +5157,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "IWM",
@@ -4643,7 +5176,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "JCI",
@@ -4668,7 +5202,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Industriales"
+      ]
     },
     {
       "Cedears": "JD",
@@ -4693,7 +5230,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Retail & E-commerce"
+      ]
     },
     {
       "Cedears": "JMIA",
@@ -4719,7 +5259,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Retail & E-commerce"
+      ]
     },
     {
       "Cedears": "JNJ",
@@ -4746,7 +5289,11 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Salud",
+        "Farma & Biotecnología"
+      ]
     },
     {
       "Cedears": "JOYY",
@@ -4771,7 +5318,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Medios & Streaming"
+      ]
     },
     {
       "Cedears": "JPM",
@@ -4797,7 +5347,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Bancos"
+      ]
     },
     {
       "Cedears": "KB",
@@ -4822,7 +5375,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Bancos"
+      ]
     },
     {
       "Cedears": "KEEL",
@@ -4848,7 +5404,10 @@
         "exchange": "NGM",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Cripto & Bitcoin"
+      ]
     },
     {
       "Cedears": "KEP",
@@ -4873,7 +5432,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "KGC",
@@ -4899,7 +5459,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Oro & Plata"
+      ]
     },
     {
       "Cedears": "KMB",
@@ -4926,7 +5489,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Consumo básico"
+      ]
     },
     {
       "Cedears": "KO",
@@ -4952,7 +5518,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Consumo básico"
+      ]
     },
     {
       "Cedears": "KOFM",
@@ -4964,7 +5533,10 @@
         "yahoo_symbol": "KOFM",
         "fetched_at": "2026-07-21T10:57:23Z",
         "error": "no_data"
-      }
+      },
+      "tags": [
+        "Consumo básico"
+      ]
     },
     {
       "Cedears": "LAC",
@@ -4991,7 +5563,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Minería & Metales"
+      ]
     },
     {
       "Cedears": "LAR",
@@ -5016,7 +5591,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Minería & Metales"
+      ]
     },
     {
       "Cedears": "LFC",
@@ -5028,7 +5606,10 @@
         "yahoo_symbol": "LFC",
         "fetched_at": "2026-07-21T10:57:24Z",
         "quote_type": "NONE"
-      }
+      },
+      "tags": [
+        "Seguros"
+      ]
     },
     {
       "Cedears": "LKOD",
@@ -5042,7 +5623,10 @@
         "long_name": "PJSC LUKOIL",
         "exchange": "YHD",
         "quote_type": "MUTUALFUND"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "LLY",
@@ -5068,7 +5652,11 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Salud",
+        "Farma & Biotecnología"
+      ]
     },
     {
       "Cedears": "LMT",
@@ -5095,7 +5683,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Aeroespacial & Defensa"
+      ]
     },
     {
       "Cedears": "LND",
@@ -5120,7 +5711,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Agro"
+      ]
     },
     {
       "Cedears": "LRCX",
@@ -5147,7 +5741,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Semiconductores"
+      ]
     },
     {
       "Cedears": "LREN3",
@@ -5173,7 +5771,8 @@
         "exchange": "SAO",
         "quote_type": "EQUITY",
         "currency": "BRL"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "LVS",
@@ -5200,7 +5799,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Viajes & Turismo"
+      ]
     },
     {
       "Cedears": "LYG",
@@ -5226,7 +5828,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Bancos"
+      ]
     },
     {
       "Cedears": "MA",
@@ -5252,7 +5857,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Fintech & Pagos"
+      ]
     },
     {
       "Cedears": "MBG",
@@ -5278,7 +5886,10 @@
         "exchange": "GER",
         "quote_type": "EQUITY",
         "currency": "EUR"
-      }
+      },
+      "tags": [
+        "Automotrices & EV"
+      ]
     },
     {
       "Cedears": "MBT",
@@ -5290,7 +5901,10 @@
         "yahoo_symbol": "MBT",
         "fetched_at": "2026-07-21T10:57:30Z",
         "error": "no_data"
-      }
+      },
+      "tags": [
+        "Telecomunicaciones"
+      ]
     },
     {
       "Cedears": "MCD",
@@ -5316,7 +5930,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "MDLZ",
@@ -5343,7 +5958,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Consumo básico"
+      ]
     },
     {
       "Cedears": "MDT",
@@ -5368,7 +5986,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Salud"
+      ]
     },
     {
       "Cedears": "MELI",
@@ -5394,7 +6015,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Fintech & Pagos",
+        "Retail & E-commerce"
+      ]
     },
     {
       "Cedears": "META",
@@ -5421,7 +6046,12 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Inteligencia Artificial",
+        "Medios & Streaming"
+      ]
     },
     {
       "Cedears": "MFG",
@@ -5446,7 +6076,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Bancos"
+      ]
     },
     {
       "Cedears": "MGLU3",
@@ -5471,7 +6104,10 @@
         "exchange": "SAO",
         "quote_type": "EQUITY",
         "currency": "BRL"
-      }
+      },
+      "tags": [
+        "Retail & E-commerce"
+      ]
     },
     {
       "Cedears": "MMC",
@@ -5483,7 +6119,10 @@
         "yahoo_symbol": "MMC",
         "fetched_at": "2026-07-21T10:57:33Z",
         "quote_type": "NONE"
-      }
+      },
+      "tags": [
+        "Seguros"
+      ]
     },
     {
       "Cedears": "MMM",
@@ -5510,7 +6149,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Industriales"
+      ]
     },
     {
       "Cedears": "MO",
@@ -5536,7 +6178,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Consumo básico"
+      ]
     },
     {
       "Cedears": "MOS",
@@ -5563,7 +6208,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Agro"
+      ]
     },
     {
       "Cedears": "MP",
@@ -5590,7 +6238,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Minería & Metales"
+      ]
     },
     {
       "Cedears": "MRK",
@@ -5616,7 +6267,11 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Salud",
+        "Farma & Biotecnología"
+      ]
     },
     {
       "Cedears": "MRNA",
@@ -5643,7 +6298,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Salud",
+        "Farma & Biotecnología"
+      ]
     },
     {
       "Cedears": "MRVL",
@@ -5670,7 +6329,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Semiconductores"
+      ]
     },
     {
       "Cedears": "MSFT",
@@ -5697,7 +6360,12 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Inteligencia Artificial",
+        "Software & Cloud"
+      ]
     },
     {
       "Cedears": "MSI",
@@ -5724,7 +6392,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech"
+      ]
     },
     {
       "Cedears": "MSTR",
@@ -5751,7 +6422,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Cripto & Bitcoin"
+      ]
     },
     {
       "Cedears": "MU",
@@ -5777,7 +6451,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Semiconductores"
+      ]
     },
     {
       "Cedears": "MUFG",
@@ -5803,7 +6481,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Bancos"
+      ]
     },
     {
       "Cedears": "MUX",
@@ -5829,7 +6510,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Oro & Plata"
+      ]
     },
     {
       "Cedears": "NATU3",
@@ -5854,7 +6538,8 @@
         "exchange": "SAO",
         "quote_type": "EQUITY",
         "currency": "BRL"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "NBIS",
@@ -5879,7 +6564,12 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Inteligencia Artificial",
+        "Software & Cloud"
+      ]
     },
     {
       "Cedears": "NEC1",
@@ -5893,7 +6583,10 @@
         "long_name": "NEC Corporation",
         "exchange": "YHD",
         "quote_type": "MUTUALFUND"
-      }
+      },
+      "tags": [
+        "Tech"
+      ]
     },
     {
       "Cedears": "NEE",
@@ -5919,7 +6612,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Energía limpia"
+      ]
     },
     {
       "Cedears": "NEM",
@@ -5946,7 +6642,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Oro & Plata"
+      ]
     },
     {
       "Cedears": "NFLX",
@@ -5973,7 +6672,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Medios & Streaming"
+      ]
     },
     {
       "Cedears": "NG",
@@ -6000,7 +6702,10 @@
         "exchange": "ASE",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Oro & Plata"
+      ]
     },
     {
       "Cedears": "NGG",
@@ -6025,7 +6730,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "NIO",
@@ -6049,7 +6755,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Automotrices & EV"
+      ]
     },
     {
       "Cedears": "NKE",
@@ -6076,7 +6785,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "NLM",
@@ -6089,7 +6799,10 @@
         "fetched_at": "2026-07-21T10:57:45Z",
         "exchange": "NMS",
         "quote_type": "ECNQUOTE"
-      }
+      },
+      "tags": [
+        "Minería & Metales"
+      ]
     },
     {
       "Cedears": "NMR",
@@ -6115,7 +6828,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "NOKA",
@@ -6128,7 +6842,11 @@
         "fetched_at": "2026-07-21T10:57:46Z",
         "exchange": "YHD",
         "quote_type": "MUTUALFUND"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Telecomunicaciones"
+      ]
     },
     {
       "Cedears": "NOW",
@@ -6155,7 +6873,11 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Software & Cloud"
+      ]
     },
     {
       "Cedears": "NSAN",
@@ -6167,7 +6889,10 @@
         "yahoo_symbol": "NSAN",
         "fetched_at": "2026-07-21T10:57:47Z",
         "error": "no_data"
-      }
+      },
+      "tags": [
+        "Automotrices & EV"
+      ]
     },
     {
       "Cedears": "NTES",
@@ -6193,7 +6918,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Medios & Streaming"
+      ]
     },
     {
       "Cedears": "NUE",
@@ -6219,7 +6947,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Minería & Metales"
+      ]
     },
     {
       "Cedears": "NVDA",
@@ -6246,7 +6977,12 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Semiconductores",
+        "Inteligencia Artificial"
+      ]
     },
     {
       "Cedears": "NVO",
@@ -6271,7 +7007,11 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Salud",
+        "Farma & Biotecnología"
+      ]
     },
     {
       "Cedears": "NVS",
@@ -6297,7 +7037,11 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Salud",
+        "Farma & Biotecnología"
+      ]
     },
     {
       "Cedears": "NXE",
@@ -6324,7 +7068,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Nuclear & Uranio"
+      ]
     },
     {
       "Cedears": "O",
@@ -6350,7 +7097,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "OGZD",
@@ -6364,7 +7112,10 @@
         "long_name": "Public Joint Stock Company Gazprom",
         "exchange": "YHD",
         "quote_type": "MUTUALFUND"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "OKLO",
@@ -6391,7 +7142,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Nuclear & Uranio"
+      ]
     },
     {
       "Cedears": "ONDS",
@@ -6418,7 +7172,8 @@
         "exchange": "NCM",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "ORAN",
@@ -6430,7 +7185,10 @@
         "yahoo_symbol": "ORAN",
         "fetched_at": "2026-07-21T10:57:52Z",
         "quote_type": "NONE"
-      }
+      },
+      "tags": [
+        "Telecomunicaciones"
+      ]
     },
     {
       "Cedears": "ORCL",
@@ -6457,7 +7215,12 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Inteligencia Artificial",
+        "Software & Cloud"
+      ]
     },
     {
       "Cedears": "ORLY",
@@ -6484,7 +7247,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Retail & E-commerce"
+      ]
     },
     {
       "Cedears": "OXY",
@@ -6511,7 +7277,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "PAAS",
@@ -6538,7 +7307,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Oro & Plata"
+      ]
     },
     {
       "Cedears": "PAC",
@@ -6565,7 +7337,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Viajes & Turismo"
+      ]
     },
     {
       "Cedears": "PAGS",
@@ -6591,7 +7366,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Fintech & Pagos"
+      ]
     },
     {
       "Cedears": "PANW",
@@ -6618,7 +7396,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Ciberseguridad"
+      ]
     },
     {
       "Cedears": "PATH",
@@ -6645,7 +7427,12 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Inteligencia Artificial",
+        "Software & Cloud"
+      ]
     },
     {
       "Cedears": "PBI",
@@ -6672,7 +7459,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "PBR",
@@ -6699,7 +7487,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "PCAR",
@@ -6726,7 +7517,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Industriales",
+        "Automotrices & EV"
+      ]
     },
     {
       "Cedears": "PCRF",
@@ -6738,7 +7533,8 @@
         "yahoo_symbol": "PCRF",
         "fetched_at": "2026-07-21T10:57:58Z",
         "error": "no_data"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "PDD",
@@ -6764,7 +7560,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Retail & E-commerce"
+      ]
     },
     {
       "Cedears": "PEP",
@@ -6791,7 +7590,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Consumo básico"
+      ]
     },
     {
       "Cedears": "PETR3",
@@ -6818,7 +7620,10 @@
         "exchange": "SAO",
         "quote_type": "EQUITY",
         "currency": "BRL"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "PFE",
@@ -6844,7 +7649,11 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Salud",
+        "Farma & Biotecnología"
+      ]
     },
     {
       "Cedears": "PG",
@@ -6870,7 +7679,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Consumo básico"
+      ]
     },
     {
       "Cedears": "PHG",
@@ -6896,7 +7708,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Salud"
+      ]
     },
     {
       "Cedears": "PINS",
@@ -6923,7 +7738,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Medios & Streaming"
+      ]
     },
     {
       "Cedears": "PKS",
@@ -6937,7 +7755,10 @@
         "short_name": "923702",
         "exchange": "YHD",
         "quote_type": "MUTUALFUND"
-      }
+      },
+      "tags": [
+        "Minería & Metales"
+      ]
     },
     {
       "Cedears": "PLTR",
@@ -6964,7 +7785,12 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Inteligencia Artificial",
+        "Software & Cloud"
+      ]
     },
     {
       "Cedears": "PM",
@@ -6990,7 +7816,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Consumo básico"
+      ]
     },
     {
       "Cedears": "PRIO3",
@@ -7016,7 +7845,10 @@
         "exchange": "SAO",
         "quote_type": "EQUITY",
         "currency": "BRL"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "PSO",
@@ -7042,7 +7874,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "PSQ",
@@ -7059,7 +7892,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "PSX",
@@ -7086,7 +7920,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "PTR",
@@ -7098,7 +7935,10 @@
         "yahoo_symbol": "PTR",
         "fetched_at": "2026-07-21T10:58:05Z",
         "quote_type": "NONE"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "PYPL",
@@ -7125,7 +7965,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Fintech & Pagos",
+        "Cripto & Bitcoin"
+      ]
     },
     {
       "Cedears": "QCOM",
@@ -7152,7 +7996,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Semiconductores"
+      ]
     },
     {
       "Cedears": "QQQ",
@@ -7169,7 +8017,8 @@
         "exchange": "NGM",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "RACE",
@@ -7196,7 +8045,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Automotrices & EV"
+      ]
     },
     {
       "Cedears": "RBLX",
@@ -7223,7 +8075,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Medios & Streaming"
+      ]
     },
     {
       "Cedears": "RCTB4",
@@ -7235,7 +8090,10 @@
         "yahoo_symbol": "RCTB4",
         "fetched_at": "2026-07-21T10:58:08Z",
         "error": "no_data"
-      }
+      },
+      "tags": [
+        "Telecomunicaciones"
+      ]
     },
     {
       "Cedears": "RGTI",
@@ -7262,7 +8120,8 @@
         "exchange": "NCM",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "RENT3",
@@ -7289,7 +8148,10 @@
         "exchange": "SAO",
         "quote_type": "EQUITY",
         "currency": "BRL"
-      }
+      },
+      "tags": [
+        "Viajes & Turismo"
+      ]
     },
     {
       "Cedears": "RIO",
@@ -7315,7 +8177,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Minería & Metales"
+      ]
     },
     {
       "Cedears": "RIOT",
@@ -7342,7 +8207,10 @@
         "exchange": "NCM",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Cripto & Bitcoin"
+      ]
     },
     {
       "Cedears": "RKLB",
@@ -7369,7 +8237,8 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "ROKU",
@@ -7396,7 +8265,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Medios & Streaming"
+      ]
     },
     {
       "Cedears": "ROST",
@@ -7423,7 +8295,8 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "RSP",
@@ -7439,7 +8312,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "RTX",
@@ -7466,7 +8340,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Aeroespacial & Defensa"
+      ]
     },
     {
       "Cedears": "SAN",
@@ -7491,7 +8368,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Bancos"
+      ]
     },
     {
       "Cedears": "SAP",
@@ -7517,7 +8397,11 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Software & Cloud"
+      ]
     },
     {
       "Cedears": "SATL",
@@ -7544,7 +8428,8 @@
         "exchange": "NCM",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "SBS",
@@ -7571,7 +8456,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "SBSP3",
@@ -7598,7 +8484,8 @@
         "exchange": "SAO",
         "quote_type": "EQUITY",
         "currency": "BRL"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "SBUX",
@@ -7625,7 +8512,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Consumo básico"
+      ]
     },
     {
       "Cedears": "SCCO",
@@ -7652,7 +8542,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Minería & Metales"
+      ]
     },
     {
       "Cedears": "SCHW",
@@ -7679,7 +8572,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "SDA",
@@ -7705,7 +8599,8 @@
         "exchange": "NCM",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "SE",
@@ -7730,7 +8625,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Retail & E-commerce"
+      ]
     },
     {
       "Cedears": "SH",
@@ -7746,7 +8644,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "SHEL",
@@ -7772,7 +8671,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "SHOP",
@@ -7799,7 +8701,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Retail & E-commerce"
+      ]
     },
     {
       "Cedears": "SHPW",
@@ -7811,7 +8716,8 @@
         "yahoo_symbol": "SHPW",
         "fetched_at": "2026-07-21T10:58:19Z",
         "error": "no_data"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "SI",
@@ -7827,7 +8733,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Cripto & Bitcoin"
+      ]
     },
     {
       "Cedears": "SID",
@@ -7853,7 +8762,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Minería & Metales"
+      ]
     },
     {
       "Cedears": "SIEGY",
@@ -7879,7 +8791,10 @@
         "exchange": "PNK",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Industriales"
+      ]
     },
     {
       "Cedears": "SLB",
@@ -7906,7 +8821,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "SLV",
@@ -7922,7 +8840,10 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Oro & Plata"
+      ]
     },
     {
       "Cedears": "SMH",
@@ -7939,7 +8860,11 @@
         "exchange": "NGM",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Semiconductores"
+      ]
     },
     {
       "Cedears": "SMSN",
@@ -7963,7 +8888,11 @@
         "exchange": "LSE",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Semiconductores"
+      ]
     },
     {
       "Cedears": "SNA",
@@ -7989,7 +8918,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Industriales"
+      ]
     },
     {
       "Cedears": "SNAP",
@@ -8016,7 +8948,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Medios & Streaming"
+      ]
     },
     {
       "Cedears": "SNDK",
@@ -8043,7 +8978,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Semiconductores"
+      ]
     },
     {
       "Cedears": "SNOW",
@@ -8070,7 +9009,12 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Inteligencia Artificial",
+        "Software & Cloud"
+      ]
     },
     {
       "Cedears": "SNP",
@@ -8082,7 +9026,10 @@
         "yahoo_symbol": "SNP",
         "fetched_at": "2026-07-21T10:58:25Z",
         "error": "no_data"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "SONY",
@@ -8108,7 +9055,11 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Medios & Streaming"
+      ]
     },
     {
       "Cedears": "SPCE",
@@ -8135,7 +9086,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "SPCX",
@@ -8162,7 +9114,8 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "SPGI",
@@ -8189,7 +9142,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "SPHQ",
@@ -8206,7 +9160,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "SPOT",
@@ -8231,7 +9186,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Medios & Streaming"
+      ]
     },
     {
       "Cedears": "SPXL",
@@ -8249,7 +9207,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "SPY",
@@ -8266,7 +9225,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "STLA",
@@ -8292,7 +9252,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Automotrices & EV"
+      ]
     },
     {
       "Cedears": "STNE",
@@ -8316,7 +9279,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Fintech & Pagos"
+      ]
     },
     {
       "Cedears": "SUZ",
@@ -8342,7 +9308,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "SUZB3",
@@ -8368,7 +9335,8 @@
         "exchange": "SAO",
         "quote_type": "EQUITY",
         "currency": "BRL"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "SWKS",
@@ -8395,7 +9363,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Semiconductores"
+      ]
     },
     {
       "Cedears": "SYY",
@@ -8421,7 +9393,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Consumo básico"
+      ]
     },
     {
       "Cedears": "T",
@@ -8448,7 +9423,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Telecomunicaciones"
+      ]
     },
     {
       "Cedears": "TCOM",
@@ -8474,7 +9452,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Viajes & Turismo"
+      ]
     },
     {
       "Cedears": "TEAM",
@@ -8501,7 +9482,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Software & Cloud"
+      ]
     },
     {
       "Cedears": "TEFO",
@@ -8513,7 +9498,10 @@
         "yahoo_symbol": "TEFO",
         "fetched_at": "2026-07-21T10:58:33Z",
         "error": "no_data"
-      }
+      },
+      "tags": [
+        "Telecomunicaciones"
+      ]
     },
     {
       "Cedears": "TEM",
@@ -8540,7 +9528,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Inteligencia Artificial",
+        "Salud"
+      ]
     },
     {
       "Cedears": "TEN",
@@ -8565,7 +9557,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "TGT",
@@ -8591,7 +9584,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Retail & E-commerce"
+      ]
     },
     {
       "Cedears": "TIIAY",
@@ -8618,7 +9614,10 @@
         "exchange": "PNK",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Telecomunicaciones"
+      ]
     },
     {
       "Cedears": "TIMB",
@@ -8643,7 +9642,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Telecomunicaciones"
+      ]
     },
     {
       "Cedears": "TIMS3",
@@ -8668,7 +9670,10 @@
         "exchange": "SAO",
         "quote_type": "EQUITY",
         "currency": "BRL"
-      }
+      },
+      "tags": [
+        "Telecomunicaciones"
+      ]
     },
     {
       "Cedears": "TJX",
@@ -8695,7 +9700,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "TM",
@@ -8721,7 +9727,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Automotrices & EV"
+      ]
     },
     {
       "Cedears": "TMO",
@@ -8747,7 +9756,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Salud"
+      ]
     },
     {
       "Cedears": "TMUS",
@@ -8774,7 +9786,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Telecomunicaciones"
+      ]
     },
     {
       "Cedears": "TQQQ",
@@ -8791,7 +9806,8 @@
         "exchange": "NGM",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "TRIP",
@@ -8818,7 +9834,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Viajes & Turismo"
+      ]
     },
     {
       "Cedears": "TRVV",
@@ -8830,7 +9849,10 @@
         "yahoo_symbol": "TRVV",
         "fetched_at": "2026-07-21T10:58:39Z",
         "error": "no_data"
-      }
+      },
+      "tags": [
+        "Seguros"
+      ]
     },
     {
       "Cedears": "TSLA",
@@ -8857,7 +9879,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Automotrices & EV"
+      ]
     },
     {
       "Cedears": "TSM",
@@ -8883,7 +9908,11 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Semiconductores"
+      ]
     },
     {
       "Cedears": "TTE",
@@ -8909,7 +9938,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "TTM",
@@ -8921,7 +9953,10 @@
         "yahoo_symbol": "TTM",
         "fetched_at": "2026-07-21T10:58:42Z",
         "quote_type": "NONE"
-      }
+      },
+      "tags": [
+        "Automotrices & EV"
+      ]
     },
     {
       "Cedears": "TV",
@@ -8948,7 +9983,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Medios & Streaming"
+      ]
     },
     {
       "Cedears": "TWLO",
@@ -8975,7 +10013,11 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Software & Cloud"
+      ]
     },
     {
       "Cedears": "TWTR",
@@ -8987,7 +10029,10 @@
         "yahoo_symbol": "TWTR",
         "fetched_at": "2026-07-21T10:58:43Z",
         "quote_type": "NONE"
-      }
+      },
+      "tags": [
+        "Medios & Streaming"
+      ]
     },
     {
       "Cedears": "TXN",
@@ -9014,7 +10059,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Semiconductores"
+      ]
     },
     {
       "Cedears": "TXR",
@@ -9027,7 +10076,10 @@
         "fetched_at": "2026-07-21T10:58:44Z",
         "exchange": "NMS",
         "quote_type": "ECNQUOTE"
-      }
+      },
+      "tags": [
+        "Minería & Metales"
+      ]
     },
     {
       "Cedears": "UAL",
@@ -9054,7 +10106,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Viajes & Turismo"
+      ]
     },
     {
       "Cedears": "UBER",
@@ -9081,7 +10136,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Viajes & Turismo"
+      ]
     },
     {
       "Cedears": "UGP",
@@ -9107,7 +10165,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "UL",
@@ -9133,7 +10194,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Consumo básico"
+      ]
     },
     {
       "Cedears": "UN",
@@ -9149,7 +10213,10 @@
         "exchange": "BTS",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Fintech & Pagos"
+      ]
     },
     {
       "Cedears": "UNH",
@@ -9176,7 +10243,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Salud"
+      ]
     },
     {
       "Cedears": "UNP",
@@ -9203,7 +10273,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Industriales"
+      ]
     },
     {
       "Cedears": "UPST",
@@ -9230,7 +10303,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Fintech & Pagos"
+      ]
     },
     {
       "Cedears": "URA",
@@ -9247,7 +10323,10 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Nuclear & Uranio"
+      ]
     },
     {
       "Cedears": "URBN",
@@ -9274,7 +10353,8 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "USB",
@@ -9301,7 +10381,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Bancos"
+      ]
     },
     {
       "Cedears": "USO",
@@ -9318,7 +10401,10 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "V",
@@ -9344,7 +10430,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Fintech & Pagos"
+      ]
     },
     {
       "Cedears": "VALE",
@@ -9371,7 +10460,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Minería & Metales"
+      ]
     },
     {
       "Cedears": "VALE3",
@@ -9398,7 +10490,10 @@
         "exchange": "SAO",
         "quote_type": "EQUITY",
         "currency": "BRL"
-      }
+      },
+      "tags": [
+        "Minería & Metales"
+      ]
     },
     {
       "Cedears": "VEA",
@@ -9415,7 +10510,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "VIG",
@@ -9433,7 +10529,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "VIST",
@@ -9460,7 +10557,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "VIV",
@@ -9485,7 +10585,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Telecomunicaciones"
+      ]
     },
     {
       "Cedears": "VIVT3",
@@ -9511,7 +10614,10 @@
         "exchange": "SAO",
         "quote_type": "EQUITY",
         "currency": "BRL"
-      }
+      },
+      "tags": [
+        "Telecomunicaciones"
+      ]
     },
     {
       "Cedears": "VOD",
@@ -9537,7 +10643,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Telecomunicaciones"
+      ]
     },
     {
       "Cedears": "VRSN",
@@ -9564,7 +10673,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Ciberseguridad"
+      ]
     },
     {
       "Cedears": "VRTX",
@@ -9591,7 +10704,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Salud",
+        "Farma & Biotecnología"
+      ]
     },
     {
       "Cedears": "VST",
@@ -9618,7 +10735,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Nuclear & Uranio"
+      ]
     },
     {
       "Cedears": "VXX",
@@ -9636,7 +10756,8 @@
         "exchange": "BTS",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "VZ",
@@ -9663,7 +10784,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Telecomunicaciones"
+      ]
     },
     {
       "Cedears": "WBA",
@@ -9675,7 +10799,10 @@
         "yahoo_symbol": "WBA",
         "fetched_at": "2026-07-21T10:58:57Z",
         "error": "no_data"
-      }
+      },
+      "tags": [
+        "Salud"
+      ]
     },
     {
       "Cedears": "WBO",
@@ -9688,7 +10815,10 @@
         "fetched_at": "2026-07-21T10:58:58Z",
         "exchange": "NMS",
         "quote_type": "ECNQUOTE"
-      }
+      },
+      "tags": [
+        "Medios & Streaming"
+      ]
     },
     {
       "Cedears": "WEGE3",
@@ -9715,7 +10845,10 @@
         "exchange": "SAO",
         "quote_type": "EQUITY",
         "currency": "BRL"
-      }
+      },
+      "tags": [
+        "Industriales"
+      ]
     },
     {
       "Cedears": "WFC",
@@ -9742,7 +10875,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Bancos"
+      ]
     },
     {
       "Cedears": "WMT",
@@ -9769,7 +10905,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Retail & E-commerce"
+      ]
     },
     {
       "Cedears": "XLB",
@@ -9786,7 +10925,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "XLC",
@@ -9803,7 +10943,10 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Medios & Streaming"
+      ]
     },
     {
       "Cedears": "XLE",
@@ -9820,7 +10963,10 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "XLF",
@@ -9837,7 +10983,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "XLI",
@@ -9854,7 +11001,10 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Industriales"
+      ]
     },
     {
       "Cedears": "XLK",
@@ -9870,7 +11020,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "XLP",
@@ -9887,7 +11038,10 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Consumo básico"
+      ]
     },
     {
       "Cedears": "XLRE",
@@ -9904,7 +11058,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "XLU",
@@ -9921,7 +11076,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "XLV",
@@ -9937,7 +11093,10 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Salud"
+      ]
     },
     {
       "Cedears": "XME",
@@ -9953,7 +11112,10 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Minería & Metales"
+      ]
     },
     {
       "Cedears": "XLY",
@@ -9969,7 +11131,8 @@
         "exchange": "PCX",
         "quote_type": "ETF",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "XOM",
@@ -9995,7 +11158,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "XP",
@@ -10019,7 +11185,10 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Fintech & Pagos"
+      ]
     },
     {
       "Cedears": "XPEV",
@@ -10045,7 +11214,10 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Automotrices & EV"
+      ]
     },
     {
       "Cedears": "XROX",
@@ -10057,7 +11229,10 @@
         "yahoo_symbol": "XROX",
         "fetched_at": "2026-07-21T10:59:06Z",
         "error": "no_data"
-      }
+      },
+      "tags": [
+        "Tech"
+      ]
     },
     {
       "Cedears": "XYZ",
@@ -10084,7 +11259,11 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Fintech & Pagos",
+        "Cripto & Bitcoin"
+      ]
     },
     {
       "Cedears": "YELP",
@@ -10111,7 +11290,8 @@
         "exchange": "NYQ",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": []
     },
     {
       "Cedears": "YZCA",
@@ -10123,7 +11303,10 @@
         "yahoo_symbol": "YZCA",
         "fetched_at": "2026-07-21T10:59:08Z",
         "error": "no_data"
-      }
+      },
+      "tags": [
+        "Petróleo & Gas"
+      ]
     },
     {
       "Cedears": "ZM",
@@ -10150,7 +11333,11 @@
         "exchange": "NMS",
         "quote_type": "EQUITY",
         "currency": "USD"
-      }
+      },
+      "tags": [
+        "Tech",
+        "Software & Cloud"
+      ]
     }
   ]
 }

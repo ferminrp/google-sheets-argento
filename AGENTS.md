@@ -11,6 +11,7 @@ This is a **Google Apps Script library** (not a web app/server). Source files in
 | Install deps | `npm install` |
 | Build | `npm run build` (concatenates `src/*.js` into `all-in-one.js`, sorted alphabetically; also publishes `docs/api/cedears.json` from `data/cedears.json`) |
 | Test | `npm test` (Jest; unit tests mock UrlFetchApp/CacheService) |
+| Enrich CEDEARs (yfinance) | `pip install -r requirements.txt` then `python scripts/enrich-cedears-yfinance.py` (uses `TickerOriginal`; run `npm run build` after) |
 
 ### Architecture notes
 

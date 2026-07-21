@@ -298,7 +298,9 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "ETFs"
+    ]
   },
   {
     "Cedears": "ADBE",
@@ -895,7 +897,9 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "ETFs"
+    ]
   },
   {
     "Cedears": "ARM",
@@ -2284,7 +2288,9 @@
     },
     "tags": [
       "Tech",
-      "Ciberseguridad"
+      "Ciberseguridad",
+      "Tecnología",
+      "ETFs"
     ]
   },
   {
@@ -2424,7 +2430,10 @@
       "currency": "USD"
     },
     "tags": [
-      "Minería & Metales"
+      "Minería & Metales",
+      "Materiales",
+      "Minería y metales",
+      "ETFs"
     ]
   },
   {
@@ -2900,7 +2909,10 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "Índices de Estados Unidos",
+      "ETFs"
+    ]
   },
   {
     "Cedears": "DISN",
@@ -3136,7 +3148,10 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "Mercados emergentes",
+      "ETFs"
+    ]
   },
   {
     "Cedears": "EFA",
@@ -3155,7 +3170,10 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "Mercados desarrollados",
+      "ETFs"
+    ]
   },
   {
     "Cedears": "EFX",
@@ -3315,7 +3333,10 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "Índices de Estados Unidos",
+      "ETFs"
+    ]
   },
   {
     "Cedears": "ETHA",
@@ -3334,7 +3355,9 @@
       "currency": "USD"
     },
     "tags": [
-      "Cripto & Bitcoin"
+      "Cripto & Bitcoin",
+      "Cripto",
+      "ETFs"
     ]
   },
   {
@@ -3382,7 +3405,10 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "Países y regiones",
+      "ETFs"
+    ]
   },
   {
     "Cedears": "EWY",
@@ -3399,7 +3425,10 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "Países y regiones",
+      "ETFs"
+    ]
   },
   {
     "Cedears": "EWZ",
@@ -3417,7 +3446,10 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "Países y regiones",
+      "ETFs"
+    ]
   },
   {
     "Cedears": "F",
@@ -3656,7 +3688,10 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "Países y regiones",
+      "ETFs"
+    ]
   },
   {
     "Cedears": "GDX",
@@ -3675,7 +3710,10 @@
       "currency": "USD"
     },
     "tags": [
-      "Oro & Plata"
+      "Oro & Plata",
+      "Materiales",
+      "Minería y metales",
+      "ETFs"
     ]
   },
   {
@@ -3811,7 +3849,9 @@
       "currency": "USD"
     },
     "tags": [
-      "Oro & Plata"
+      "Oro & Plata",
+      "Commodities",
+      "ETFs"
     ]
   },
   {
@@ -4627,7 +4667,8 @@
     },
     "tags": [
       "Salud",
-      "Farma & Biotecnología"
+      "Farma & Biotecnología",
+      "ETFs"
     ]
   },
   {
@@ -4647,7 +4688,9 @@
       "currency": "USD"
     },
     "tags": [
-      "Cripto & Bitcoin"
+      "Cripto & Bitcoin",
+      "Cripto",
+      "ETFs"
     ]
   },
   {
@@ -4727,7 +4770,8 @@
       "currency": "USD"
     },
     "tags": [
-      "Energía limpia"
+      "Energía limpia",
+      "ETFs"
     ]
   },
   {
@@ -4746,7 +4790,10 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "Mercados emergentes",
+      "ETFs"
+    ]
   },
   {
     "Cedears": "IEUR",
@@ -4765,7 +4812,11 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "Mercados desarrollados",
+      "Países y regiones",
+      "ETFs"
+    ]
   },
   {
     "Cedears": "IFF",
@@ -4811,7 +4862,10 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "Índices de Estados Unidos",
+      "ETFs"
+    ]
   },
   {
     "Cedears": "ILF",
@@ -4830,7 +4884,10 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "Países y regiones",
+      "ETFs"
+    ]
   },
   {
     "Cedears": "INFY",
@@ -5026,7 +5083,8 @@
       "currency": "USD"
     },
     "tags": [
-      "Aeroespacial & Defensa"
+      "Aeroespacial & Defensa",
+      "ETFs"
     ]
   },
   {
@@ -5103,7 +5161,10 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "Índices de Estados Unidos",
+      "ETFs"
+    ]
   },
   {
     "Cedears": "IVV",
@@ -5122,7 +5183,10 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "Índices de Estados Unidos",
+      "ETFs"
+    ]
   },
   {
     "Cedears": "IVW",
@@ -5140,7 +5204,10 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "Índices de Estados Unidos",
+      "ETFs"
+    ]
   },
   {
     "Cedears": "IWM",
@@ -5159,7 +5226,10 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "Índices de Estados Unidos",
+      "ETFs"
+    ]
   },
   {
     "Cedears": "JCI",
@@ -7875,7 +7945,9 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "ETFs"
+    ]
   },
   {
     "Cedears": "PSX",
@@ -8000,7 +8072,10 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "Índices de Estados Unidos",
+      "ETFs"
+    ]
   },
   {
     "Cedears": "RACE",
@@ -8295,7 +8370,10 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "Índices de Estados Unidos",
+      "ETFs"
+    ]
   },
   {
     "Cedears": "RTX",
@@ -8627,7 +8705,9 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "ETFs"
+    ]
   },
   {
     "Cedears": "SHEL",
@@ -8824,7 +8904,9 @@
       "currency": "USD"
     },
     "tags": [
-      "Oro & Plata"
+      "Oro & Plata",
+      "Commodities",
+      "ETFs"
     ]
   },
   {
@@ -8845,7 +8927,9 @@
     },
     "tags": [
       "Tech",
-      "Semiconductores"
+      "Semiconductores",
+      "Tecnología",
+      "ETFs"
     ]
   },
   {
@@ -9143,7 +9227,10 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "Índices de Estados Unidos",
+      "ETFs"
+    ]
   },
   {
     "Cedears": "SPOT",
@@ -9190,7 +9277,10 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "Apalancados",
+      "ETFs"
+    ]
   },
   {
     "Cedears": "SPY",
@@ -9208,7 +9298,10 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "Índices de Estados Unidos",
+      "ETFs"
+    ]
   },
   {
     "Cedears": "STLA",
@@ -9789,7 +9882,10 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "Apalancados",
+      "ETFs"
+    ]
   },
   {
     "Cedears": "TRIP",
@@ -10197,7 +10293,9 @@
       "currency": "USD"
     },
     "tags": [
-      "Fintech & Pagos"
+      "Fintech & Pagos",
+      "Apalancados",
+      "ETFs"
     ]
   },
   {
@@ -10307,7 +10405,8 @@
       "currency": "USD"
     },
     "tags": [
-      "Nuclear & Uranio"
+      "Nuclear & Uranio",
+      "ETFs"
     ]
   },
   {
@@ -10385,7 +10484,9 @@
       "currency": "USD"
     },
     "tags": [
-      "Petróleo & Gas"
+      "Petróleo & Gas",
+      "Commodities",
+      "ETFs"
     ]
   },
   {
@@ -10493,7 +10594,10 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "Mercados desarrollados",
+      "ETFs"
+    ]
   },
   {
     "Cedears": "VIG",
@@ -10512,7 +10616,10 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "Índices de Estados Unidos",
+      "ETFs"
+    ]
   },
   {
     "Cedears": "VIST",
@@ -10739,7 +10846,9 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "ETFs"
+    ]
   },
   {
     "Cedears": "VZ",
@@ -10908,7 +11017,10 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "Materiales",
+      "ETFs"
+    ]
   },
   {
     "Cedears": "XLC",
@@ -10927,7 +11039,8 @@
       "currency": "USD"
     },
     "tags": [
-      "Medios & Streaming"
+      "Medios & Streaming",
+      "ETFs"
     ]
   },
   {
@@ -10947,7 +11060,8 @@
       "currency": "USD"
     },
     "tags": [
-      "Petróleo & Gas"
+      "Petróleo & Gas",
+      "ETFs"
     ]
   },
   {
@@ -10966,7 +11080,9 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "ETFs"
+    ]
   },
   {
     "Cedears": "XLI",
@@ -10985,7 +11101,8 @@
       "currency": "USD"
     },
     "tags": [
-      "Industriales"
+      "Industriales",
+      "ETFs"
     ]
   },
   {
@@ -11003,7 +11120,10 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "Tecnología",
+      "ETFs"
+    ]
   },
   {
     "Cedears": "XLP",
@@ -11022,7 +11142,8 @@
       "currency": "USD"
     },
     "tags": [
-      "Consumo básico"
+      "Consumo básico",
+      "ETFs"
     ]
   },
   {
@@ -11041,7 +11162,9 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "ETFs"
+    ]
   },
   {
     "Cedears": "XLU",
@@ -11059,7 +11182,9 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "ETFs"
+    ]
   },
   {
     "Cedears": "XLV",
@@ -11077,7 +11202,8 @@
       "currency": "USD"
     },
     "tags": [
-      "Salud"
+      "Salud",
+      "ETFs"
     ]
   },
   {
@@ -11096,7 +11222,10 @@
       "currency": "USD"
     },
     "tags": [
-      "Minería & Metales"
+      "Minería & Metales",
+      "Materiales",
+      "Minería y metales",
+      "ETFs"
     ]
   },
   {
@@ -11114,7 +11243,9 @@
       "quote_type": "ETF",
       "currency": "USD"
     },
-    "tags": []
+    "tags": [
+      "ETFs"
+    ]
   },
   {
     "Cedears": "XOM",

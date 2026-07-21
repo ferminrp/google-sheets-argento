@@ -103,6 +103,8 @@ npm run build   # genera all-in-one.js + docs/api/cedears.json
 npm test        # requiere haber corrido build antes
 ```
 
+Para enriquecer `data/cedears.json` con metadata de Yahoo Finance (`yfinance-metadata`): `pip install -r requirements.txt` y `python scripts/enrich-cedears-yfinance.py` (ver [doc/CEDEAR.md](doc/CEDEAR.md)).
+
 - Tests unitarios: [tests/](tests/)
 - Siempre ejecutar `npm run build` después de modificar archivos en `src/` (o `data/cedears.json`)
 - API pública de CEDEARs (ratios): [api/cedears.json](https://ferminrp.github.io/google-sheets-argento/api/cedears.json)

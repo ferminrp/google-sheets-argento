@@ -23,6 +23,39 @@ Cada entrada del listado contiene:
 - **Market**: Mercado donde cotiza el instrumento subyacente (ej. NYSE, NASDAQ, B3)
 - **Ratio**: Ratio de conversión entre el CEDEAR y la acción subyacente (string)
 - **TickerOriginal**: Ticker del subyacente en su mercado de origen (puede diferir del ticker BYMA; ej. `ADGO` → `AGRO`)
+- **yfinance-metadata**: Perfil de la empresa obtenido de Yahoo Finance (ver abajo)
+
+### Metadata yfinance
+
+Cada CEDEAR puede incluir un objeto `yfinance-metadata` con datos del subyacente consultados vía [yfinance](https://github.com/ranaroussi/yfinance) usando `TickerOriginal`. Es información best-effort: algunos tickers delisted o de mercados poco cubiertos pueden devolver solo `error`.
+
+Campos habituales:
+
+| Campo | Descripción |
+|-------|-------------|
+| `yahoo_symbol` | Símbolo usado en Yahoo Finance (puede llevar sufijo `.SA`, `.DE`, `.L`) |
+| `fetched_at` | Fecha/hora UTC de la consulta |
+| `long_description` | Descripción larga del negocio |
+| `city`, `state`, `country`, `zip`, `address` | Ubicación de la sede |
+| `sector`, `industry` | Sector e industria |
+| `website`, `phone` | Sitio web y teléfono |
+| `employees` | Cantidad de empleados a tiempo completo |
+| `long_name`, `short_name` | Nombre largo y corto en Yahoo |
+| `exchange`, `quote_type`, `currency` | Bolsa, tipo de instrumento y moneda |
+| `logo_url` | URL del logo |
+| `error` | Presente si no hubo datos (`no_data`, `fetch_error`, etc.) |
+
+Para regenerar la metadata:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python scripts/enrich-cedears-yfinance.py
+npm run build
+```
+
+Opciones útiles del script: `--limit N`, `--dry-run`, `--force-refresh`, `--sleep 0.3`.
 
 ### Formato de `ratio`
 

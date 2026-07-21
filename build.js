@@ -148,6 +148,9 @@ function publishCedearsApi() {
                 "String numérico: N CEDEARs por 1 acción subyacente (ej. \"20\" para AAPL, \"3\" para ABEV).",
             TickerOriginal:
                 'Ticker del instrumento subyacente en su mercado de origen (puede diferir del ticker BYMA)',
+            'yfinance-metadata':
+                'Perfil de la empresa desde Yahoo Finance (descripci?n, sector, industria, web, etc.). ' +
+                'Generado con scripts/enrich-cedears-yfinance.py a partir de TickerOriginal.',
         },
         count: items.length,
         items: items,

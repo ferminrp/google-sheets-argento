@@ -37,7 +37,6 @@
         <li><a href="#instalacion">Instalar</a></li>
         <li><a href="#uso">Uso</a></li>
         <li><a href="#funciones">Funciones</a></li>
-        <li><a href="#cedears">CEDEARs</a></li>
         <li><a href="#api">API</a></li>
         <li><a href="#fuentes">Fuentes</a></li>
         <li><a href="#faq">FAQ</a></li>
@@ -509,48 +508,6 @@
       </div>
     </section>
 
-    <section class="section" id="cedears">
-      <div class="wrap">
-        <h2>Listado de CEDEARs</h2>
-        <p class="section-lead">
-          Todos los CEDEARs del repo con ticker, nombre, mercado, ratio y categoría temática.
-          Filtrá por categoría para encontrar instrumentos por sector o tema.
-        </p>
-
-        <div class="cedears-toolbar">
-          <label for="cedears-tag-filter">Categoría</label>
-          <select id="cedears-tag-filter">
-            <option value="">Todas las categorías</option>
-          </select>
-          <span id="cedears-count" aria-live="polite"></span>
-        </div>
-
-        <div class="table-wrap">
-          <table class="data-table" id="cedears-table">
-            <thead>
-              <tr>
-                <th>Ticker</th>
-                <th>Nombre</th>
-                <th>Mercado</th>
-                <th>Ratio</th>
-                <th>Tags</th>
-              </tr>
-            </thead>
-            <tbody id="cedears-tbody">
-              <tr>
-                <td colspan="5">Cargando CEDEARs…</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <p id="cedears-error" hidden>
-          No se pudo cargar el listado de CEDEARs. Probá de nuevo más tarde o usá
-          <a href="api/cedears.json">api/cedears.json</a> directamente.
-        </p>
-      </div>
-    </section>
-
     <section class="section" id="api">
       <div class="wrap">
         <h2>API / datos abiertos</h2>
@@ -563,11 +520,8 @@
           <article class="card">
             <h3>CEDEARs + ratios</h3>
             <p>
-              Listado con ticker, nombre, mercado del subyacente, ratio y
-              <strong>tags</strong> temáticos.
+              Listado con ticker, nombre, mercado del subyacente y ratio de conversión.
               Ideal para alimentar un agente o un script sin scrapear el PDF de BYMA.
-              También hay landings SEO por categoría en
-              <a href="categoria/tecnologia/"><code>categoria/{slug}/</code></a>.
             </p>
             <p style="margin: 0 0 0.75rem;">
               <a href="api/cedears.json"><strong>GET api/cedears.json</strong></a>
@@ -592,12 +546,11 @@
     "Name": "Nombre de la empresa / instrumento subyacente",
     "Market": "Mercado del subyacente (ej. NYSE, NASDAQ, B3)",
     "Ratio": "String de conversión…",
-    "TickerOriginal": "Ticker del subyacente en su mercado de origen",
-    "tags": "Array de categorías temáticas (ej. Tech, Semiconductores)"
+    "TickerOriginal": "Ticker del subyacente en su mercado de origen"
   },
   "items": [
-    { "Cedears": "AAPL", "Name": "Apple Inc.", "Market": "NASDAQ", "Ratio": "20", "TickerOriginal": "AAPL", "tags": ["Tech"] },
-    { "Cedears": "NVDA", "Name": "NVIDIA Corporation", "Market": "NASDAQ", "Ratio": "12", "TickerOriginal": "NVDA", "tags": ["Tech", "Semiconductores", "Inteligencia Artificial"] }
+    { "Cedears": "AAPL", "Name": "Apple Inc.", "Market": "NASDAQ", "Ratio": "20", "TickerOriginal": "AAPL" },
+    { "Cedears": "ADGO", "Name": "Adecoagro S.A.", "Market": "NYSE", "Ratio": "1", "TickerOriginal": "AGRO" }
   ]
 }</pre>
         </div>
@@ -787,7 +740,6 @@ const aapl = items.find((c) => c.Cedears === 'AAPL');</pre>
         <li><a href="https://github.com/ferminrp/google-sheets-argento" target="_blank" rel="noopener">GitHub</a></li>
         <li><a href="https://github.com/ferminrp/google-sheets-argento/issues" target="_blank" rel="noopener">Issues</a></li>
         <li><a href="https://raw.githubusercontent.com/ferminrp/google-sheets-argento/main/all-in-one.js" target="_blank" rel="noopener">all-in-one.js</a></li>
-        <li><a href="#cedears">Listado CEDEARs</a></li>
         <li><a href="api/cedears.json">API CEDEARs</a></li>
         <li><a href="https://cafecito.app/ferminrp" target="_blank" rel="noopener">Cafecito</a></li>
       </ul>

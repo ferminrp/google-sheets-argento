@@ -8,15 +8,13 @@ Esta carpeta es la **landing pública** del proyecto:
 
 | Archivo | Rol |
 |---------|-----|
-| `index.html` | Landing: qué es, instalación, uso, **listado CEDEARs con filtro por tags**, catálogo, API, fuentes, FAQ |
+| `index.html` | Landing: qué es, instalación, uso, catálogo, API, fuentes, FAQ |
 | `changelog.html` | **Changelog público** del producto, agrupado por fecha |
 | `styles.css` | Estilos (light / dark con `prefers-color-scheme`) |
-| `script.js` | Menú mobile, nav activa, copiar código, demo live del hero, **tabla CEDEARs + filtro** |
+| `script.js` | Menú mobile, nav activa, copiar código, **demo live del hero** |
 | `favicon.svg` | Icono |
 | `og.png` | Imagen Open Graph / Twitter (misma social preview del repo) |
-| `api/cedears.json` | API estática de CEDEARs + ratios + tags (generada por `npm run build`) |
-| `categoria/{slug}/` | Landings SEO por tag (ej. `tecnologia`, `semiconductores`); generadas por el build |
-| `sitemap.xml` | Sitemap (home, changelog, categorías); generado por el build |
+| `api/cedears.json` | API estática de CEDEARs + ratios (generada por `npm run build`) |
 | `CHANGELOG.md` | Historial de cambios del **sitio** (`docs/`) para devs |
 
 La documentación detallada de cada función sigue en [`../doc/`](../doc/) del repo (no se duplica acá).
@@ -49,18 +47,11 @@ Publicada en Pages (sin backend):
 
 | Endpoint | Descripción |
 |----------|-------------|
-| [`/api/cedears.json`](https://ferminrp.github.io/google-sheets-argento/api/cedears.json) | Listado de CEDEARs con `Cedears`, `Name`, `Market`, `Ratio`, `TickerOriginal`, `tags` + metadata |
+| [`/api/cedears.json`](https://ferminrp.github.io/google-sheets-argento/api/cedears.json) | Listado de CEDEARs con `Cedears`, `Name`, `Market`, `Ratio`, `TickerOriginal` + metadata |
 
 Fuente canónica: [`data/cedears.json`](../data/cedears.json) (array plano).  
 `npm run build` regenera `docs/api/cedears.json` con un envelope para agentes/scripts.  
 CI falla si el archivo de Pages no está commiteado al día.
-
-## Listado y categorías SEO
-
-- En la home (`#cedears`), `script.js` carga `api/cedears.json` y muestra una tabla filtrable por tag (`<select>`).
-- Cada tag genera una página estática en `/categoria/{slug}/` (HTML sin JS obligatorio) vía `scripts/cedear-category-pages.js`.
-- Override de slug/título: tag `Tech` → slug `tecnologia`, título “CEDEARs de Tecnología”.
-- `docs/sitemap.xml` incluye home, changelog y todas las categorías.
 
 ## Activar Pages en el repo
 

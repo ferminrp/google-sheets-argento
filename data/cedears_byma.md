@@ -381,7 +381,7 @@
 | Uber Technologies Inc. | UBER | NYSE | 2:1 |
 | Ultrapar Participações S.A. | UGP | NYSE | 1:1 |
 | Unilever PLC - Sponsored | UL | NYSE | 3:1 |
-| NU Holdings Ltd/Cayman Islands | UN | NYSE | 2:1 |
+| NU Holdings Ltd/Cayman Islands | NU | NYSE | 2:1 |
 | UnitedHealth Group Inc. | UNH | NYSE | 33:1 |
 | Union Pacific Corp. | UNP | NYSE | 20:1 |
 | Upstart Hldgs Inc | UPST | NASDAQ GS | 5:1 |

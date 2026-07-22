@@ -10278,24 +10278,31 @@
     ]
   },
   {
-    "Cedears": "UN",
+    "Cedears": "NU",
     "Name": "NU Holdings Ltd/Cayman Islands",
     "Market": "NYSE",
     "Ratio": "2",
-    "TickerOriginal": "UN",
+    "TickerOriginal": "NU",
     "yfinance-metadata": {
-      "yahoo_symbol": "UN",
-      "fetched_at": "2026-07-21T10:58:46Z",
-      "long_description": "Under normal circumstances, the fund will invest at least 80% of the value of its net assets, plus any borrowings for investment purposes, in financial instruments (for example, swaps and futures) that, in the aggregate, provide leveraged exposure to the Underlying Security equal to approximately two times its daily performance. It is non-diversified.",
-      "short_name": "Corgi UNH 2x Daily ETF",
-      "exchange": "BTS",
-      "quote_type": "ETF",
+      "yahoo_symbol": "NU",
+      "fetched_at": "2026-07-22T14:11:47Z",
+      "long_description": "Nu Holdings Ltd. provides digital banking platform in Brazil, Mexico, Colombia, the Cayman Islands, and the United States. The company provides spending solutions comprising Nu credit and prepaid card, a digitally enabled card that acts as a credit and a prepaid card; Nubank+ Tier, an evolution of the Nu experience; Ultraviolet credit and prepaid card, a premium metal credit card; mobile payment solutions for NuAccount customers to make and receive transfers, pay bills, and make everyday purchases through their mobile phones; and Nu Shopping, an integrated marketplace that enables customers to purchase goods and services from various ecommerce retailers. It also offers transactional solutions, such as Nu Personal Accounts, a digital account solution for personal financial activities; Nu business accounts for entrepreneur customers and their businesses; and Nu business prepaid and credit card. In addition, it offers savings and investing solutions, including Money Boxes, a solution for goal-based investing; investing solutions, an attractive investment product with customized and conflict-free guidance; and NuCrypto, a solution for buying and selling cryptocurrencies through the Nu app. Further, the company provides borrowing solutions comprising personal unsecured and secured loans; Pix financing that enables credit card and digital account customers to make free and instant peer-to-peer transfers; Boleto financing, which enables credit card and digital account customers to make payments; purchase financing; cash-in financing; and NuPay to make online purchases and pay for services through Nu app. Additionally, it offers protection solutions, such as NuInsurance protection solutions, including life, mobile, auto, home, and financial protection insurance policies; and beyond financial services solutions, including NuTravel, a travel portal; and NuCel, a mobile phone service. Nu Holdings Ltd. was founded in 2013 and is headquartered in São Paulo, Brazil.",
+      "city": "São Paulo",
+      "state": "SP",
+      "country": "Brazil",
+      "zip": "05409-000",
+      "address": "Rua Capote Valente, 39",
+      "sector": "Financial Services",
+      "industry": "Banks - Regional",
+      "website": "https://nubank.com.br",
+      "long_name": "Nu Holdings Ltd.",
+      "short_name": "Nu Holdings Ltd.",
+      "exchange": "NYQ",
+      "quote_type": "EQUITY",
       "currency": "USD"
     },
     "tags": [
-      "Fintech & Pagos",
-      "Apalancados",
-      "ETFs"
+      "Fintech & Pagos"
     ]
   },
   {

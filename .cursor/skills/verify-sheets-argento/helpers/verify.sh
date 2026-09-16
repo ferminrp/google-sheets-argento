@@ -180,27 +180,27 @@ PY
     if ! pid_is_our_docs_server "${DOCS_PID:-}"; then
       bad "DOCS_PID ${DOCS_PID:-unset} is not our http.server on port ${VERIFY_DOCS_PORT}"
     fi
-    local code body
-    code="$(curl -sS -o /tmp/sheets-argento-doctor-index-$$.html -w "%{http_code}" "$(docs_url)/" || true)"
+    local code index_file api_file
+    index_file="${VERIFY_STATE_DIR}/doctor-index.html"
+    api_file="${VERIFY_STATE_DIR}/doctor-cedears.json"
+    mkdir -p "${VERIFY_STATE_DIR}"
+    code="$(curl -sS -o "${index_file}" -w "%{http_code}" "$(docs_url)/" || true)"
     [[ "${code}" == "200" ]] || bad "GET / returned ${code:-curl-failed}"
-    if [[ -f /tmp/sheets-argento-doctor-index-$$.html ]]; then
-      body="$(cat /tmp/sheets-argento-doctor-index-$$.html)"
-      echo "${body}" | grep -q "<title>Google Sheets Argento" || bad "GET / missing <title>Google Sheets Argento"
-      echo "${body}" | grep -q 'id="funciones"' || bad "GET / missing id=funciones"
-      echo "${body}" | grep -q 'id="instalacion"' || bad "GET / missing id=instalacion"
-      rm -f /tmp/sheets-argento-doctor-index-$$.html
+    if [[ -f "${index_file}" ]]; then
+      grep -F -q "<title>Google Sheets Argento" "${index_file}" || bad "GET / missing <title>Google Sheets Argento"
+      grep -F -q 'id="funciones"' "${index_file}" || bad "GET / missing id=funciones"
+      grep -F -q 'id="instalacion"' "${index_file}" || bad "GET / missing id=instalacion"
     fi
-    code="$(curl -sS -o /tmp/sheets-argento-doctor-api-$$.json -w "%{http_code}" "$(docs_url)/api/cedears.json" || true)"
+    code="$(curl -sS -o "${api_file}" -w "%{http_code}" "$(docs_url)/api/cedears.json" || true)"
     [[ "${code}" == "200" ]] || bad "GET /api/cedears.json returned ${code:-curl-failed}"
-    if [[ -f /tmp/sheets-argento-doctor-api-$$.json ]]; then
-      python3 - /tmp/sheets-argento-doctor-api-$$.json <<'PY' || bad "served cedears.json invalid"
+    if [[ -f "${api_file}" ]]; then
+      python3 - "${api_file}" <<'PY' || bad "served cedears.json invalid"
 import json, sys
 api = json.load(open(sys.argv[1]))
 assert api.get("schema_version") == 1
 assert api.get("name") == "cedears"
 assert any(i.get("Cedears") == "AAPL" for i in api.get("items") or [])
 PY
-      rm -f /tmp/sheets-argento-doctor-api-$$.json
     fi
   fi
 

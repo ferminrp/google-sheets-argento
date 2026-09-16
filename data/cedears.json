@@ -1426,6 +1426,51 @@
     ]
   },
   {
+    "Cedears": "BBAX",
+    "Name": "JPMorgan BetaBuilders Developed Asia Pacific ex-Japan ETF",
+    "Market": "NYSE Arca",
+    "Ratio": "13",
+    "TickerOriginal": "BBAX",
+    "yfinance-metadata": {
+      "yahoo_symbol": "BBAX",
+      "fetched_at": "2026-09-16T15:03:44Z",
+      "long_description": "The fund will invest at least 80% of its assets in securities included in the underlying index. The underlying index targets 85% of the stocks traded on the primary exchanges in each country or region by market capitalization, and primarily includes large-and mid-cap companies.",
+      "phone": "(844) 457-6383",
+      "long_name": "JPMorgan BetaBuilders Developed Asia Pacific ex-Japan ETF",
+      "short_name": "JPMorgan BetaBuilders Developed",
+      "exchange": "BTS",
+      "quote_type": "ETF",
+      "currency": "USD"
+    },
+    "tags": [
+      "Mercados desarrollados",
+      "Países y regiones",
+      "ETFs"
+    ]
+  },
+  {
+    "Cedears": "BBCA",
+    "Name": "JPMorgan BetaBuilders Canada ETF",
+    "Market": "NYSE Arca",
+    "Ratio": "20",
+    "TickerOriginal": "BBCA",
+    "yfinance-metadata": {
+      "yahoo_symbol": "BBCA",
+      "fetched_at": "2026-09-16T15:03:44Z",
+      "long_description": "The fund will invest at least 80% of its assets in securities included in the underlying index. The underlying index is a free float adjusted market capitalization weighted index which consists of stocks traded primarily on the Toronto Stock Exchange. The fund may invest up to 20% of its assets in exchange-traded futures and forward foreign currency contracts to seek performance that corresponds to the underlying index.",
+      "phone": "(844) 457-6383",
+      "long_name": "JPMorgan BetaBuilders Canada ETF",
+      "short_name": "JPMorgan BetaBuilders Canada ET",
+      "exchange": "BTS",
+      "quote_type": "ETF",
+      "currency": "USD"
+    },
+    "tags": [
+      "Países y regiones",
+      "ETFs"
+    ]
+  },
+  {
     "Cedears": "BBD",
     "Name": "Banco Bradesco S.A.",
     "Market": "NYSE",
@@ -2433,6 +2478,29 @@
       "Minería & Metales",
       "Materiales",
       "Minería y metales",
+      "ETFs"
+    ]
+  },
+  {
+    "Cedears": "CORN",
+    "Name": "Teucrium Corn Fund",
+    "Market": "NYSE Arca",
+    "Ratio": "4",
+    "TickerOriginal": "CORN",
+    "yfinance-metadata": {
+      "yahoo_symbol": "CORN",
+      "fetched_at": "2026-09-16T15:03:44Z",
+      "long_description": "The Benchmark is a weighted average of the closing settlement prices for three futures contracts for corn that are traded on the Chicago Board of Trade. Under normal market conditions, it is expected that 100% of the fund’s assets will be invested in benchmark component futures contracts and in cash and cash equivalents. The fund seeks to achieve its investment objective by investing in benchmark component futures contracts.",
+      "phone": "802-257-1617",
+      "long_name": "Teucrium Corn Fund",
+      "short_name": "Teucrium Corn Fund ETV",
+      "exchange": "PCX",
+      "quote_type": "ETF",
+      "currency": "USD"
+    },
+    "tags": [
+      "Agro",
+      "Commodities",
       "ETFs"
     ]
   },
@@ -4084,6 +4152,27 @@
       "currency": "USD"
     },
     "tags": []
+  },
+  {
+    "Cedears": "GSG",
+    "Name": "iShares S&P GSCI Commodity-Indexed Trust",
+    "Market": "NYSE Arca",
+    "Ratio": "6",
+    "TickerOriginal": "GSG",
+    "yfinance-metadata": {
+      "yahoo_symbol": "GSG",
+      "fetched_at": "2026-09-16T15:03:44Z",
+      "long_description": "The Trust holds long positions in index futures that have settlement values at expiration based on the level of the S&P GSCI-ER at that time, and earning interest on its non-cash Collateral Assets used to satisfy applicable margin requirements on those index futures positions. The index reflects the return of the S&P GSCI-ER, together with the return on specified U.S. Treasury securities that are deemed to have been held to collateralize a hypothetical long position in the futures contracts comprising the S&P GSCI™.",
+      "long_name": "iShares S&P GSCI Commodity-Indexed Trust",
+      "short_name": "iShares GSCI Commodity-Indexed ",
+      "exchange": "PCX",
+      "quote_type": "ETF",
+      "currency": "USD"
+    },
+    "tags": [
+      "Commodities",
+      "ETFs"
+    ]
   },
   {
     "Cedears": "GSK",
@@ -9125,6 +9214,29 @@
     "tags": [
       "Tech",
       "Medios & Streaming"
+    ]
+  },
+  {
+    "Cedears": "SOYB",
+    "Name": "Teucrium Soybean Fund",
+    "Market": "NYSE Arca",
+    "Ratio": "5",
+    "TickerOriginal": "SOYB",
+    "yfinance-metadata": {
+      "yahoo_symbol": "SOYB",
+      "fetched_at": "2026-09-16T15:03:44Z",
+      "long_description": "The fund seeks to achieve its investment objective by investing in Benchmark Component Futures Contracts. Under normal market conditions, the Advisor expects that 100% of the fund’s assets will be invested in Benchmark Component Futures Contracts and in cash and cash equivalents.",
+      "phone": "802-257-1617",
+      "long_name": "Teucrium Soybean Fund",
+      "short_name": "Teucrium Soybean Fund ETV",
+      "exchange": "PCX",
+      "quote_type": "ETF",
+      "currency": "USD"
+    },
+    "tags": [
+      "Agro",
+      "Commodities",
+      "ETFs"
     ]
   },
   {
